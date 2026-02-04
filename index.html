@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMK NEGERI 1 LINGGA - Agribisnis Ternak Ruminansia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #1a4d2e;
+            --secondary-green: #2d5f3f;
+            --accent-green: #4f8a5b;
+            --light-green: #a8d5ba;
+            --cream: #faf8f3;
+            --dark-text: #1a2412;
+            --light-text: #f0f4f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--dark-text);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--light-text);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--light-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--light-text);
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(168, 213, 186, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(79, 138, 91, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: var(--light-text);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--light-green);
+            margin-bottom: 1rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--light-text);
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        .btn-primary:hover {
+            background: #c5e8d3;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(168, 213, 186, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light-text);
+            border: 2px solid var(--light-green);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light-green);
+            color: var(--primary-green);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-green);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-green);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* News Cards */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(26, 77, 46, 0.15);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--accent-green), var(--secondary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            color: var(--accent-green);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 0.8rem;
+        }
+
+        .news-excerpt {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Profile Section */
+        .profile-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .profile-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .profile-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-box ul {
+            list-style: none;
+            line-height: 2;
+        }
+
+        .profile-box ul li::before {
+            content: '▸';
+            color: var(--accent-green);
+            font-weight: bold;
+            margin-right: 0.8rem;
+        }
+
+        /* Jurusan Section */
+        .jurusan-highlight {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            padding: 4rem;
+            border-radius: 20px;
+            color: var(--light-text);
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .jurusan-highlight::before {
+            content: '🐄';
+            position: absolute;
+            right: -50px;
+            bottom: -50px;
+            font-size: 15rem;
+            opacity: 0.1;
+        }
+
+        .jurusan-highlight h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .jurusan-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Staff Grid */
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .staff-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .staff-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(26, 77, 46, 0.15);
+        }
+
+        .staff-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-green), var(--light-green));
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .staff-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .staff-position {
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            height: 300px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--accent-green), var(--secondary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(26, 77, 46, 0.3);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item h4 {
+            color: var(--primary-green);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .contact-item p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-green);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Work Sans', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-green);
+        }
+
+        /* PPDB Section */
+        .ppdb-highlight {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(26, 77, 46, 0.1);
+            border: 3px solid var(--light-green);
+            margin-top: 2rem;
+        }
+
+        .ppdb-highlight h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .ppdb-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .ppdb-item {
+            padding: 1.5rem;
+            background: var(--cream);
+            border-radius: 10px;
+        }
+
+        .ppdb-item h4 {
+            color: var(--accent-green);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-green);
+            color: var(--light-text);
+            padding: 3rem 2rem 1.5rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--light-green);
+            line-height: 1.8;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(168, 213, 186, 0.2);
+            color: var(--light-green);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-green);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .profile-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">SMKN 1 LINGGA</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#profil">Profil</a></li>
+                <li><a href="#jurusan">Jurusan</a></li>
+                <li><a href="#guru">Guru & Staf</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+                <li><a href="#ppdb">PPDB</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="beranda">
+        <div class="hero-content">
+            <div class="hero-subtitle">Selamat Datang di</div>
+            <h1>SMK NEGERI 1<br>LINGGA</h1>
+            <p class="hero-description">
+                Mencetak generasi ahli di bidang Agribisnis Ternak Ruminansia yang profesional, berakhlak mulia, dan siap berkontribusi untuk kemajuan daerah Kepulauan Riau.
+            </p>
+            <div class="cta-buttons">
+                <a href="#ppdb" class="btn btn-primary">Daftar Sekarang</a>
+                <a href="#profil" class="btn btn-secondary">Tentang Kami</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Berita & Pengumuman -->
+    <section id="berita">
+        <h2 class="section-title">Berita & Pengumuman</h2>
+        <p class="section-subtitle">Informasi terkini seputar kegiatan sekolah</p>
+        
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-image">📢</div>
+                <div class="news-content">
+                    <div class="news-date">2 Februari 2026</div>
+                    <h3 class="news-title">Pendaftaran Siswa Baru Tahun 2026/2027</h3>
+                    <p class="news-excerpt">Pendaftaran siswa baru telah dibuka untuk tahun ajaran 2026/2027. Segera daftarkan diri Anda dan bergabung bersama kami!</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <div class="news-image">🏆</div>
+                <div class="news-content">
+                    <div class="news-date">28 Januari 2026</div>
+                    <h3 class="news-title">Prestasi Lomba Peternakan Tingkat Provinsi</h3>
+                    <p class="news-excerpt">Siswa SMK Negeri 1 Lingga meraih juara 1 dalam lomba inovasi peternakan tingkat Provinsi Kepulauan Riau.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <div class="news-image">🌾</div>
+                <div class="news-content">
+                    <div class="news-date">15 Januari 2026</div>
+                    <h3 class="news-title">Kunjungan Industri ke Peternakan Modern</h3>
+                    <p class="news-excerpt">Siswa kelas XI melakukan kunjungan industri ke peternakan modern untuk memperkaya pengalaman praktis di lapangan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profil Sekolah -->
+    <section id="profil">
+        <h2 class="section-title">Profil Sekolah</h2>
+        <p class="section-subtitle">Mengenal lebih dekat SMK Negeri 1 Lingga</p>
+        
+        <div class="profile-content">
+            <div class="profile-box">
+                <h3>Visi</h3>
+                <p>Menjadi SMK unggul dalam bidang Agribisnis Ternak Ruminansia yang menghasilkan lulusan kompeten, berkarakter, dan berwawasan lingkungan pada tahun 2030.</p>
+            </div>
+            
+            <div class="profile-box">
+                <h3>Misi</h3>
+                <ul>
+                    <li>Menyelenggarakan pendidikan kejuruan yang berkualitas dan relevan dengan kebutuhan industri peternakan</li>
+                    <li>Mengembangkan kompetensi siswa melalui pembelajaran teori dan praktik yang terintegrasi</li>
+                    <li>Membangun karakter siswa yang berakhlak mulia, disiplin, dan bertanggung jawab</li>
+                    <li>Menjalin kerjasama dengan dunia usaha dan industri peternakan</li>
+                    <li>Mengembangkan budaya ramah lingkungan dan kearifan lokal</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="profile-content" style="margin-top: 2rem;">
+            <div class="profile-box" style="grid-column: 1 / -1;">
+                <h3>Sejarah Singkat</h3>
+                <p style="line-height: 1.8;">
+                    SMK Negeri 1 Lingga didirikan pada tahun 2018 sebagai respons terhadap kebutuhan tenaga ahli di bidang agribisnis peternakan di wilayah Kepulauan Riau. Berlokasi di Dusun II Mulyasari, Kecamatan Lingga Timur, sekolah ini menjadi pionir dalam pendidikan kejuruan khusus Agribisnis Ternak Ruminansia di kawasan tersebut. 
+                    <br><br>
+                    Dengan fasilitas yang terus berkembang dan dukungan pemerintah daerah, SMK Negeri 1 Lingga berkomitmen untuk mencetak generasi muda yang tidak hanya kompeten dalam bidang peternakan, tetapi juga memiliki jiwa kewirausahaan dan kepedulian terhadap pembangunan berkelanjutan.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jurusan -->
+    <section id="jurusan">
+        <h2 class="section-title">Program Keahlian</h2>
+        <p class="section-subtitle">Jurusan yang tersedia di SMK Negeri 1 Lingga</p>
+        
+        <div class="jurusan-highlight">
+            <h3>Agribisnis Ternak Ruminansia</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
+                Program keahlian yang fokus pada pemeliharaan, pengelolaan, dan pengembangan usaha peternakan ternak ruminansia seperti sapi, kambing, dan domba. Siswa akan dibekali dengan pengetahuan dan keterampilan yang komprehensif dalam bidang peternakan modern.
+            </p>
+            
+            <div class="jurusan-features">
+                <div class="feature">
+                    <h4>🎓 Kompetensi Lulusan</h4>
+                    <p>Ahli dalam pemeliharaan ternak, manajemen pakan, kesehatan ternak, dan pengolahan hasil peternakan</p>
+                </div>
+                
+                <div class="feature">
+                    <h4>💼 Prospek Kerja</h4>
+                    <p>Peternak mandiri, supervisor peternakan, teknisi inseminasi buatan, quality control produk ternak</p>
+                </div>
+                
+                <div class="feature">
+                    <h4>🔬 Fasilitas Praktik</h4>
+                    <p>Kandang praktik, laboratorium pakan, klinik hewan, dan kerjasama dengan peternakan mitra</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guru & Staf -->
+    <section id="guru">
+        <h2 class="section-title">Guru & Tenaga Kependidikan</h2>
+        <p class="section-subtitle">Tim pengajar yang berpengalaman dan profesional</p>
+        
+        <div class="staff-grid">
+            <div class="staff-card">
+                <div class="staff-avatar">👨‍🏫</div>
+                <div class="staff-name">Kepala Sekolah</div>
+                <div class="staff-position">Pemimpin & Pengelola Sekolah</div>
+            </div>
+            
+            <div class="staff-card">
+                <div class="staff-avatar">👨‍🔬</div>
+                <div class="staff-name">Guru Produktif</div>
+                <div class="staff-position">Agribisnis Ternak Ruminansia</div>
+            </div>
+            
+            <div class="staff-card">
+                <div class="staff-avatar">👩‍🏫</div>
+                <div class="staff-name">Guru Normatif</div>
+                <div class="staff-position">Mata Pelajaran Umum</div>
+            </div>
+            
+            <div class="staff-card">
+                <div class="staff-avatar">👨‍💼</div>
+                <div class="staff-name">Tenaga Administrasi</div>
+                <div class="staff-position">Tata Usaha & Administrasi</div>
+            </div>
+            
+            <div class="staff-card">
+                <div class="staff-avatar">👨‍🏭</div>
+                <div class="staff-name">Teknisi Kandang</div>
+                <div class="staff-position">Pengelola Fasilitas Praktik</div>
+            </div>
+            
+            <div class="staff-card">
+                <div class="staff-avatar">👩‍💻</div>
+                <div class="staff-name">Staff IT</div>
+                <div class="staff-position">Teknologi Informasi</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri -->
+    <section id="galeri">
+        <h2 class="section-title">Galeri Kegiatan</h2>
+        <p class="section-subtitle">Dokumentasi kegiatan dan fasilitas sekolah</p>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">🏫</div>
+            <div class="gallery-item">👨‍🎓</div>
+            <div class="gallery-item">🐄</div>
+            <div class="gallery-item">📚</div>
+            <div class="gallery-item">🔬</div>
+            <div class="gallery-item">🏆</div>
+        </div>
+    </section>
+
+    <!-- PPDB -->
+    <section id="ppdb">
+        <h2 class="section-title">Penerimaan Peserta Didik Baru</h2>
+        <p class="section-subtitle">Informasi pendaftaran siswa baru tahun ajaran 2026/2027</p>
+        
+        <div class="ppdb-highlight">
+            <h3>📋 Persyaratan Pendaftaran</h3>
+            <div class="ppdb-info">
+                <div class="ppdb-item">
+                    <h4>Akademik</h4>
+                    <p>Lulusan SMP/MTs sederajat dengan ijazah atau SKHUN</p>
+                </div>
+                <div class="ppdb-item">
+                    <h4>Administrasi</h4>
+                    <p>Fotokopi KK, Akta Kelahiran, dan KTP Orang Tua</p>
+                </div>
+                <div class="ppdb-item">
+                    <h4>Kesehatan</h4>
+                    <p>Surat keterangan sehat dari dokter</p>
+                </div>
+                <div class="ppdb-item">
+                    <h4>Lainnya</h4>
+                    <p>Pas foto 3x4 (5 lembar) dan materai 10.000</p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2rem;">📅 Jadwal Pendaftaran</h3>
+            <div class="ppdb-info">
+                <div class="ppdb-item">
+                    <h4>Pendaftaran</h4>
+                    <p>1 Juni - 30 Juni 2026</p>
+                </div>
+                <div class="ppdb-item">
+                    <h4>Seleksi</h4>
+                    <p>1 - 5 Juli 2026</p>
+                </div>
+                <div class="ppdb-item">
+                    <h4>Pengumuman</h4>
+                    <p>10 Juli 2026</p>
+                </div>
+                <div class="ppdb-item">
+                    <h4>Daftar Ulang</h4>
+                    <p>11 - 15 Juli 2026</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem; text-align: center;">
+                <a href="#kontak" class="btn btn-primary">Hubungi Kami untuk Info Lebih Lanjut</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="kontak">
+        <h2 class="section-title">Hubungi Kami</h2>
+        <p class="section-subtitle">Kami siap membantu Anda</p>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h4>📍 Alamat</h4>
+                    <p>DUSUN II MULYASARI<br>
+                    Kec. Lingga Timur, Kab. Lingga<br>
+                    Prov. Kepulauan Riau</p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>📞 Telepon</h4>
+                    <p>(0771) 123-4567<br>
+                    WhatsApp: 0812-3456-7890</p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>📧 Email</h4>
+                    <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f891969e97b88b959396c99491969f9f99d68b9b90d6919c">[email&#160;protected]</a><br>
+                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b8c8c8dcdaf8cbd5d3d689d4d1d6dfdfd996cbdbd096d1dc">[email&#160;protected]</a></p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>🕐 Jam Operasional</h4>
+                    <p>Senin - Jumat: 07.00 - 16.00 WIB<br>
+                    Sabtu: 07.00 - 12.00 WIB</p>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary-green);">Kirim Pesan</h3>
+                <form>
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" placeholder="Masukkan nama Anda" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="nama@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Nomor Telepon</label>
+                        <input type="tel" placeholder="08xx-xxxx-xxxx" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Pesan</label>
+                        <textarea rows="5" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SMK Negeri 1 Lingga</h3>
+                <p>Mencetak generasi ahli peternakan yang profesional dan berakhlak mulia untuk kemajuan bangsa.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Menu Cepat</h3>
+                <p><a href="#beranda">Beranda</a></p>
+                <p><a href="#profil">Profil</a></p>
+                <p><a href="#jurusan">Jurusan</a></p>
+                <p><a href="#ppdb">PPDB</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <p>DUSUN II MULYASARI<br>Lingga Timur, Kab. Lingga</p>
+                <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="274e49414867544a4c49164b4e494040460954444f094e43">[email&#160;protected]</a></p>
+                <p>Telp: (0771) 123-4567</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Media Sosial</h3>
+                <p><a href="#">Facebook</a></p>
+                <p><a href="#">Instagram</a></p>
+                <p><a href="#">YouTube</a></p>
+                <p><a href="#">Twitter</a></p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 SMK Negeri 1 Lingga. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    wind
