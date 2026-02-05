@@ -114,6 +114,30 @@
             align-items: center;
         }
 
+        /* Background image untuk hero banner */
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        /* Overlay gelap di atas gambar agar text tetap terbaca */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(26, 77, 46, 0.85) 0%, rgba(45, 95, 63, 0.85) 100%);
+            z-index: 0;
+        }
+
         .hero::before {
             content: '';
             position: absolute;
@@ -125,6 +149,7 @@
                 radial-gradient(circle at 20% 50%, rgba(168, 213, 186, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(79, 138, 91, 0.1) 0%, transparent 50%);
             pointer-events: none;
+            z-index: 1;
         }
 
         .hero-content {
@@ -325,6 +350,15 @@
             margin-right: 0.8rem;
         }
 
+        .profile-box ol {
+            line-height: 2;
+            padding-left: 1.2rem;
+        }
+
+        .profile-box ol li {
+            margin-bottom: 0.5rem;
+        }
+
         /* Jurusan Section */
         .jurusan-highlight {
             background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
@@ -385,6 +419,7 @@
             text-align: center;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .staff-card:hover {
@@ -414,6 +449,85 @@
         .staff-position {
             color: var(--accent-green);
             font-weight: 500;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2.5rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideDown 0.3s ease;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            line-height: 1;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--primary-green);
+        }
+
+        .modal h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-green);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--accent-green);
+        }
+
+        .staff-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .staff-item {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-green);
+            transition: all 0.3s ease;
+        }
+
+        .staff-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .staff-item-name {
+            font-weight: 600;
+            color: var(--primary-green);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .staff-item-nip {
+            color: #666;
+            font-size: 0.95rem;
         }
 
         /* Gallery */
@@ -514,15 +628,14 @@
             background: white;
             padding: 3rem;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(26, 77, 46, 0.1);
-            border: 3px solid var(--light-green);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             margin-top: 2rem;
         }
 
         .ppdb-highlight h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
             color: var(--primary-green);
+            font-size: 2rem;
             margin-bottom: 1.5rem;
         }
 
@@ -530,13 +643,14 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin: 2rem 0;
+            margin-top: 1.5rem;
         }
 
         .ppdb-item {
-            padding: 1.5rem;
             background: var(--cream);
+            padding: 1.5rem;
             border-radius: 10px;
+            border-top: 4px solid var(--accent-green);
         }
 
         .ppdb-item h4 {
@@ -596,6 +710,22 @@
             }
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .menu-toggle {
@@ -647,6 +777,12 @@
             .section-title {
                 font-size: 2rem;
             }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -674,6 +810,12 @@
 
     <!-- Hero Section -->
     <section class="hero" id="beranda">
+        <!-- Background Image Banner Sekolah -->
+        <div class="hero-background" style="background-image: url('images/banner.jpeg');"></div>
+        
+        <!-- Overlay gelap agar text tetap terbaca -->
+        <div class="hero-overlay"></div>
+        
         <div class="hero-content">
             <div class="hero-subtitle">Selamat Datang di</div>
             <h1>SMK NEGERI 1<br>LINGGA</h1>
@@ -729,29 +871,30 @@
         
         <div class="profile-content">
             <div class="profile-box">
-                <h3>Visi</h3>
-                <p>Menjadi SMK unggul dalam bidang Agribisnis Ternak Ruminansia yang menghasilkan lulusan kompeten, berkarakter, dan berwawasan lingkungan pada tahun 2030.</p>
+                <h3>Visi Satuan Pendidikan</h3>
+                <p style="line-height: 1.8;">Terwujudnya insan yang berakhlak mulia, menguasai IPTEK dan berjiwa kewirausahaan bidang agribisnis dan agro teknologi</p>
             </div>
             
             <div class="profile-box">
-                <h3>Misi</h3>
-                <ul>
-                    <li>Menyelenggarakan pendidikan kejuruan yang berkualitas dan relevan dengan kebutuhan industri peternakan</li>
-                    <li>Mengembangkan kompetensi siswa melalui pembelajaran teori dan praktik yang terintegrasi</li>
-                    <li>Membangun karakter siswa yang berakhlak mulia, disiplin, dan bertanggung jawab</li>
-                    <li>Menjalin kerjasama dengan dunia usaha dan industri peternakan</li>
-                    <li>Mengembangkan budaya ramah lingkungan dan kearifan lokal</li>
-                </ul>
+                <h3>Misi Satuan Pendidikan</h3>
+                <ol>
+                    <li>Menerapkan pendidikan budaya positif dan budi pekerti di sekolah</li>
+                    <li>Melaksanakan pembelajaran berbasis IPTEK</li>
+                    <li>Melaksanakan penguatan pendidikan karakter dan gerakan literasi sekolah</li>
+                    <li>Menciptakan hubungan harmonis dan saling menguntungkan antara sekolah, Dunia Usaha dan Dunia Industri</li>
+                    <li>Menyediakan tenaga pendidik yang profesional</li>
+                    <li>Memberikan wadah dan kesempatan kepada peserta didik untuk pembelajaran berbasis wirausaha berupa Bisnis Center SMK</li>
+                </ol>
             </div>
         </div>
         
         <div class="profile-content" style="margin-top: 2rem;">
             <div class="profile-box" style="grid-column: 1 / -1;">
-                <h3>Sejarah Singkat</h3>
+                <h3>Sejarah Singkat SMK Negeri 1 Lingga</h3>
                 <p style="line-height: 1.8;">
-                    SMK Negeri 1 Lingga didirikan pada tahun 2018 sebagai respons terhadap kebutuhan tenaga ahli di bidang agribisnis peternakan di wilayah Kepulauan Riau. Berlokasi di Dusun II Mulyasari, Kecamatan Lingga Timur, sekolah ini menjadi pionir dalam pendidikan kejuruan khusus Agribisnis Ternak Ruminansia di kawasan tersebut. 
+                    SMK Negeri 1 Lingga berlokasi di Dusun II Mulyasari Desa Bukit Langkap Kecamatan Lingga Timur Kabupaten Lingga. SMK Negeri 1 Lingga merupakan salah satu Instansi pendidikan menengah yang berada di Kecamatan Lingga Timur. SMK Negeri 1 Lingga merupakan sekolah yang mempunyai jurusan yang sangat sesuai dengan budaya dan karakteristik desa yang mayoritas penduduknya adalah petani dan peternak.
                     <br><br>
-                    Dengan fasilitas yang terus berkembang dan dukungan pemerintah daerah, SMK Negeri 1 Lingga berkomitmen untuk mencetak generasi muda yang tidak hanya kompeten dalam bidang peternakan, tetapi juga memiliki jiwa kewirausahaan dan kepedulian terhadap pembangunan berkelanjutan.
+                    Dalam kegiatan sehari-hari, warga sekolah dan masyarakat sekitar menggunakan bahasa Indonesia, bahasa Melayu, dan bahasa Jawa. Peserta didik SMK Negeri 1 Lingga seluruhnya beragama Islam. Mereka berlatar belakang suku dan budaya yang beragam yaitu Melayu, Jawa, Sunda, dan Flores. Sebagian besar merupakan lulusan dari SMP pendukung yang berada disekitar wilayah Kecamatan Lingga Timur.
                 </p>
             </div>
         </div>
@@ -793,43 +936,148 @@
         <p class="section-subtitle">Tim pengajar yang berpengalaman dan profesional</p>
         
         <div class="staff-grid">
-            <div class="staff-card">
+            <div class="staff-card" onclick="openModal('kepalaSekolah')">
                 <div class="staff-avatar">👨‍🏫</div>
                 <div class="staff-name">Kepala Sekolah</div>
                 <div class="staff-position">Pemimpin & Pengelola Sekolah</div>
+                <p style="margin-top: 1rem; color: var(--accent-green); font-size: 0.9rem;">Klik untuk melihat data</p>
             </div>
             
-            <div class="staff-card">
+            <div class="staff-card" onclick="openModal('guruProduktif')">
                 <div class="staff-avatar">👨‍🔬</div>
                 <div class="staff-name">Guru Produktif</div>
                 <div class="staff-position">Agribisnis Ternak Ruminansia</div>
+                <p style="margin-top: 1rem; color: var(--accent-green); font-size: 0.9rem;">Klik untuk melihat data</p>
             </div>
             
-            <div class="staff-card">
+            <div class="staff-card" onclick="openModal('guruNormatif')">
                 <div class="staff-avatar">👩‍🏫</div>
                 <div class="staff-name">Guru Normatif</div>
                 <div class="staff-position">Mata Pelajaran Umum</div>
+                <p style="margin-top: 1rem; color: var(--accent-green); font-size: 0.9rem;">Klik untuk melihat data</p>
             </div>
             
-            <div class="staff-card">
+            <div class="staff-card" onclick="openModal('tataUsaha')">
                 <div class="staff-avatar">👨‍💼</div>
-                <div class="staff-name">Tenaga Administrasi</div>
-                <div class="staff-position">Tata Usaha & Administrasi</div>
-            </div>
-            
-            <div class="staff-card">
-                <div class="staff-avatar">👨‍🏭</div>
-                <div class="staff-name">Teknisi Kandang</div>
-                <div class="staff-position">Pengelola Fasilitas Praktik</div>
-            </div>
-            
-            <div class="staff-card">
-                <div class="staff-avatar">👩‍💻</div>
-                <div class="staff-name">Staff IT</div>
-                <div class="staff-position">Teknologi Informasi</div>
+                <div class="staff-name">Tata Usaha</div>
+                <div class="staff-position">Administrasi Sekolah</div>
+                <p style="margin-top: 1rem; color: var(--accent-green); font-size: 0.9rem;">Klik untuk melihat data</p>
             </div>
         </div>
     </section>
+
+    <!-- Modal Kepala Sekolah -->
+    <div id="kepalaSekolah" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('kepalaSekolah')">&times;</span>
+            <h2>Kepala Sekolah</h2>
+            <div class="staff-list">
+                <div class="staff-item">
+                    <div class="staff-item-name">SYAFITRIANDY, S.Pd.I</div>
+                    <div class="staff-item-nip">NIP: 198110202009031006</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Guru Produktif -->
+    <div id="guruProduktif" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('guruProduktif')">&times;</span>
+            <h2>Guru Produktif</h2>
+            <div class="staff-list">
+                <div class="staff-item">
+                    <div class="staff-item-name">ARINALDI, S.Pd</div>
+                    <div class="staff-item-nip">NIP: 199510222023211008</div>
+                </div>
+                <div class="staff-item">
+                    <div class="staff-item-name">ZAINI, S.Pt</div>
+                    <div class="staff-item-nip">NIP: 199111102025211161</div>
+                </div>
+                <div class="staff-item">
+                    <div class="staff-item-name">WARIS SUKIJO, S.Pd</div>
+                    <div class="staff-item-nip">NIP: 198808062019031001</div>
+                </div>
+                <div class="staff-item">
+                    <div class="staff-item-name">DESTIAN KUDUS IRMANSYAH, S.Pd</div>
+                    <div class="staff-item-nip">NIP: 198912252019031001</div>
+                </div>
+                <div class="staff-item">
+                    <div class="staff-item-name">LISTYORINI, S.Pd</div>
+                    <div class="staff-item-nip">NIP: 198702012022212004</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Guru Normatif -->
+    <div id="guruNormatif" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('guruNormatif')">&times;</span>
+            <h2>Guru Normatif</h2>
+            <div class="staff-list">
+                <div class="staff-item">
+                    <div class="staff-item-name">ZAINAL ABIDIN, S.H</div>
+                    <div class="staff-item-nip">NIP: 198405062022211004</div>
+                </div>
+                <div class="staff-item">
+                    <div class="staff-item-name">JUNAIDI, S.Pd</div>
+                    <div class="staff-item-nip">NIP: 199204052022211015</div>
+                </div>
+                <div class="staff-item">
+                    <div class="staff-item-name">LISA NOVIYANTI, S.Pd</div>
+                    <div class="staff-item-nip">NIP: 199308222023212018</div>
+                </div>
+                <div class="staff-item">
+                    <div class="staff-item-name">AHMADIN, S.Ag</div>
+                    <div class="staff-item-nip">NIP: 196809252024211001</div>
+                </div>
+                <div class="staff-item">
+                    <div class="staff-item-name">KHORIYAH, S.Pd.I</div>
+                    <div class="staff-item-nip">NIP: 199104072025212159</div>
+                </div>
+                <div class="staff-item">
+                    <div class="staff-item-name">TARSIM TARIGAN, S.Pd</div>
+                    <div class="staff-item-nip">NIP: 196806181991011001</div>
+                </div>
+                <div class="staff-item">
+                    <div class="staff-item-name">SABARANI, S.Pd</div>
+                    <div class="staff-item-nip">NIP: 199103032015031002</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tata Usaha -->
+    <div id="tataUsaha" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('tataUsaha')">&times;</span>
+            <h2>Tata Usaha</h2>
+            <div class="staff-list">
+                <div class="staff-item">
+                    <div class="staff-item-name">UMAR, S.Pd</div>
+                    <div class="staff-item-nip">NIP: 198507222025211010</div>
+                    <div style="color: var(--accent-green); margin-top: 0.3rem; font-size: 0.9rem;">Kepala Tata Usaha</div>
+                </div>
+                <div class="staff-item">
+                    <div class="staff-item-name">NORASIAH, S.Pd</div>
+                    <div class="staff-item-nip">NIP: 197903232025212008</div>
+                </div>
+                <div class="staff-item">
+                    <div class="staff-item-name">SAMPION, S.Pd</div>
+                    <div class="staff-item-nip">NIP: 198506152025211136</div>
+                </div>
+                <div class="staff-item">
+                    <div class="staff-item-name">HARMAN, S.Pd</div>
+                    <div class="staff-item-nip">NIP: 198007142025211078</div>
+                </div>
+                <div class="staff-item">
+                    <div class="staff-item-name">MIFTACHUDIN</div>
+                    <div class="staff-item-nip">NIP: 198807142025211123</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Galeri -->
     <section id="galeri">
@@ -908,6 +1156,7 @@
                 <div class="contact-item">
                     <h4>📍 Alamat</h4>
                     <p>DUSUN II MULYASARI<br>
+                    Desa Bukit Langkap<br>
                     Kec. Lingga Timur, Kab. Lingga<br>
                     Prov. Kepulauan Riau</p>
                 </div>
@@ -920,8 +1169,8 @@
                 
                 <div class="contact-item">
                     <h4>📧 Email</h4>
-                    <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f891969e97b88b959396c99491969f9f99d68b9b90d6919c">[email&#160;protected]</a><br>
-                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b8c8c8dcdaf8cbd5d3d689d4d1d6dfdfd996cbdbd096d1dc">[email&#160;protected]</a></p>
+                    <p>info@smkn1lingga.sch.id<br>
+                    ppdb@smkn1lingga.sch.id</p>
                 </div>
                 
                 <div class="contact-item">
@@ -979,7 +1228,7 @@
             <div class="footer-section">
                 <h3>Kontak</h3>
                 <p>DUSUN II MULYASARI<br>Lingga Timur, Kab. Lingga</p>
-                <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="274e49414867544a4c49164b4e494040460954444f094e43">[email&#160;protected]</a></p>
+                <p>Email: info@smkn1lingga.sch.id</p>
                 <p>Telp: (0771) 123-4567</p>
             </div>
             
@@ -997,7 +1246,7 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
@@ -1020,4 +1269,46 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     const offsetTop = target.offsetTop - 80;
-                    wind
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    modal.style.display = 'none';
+                });
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
