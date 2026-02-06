@@ -160,7 +160,6 @@
 
         /* Background semi-transparan di belakang teks agar terbaca */
         .hero-content .hero-subtitle,
-        .hero-content h1,
         .hero-content .hero-description {
             background: rgba(26, 77, 46, 0.5);
             padding: 0.5rem 1.5rem;
@@ -170,6 +169,7 @@
         }
 
         .hero-content h1 {
+            background: transparent !important;
             padding: 1rem 1.5rem;
             margin-bottom: 1.5rem;
         }
@@ -558,20 +558,45 @@
         }
 
         .gallery-item {
+            position: relative;
             height: 300px;
             border-radius: 15px;
-            background: linear-gradient(135deg, var(--accent-green), var(--secondary-green));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
+            overflow: hidden;
             cursor: pointer;
             transition: all 0.3s ease;
-            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(26, 77, 46, 0.95), transparent);
+            color: white;
+            padding: 1.5rem;
+            font-weight: 500;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
         }
 
         .gallery-item:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(26, 77, 46, 0.3);
         }
 
@@ -1104,12 +1129,18 @@
         <p class="section-subtitle">Dokumentasi kegiatan dan fasilitas sekolah</p>
         
         <div class="gallery-grid">
-            <div class="gallery-item">🏫</div>
-            <div class="gallery-item">👨‍🎓</div>
-            <div class="gallery-item">🐄</div>
-            <div class="gallery-item">📚</div>
-            <div class="gallery-item">🔬</div>
-            <div class="gallery-item">🏆</div>
+            <div class="gallery-item">
+                <img src="images/juara_pertama.jpeg" alt="Juara Pertama" />
+                <div class="gallery-caption">Juara Pertama - Prestasi Siswa</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/outdoor_study.jpeg" alt="Outdoor Study" />
+                <div class="gallery-caption">Kegiatan Pembelajaran Outdoor</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/tka2025.jpeg" alt="TKA 2025" />
+                <div class="gallery-caption">TKA 2025</div>
+            </div>
         </div>
     </section>
 
@@ -1188,8 +1219,8 @@
                 
                 <div class="contact-item">
                     <h4>📧 Email</h4>
-                    <p>info@smkn1lingga.sch.id<br>
-                    ppdb@smkn1lingga.sch.id</p>
+                    <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4920272f26093a242227782520272e2e28673a2a2167202d">[email&#160;protected]</a><br>
+                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6919190d0b291a040207580500070e0e08471a0a0147000d">[email&#160;protected]</a></p>
                 </div>
                 
                 <div class="contact-item">
@@ -1247,7 +1278,7 @@
             <div class="footer-section">
                 <h3>Kontak</h3>
                 <p>DUSUN II MULYASARI<br>Lingga Timur, Kab. Lingga</p>
-                <p>Email: info@smkn1lingga.sch.id</p>
+                <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2e474048416e5d4345401f42474049494f005d4d4600474a">[email&#160;protected]</a></p>
                 <p>Telp: (0771) 123-4567</p>
             </div>
             
@@ -1265,7 +1296,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
@@ -1313,21 +1344,4 @@
             modals.forEach(modal => {
                 if (event.target === modal) {
                     modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        }
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const modals = document.querySelectorAll('.modal');
-                modals.forEach(modal => {
-                    modal.style.display = 'none';
-                });
-                document.body.style.overflow = 'auto';
-            }
-        });
-    </script>
-</body>
-</html>
+                    document.body.style.overflow = 'a
