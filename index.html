@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMK NEGERI 1 LINGGA - Agribisnis Ternak Ruminansia</title>
+    <link rel="icon" type="image/x-icon" href="images/logo-smk.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -58,6 +59,35 @@
             font-weight: 900;
             color: var(--light-text);
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-text span:first-child {
+            font-size: 1.35rem;
+        }
+
+        .logo-text span:last-child {
+            font-size: 0.7rem;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 400;
+            color: var(--light-green);
+            letter-spacing: 0.5px;
         }
 
         .nav-links {
@@ -1399,7 +1429,13 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">SMKN 1 LINGGA</div>
+            <a href="#beranda" class="logo">
+                <img src="images/logo-smk.ico" alt="Logo SMKN 1 Lingga" class="logo-img" onerror="this.style.display='none'">
+                <div class="logo-text">
+                    <span>SMKN 1 LINGGA</span>
+                    <span>Kepulauan Riau</span>
+                </div>
+            </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#beranda">Beranda</a></li>
                 <li><a href="#profil">Profil</a></li>
@@ -1453,7 +1489,16 @@
                     </div>
                 </li>
 
-                <li><a href="#guru">Guru & Staf</a></li>
+                <!-- Dropdown: Guru & Staf -->
+                <li class="nav-item">
+                    <a href="guru.html">Guru & Staf <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="guru.html#kepala"><span class="icon">&#128104;&#8205;&#127979;</span> Kepala Sekolah</a>
+                        <a href="guru.html#produktif"><span class="icon">&#128104;&#8205;&#128300;</span> Guru Produktif</a>
+                        <a href="guru.html#normatif"><span class="icon">&#128105;&#8205;&#127979;</span> Guru Normatif</a>
+                        <a href="guru.html#tu"><span class="icon">&#128104;&#8205;&#128188;</span> Tata Usaha</a>
+                    </div>
+                </li>
                 <li><a href="#galeri">Galeri</a></li>
                 <li><a href="#ppdb">PPDB</a></li>
                 <li><a href="#kontak">Kontak</a></li>
@@ -1588,764 +1633,6 @@
         </div>
     </section>
 
-    <!-- Guru & Staf -->
-    <section id="guru">
-        <h2 class="section-title">Guru & Tenaga Kependidikan</h2>
-        <p class="section-subtitle">Tim pengajar yang berpengalaman dan profesional</p>
-        
-        <div class="staff-grid">
-            <div class="staff-card" onclick="openModal('kepalaSekolah')">
-                <div class="staff-avatar">👨‍🏫</div>
-                <div class="staff-name">Kepala Sekolah</div>
-                <div class="staff-position">Pemimpin & Pengelola Sekolah</div>
-                <p style="margin-top: 1rem; color: var(--accent-green); font-size: 0.9rem;">Klik untuk melihat data</p>
-            </div>
-            
-            <div class="staff-card" onclick="openModal('guruProduktif')">
-                <div class="staff-avatar">👨‍🔬</div>
-                <div class="staff-name">Guru Produktif</div>
-                <div class="staff-position">Agribisnis Ternak Ruminansia</div>
-                <p style="margin-top: 1rem; color: var(--accent-green); font-size: 0.9rem;">Klik untuk melihat data</p>
-            </div>
-            
-            <div class="staff-card" onclick="openModal('guruNormatif')">
-                <div class="staff-avatar">👩‍🏫</div>
-                <div class="staff-name">Guru Normatif</div>
-                <div class="staff-position">Mata Pelajaran Umum</div>
-                <p style="margin-top: 1rem; color: var(--accent-green); font-size: 0.9rem;">Klik untuk melihat data</p>
-            </div>
-            
-            <div class="staff-card" onclick="openModal('tataUsaha')">
-                <div class="staff-avatar">👨‍💼</div>
-                <div class="staff-name">Tata Usaha</div>
-                <div class="staff-position">Administrasi Sekolah</div>
-                <p style="margin-top: 1rem; color: var(--accent-green); font-size: 0.9rem;">Klik untuk melihat data</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal Kepala Sekolah -->
-    <div id="kepalaSekolah" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('kepalaSekolah')">&times;</span>
-            <h2>Kepala Sekolah</h2>
-            <div class="staff-list">
-                <div class="staff-item">
-                    <div class="staff-item-name">SYAFITRIANDY, S.Pd.I</div>
-                    <div class="staff-item-nip">NIP: 198110202009031006</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Guru Produktif -->
-    <div id="guruProduktif" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('guruProduktif')">&times;</span>
-            <h2>Guru Produktif</h2>
-            <div class="staff-list">
-                <div class="staff-item">
-                    <div class="staff-item-name">ARINALDI, S.Pd</div>
-                    <div class="staff-item-nip">NIP: 199510222023211008</div>
-                </div>
-                <div class="staff-item">
-                    <div class="staff-item-name">ZAINI, S.Pt</div>
-                    <div class="staff-item-nip">NIP: 199111102025211161</div>
-                </div>
-                <div class="staff-item">
-                    <div class="staff-item-name">WARIS SUKIJO, S.Pd</div>
-                    <div class="staff-item-nip">NIP: 198808062019031001</div>
-                </div>
-                <div class="staff-item">
-                    <div class="staff-item-name">DESTIAN KUDUS IRMANSYAH, S.Pd</div>
-                    <div class="staff-item-nip">NIP: 198912252019031001</div>
-                </div>
-                <div class="staff-item">
-                    <div class="staff-item-name">LISTYORINI, S.Pd</div>
-                    <div class="staff-item-nip">NIP: 198702012022212004</div>
-                </div>
-                <div class="staff-item">
-                    <div class="staff-item-name">LISA NOVIYANTI, S.Pd</div>
-                    <div class="staff-item-nip">NIP: 199308222023212018</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Guru Normatif -->
-    <div id="guruNormatif" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('guruNormatif')">&times;</span>
-            <h2>Guru Normatif</h2>
-            <div class="staff-list">
-                <div class="staff-item">
-                    <div class="staff-item-name">ZAINAL ABIDIN, S.H</div>
-                    <div class="staff-item-nip">NIP: 198405062022211004</div>
-                </div>
-                <div class="staff-item">
-                    <div class="staff-item-name">JUNAIDI, S.Pd</div>
-                    <div class="staff-item-nip">NIP: 199204052022211015</div>
-                </div>
-                <div class="staff-item">
-                    <div class="staff-item-name">AHMADIN, S.Ag</div>
-                    <div class="staff-item-nip">NIP: 196809252024211001</div>
-                </div>
-                <div class="staff-item">
-                    <div class="staff-item-name">KHORIYAH, S.Pd.I</div>
-                    <div class="staff-item-nip">NIP: 199104072025212159</div>
-                </div>
-                <div class="staff-item">
-                    <div class="staff-item-name">TARSIM TARIGAN, S.Pd</div>
-                    <div class="staff-item-nip">NIP: 196806181991011001</div>
-                </div>
-                <div class="staff-item">
-                    <div class="staff-item-name">SABARANI, S.Pd</div>
-                    <div class="staff-item-nip">NIP: 199103032015031002</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Tata Usaha -->
-    <div id="tataUsaha" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('tataUsaha')">&times;</span>
-            <h2>Tata Usaha</h2>
-            <div class="staff-list">
-                <div class="staff-item">
-                    <div class="staff-item-name">UMAR, S.Pd</div>
-                    <div class="staff-item-nip">NIP: 198507222025211010</div>
-                    <div style="color: var(--accent-green); margin-top: 0.3rem; font-size: 0.9rem;">Kepala Tata Usaha</div>
-                </div>
-                <div class="staff-item">
-                    <div class="staff-item-name">NORASIAH, S.Pd</div>
-                    <div class="staff-item-nip">NIP: 197903232025212008</div>
-                </div>
-                <div class="staff-item">
-                    <div class="staff-item-name">SAMPION, S.Pd</div>
-                    <div class="staff-item-nip">NIP: 198506152025211136</div>
-                </div>
-                <div class="staff-item">
-                    <div class="staff-item-name">HARMAN, S.Pd</div>
-                    <div class="staff-item-nip">NIP: 198007142025211078</div>
-                </div>
-                <div class="staff-item">
-                    <div class="staff-item-name">MIFTACHUDIN</div>
-                    <div class="staff-item-nip">NIP: 198807142025211123</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============================= -->
-    <!-- SECTION: KOMUNITAS BELAJAR   -->
-    <!-- ============================= -->
-    <section id="kombel">
-        <h2 class="section-title">Komunitas Belajar</h2>
-        <p class="section-subtitle">Wadah kolaborasi dan pengembangan profesional guru</p>
-
-        <div class="section-tabs" id="tabs-kombel">
-            <button class="tab-btn active" onclick="showTab('kombel','tab-sk')">&#128196; SK Kombel</button>
-            <button class="tab-btn" onclick="showTab('kombel','tab-struktur')">&#127963; Struktur Kombel</button>
-            <button class="tab-btn" onclick="showTab('kombel','tab-gallery-kombel')">&#128444; Gallery Kegiatan</button>
-            <button class="tab-btn" onclick="showTab('kombel','tab-materi-kombel')">&#128218; Materi Kombel</button>
-        </div>
-
-        <!-- Tab: SK Kombel -->
-        <div class="tab-panel active" id="tab-sk" data-section="kombel">
-            <div class="info-banner">
-                <span>&#128196;</span>
-                <p>Surat Keputusan (SK) pembentukan Komunitas Belajar SMK Negeri 1 Lingga. Unduh dokumen resmi di bawah ini.</p>
-            </div>
-            <div class="kombel-sk-box">
-                <h3>SK Pembentukan Komunitas Belajar</h3>
-                <div class="sk-info-grid">
-                    <div class="sk-info-item">
-                        <label>Nomor SK</label>
-                        <span>800/SK-KOMBEL/2025</span>
-                    </div>
-                    <div class="sk-info-item">
-                        <label>Tanggal Terbit</label>
-                        <span>15 Januari 2025</span>
-                    </div>
-                    <div class="sk-info-item">
-                        <label>Ditetapkan Oleh</label>
-                        <span>Kepala Sekolah</span>
-                    </div>
-                    <div class="sk-info-item">
-                        <label>Masa Berlaku</label>
-                        <span>1 Tahun Ajaran</span>
-                    </div>
-                </div>
-                <div style="margin-top:2rem;">
-                    <button class="doc-btn" onclick="alert('Silakan upload file SK terlebih dahulu ke folder dokumen.')">&#128229; Unduh SK Kombel</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab: Struktur Kombel -->
-        <div class="tab-panel" id="tab-struktur" data-section="kombel">
-            <div class="info-banner">
-                <span>&#127963;</span>
-                <p>Susunan kepengurusan Komunitas Belajar SMK Negeri 1 Lingga tahun ajaran 2025/2026.</p>
-            </div>
-            <div class="struktur-grid">
-                <div class="struktur-card">
-                    <div class="struktur-avatar">&#128081;</div>
-                    <div class="struktur-jabatan">Ketua</div>
-                    <div class="struktur-nama">Arinaldi, S.Pd</div>
-                </div>
-                <div class="struktur-card">
-                    <div class="struktur-avatar">&#128203;</div>
-                    <div class="struktur-jabatan">Sekretaris</div>
-                    <div class="struktur-nama">Listyorini, S.Pd</div>
-                </div>
-                <div class="struktur-card">
-                    <div class="struktur-avatar">&#128181;</div>
-                    <div class="struktur-jabatan">Bendahara</div>
-                    <div class="struktur-nama">Lisa Noviyanti, S.Pd</div>
-                </div>
-                <div class="struktur-card">
-                    <div class="struktur-avatar">&#128218;</div>
-                    <div class="struktur-jabatan">Koordinator Materi</div>
-                    <div class="struktur-nama">Zaini, S.Pt</div>
-                </div>
-                <div class="struktur-card">
-                    <div class="struktur-avatar">&#128247;</div>
-                    <div class="struktur-jabatan">Koordinator Dokumentasi</div>
-                    <div class="struktur-nama">Waris Sukijo, S.Pd</div>
-                </div>
-                <div class="struktur-card">
-                    <div class="struktur-avatar">&#127968;</div>
-                    <div class="struktur-jabatan">Anggota</div>
-                    <div class="struktur-nama">Destian Kudus I., S.Pd</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab: Gallery Kegiatan Kombel -->
-        <div class="tab-panel" id="tab-gallery-kombel" data-section="kombel">
-            <div class="info-banner">
-                <span>&#128247;</span>
-                <p>Dokumentasi foto kegiatan Komunitas Belajar. Tambahkan foto kegiatan dengan mengganti placeholder di bawah.</p>
-            </div>
-            <div class="gallery-small-grid">
-                <div class="gallery-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-label">Rapat Rutin Kombel</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#127979;</div><div class="ph-label">Workshop Pembelajaran</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#128104;&#8205;&#128187;</div><div class="ph-label">Pelatihan Teknologi</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#129299;</div><div class="ph-label">Diskusi Materi</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#127891;</div><div class="ph-label">Presentasi Program</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#128200;</div><div class="ph-label">Evaluasi Kegiatan</div></div>
-            </div>
-        </div>
-
-        <!-- Tab: Materi Kombel -->
-        <div class="tab-panel" id="tab-materi-kombel" data-section="kombel">
-            <div class="info-banner">
-                <span>&#128218;</span>
-                <p>Kumpulan materi dan bahan ajar yang digunakan dalam kegiatan Komunitas Belajar.</p>
-            </div>
-            <div class="materi-grid">
-                <div class="materi-card">
-                    <div class="materi-header"><span class="materi-emoji">&#128104;&#8205;&#127979;</span><div class="materi-title">Strategi Pembelajaran Aktif</div></div>
-                    <div class="materi-body"><p>Modul tentang metode pembelajaran inovatif untuk meningkatkan partisipasi siswa di kelas.</p><button class="doc-btn">&#128229; Unduh Materi</button></div>
-                </div>
-                <div class="materi-card">
-                    <div class="materi-header"><span class="materi-emoji">&#128202;</span><div class="materi-title">Penilaian Berbasis Kompetensi</div></div>
-                    <div class="materi-body"><p>Panduan lengkap menyusun instrumen penilaian yang valid dan reliabel sesuai kurikulum Merdeka.</p><button class="doc-btn">&#128229; Unduh Materi</button></div>
-                </div>
-                <div class="materi-card">
-                    <div class="materi-header"><span class="materi-emoji">&#128187;</span><div class="materi-title">Pemanfaatan Teknologi Pembelajaran</div></div>
-                    <div class="materi-body"><p>Tutorial penggunaan platform digital dan media pembelajaran interaktif di era modern.</p><button class="doc-btn">&#128229; Unduh Materi</button></div>
-                </div>
-                <div class="materi-card">
-                    <div class="materi-header"><span class="materi-emoji">&#128221;</span><div class="materi-title">Penyusunan Modul Ajar</div></div>
-                    <div class="materi-body"><p>Template dan panduan membuat modul ajar yang sesuai dengan Kurikulum Merdeka Belajar.</p><button class="doc-btn">&#128229; Unduh Materi</button></div>
-                </div>
-                <div class="materi-card">
-                    <div class="materi-header"><span class="materi-emoji">&#127919;</span><div class="materi-title">Projek Penguatan Profil Pelajar Pancasila</div></div>
-                    <div class="materi-body"><p>Panduan merancang dan melaksanakan P5 yang menarik dan bermakna bagi siswa SMK.</p><button class="doc-btn">&#128229; Unduh Materi</button></div>
-                </div>
-                <div class="materi-card">
-                    <div class="materi-header"><span class="materi-emoji">&#129299;</span><div class="materi-title">Refleksi dan Evaluasi Pembelajaran</div></div>
-                    <div class="materi-body"><p>Teknik-teknik refleksi diri untuk pengembangan profesional dan perbaikan proses mengajar.</p><button class="doc-btn">&#128229; Unduh Materi</button></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================= -->
-    <!-- SECTION: JURUSAN DETAIL      -->
-    <!-- ============================= -->
-    <section id="jurusan-detail" style="background: var(--cream);">
-        <h2 class="section-title">Program Keahlian</h2>
-        <p class="section-subtitle">Agribisnis Ternak Ruminansia - SMK Negeri 1 Lingga</p>
-
-        <div class="section-tabs" id="tabs-jurusan-detail">
-            <button class="tab-btn active" onclick="showTab('jurusan-detail','tab-deskripsi')">&#128203; Deskripsi Jurusan</button>
-            <button class="tab-btn" onclick="showTab('jurusan-detail','tab-ketua')">&#128104;&#8205;&#127979; Ketua Jurusan</button>
-            <button class="tab-btn" onclick="showTab('jurusan-detail','tab-mapel')">&#128214; Materi yang Diajarkan</button>
-        </div>
-
-        <!-- Tab: Deskripsi -->
-        <div class="tab-panel active" id="tab-deskripsi" data-section="jurusan-detail">
-            <div class="jurusan-highlight">
-                <h3>Agribisnis Ternak Ruminansia</h3>
-                <p style="font-size:1.05rem;line-height:1.8;margin-bottom:2rem;">
-                    Program Keahlian Agribisnis Ternak Ruminansia mempersiapkan siswa untuk menjadi tenaga ahli profesional di bidang peternakan khususnya ternak ruminansia (sapi, kambing, domba). Program ini menggabungkan teori ilmiah dengan praktik lapangan yang intensif, menyiapkan lulusan yang siap kerja, mandiri berwirausaha, maupun melanjutkan ke perguruan tinggi.
-                </p>
-                <div class="jurusan-features">
-                    <div class="feature">
-                        <h4>&#127919; Tujuan Program</h4>
-                        <p>Mencetak tenaga terampil di bidang budidaya, manajemen, dan pengolahan hasil ternak ruminansia secara modern dan berkelanjutan.</p>
-                    </div>
-                    <div class="feature">
-                        <h4>&#127941; Keunggulan</h4>
-                        <p>Praktik langsung di kandang sekolah, kerjasama dengan peternak lokal, dan bimbingan instruktur berpengalaman dari industri.</p>
-                    </div>
-                    <div class="feature">
-                        <h4>&#128188; Prospek Karier</h4>
-                        <p>Peternak mandiri, supervisor peternakan, inseminator, quality control, teknisi kesehatan hewan, dan wirausaha produk ternak.</p>
-                    </div>
-                    <div class="feature">
-                        <h4>&#127979; Akreditasi</h4>
-                        <p>Program terakreditasi oleh Badan Akreditasi Nasional Sekolah/Madrasah (BAN-S/M) dengan komitmen mutu pendidikan terbaik.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab: Ketua Jurusan -->
-        <div class="tab-panel" id="tab-ketua" data-section="jurusan-detail">
-            <div class="ketua-jurusan-card">
-                <div class="ketua-photo">&#128104;&#8205;&#127979;</div>
-                <div class="ketua-info">
-                    <h3>Ketua Program Keahlian</h3>
-                    <p style="font-size:1.4rem;font-weight:700;color:white;margin-bottom:0.5rem;">Arinaldi, S.Pd</p>
-                    <p><strong>NIP:</strong> 199510222023211008</p>
-                    <p><strong>Bidang Keahlian:</strong> Agribisnis Ternak Ruminansia</p>
-                    <p><strong>Tugas:</strong> Mengkoordinasikan seluruh kegiatan akademik, praktik, dan pengembangan program keahlian Agribisnis Ternak Ruminansia.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab: Materi yang Diajarkan -->
-        <div class="tab-panel" id="tab-mapel" data-section="jurusan-detail">
-            <div class="info-banner">
-                <span>&#128214;</span>
-                <p>Daftar mata pelajaran dan materi yang diajarkan dalam Program Keahlian Agribisnis Ternak Ruminansia.</p>
-            </div>
-            <h3 style="color:var(--primary-green);font-family:'Playfair Display',serif;margin-bottom:1rem;">Mata Pelajaran Produktif</h3>
-            <div class="mata-pelajaran-grid">
-                <div class="mapel-item"><div class="mapel-num">1</div><div><div class="mapel-name">Dasar-Dasar Agribisnis Ternak</div><div class="mapel-class">Kelas X</div></div></div>
-                <div class="mapel-item"><div class="mapel-num">2</div><div><div class="mapel-name">Pembiakan Ternak Ruminansia</div><div class="mapel-class">Kelas X & XI</div></div></div>
-                <div class="mapel-item"><div class="mapel-num">3</div><div><div class="mapel-name">Produksi Ternak Ruminansia Pedaging</div><div class="mapel-class">Kelas XI & XII</div></div></div>
-                <div class="mapel-item"><div class="mapel-num">4</div><div><div class="mapel-name">Produksi Ternak Ruminansia Perah</div><div class="mapel-class">Kelas XI & XII</div></div></div>
-                <div class="mapel-item"><div class="mapel-num">5</div><div><div class="mapel-name">Kesehatan Hewan</div><div class="mapel-class">Kelas XI</div></div></div>
-                <div class="mapel-item"><div class="mapel-num">6</div><div><div class="mapel-name">Agribisnis Pakan Ternak Ruminansia</div><div class="mapel-class">Kelas XI</div></div></div>
-                <div class="mapel-item"><div class="mapel-num">7</div><div><div class="mapel-name">Pengolahan Hasil Ternak</div><div class="mapel-class">Kelas XII</div></div></div>
-                <div class="mapel-item"><div class="mapel-num">8</div><div><div class="mapel-name">Kewirausahaan Peternakan</div><div class="mapel-class">Kelas XII</div></div></div>
-            </div>
-            <h3 style="color:var(--primary-green);font-family:'Playfair Display',serif;margin:2rem 0 1rem;">Mata Pelajaran Normatif & Adaptif</h3>
-            <div class="mata-pelajaran-grid">
-                <div class="mapel-item"><div class="mapel-num">A</div><div><div class="mapel-name">Pendidikan Agama & Budi Pekerti</div><div class="mapel-class">Semua Kelas</div></div></div>
-                <div class="mapel-item"><div class="mapel-num">B</div><div><div class="mapel-name">Bahasa Indonesia</div><div class="mapel-class">Semua Kelas</div></div></div>
-                <div class="mapel-item"><div class="mapel-num">C</div><div><div class="mapel-name">Matematika</div><div class="mapel-class">Semua Kelas</div></div></div>
-                <div class="mapel-item"><div class="mapel-num">D</div><div><div class="mapel-name">Bahasa Inggris</div><div class="mapel-class">Semua Kelas</div></div></div>
-                <div class="mapel-item"><div class="mapel-num">E</div><div><div class="mapel-name">Informatika</div><div class="mapel-class">Kelas X</div></div></div>
-                <div class="mapel-item"><div class="mapel-num">F</div><div><div class="mapel-name">P5 & PPKN</div><div class="mapel-class">Semua Kelas</div></div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================= -->
-    <!-- SECTION: HUMAS               -->
-    <!-- ============================= -->
-    <section id="humas">
-        <h2 class="section-title">Hubungan Masyarakat</h2>
-        <p class="section-subtitle">Dokumen dan informasi kegiatan Humas SMK Negeri 1 Lingga</p>
-
-        <div class="section-tabs" id="tabs-humas">
-            <button class="tab-btn active" onclick="showTab('humas','tab-pkl-permohonan')">&#128221; Permohonan PKL</button>
-            <button class="tab-btn" onclick="showTab('humas','tab-pkl-data')">&#128228; Pengiriman Data</button>
-            <button class="tab-btn" onclick="showTab('humas','tab-ucapan')">&#128591; Ucapan Terima Kasih</button>
-            <button class="tab-btn" onclick="showTab('humas','tab-magang')">&#128202; Laporan Magang</button>
-            <button class="tab-btn" onclick="showTab('humas','tab-sk-pkl')">&#128209; SK Pembimbing PKL</button>
-            <button class="tab-btn" onclick="showTab('humas','tab-gallery-humas')">&#128444; Gallery</button>
-        </div>
-
-        <!-- Tab: Dokumen Permohonan PKL -->
-        <div class="tab-panel active" id="tab-pkl-permohonan" data-section="humas">
-            <div class="info-banner">
-                <span>&#128221;</span>
-                <p>Dokumen surat permohonan Praktik Kerja Lapangan (PKL) yang dikirimkan kepada institusi/perusahaan mitra.</p>
-            </div>
-            <div class="doc-grid">
-                <div class="doc-card">
-                    <div class="doc-icon">&#128203;</div>
-                    <div class="doc-title">Surat Permohonan PKL - Peternakan A</div>
-                    <div class="doc-desc">Surat resmi permohonan penempatan siswa PKL di mitra peternakan daerah Lingga Timur.</div>
-                    <button class="doc-btn">&#128229; Unduh Dokumen</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128203;</div>
-                    <div class="doc-title">Surat Permohonan PKL - Dinas Peternakan</div>
-                    <div class="doc-desc">Permohonan resmi kepada Dinas Peternakan Kabupaten Lingga untuk penempatan siswa PKL.</div>
-                    <button class="doc-btn">&#128229; Unduh Dokumen</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128203;</div>
-                    <div class="doc-title">Template Surat Permohonan PKL</div>
-                    <div class="doc-desc">Template yang dapat digunakan untuk membuat surat permohonan PKL ke berbagai instansi.</div>
-                    <button class="doc-btn">&#128229; Unduh Template</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab: Dokumen Pengiriman Data PKL -->
-        <div class="tab-panel" id="tab-pkl-data" data-section="humas">
-            <div class="info-banner">
-                <span>&#128228;</span>
-                <p>Dokumen pengiriman data siswa PKL kepada instansi mitra untuk keperluan administrasi dan monitoring.</p>
-            </div>
-            <div class="doc-grid">
-                <div class="doc-card">
-                    <div class="doc-icon">&#128196;</div>
-                    <div class="doc-title">Data Siswa PKL Angkatan 2025</div>
-                    <div class="doc-desc">Rekapitulasi data lengkap siswa yang mengikuti PKL beserta lokasi penempatan masing-masing.</div>
-                    <button class="doc-btn">&#128229; Unduh Data</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128196;</div>
-                    <div class="doc-title">Formulir Biodata Siswa PKL</div>
-                    <div class="doc-desc">Formulir isian biodata yang harus dilengkapi oleh setiap siswa sebelum pemberangkatan PKL.</div>
-                    <button class="doc-btn">&#128229; Unduh Formulir</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128196;</div>
-                    <div class="doc-title">Rekap Penempatan PKL</div>
-                    <div class="doc-desc">Daftar pembagian penempatan siswa PKL per instansi mitra yang telah disetujui sekolah.</div>
-                    <button class="doc-btn">&#128229; Unduh Rekap</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab: Ucapan Terima Kasih -->
-        <div class="tab-panel" id="tab-ucapan" data-section="humas">
-            <div class="info-banner">
-                <span>&#128591;</span>
-                <p>Surat ucapan terima kasih kepada instansi dan perusahaan mitra yang telah menerima siswa PKL.</p>
-            </div>
-            <div class="doc-grid">
-                <div class="doc-card">
-                    <div class="doc-icon">&#128140;</div>
-                    <div class="doc-title">Ucapan Terima Kasih - Dinas Peternakan</div>
-                    <div class="doc-desc">Surat resmi ucapan terima kasih kepada Dinas Peternakan Kab. Lingga atas sambutan siswa PKL.</div>
-                    <button class="doc-btn">&#128229; Unduh Surat</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128140;</div>
-                    <div class="doc-title">Ucapan Terima Kasih - Peternak Mitra</div>
-                    <div class="doc-desc">Surat ucapan terima kasih kepada seluruh peternak mitra yang mendukung program PKL sekolah.</div>
-                    <button class="doc-btn">&#128229; Unduh Surat</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128140;</div>
-                    <div class="doc-title">Template Ucapan Terima Kasih</div>
-                    <div class="doc-desc">Template resmi yang dapat disesuaikan untuk berbagai keperluan surat ucapan terima kasih.</div>
-                    <button class="doc-btn">&#128229; Unduh Template</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab: Laporan Magang -->
-        <div class="tab-panel" id="tab-magang" data-section="humas">
-            <div class="info-banner">
-                <span>&#128202;</span>
-                <p>Laporan dan rekap hasil kegiatan magang/PKL siswa SMK Negeri 1 Lingga.</p>
-            </div>
-            <div class="doc-grid">
-                <div class="doc-card">
-                    <div class="doc-icon">&#128217;</div>
-                    <div class="doc-title">Panduan Penulisan Laporan Magang</div>
-                    <div class="doc-desc">Buku panduan lengkap tata cara penulisan laporan PKL yang sesuai standar sekolah.</div>
-                    <button class="doc-btn">&#128229; Unduh Panduan</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128217;</div>
-                    <div class="doc-title">Template Laporan Magang</div>
-                    <div class="doc-desc">Template siap pakai untuk menyusun laporan PKL siswa dengan format yang telah distandarkan.</div>
-                    <button class="doc-btn">&#128229; Unduh Template</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128202;</div>
-                    <div class="doc-title">Rekap Nilai PKL 2025</div>
-                    <div class="doc-desc">Rekapitulasi nilai akhir PKL seluruh siswa berdasarkan penilaian dari instansi dan guru pembimbing.</div>
-                    <button class="doc-btn">&#128229; Unduh Rekap</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab: SK Pembimbing PKL -->
-        <div class="tab-panel" id="tab-sk-pkl" data-section="humas">
-            <div class="info-banner">
-                <span>&#128209;</span>
-                <p>Surat Keputusan (SK) penetapan guru pembimbing PKL siswa SMK Negeri 1 Lingga.</p>
-            </div>
-            <div class="kombel-sk-box">
-                <h3>SK Pembimbing PKL Tahun 2025</h3>
-                <div class="sk-info-grid">
-                    <div class="sk-info-item"><label>Nomor SK</label><span>800/SK-PKL/2025</span></div>
-                    <div class="sk-info-item"><label>Tanggal</label><span>1 Februari 2025</span></div>
-                    <div class="sk-info-item"><label>Jumlah Pembimbing</label><span>6 Guru</span></div>
-                    <div class="sk-info-item"><label>Periode PKL</label><span>Feb - Apr 2025</span></div>
-                </div>
-                <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
-                    <button class="doc-btn">&#128229; Unduh SK PKL 2025</button>
-                    <button class="doc-btn" style="background:var(--accent-green);">&#128229; Unduh Daftar Pembimbing</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab: Gallery Humas -->
-        <div class="tab-panel" id="tab-gallery-humas" data-section="humas">
-            <div class="info-banner">
-                <span>&#128247;</span>
-                <p>Dokumentasi kegiatan Humas termasuk pemberangkatan PKL, kunjungan industri, dan kegiatan kemitraan.</p>
-            </div>
-            <div class="gallery-small-grid">
-                <div class="gallery-placeholder"><div class="ph-icon">&#127963;</div><div class="ph-label">Pemberangkatan PKL</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#129309;</div><div class="ph-label">MOU dengan Mitra</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#128665;</div><div class="ph-label">Kunjungan Industri</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#127942;</div><div class="ph-label">Penjemputan PKL</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-label">Monitoring PKL</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#127881;</div><div class="ph-label">Presentasi PKL</div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================= -->
-    <!-- SECTION: KURIKULUM           -->
-    <!-- ============================= -->
-    <section id="kurikulum" style="background: var(--cream);">
-        <h2 class="section-title">Kurikulum</h2>
-        <p class="section-subtitle">Dokumen kurikulum dan administrasi akademik sekolah</p>
-
-        <div class="section-tabs" id="tabs-kurikulum">
-            <button class="tab-btn active" onclick="showTab('kurikulum','tab-jadwal')">&#128197; Jadwal</button>
-            <button class="tab-btn" onclick="showTab('kurikulum','tab-kalender')">&#128197; Kalender</button>
-            <button class="tab-btn" onclick="showTab('kurikulum','tab-akreditasi')">&#127942; Akreditasi</button>
-            <button class="tab-btn" onclick="showTab('kurikulum','tab-rapor')">&#128202; Rapor</button>
-            <button class="tab-btn" onclick="showTab('kurikulum','tab-ksp')">&#128216; KSP</button>
-            <button class="tab-btn" onclick="showTab('kurikulum','tab-asesmen')">&#9999; Asesmen</button>
-            <button class="tab-btn" onclick="showTab('kurikulum','tab-gallery-kurikulum')">&#128444; Gallery</button>
-        </div>
-
-        <!-- Tab: Jadwal Pelajaran -->
-        <div class="tab-panel active" id="tab-jadwal" data-section="kurikulum">
-            <div class="info-banner">
-                <span>&#128197;</span>
-                <p>Jadwal pelajaran resmi SMK Negeri 1 Lingga tahun ajaran 2025/2026 semester genap.</p>
-            </div>
-            <div class="doc-grid" style="margin-bottom:2rem;">
-                <div class="doc-card">
-                    <div class="doc-icon">&#128197;</div>
-                    <div class="doc-title">Jadwal Pelajaran Kelas X</div>
-                    <div class="doc-desc">Jadwal pelajaran lengkap untuk siswa kelas X semester genap 2025/2026.</div>
-                    <button class="doc-btn">&#128229; Unduh Jadwal</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128197;</div>
-                    <div class="doc-title">Jadwal Pelajaran Kelas XI</div>
-                    <div class="doc-desc">Jadwal pelajaran lengkap untuk siswa kelas XI semester genap 2025/2026.</div>
-                    <button class="doc-btn">&#128229; Unduh Jadwal</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128197;</div>
-                    <div class="doc-title">Jadwal Pelajaran Kelas XII</div>
-                    <div class="doc-desc">Jadwal pelajaran lengkap untuk siswa kelas XII semester genap 2025/2026.</div>
-                    <button class="doc-btn">&#128229; Unduh Jadwal</button>
-                </div>
-            </div>
-            <div class="jadwal-table-wrap">
-                <table class="jadwal-table">
-                    <thead>
-                        <tr>
-                            <th>Jam</th>
-                            <th>Waktu</th>
-                            <th>Senin</th>
-                            <th>Selasa</th>
-                            <th>Rabu</th>
-                            <th>Kamis</th>
-                            <th>Jumat</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>1</td><td>07.00 - 07.45</td><td>Upacara/Mapel</td><td>Agribisnis Ternak</td><td>Bahasa Indonesia</td><td>Matematika</td><td>PAI</td></tr>
-                        <tr><td>2</td><td>07.45 - 08.30</td><td>Bahasa Indonesia</td><td>Agribisnis Ternak</td><td>Bahasa Indonesia</td><td>Matematika</td><td>PAI</td></tr>
-                        <tr><td>3</td><td>08.30 - 09.15</td><td>Matematika</td><td>Kesehatan Hewan</td><td>Bahasa Inggris</td><td>Pakan Ternak</td><td>PJOK</td></tr>
-                        <tr><td>-</td><td>09.15 - 09.30</td><td colspan="6" style="text-align:center;color:var(--accent-green);font-weight:600;">I S T I R A H A T</td></tr>
-                        <tr><td>4</td><td>09.30 - 10.15</td><td>Informatika</td><td>Kesehatan Hewan</td><td>Bahasa Inggris</td><td>Pakan Ternak</td><td>PJOK</td></tr>
-                        <tr><td>5</td><td>10.15 - 11.00</td><td>Informatika</td><td>Praktik Ternak</td><td>P5</td><td>Praktik Ternak</td><td>Seni Budaya</td></tr>
-                        <tr><td>6</td><td>11.00 - 11.45</td><td>Agribisnis Ternak</td><td>Praktik Ternak</td><td>P5</td><td>Praktik Ternak</td><td>Seni Budaya</td></tr>
-                        <tr><td>-</td><td>11.45 - 12.30</td><td colspan="6" style="text-align:center;color:var(--accent-green);font-weight:600;">I S T I R A H A T / S H O L A T</td></tr>
-                        <tr><td>7</td><td>12.30 - 13.15</td><td>Agribisnis Ternak</td><td>BK</td><td>Kewirausahaan</td><td>Pembiakan Ternak</td><td>-</td></tr>
-                        <tr><td>8</td><td>13.15 - 14.00</td><td>Pengolahan Hasil</td><td>BK</td><td>Kewirausahaan</td><td>Pembiakan Ternak</td><td>-</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Tab: Kalender Pendidikan -->
-        <div class="tab-panel" id="tab-kalender" data-section="kurikulum">
-            <div class="info-banner">
-                <span>&#128197;</span>
-                <p>Kalender Pendidikan SMK Negeri 1 Lingga tahun ajaran 2025/2026 yang ditetapkan oleh Dinas Pendidikan.</p>
-            </div>
-            <div class="doc-grid">
-                <div class="doc-card">
-                    <div class="doc-icon">&#128197;</div>
-                    <div class="doc-title">Kalender Pendidikan 2025/2026</div>
-                    <div class="doc-desc">Kalender akademik resmi yang memuat jadwal kegiatan belajar mengajar, libur, dan ujian selama satu tahun.</div>
-                    <button class="doc-btn">&#128229; Unduh Kalender</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128197;</div>
-                    <div class="doc-title">Jadwal Ujian Semester Genap</div>
-                    <div class="doc-desc">Jadwal lengkap pelaksanaan Penilaian Akhir Semester (PAS) genap tahun ajaran 2025/2026.</div>
-                    <button class="doc-btn">&#128229; Unduh Jadwal Ujian</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128197;</div>
-                    <div class="doc-title">Agenda Kegiatan Sekolah 2026</div>
-                    <div class="doc-desc">Agenda kegiatan ekstrakurikuler, OSIS, dan kegiatan sekolah lainnya sepanjang tahun 2026.</div>
-                    <button class="doc-btn">&#128229; Unduh Agenda</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab: Sertifikat Akreditasi -->
-        <div class="tab-panel" id="tab-akreditasi" data-section="kurikulum">
-            <div class="info-banner">
-                <span>&#127942;</span>
-                <p>Sertifikat akreditasi resmi SMK Negeri 1 Lingga yang dikeluarkan oleh BAN-S/M.</p>
-            </div>
-            <div class="doc-grid">
-                <div class="doc-card" style="text-align:center;">
-                    <div class="doc-icon" style="font-size:3rem;">&#127942;</div>
-                    <div class="doc-title" style="font-size:1.1rem;">Sertifikat Akreditasi BAN-S/M</div>
-                    <div class="doc-desc">Sertifikat akreditasi resmi SMK Negeri 1 Lingga yang menjamin kualitas pendidikan sesuai standar nasional.</div>
-                    <button class="doc-btn">&#128229; Lihat Sertifikat</button>
-                </div>
-                <div class="doc-card" style="text-align:center;">
-                    <div class="doc-icon" style="font-size:3rem;">&#128216;</div>
-                    <div class="doc-title" style="font-size:1.1rem;">Laporan Evaluasi Diri Sekolah</div>
-                    <div class="doc-desc">Dokumen EDS (Evaluasi Diri Sekolah) sebagai bahan pengajuan akreditasi kepada BAN-S/M.</div>
-                    <button class="doc-btn">&#128229; Unduh Laporan</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab: Rapor Pendidikan -->
-        <div class="tab-panel" id="tab-rapor" data-section="kurikulum">
-            <div class="info-banner">
-                <span>&#128202;</span>
-                <p>Rapor Pendidikan adalah potret kualitas layanan pendidikan yang dihasilkan dari platform Rapor Pendidikan Kemendikbud.</p>
-            </div>
-            <div class="doc-grid">
-                <div class="doc-card">
-                    <div class="doc-icon">&#128202;</div>
-                    <div class="doc-title">Rapor Pendidikan 2024</div>
-                    <div class="doc-desc">Hasil penilaian kinerja sekolah tahun 2024 dari platform Rapor Pendidikan Kemendikbudristek.</div>
-                    <button class="doc-btn">&#128229; Unduh Rapor</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128218;</div>
-                    <div class="doc-title">Rencana Berbasis Data (RBD)</div>
-                    <div class="doc-desc">Dokumen perencanaan program berdasarkan hasil analisis data Rapor Pendidikan sekolah.</div>
-                    <button class="doc-btn">&#128229; Unduh RBD</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab: KSP -->
-        <div class="tab-panel" id="tab-ksp" data-section="kurikulum">
-            <div class="info-banner">
-                <span>&#128216;</span>
-                <p>Kurikulum Satuan Pendidikan (KSP) adalah dokumen kurikulum operasional yang dikembangkan oleh sekolah.</p>
-            </div>
-            <div class="doc-grid">
-                <div class="doc-card">
-                    <div class="doc-icon">&#128216;</div>
-                    <div class="doc-title">KSP SMK Negeri 1 Lingga 2025/2026</div>
-                    <div class="doc-desc">Dokumen Kurikulum Satuan Pendidikan tahun ajaran 2025/2026 yang telah disahkan oleh kepala sekolah.</div>
-                    <button class="doc-btn">&#128229; Unduh KSP</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128209;</div>
-                    <div class="doc-title">Silabus Program Keahlian</div>
-                    <div class="doc-desc">Silabus lengkap seluruh mata pelajaran Program Keahlian Agribisnis Ternak Ruminansia.</div>
-                    <button class="doc-btn">&#128229; Unduh Silabus</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128221;</div>
-                    <div class="doc-title">ATP (Alur Tujuan Pembelajaran)</div>
-                    <div class="doc-desc">Dokumen alur tujuan pembelajaran untuk semua mata pelajaran sesuai Kurikulum Merdeka.</div>
-                    <button class="doc-btn">&#128229; Unduh ATP</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab: Asesmen -->
-        <div class="tab-panel" id="tab-asesmen" data-section="kurikulum">
-            <div class="info-banner">
-                <span>&#9999;</span>
-                <p>Dokumen asesmen dan penilaian yang digunakan dalam proses pembelajaran di SMK Negeri 1 Lingga.</p>
-            </div>
-            <div class="doc-grid">
-                <div class="doc-card">
-                    <div class="doc-icon">&#128221;</div>
-                    <div class="doc-title">Panduan Asesmen Kurikulum Merdeka</div>
-                    <div class="doc-desc">Panduan lengkap pelaksanaan asesmen formatif dan sumatif sesuai prinsip Kurikulum Merdeka.</div>
-                    <button class="doc-btn">&#128229; Unduh Panduan</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128203;</div>
-                    <div class="doc-title">Bank Soal Mata Pelajaran Produktif</div>
-                    <div class="doc-desc">Kumpulan soal asesmen untuk mata pelajaran produktif Agribisnis Ternak Ruminansia.</div>
-                    <button class="doc-btn">&#128229; Unduh Bank Soal</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128202;</div>
-                    <div class="doc-title">Rubrik Penilaian Praktik</div>
-                    <div class="doc-desc">Rubrik dan instrumen penilaian untuk kegiatan praktik di kandang dan laboratorium.</div>
-                    <button class="doc-btn">&#128229; Unduh Rubrik</button>
-                </div>
-                <div class="doc-card">
-                    <div class="doc-icon">&#128209;</div>
-                    <div class="doc-title">Format Laporan Hasil Asesmen</div>
-                    <div class="doc-desc">Template pelaporan hasil asesmen siswa yang sesuai format Dinas Pendidikan Provinsi Kepri.</div>
-                    <button class="doc-btn">&#128229; Unduh Format</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab: Gallery Kurikulum -->
-        <div class="tab-panel" id="tab-gallery-kurikulum" data-section="kurikulum">
-            <div class="info-banner">
-                <span>&#128247;</span>
-                <p>Dokumentasi kegiatan pembelajaran, ujian, dan kegiatan akademik di SMK Negeri 1 Lingga.</p>
-            </div>
-            <div class="gallery-small-grid">
-                <div class="gallery-placeholder"><div class="ph-icon">&#127979;</div><div class="ph-label">Kegiatan Belajar Mengajar</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#128221;</div><div class="ph-label">Ujian Akhir Semester</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#128104;&#8205;&#128187;</div><div class="ph-label">Pelatihan Kurikulum Merdeka</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#127947;</div><div class="ph-label">Praktik Lapangan</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-label">Workshop Guru</div></div>
-                <div class="gallery-placeholder"><div class="ph-icon">&#127881;</div><div class="ph-label">Wisuda Lulusan</div></div>
-            </div>
-        </div>
-    </section>
 
     <!-- Galeri -->
     <section id="galeri">
@@ -2367,6 +1654,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- PPDB -->
     <section id="ppdb">
