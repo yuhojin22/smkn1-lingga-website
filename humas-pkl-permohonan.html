@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permohonan PKL - SMK Negeri 1 Lingga</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-green:#1a4d2e; --secondary-green:#2d5f3f; --accent-green:#4f8a5b; --light-green:#a8d5ba; --cream:#faf8f3; --dark-text:#1a2412; --light-text:#f0f4f1; }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:"Work Sans",sans-serif;color:var(--dark-text);background:var(--cream);overflow-x:hidden;}
+        nav{position:fixed;width:100%;top:0;background:rgba(26,77,46,0.97);backdrop-filter:blur(10px);z-index:1000;padding:1rem 0;box-shadow:0 2px 20px rgba(0,0,0,0.1);}
+        .nav-container{max-width:1400px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;}
+        .logo{font-family:"Playfair Display",serif;font-size:1.5rem;font-weight:900;color:var(--light-text);letter-spacing:1px;text-decoration:none;}
+        .nav-links{display:flex;gap:1.6rem;list-style:none;}
+        .nav-links a{color:var(--light-text);text-decoration:none;font-weight:500;font-size:0.88rem;transition:all 0.3s;position:relative;}
+        .nav-links a::after{content:"";position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--light-green);transition:width 0.3s;}
+        .nav-links a:hover::after{width:100%;}
+        .nav-item{position:relative;}
+        .nav-item>a{display:flex;align-items:center;gap:4px;}
+        .nav-item>a::after{content:none!important;}
+        .nav-item>a .arrow{font-size:0.6rem;transition:transform 0.3s;}
+        .nav-item:hover>a .arrow{transform:rotate(180deg);}
+        .dropdown{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);background:white;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.15);min-width:220px;opacity:0;visibility:hidden;transition:all 0.25s;z-index:999;border-top:3px solid var(--accent-green);}
+        .nav-item:hover .dropdown{opacity:1;visibility:visible;top:calc(100% + 6px);}
+        .dropdown a{display:flex;align-items:center;gap:10px;padding:0.75rem 1.2rem;color:var(--dark-text)!important;font-size:0.88rem;font-weight:400;transition:all 0.2s;border-radius:8px;margin:4px;text-decoration:none;}
+        .dropdown a:hover{background:var(--cream);color:var(--primary-green)!important;transform:translateX(4px);}
+        .dropdown a::after{content:none!important;}
+        .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+        .menu-toggle span{width:25px;height:3px;background:var(--light-text);}
+        /* PAGE HERO */
+        .page-hero{margin-top:80px;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden;}
+        .page-hero-inner{max-width:1400px;margin:0 auto;}
+        .breadcrumb{font-size:0.85rem;margin-bottom:0.8rem;opacity:0.85;}
+        .breadcrumb a{text-decoration:none;}
+        .page-hero h1{font-family:"Playfair Display",serif;font-size:2.5rem;color:white;font-weight:900;margin-bottom:0.5rem;}
+        .page-hero p{font-size:1rem;font-weight:300;opacity:0.85;}
+        /* MAIN */
+        .page-content{max-width:1400px;margin:0 auto;padding:2.5rem 2rem 4rem;}
+        /* YEAR BAR */
+        .year-bar{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:2rem;padding:1.2rem 1.5rem;background:white;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,0.07);}
+        .year-bar-label{font-weight:600;color:var(--primary-green);font-size:0.9rem;white-space:nowrap;}
+        .year-chip{padding:0.45rem 1.1rem;border:2px solid #e0e7e3;border-radius:50px;background:white;color:var(--dark-text);font-family:"Work Sans",sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;transition:all 0.2s;}
+        .year-chip:hover,.year-chip.active{border-color:var(--accent-green);background:var(--primary-green);color:white;}
+        /* TABS */
+        .section-tabs{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:2rem;border-bottom:2px solid #e0e7e3;padding-bottom:0;}
+        .tab-btn{padding:0.65rem 1.3rem;background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:"Work Sans",sans-serif;font-size:0.9rem;font-weight:500;color:#777;cursor:pointer;transition:all 0.25s;border-radius:6px 6px 0 0;}
+        .tab-btn:hover{color:var(--primary-green);background:rgba(79,138,91,0.07);}
+        .tab-btn.active{color:var(--primary-green);border-bottom:3px solid var(--accent-green);background:rgba(79,138,91,0.07);font-weight:600;}
+        .tab-panel{display:none;animation:fadeUp 0.35s ease;}
+        .tab-panel.active{display:block;}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+        /* PDF VIEWER */
+        .pdf-section{background:white;border-radius:16px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,0.09);margin-bottom:1.5rem;}
+        .pdf-toolbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;color:white;gap:1rem;flex-wrap:wrap;}
+        .pdf-toolbar-title{font-weight:600;font-size:1rem;}
+        .pdf-toolbar-actions{display:flex;gap:0.8rem;flex-wrap:wrap;}
+        .btn-download{display:inline-flex;align-items:center;gap:6px;padding:0.55rem 1.2rem;background:var(--light-green);color:var(--primary-green);border:none;border-radius:8px;font-family:"Work Sans",sans-serif;font-size:0.875rem;font-weight:700;cursor:pointer;transition:all 0.2s;text-decoration:none;}
+        .btn-download:hover{background:white;transform:translateY(-2px);}
+        .btn-open{display:inline-flex;align-items:center;gap:6px;padding:0.55rem 1.2rem;background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.4);border-radius:8px;font-family:"Work Sans",sans-serif;font-size:0.875rem;font-weight:600;cursor:pointer;transition:all 0.2s;text-decoration:none;}
+        .btn-open:hover{background:rgba(255,255,255,0.25);}
+        .pdf-embed-wrap{background:#525659;}
+        .pdf-embed-wrap iframe{display:block;width:100%;height:600px;border:none;}
+        .pdf-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;height:480px;gap:1.2rem;background:linear-gradient(135deg,#f8f9fa,#e9ecef);color:#666;text-align:center;padding:2rem;}
+        .pdf-placeholder .ph-icon{font-size:4rem;}
+        .pdf-placeholder h3{font-size:1.1rem;}
+        .pdf-placeholder p{font-size:0.88rem;max-width:380px;line-height:1.6;}
+        .pdf-placeholder code{background:#e0e7e3;padding:0.15rem 0.5rem;border-radius:4px;font-size:0.78rem;}
+        /* INFO BANNER */
+        .info-banner{background:linear-gradient(135deg,rgba(79,138,91,0.1),rgba(168,213,186,0.18));border:1px solid var(--light-green);border-radius:12px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:flex-start;gap:1rem;}
+        .info-banner-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px;}
+        .info-banner p{color:var(--secondary-green);font-size:0.9rem;line-height:1.6;}
+        /* LANDING CARDS */
+        .landing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;}
+        .landing-card{background:white;border-radius:16px;padding:2rem;box-shadow:0 4px 15px rgba(0,0,0,0.07);border-top:4px solid var(--accent-green);transition:all 0.3s;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:0.8rem;}
+        .landing-card:hover{transform:translateY(-6px);box-shadow:0 14px 35px rgba(26,77,46,0.15);border-top-color:var(--primary-green);}
+        .landing-card .card-icon{font-size:2.5rem;}
+        .landing-card .card-title{font-weight:700;color:var(--primary-green);font-size:1.05rem;line-height:1.3;}
+        .landing-card .card-desc{color:#666;font-size:0.85rem;line-height:1.6;flex:1;}
+        .landing-card .card-link{display:inline-flex;align-items:center;gap:5px;color:var(--accent-green);font-weight:600;font-size:0.88rem;margin-top:0.4rem;}
+        .landing-card:hover .card-link{color:var(--primary-green);}
+        /* SK INFO */
+        .sk-box{background:white;border-radius:15px;padding:2rem;box-shadow:0 4px 15px rgba(0,0,0,0.07);}
+        .sk-box h3{font-family:"Playfair Display",serif;color:var(--primary-green);font-size:1.5rem;margin-bottom:1.5rem;}
+        .sk-info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;}
+        .sk-info-item{background:var(--cream);border-radius:10px;padding:0.9rem 1.2rem;border-top:3px solid var(--accent-green);}
+        .sk-info-item label{display:block;font-size:0.78rem;color:var(--accent-green);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.3rem;}
+        .sk-info-item span{font-weight:600;color:var(--dark-text);}
+        /* STRUCTURE GRID */
+        .struktur-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:1rem;}
+        .struktur-card{background:white;border-radius:14px;padding:2rem 1.5rem;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,0.07);transition:transform 0.3s;}
+        .struktur-card:hover{transform:translateY(-5px);}
+        .struktur-avatar{width:80px;height:80px;background:linear-gradient(135deg,var(--accent-green),var(--light-green));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1rem;}
+        .struktur-jabatan{font-size:0.78rem;color:var(--accent-green);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.4rem;}
+        .struktur-nama{font-weight:600;color:var(--primary-green);font-size:0.95rem;}
+        /* GALLERY */
+        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem;margin-top:1rem;}
+        .gallery-ph{height:200px;background:linear-gradient(135deg,var(--accent-green),var(--secondary-green));border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;gap:0.5rem;cursor:pointer;transition:transform 0.3s;}
+        .gallery-ph:hover{transform:scale(1.03);}
+        .gallery-ph .g-icon{font-size:2.5rem;}
+        .gallery-ph .g-label{font-size:0.875rem;font-weight:500;}
+        /* FOOTER */
+        footer{background:var(--primary-green);color:var(--light-text);padding:2.5rem 2rem 1.5rem;margin-top:2rem;}
+        .footer-content{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-bottom:1.5rem;}
+        .footer-section h3{font-family:"Playfair Display",serif;margin-bottom:0.8rem;font-size:1rem;}
+        .footer-section p,.footer-section a{color:var(--light-green);line-height:1.8;text-decoration:none;font-size:0.875rem;}
+        .footer-section a:hover{color:white;}
+        .footer-bottom{text-align:center;padding-top:1.2rem;border-top:1px solid rgba(168,213,186,0.2);color:var(--light-green);font-size:0.82rem;}
+        @media(max-width:768px){
+            .menu-toggle{display:flex;}
+            .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--primary-green);flex-direction:column;padding:2rem;gap:1rem;transform:translateY(-100%);opacity:0;pointer-events:none;transition:all 0.3s;}
+            .nav-links.active{transform:translateY(0);opacity:1;pointer-events:all;}
+            .dropdown{position:static;transform:none;box-shadow:none;border-radius:8px;border-top:none;border-left:3px solid var(--accent-green);background:rgba(255,255,255,0.08);opacity:1;visibility:visible;display:none;margin-top:0.5rem;margin-left:1rem;}
+            .nav-item.open .dropdown{display:block;}
+            .dropdown a{color:var(--light-text)!important;}
+            .page-hero h1{font-size:1.9rem;}
+            .pdf-toolbar{flex-direction:column;align-items:flex-start;}
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SMKN 1 LINGGA</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#beranda">Beranda</a></li>
+                <li><a href="index.html#profil">Profil</a></li>
+                <li class="nav-item">
+                    <a href="kombel.html">Komunitas Belajar <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="kombel-landing.html"><span class="icon">&#128196;</span> SK Kombel</a>
+                        <a href="kombel-struktur.html"><span class="icon">&#127963;</span> Struktur Kombel</a>
+                        <a href="kombel-gallery.html"><span class="icon">&#128444;</span> Gallery Kegiatan</a>
+                        <a href="kombel-materi.html"><span class="icon">&#128218;</span> Materi Kombel</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="jurusan.html">Jurusan <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="jurusan-deskripsi.html"><span class="icon">&#128203;</span> Deskripsi Jurusan</a>
+                        <a href="jurusan-ketua.html"><span class="icon">&#128104;&#8205;&#127979;</span> Ketua Jurusan</a>
+                        <a href="jurusan-mapel.html"><span class="icon">&#128214;</span> Materi yang Diajarkan</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="humas.html" style="color:var(--light-green);">Humas <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="humas-pkl-permohonan.html"><span class="icon">&#128221;</span> Permohonan PKL</a>
+                        <a href="humas-pkl-data.html"><span class="icon">&#128228;</span> Pengiriman Data PKL</a>
+                        <a href="humas-ucapan.html"><span class="icon">&#128591;</span> Ucapan Terima Kasih</a>
+                        <a href="humas-magang.html"><span class="icon">&#128202;</span> Laporan Magang</a>
+                        <a href="humas-sk-pkl.html"><span class="icon">&#128209;</span> SK Pembimbing PKL</a>
+                        <a href="humas-gallery.html"><span class="icon">&#128444;</span> Gallery Kegiatan</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="kurikulum.html">Kurikulum <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="jadwal-pelajaran.html"><span class="icon">&#128197;</span> Jadwal Pelajaran</a>
+                        <a href="kalender-pendidikan.html"><span class="icon">&#128197;</span> Kalender Pendidikan</a>
+                        <a href="akreditasi.html"><span class="icon">&#127942;</span> Sertifikat Akreditasi</a>
+                        <a href="rapor-pendidikan.html"><span class="icon">&#128202;</span> Rapor Pendidikan</a>
+                        <a href="ksp.html"><span class="icon">&#128216;</span> KSP</a>
+                        <a href="sk-ukk.html"><span class="icon">&#128209;</span> SK UKK</a>
+                        <a href="sk-tka.html"><span class="icon">&#9999;&#65039;</span> SK TKA</a>
+                        <a href="sk-anbk.html"><span class="icon">&#128221;</span> SK ANBK</a>
+                    </div>
+                </li>
+                <li><a href="index.html#guru">Guru &amp; Staf</a></li>
+                <li><a href="index.html#galeri">Galeri</a></li>
+                <li><a href="index.html#ppdb">PPDB</a></li>
+                <li><a href="index.html#kontak">Kontak</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="page-hero" style="background:linear-gradient(135deg,#3d2b1f 0%,#6b4423 60%,#a0652a 100%);">
+        <div class="page-hero-inner">
+            <div class="breadcrumb" style="color:rgba(255,255,255,0.8);"><a href="index.html" style="color:rgba(255,255,255,0.8);">Beranda</a> / <a href="humas.html" style="color:rgba(255,255,255,0.8);">Humas</a> / Permohonan PKL</div>
+            <h1 style="color:white;">&#128221; Permohonan PKL</h1>
+            <p style="color:rgba(255,255,255,0.8);">Surat permohonan Praktik Kerja Lapangan ke instansi mitra</p>
+        </div>
+    </div>
+
+    <div class="page-content">
+                <div class="year-bar">
+            <span class="year-bar-label">&#128197; Tahun Ajaran:</span>
+            <button class="year-chip" onclick="selectYear('2021/2022',this)">2021/2022</button>
+            <button class="year-chip" onclick="selectYear('2022/2023',this)">2022/2023</button>
+            <button class="year-chip" onclick="selectYear('2023/2024',this)">2023/2024</button>
+            <button class="year-chip active" onclick="selectYear('2024/2025',this)">2024/2025</button>
+            <button class="year-chip" onclick="selectYear('2025/2026',this)">2025/2026</button>
+            <button class="year-chip" onclick="selectYear('2026/2027',this)">2026/2027</button>
+        </div>
+                <div class="section-tabs">
+            <button class="tab-btn active" onclick="showTab('tab-surat-permohonan',this)">&#128221; Surat Permohonan</button>
+            <button class="tab-btn" onclick="showTab('tab-sk-pkl-permohonan',this)">&#128196; SK PKL</button>
+        </div>
+        <div class="tab-panel active" id="tab-surat-permohonan-pkl">
+            <div class="info-banner">
+                <span class="info-banner-icon">&#128221;</span>
+                <p>Dokumen surat resmi permohonan PKL yang dikirimkan ke instansi mitra. Tahun: <strong class="year-display">2024/2025</strong>.</p>
+            </div>
+            <div class="pdf-section">
+                <div class="pdf-toolbar" style="background:var(--primary-green);">
+                    <span class="pdf-toolbar-title">&#128221; Surat Permohonan PKL &mdash; <span class="year-display">2024/2025</span></span>
+                    <div class="pdf-toolbar-actions">
+                        <a href="#" class="btn-download" id="dl-surat-permohonan-pkl">&#128229; Unduh PDF</a>
+                        <a href="#" target="_blank" class="btn-open" id="open-surat-permohonan-pkl">&#128279; Buka di Drive</a>
+                    </div>
+                </div>
+                <div class="pdf-embed-wrap">
+                    <div class="pdf-placeholder">
+                        <div class="ph-icon">&#128221;</div>
+                        <h3 style="color:var(--primary-green);">Surat Permohonan PKL</h3>
+                        <p>Isi link Google Drive pada <code>pdfLinks["surat-permohonan-pkl"]</code> di bagian script halaman ini.</p>
+                    </div>
+                </div>
+            </div>
+        </div>        <div class="tab-panel" id="tab-sk-permohonan-pkl">
+            <div class="info-banner">
+                <span class="info-banner-icon">&#128196;</span>
+                <p>SK penetapan pelaksanaan PKL oleh kepala sekolah. Tahun: <strong class="year-display">2024/2025</strong>.</p>
+            </div>
+            <div class="pdf-section">
+                <div class="pdf-toolbar" style="background:var(--primary-green);">
+                    <span class="pdf-toolbar-title">&#128196; SK Pelaksanaan PKL &mdash; <span class="year-display">2024/2025</span></span>
+                    <div class="pdf-toolbar-actions">
+                        <a href="#" class="btn-download" id="dl-sk-permohonan-pkl">&#128229; Unduh PDF</a>
+                        <a href="#" target="_blank" class="btn-open" id="open-sk-permohonan-pkl">&#128279; Buka di Drive</a>
+                    </div>
+                </div>
+                <div class="pdf-embed-wrap">
+                    <div class="pdf-placeholder">
+                        <div class="ph-icon">&#128196;</div>
+                        <h3 style="color:var(--primary-green);">SK Pelaksanaan PKL</h3>
+                        <p>Isi link Google Drive pada <code>pdfLinks["sk-permohonan-pkl"]</code> di bagian script halaman ini.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h3>SMK Negeri 1 Lingga</h3><p>Mencetak generasi ahli peternakan yang profesional dan berakhlak mulia.</p></div>
+            <div class="footer-section">
+                <h3>Menu Utama</h3>
+                <p><a href="kombel.html">Komunitas Belajar</a></p>
+                <p><a href="jurusan.html">Jurusan</a></p>
+                <p><a href="humas.html">Humas</a></p>
+                <p><a href="kurikulum.html">Kurikulum</a></p>
+            </div>
+            <div class="footer-section"><h3>Kontak</h3><p>DUSUN II MULYASARI<br>Lingga Timur, Kab. Lingga<br>Prov. Kepulauan Riau</p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 SMK Negeri 1 Lingga. All Rights Reserved.</p></div>
+    </footer>
+
+    <script>
+    // ================================================================
+    // KONFIGURASI PDF GOOGLE DRIVE
+    // Cara: Upload PDF ke Drive → copy FILE_ID dari URL
+    // embed:    https://drive.google.com/file/d/FILE_ID/preview
+    // download: https://drive.google.com/uc?export=download&id=FILE_ID
+    // ================================================================
+    const pdfLinks = {
+        "2021/2022": { "surat-permohonan-pkl": {"embed": "", "download": ""}, "sk-permohonan-pkl": {"embed": "", "download": ""} },
+        "2022/2023": { "surat-permohonan-pkl": {"embed": "", "download": ""}, "sk-permohonan-pkl": {"embed": "", "download": ""} },
+        "2023/2024": { "surat-permohonan-pkl": {"embed": "", "download": ""}, "sk-permohonan-pkl": {"embed": "", "download": ""} },
+        "2024/2025": { "surat-permohonan-pkl": {"embed": "", "download": ""}, "sk-permohonan-pkl": {"embed": "", "download": ""} },
+        "2025/2026": { "surat-permohonan-pkl": {"embed": "", "download": ""}, "sk-permohonan-pkl": {"embed": "", "download": ""} },
+        "2026/2027": { "surat-permohonan-pkl": {"embed": "", "download": ""}, "sk-permohonan-pkl": {"embed": "", "download": ""} }
+    };
+    const PDF_KEYS = ["surat-permohonan-pkl", "sk-permohonan-pkl"];
+    let currentYear = '2024/2025';
+
+    function renderPDF(key, embedUrl, downloadUrl) {
+        const wrap = document.querySelector('#tab-' + key + ' .pdf-embed-wrap');
+        if (!wrap) return;
+        if (!embedUrl) {
+            wrap.innerHTML = '<div class="pdf-placeholder"><div class="ph-icon">&#128196;</div><h3>Dokumen Belum Tersedia</h3><p>Isi link Google Drive PDF di variabel <code>pdfLinks</code> pada script halaman ini.</p></div>';
+            return;
+        }
+        wrap.innerHTML = '<iframe src="' + embedUrl + '" style="width:100%;height:600px;border:none;" allow="autoplay" loading="lazy"></iframe>';
+        const dl = document.getElementById('dl-' + key);
+        if (dl && downloadUrl) dl.href = downloadUrl;
+        const op = document.getElementById('open-' + key);
+        if (op && downloadUrl) op.href = downloadUrl.replace('uc?export=download&id=','file/d/') + '/view';
+    }
+
+    function updateAllPDFs() {
+        const yearData = pdfLinks[currentYear] || {};
+        PDF_KEYS.forEach(key => {
+            const d = yearData[key] || {};
+            renderPDF(key, d.embed || '', d.download || '');
+        });
+        document.querySelectorAll('.year-display').forEach(el => el.textContent = currentYear);
+    }
+    
+    function selectYear(year, btn) {
+        currentYear = year;
+        document.querySelectorAll('.year-chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        updateAllPDFs();
+    }
+
+    function showTab(tabId, btn) {
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId)?.classList.add('active');
+        btn?.classList.add('active');
+    }
+
+    document.getElementById('menuToggle').addEventListener('click', () => {
+        document.getElementById('navLinks').classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-item > a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const parent = this.closest('.nav-item');
+                const isOpen = parent.classList.contains('open');
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('open'));
+                if (!isOpen) parent.classList.add('open');
+            }
+        });
+    });
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const pYear = urlParams.get('year');
+    if (pYear) {
+        currentYear = pYear;
+        document.querySelectorAll('.year-chip').forEach(b => {
+            b.classList.toggle('active', b.textContent.trim() === pYear);
+        });
+    }
+    updateAllPDFs();
+    </script>
+</body>
+</html>

@@ -742,7 +742,572 @@
             color: var(--light-green);
         }
 
-        /* Animations */
+        /* ===== DROPDOWN MENU STYLES ===== */
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-item > a::after {
+            content: none !important;
+        }
+
+        .nav-item > a .arrow {
+            font-size: 0.65rem;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .nav-item:hover > a .arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+            z-index: 999;
+            border-top: 3px solid var(--accent-green);
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            top: calc(100% + 6px);
+        }
+
+        .dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.75rem 1.2rem;
+            color: var(--dark-text) !important;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: all 0.2s;
+            border-radius: 8px;
+            margin: 4px;
+            text-decoration: none;
+        }
+
+        .dropdown a .icon {
+            font-size: 1.1rem;
+            width: 22px;
+            text-align: center;
+        }
+
+        .dropdown a:hover {
+            background: var(--cream);
+            color: var(--primary-green) !important;
+            transform: translateX(4px);
+        }
+
+        .dropdown a::after {
+            content: none !important;
+        }
+
+        /* ===== TAB SYSTEM FOR SECTIONS ===== */
+        .section-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid #e0e7e3;
+            padding-bottom: 0;
+        }
+
+        .tab-btn {
+            padding: 0.7rem 1.4rem;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #777;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary-green);
+            background: rgba(79, 138, 91, 0.07);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-green);
+            border-bottom: 3px solid var(--accent-green);
+            background: rgba(79, 138, 91, 0.07);
+            font-weight: 600;
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeInUp 0.35s ease;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        /* ===== DOCUMENT CARDS ===== */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .doc-card {
+            background: white;
+            border-radius: 14px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--accent-green);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(26,77,46,0.13);
+        }
+
+        .doc-icon {
+            font-size: 2.2rem;
+        }
+
+        .doc-title {
+            font-weight: 600;
+            color: var(--primary-green);
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .doc-desc {
+            color: #666;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .doc-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 0.55rem 1.1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: 'Work Sans', sans-serif;
+            transition: background 0.2s;
+            align-self: flex-start;
+        }
+
+        .doc-btn:hover {
+            background: var(--secondary-green);
+        }
+
+        /* ===== KOMBEL SECTION ===== */
+        .kombel-sk-box {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .kombel-sk-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-green);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sk-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .sk-info-item {
+            background: var(--cream);
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            border-top: 3px solid var(--accent-green);
+        }
+
+        .sk-info-item label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+        }
+
+        .sk-info-item span {
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        /* ===== STRUKTUR GRID ===== */
+        .struktur-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .struktur-card {
+            background: white;
+            border-radius: 14px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            transition: transform 0.3s;
+        }
+
+        .struktur-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .struktur-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-green), var(--light-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+
+        .struktur-jabatan {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.4rem;
+        }
+
+        .struktur-nama {
+            font-weight: 600;
+            color: var(--primary-green);
+            font-size: 1rem;
+        }
+
+        /* ===== MATERI GRID ===== */
+        .materi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .materi-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .materi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(26,77,46,0.12);
+        }
+
+        .materi-header {
+            background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .materi-emoji {
+            font-size: 2rem;
+        }
+
+        .materi-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .materi-body {
+            padding: 1.5rem;
+        }
+
+        .materi-body p {
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== JURUSAN DETAIL ===== */
+        .ketua-jurusan-card {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .ketua-photo {
+            width: 140px;
+            height: 140px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .ketua-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ketua-info p {
+            color: var(--light-green);
+            line-height: 1.7;
+        }
+
+        .mata-pelajaran-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .mapel-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            transition: all 0.2s;
+        }
+
+        .mapel-item:hover {
+            transform: translateX(5px);
+            border-left: 3px solid var(--accent-green);
+        }
+
+        .mapel-num {
+            background: var(--primary-green);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .mapel-name {
+            font-weight: 500;
+            color: var(--dark-text);
+            font-size: 0.95rem;
+        }
+
+        .mapel-class {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+        }
+
+        /* ===== JADWAL TABLE ===== */
+        .jadwal-table-wrap {
+            overflow-x: auto;
+            margin-top: 1.5rem;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .jadwal-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        .jadwal-table th {
+            background: var(--primary-green);
+            color: white;
+            padding: 1rem 1.2rem;
+            font-weight: 600;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .jadwal-table td {
+            padding: 0.9rem 1.2rem;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        .jadwal-table tr:hover td {
+            background: #f8faf9;
+        }
+
+        .jadwal-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ===== INFO CARD ===== */
+        .info-banner {
+            background: linear-gradient(135deg, rgba(79,138,91,0.12), rgba(168,213,186,0.2));
+            border: 1px solid var(--light-green);
+            border-radius: 14px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-banner span {
+            font-size: 1.8rem;
+        }
+
+        .info-banner p {
+            color: var(--secondary-green);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== GALLERY SMALL ===== */
+        .gallery-small-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .gallery-placeholder {
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent-green), var(--secondary-green));
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-placeholder:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-placeholder .ph-icon {
+            font-size: 2.5rem;
+        }
+
+        .gallery-placeholder .ph-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ===== SERTIFIKAT CARD ===== */
+        .sertifikat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            border: 2px dashed var(--light-green);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .sertifikat-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-5px);
+        }
+
+        /* ===== MOBILE NAV DROPDOWN ===== */
+        @media (max-width: 768px) {
+            .dropdown {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                border-radius: 8px;
+                border-top: none;
+                border-left: 3px solid var(--accent-green);
+                background: rgba(255,255,255,0.08);
+                opacity: 1;
+                visibility: visible;
+                display: none;
+                margin-top: 0.5rem;
+                margin-left: 1rem;
+            }
+
+            .nav-item.open .dropdown {
+                display: block;
+            }
+
+            .dropdown a {
+                color: var(--light-text) !important;
+                font-size: 0.9rem;
+                padding: 0.6rem 1rem;
+            }
+
+            .dropdown a:hover {
+                color: var(--light-green) !important;
+                background: rgba(255,255,255,0.1);
+            }
+
+            .ketua-jurusan-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .ketua-photo {
+                margin: 0 auto;
+            }
+        }
+
+        /* ===== Animations ===== */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -838,7 +1403,56 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#beranda">Beranda</a></li>
                 <li><a href="#profil">Profil</a></li>
-                <li><a href="#jurusan">Jurusan</a></li>
+
+                <!-- Dropdown: Komunitas Belajar -->
+                <li class="nav-item">
+                    <a href="kombel.html">Komunitas Belajar <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="kombel-sk.html"><span class="icon">&#128196;</span> SK Kombel</a>
+                        <a href="kombel-struktur.html"><span class="icon">&#127963;</span> Struktur Kombel</a>
+                        <a href="kombel-gallery.html"><span class="icon">&#128444;</span> Gallery Kegiatan</a>
+                        <a href="kombel-materi.html"><span class="icon">&#128218;</span> Materi Kombel</a>
+                    </div>
+                </li>
+
+                <!-- Dropdown: Jurusan -->
+                <li class="nav-item">
+                    <a href="jurusan.html">Jurusan <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="jurusan-deskripsi.html"><span class="icon">&#128203;</span> Deskripsi Jurusan</a>
+                        <a href="jurusan-ketua.html"><span class="icon">&#128104;&#8205;&#127979;</span> Ketua Jurusan</a>
+                        <a href="jurusan-mapel.html"><span class="icon">&#128214;</span> Materi yang Diajarkan</a>
+                    </div>
+                </li>
+
+                <!-- Dropdown: Humas -->
+                <li class="nav-item">
+                    <a href="humas.html">Humas <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="humas-pkl-permohonan.html"><span class="icon">&#128221;</span> Permohonan PKL</a>
+                        <a href="humas-pkl-data.html"><span class="icon">&#128228;</span> Pengiriman Data PKL</a>
+                        <a href="humas-ucapan.html"><span class="icon">&#128591;</span> Ucapan Terima Kasih</a>
+                        <a href="humas-magang.html"><span class="icon">&#128202;</span> Laporan Magang</a>
+                        <a href="humas-sk-pkl.html"><span class="icon">&#128209;</span> SK Pembimbing PKL</a>
+                        <a href="humas-gallery.html"><span class="icon">&#128444;</span> Gallery Kegiatan</a>
+                    </div>
+                </li>
+
+                <!-- Dropdown: Kurikulum -->
+                <li class="nav-item">
+                    <a href="kurikulum.html">Kurikulum <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="jadwal-pelajaran.html"><span class="icon">&#128197;</span> Jadwal Pelajaran</a>
+                        <a href="kalender-pendidikan.html"><span class="icon">&#128197;</span> Kalender Pendidikan</a>
+                        <a href="akreditasi.html"><span class="icon">&#127942;</span> Sertifikat Akreditasi</a>
+                        <a href="rapor-pendidikan.html"><span class="icon">&#128202;</span> Rapor Pendidikan</a>
+                        <a href="ksp.html"><span class="icon">&#128216;</span> KSP</a>
+                        <a href="sk-ukk.html"><span class="icon">&#128209;</span> SK UKK</a>
+                        <a href="sk-tka.html"><span class="icon">&#9999;&#65039;</span> SK TKA</a>
+                        <a href="sk-anbk.html"><span class="icon">&#128221;</span> SK ANBK</a>
+                    </div>
+                </li>
+
                 <li><a href="#guru">Guru & Staf</a></li>
                 <li><a href="#galeri">Galeri</a></li>
                 <li><a href="#ppdb">PPDB</a></li>
@@ -1123,6 +1737,616 @@
         </div>
     </div>
 
+    <!-- ============================= -->
+    <!-- SECTION: KOMUNITAS BELAJAR   -->
+    <!-- ============================= -->
+    <section id="kombel">
+        <h2 class="section-title">Komunitas Belajar</h2>
+        <p class="section-subtitle">Wadah kolaborasi dan pengembangan profesional guru</p>
+
+        <div class="section-tabs" id="tabs-kombel">
+            <button class="tab-btn active" onclick="showTab('kombel','tab-sk')">&#128196; SK Kombel</button>
+            <button class="tab-btn" onclick="showTab('kombel','tab-struktur')">&#127963; Struktur Kombel</button>
+            <button class="tab-btn" onclick="showTab('kombel','tab-gallery-kombel')">&#128444; Gallery Kegiatan</button>
+            <button class="tab-btn" onclick="showTab('kombel','tab-materi-kombel')">&#128218; Materi Kombel</button>
+        </div>
+
+        <!-- Tab: SK Kombel -->
+        <div class="tab-panel active" id="tab-sk" data-section="kombel">
+            <div class="info-banner">
+                <span>&#128196;</span>
+                <p>Surat Keputusan (SK) pembentukan Komunitas Belajar SMK Negeri 1 Lingga. Unduh dokumen resmi di bawah ini.</p>
+            </div>
+            <div class="kombel-sk-box">
+                <h3>SK Pembentukan Komunitas Belajar</h3>
+                <div class="sk-info-grid">
+                    <div class="sk-info-item">
+                        <label>Nomor SK</label>
+                        <span>800/SK-KOMBEL/2025</span>
+                    </div>
+                    <div class="sk-info-item">
+                        <label>Tanggal Terbit</label>
+                        <span>15 Januari 2025</span>
+                    </div>
+                    <div class="sk-info-item">
+                        <label>Ditetapkan Oleh</label>
+                        <span>Kepala Sekolah</span>
+                    </div>
+                    <div class="sk-info-item">
+                        <label>Masa Berlaku</label>
+                        <span>1 Tahun Ajaran</span>
+                    </div>
+                </div>
+                <div style="margin-top:2rem;">
+                    <button class="doc-btn" onclick="alert('Silakan upload file SK terlebih dahulu ke folder dokumen.')">&#128229; Unduh SK Kombel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Struktur Kombel -->
+        <div class="tab-panel" id="tab-struktur" data-section="kombel">
+            <div class="info-banner">
+                <span>&#127963;</span>
+                <p>Susunan kepengurusan Komunitas Belajar SMK Negeri 1 Lingga tahun ajaran 2025/2026.</p>
+            </div>
+            <div class="struktur-grid">
+                <div class="struktur-card">
+                    <div class="struktur-avatar">&#128081;</div>
+                    <div class="struktur-jabatan">Ketua</div>
+                    <div class="struktur-nama">Arinaldi, S.Pd</div>
+                </div>
+                <div class="struktur-card">
+                    <div class="struktur-avatar">&#128203;</div>
+                    <div class="struktur-jabatan">Sekretaris</div>
+                    <div class="struktur-nama">Listyorini, S.Pd</div>
+                </div>
+                <div class="struktur-card">
+                    <div class="struktur-avatar">&#128181;</div>
+                    <div class="struktur-jabatan">Bendahara</div>
+                    <div class="struktur-nama">Lisa Noviyanti, S.Pd</div>
+                </div>
+                <div class="struktur-card">
+                    <div class="struktur-avatar">&#128218;</div>
+                    <div class="struktur-jabatan">Koordinator Materi</div>
+                    <div class="struktur-nama">Zaini, S.Pt</div>
+                </div>
+                <div class="struktur-card">
+                    <div class="struktur-avatar">&#128247;</div>
+                    <div class="struktur-jabatan">Koordinator Dokumentasi</div>
+                    <div class="struktur-nama">Waris Sukijo, S.Pd</div>
+                </div>
+                <div class="struktur-card">
+                    <div class="struktur-avatar">&#127968;</div>
+                    <div class="struktur-jabatan">Anggota</div>
+                    <div class="struktur-nama">Destian Kudus I., S.Pd</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Gallery Kegiatan Kombel -->
+        <div class="tab-panel" id="tab-gallery-kombel" data-section="kombel">
+            <div class="info-banner">
+                <span>&#128247;</span>
+                <p>Dokumentasi foto kegiatan Komunitas Belajar. Tambahkan foto kegiatan dengan mengganti placeholder di bawah.</p>
+            </div>
+            <div class="gallery-small-grid">
+                <div class="gallery-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-label">Rapat Rutin Kombel</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#127979;</div><div class="ph-label">Workshop Pembelajaran</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#128104;&#8205;&#128187;</div><div class="ph-label">Pelatihan Teknologi</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#129299;</div><div class="ph-label">Diskusi Materi</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#127891;</div><div class="ph-label">Presentasi Program</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#128200;</div><div class="ph-label">Evaluasi Kegiatan</div></div>
+            </div>
+        </div>
+
+        <!-- Tab: Materi Kombel -->
+        <div class="tab-panel" id="tab-materi-kombel" data-section="kombel">
+            <div class="info-banner">
+                <span>&#128218;</span>
+                <p>Kumpulan materi dan bahan ajar yang digunakan dalam kegiatan Komunitas Belajar.</p>
+            </div>
+            <div class="materi-grid">
+                <div class="materi-card">
+                    <div class="materi-header"><span class="materi-emoji">&#128104;&#8205;&#127979;</span><div class="materi-title">Strategi Pembelajaran Aktif</div></div>
+                    <div class="materi-body"><p>Modul tentang metode pembelajaran inovatif untuk meningkatkan partisipasi siswa di kelas.</p><button class="doc-btn">&#128229; Unduh Materi</button></div>
+                </div>
+                <div class="materi-card">
+                    <div class="materi-header"><span class="materi-emoji">&#128202;</span><div class="materi-title">Penilaian Berbasis Kompetensi</div></div>
+                    <div class="materi-body"><p>Panduan lengkap menyusun instrumen penilaian yang valid dan reliabel sesuai kurikulum Merdeka.</p><button class="doc-btn">&#128229; Unduh Materi</button></div>
+                </div>
+                <div class="materi-card">
+                    <div class="materi-header"><span class="materi-emoji">&#128187;</span><div class="materi-title">Pemanfaatan Teknologi Pembelajaran</div></div>
+                    <div class="materi-body"><p>Tutorial penggunaan platform digital dan media pembelajaran interaktif di era modern.</p><button class="doc-btn">&#128229; Unduh Materi</button></div>
+                </div>
+                <div class="materi-card">
+                    <div class="materi-header"><span class="materi-emoji">&#128221;</span><div class="materi-title">Penyusunan Modul Ajar</div></div>
+                    <div class="materi-body"><p>Template dan panduan membuat modul ajar yang sesuai dengan Kurikulum Merdeka Belajar.</p><button class="doc-btn">&#128229; Unduh Materi</button></div>
+                </div>
+                <div class="materi-card">
+                    <div class="materi-header"><span class="materi-emoji">&#127919;</span><div class="materi-title">Projek Penguatan Profil Pelajar Pancasila</div></div>
+                    <div class="materi-body"><p>Panduan merancang dan melaksanakan P5 yang menarik dan bermakna bagi siswa SMK.</p><button class="doc-btn">&#128229; Unduh Materi</button></div>
+                </div>
+                <div class="materi-card">
+                    <div class="materi-header"><span class="materi-emoji">&#129299;</span><div class="materi-title">Refleksi dan Evaluasi Pembelajaran</div></div>
+                    <div class="materi-body"><p>Teknik-teknik refleksi diri untuk pengembangan profesional dan perbaikan proses mengajar.</p><button class="doc-btn">&#128229; Unduh Materi</button></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================= -->
+    <!-- SECTION: JURUSAN DETAIL      -->
+    <!-- ============================= -->
+    <section id="jurusan-detail" style="background: var(--cream);">
+        <h2 class="section-title">Program Keahlian</h2>
+        <p class="section-subtitle">Agribisnis Ternak Ruminansia - SMK Negeri 1 Lingga</p>
+
+        <div class="section-tabs" id="tabs-jurusan-detail">
+            <button class="tab-btn active" onclick="showTab('jurusan-detail','tab-deskripsi')">&#128203; Deskripsi Jurusan</button>
+            <button class="tab-btn" onclick="showTab('jurusan-detail','tab-ketua')">&#128104;&#8205;&#127979; Ketua Jurusan</button>
+            <button class="tab-btn" onclick="showTab('jurusan-detail','tab-mapel')">&#128214; Materi yang Diajarkan</button>
+        </div>
+
+        <!-- Tab: Deskripsi -->
+        <div class="tab-panel active" id="tab-deskripsi" data-section="jurusan-detail">
+            <div class="jurusan-highlight">
+                <h3>Agribisnis Ternak Ruminansia</h3>
+                <p style="font-size:1.05rem;line-height:1.8;margin-bottom:2rem;">
+                    Program Keahlian Agribisnis Ternak Ruminansia mempersiapkan siswa untuk menjadi tenaga ahli profesional di bidang peternakan khususnya ternak ruminansia (sapi, kambing, domba). Program ini menggabungkan teori ilmiah dengan praktik lapangan yang intensif, menyiapkan lulusan yang siap kerja, mandiri berwirausaha, maupun melanjutkan ke perguruan tinggi.
+                </p>
+                <div class="jurusan-features">
+                    <div class="feature">
+                        <h4>&#127919; Tujuan Program</h4>
+                        <p>Mencetak tenaga terampil di bidang budidaya, manajemen, dan pengolahan hasil ternak ruminansia secara modern dan berkelanjutan.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>&#127941; Keunggulan</h4>
+                        <p>Praktik langsung di kandang sekolah, kerjasama dengan peternak lokal, dan bimbingan instruktur berpengalaman dari industri.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>&#128188; Prospek Karier</h4>
+                        <p>Peternak mandiri, supervisor peternakan, inseminator, quality control, teknisi kesehatan hewan, dan wirausaha produk ternak.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>&#127979; Akreditasi</h4>
+                        <p>Program terakreditasi oleh Badan Akreditasi Nasional Sekolah/Madrasah (BAN-S/M) dengan komitmen mutu pendidikan terbaik.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Ketua Jurusan -->
+        <div class="tab-panel" id="tab-ketua" data-section="jurusan-detail">
+            <div class="ketua-jurusan-card">
+                <div class="ketua-photo">&#128104;&#8205;&#127979;</div>
+                <div class="ketua-info">
+                    <h3>Ketua Program Keahlian</h3>
+                    <p style="font-size:1.4rem;font-weight:700;color:white;margin-bottom:0.5rem;">Arinaldi, S.Pd</p>
+                    <p><strong>NIP:</strong> 199510222023211008</p>
+                    <p><strong>Bidang Keahlian:</strong> Agribisnis Ternak Ruminansia</p>
+                    <p><strong>Tugas:</strong> Mengkoordinasikan seluruh kegiatan akademik, praktik, dan pengembangan program keahlian Agribisnis Ternak Ruminansia.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Materi yang Diajarkan -->
+        <div class="tab-panel" id="tab-mapel" data-section="jurusan-detail">
+            <div class="info-banner">
+                <span>&#128214;</span>
+                <p>Daftar mata pelajaran dan materi yang diajarkan dalam Program Keahlian Agribisnis Ternak Ruminansia.</p>
+            </div>
+            <h3 style="color:var(--primary-green);font-family:'Playfair Display',serif;margin-bottom:1rem;">Mata Pelajaran Produktif</h3>
+            <div class="mata-pelajaran-grid">
+                <div class="mapel-item"><div class="mapel-num">1</div><div><div class="mapel-name">Dasar-Dasar Agribisnis Ternak</div><div class="mapel-class">Kelas X</div></div></div>
+                <div class="mapel-item"><div class="mapel-num">2</div><div><div class="mapel-name">Pembiakan Ternak Ruminansia</div><div class="mapel-class">Kelas X & XI</div></div></div>
+                <div class="mapel-item"><div class="mapel-num">3</div><div><div class="mapel-name">Produksi Ternak Ruminansia Pedaging</div><div class="mapel-class">Kelas XI & XII</div></div></div>
+                <div class="mapel-item"><div class="mapel-num">4</div><div><div class="mapel-name">Produksi Ternak Ruminansia Perah</div><div class="mapel-class">Kelas XI & XII</div></div></div>
+                <div class="mapel-item"><div class="mapel-num">5</div><div><div class="mapel-name">Kesehatan Hewan</div><div class="mapel-class">Kelas XI</div></div></div>
+                <div class="mapel-item"><div class="mapel-num">6</div><div><div class="mapel-name">Agribisnis Pakan Ternak Ruminansia</div><div class="mapel-class">Kelas XI</div></div></div>
+                <div class="mapel-item"><div class="mapel-num">7</div><div><div class="mapel-name">Pengolahan Hasil Ternak</div><div class="mapel-class">Kelas XII</div></div></div>
+                <div class="mapel-item"><div class="mapel-num">8</div><div><div class="mapel-name">Kewirausahaan Peternakan</div><div class="mapel-class">Kelas XII</div></div></div>
+            </div>
+            <h3 style="color:var(--primary-green);font-family:'Playfair Display',serif;margin:2rem 0 1rem;">Mata Pelajaran Normatif & Adaptif</h3>
+            <div class="mata-pelajaran-grid">
+                <div class="mapel-item"><div class="mapel-num">A</div><div><div class="mapel-name">Pendidikan Agama & Budi Pekerti</div><div class="mapel-class">Semua Kelas</div></div></div>
+                <div class="mapel-item"><div class="mapel-num">B</div><div><div class="mapel-name">Bahasa Indonesia</div><div class="mapel-class">Semua Kelas</div></div></div>
+                <div class="mapel-item"><div class="mapel-num">C</div><div><div class="mapel-name">Matematika</div><div class="mapel-class">Semua Kelas</div></div></div>
+                <div class="mapel-item"><div class="mapel-num">D</div><div><div class="mapel-name">Bahasa Inggris</div><div class="mapel-class">Semua Kelas</div></div></div>
+                <div class="mapel-item"><div class="mapel-num">E</div><div><div class="mapel-name">Informatika</div><div class="mapel-class">Kelas X</div></div></div>
+                <div class="mapel-item"><div class="mapel-num">F</div><div><div class="mapel-name">P5 & PPKN</div><div class="mapel-class">Semua Kelas</div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================= -->
+    <!-- SECTION: HUMAS               -->
+    <!-- ============================= -->
+    <section id="humas">
+        <h2 class="section-title">Hubungan Masyarakat</h2>
+        <p class="section-subtitle">Dokumen dan informasi kegiatan Humas SMK Negeri 1 Lingga</p>
+
+        <div class="section-tabs" id="tabs-humas">
+            <button class="tab-btn active" onclick="showTab('humas','tab-pkl-permohonan')">&#128221; Permohonan PKL</button>
+            <button class="tab-btn" onclick="showTab('humas','tab-pkl-data')">&#128228; Pengiriman Data</button>
+            <button class="tab-btn" onclick="showTab('humas','tab-ucapan')">&#128591; Ucapan Terima Kasih</button>
+            <button class="tab-btn" onclick="showTab('humas','tab-magang')">&#128202; Laporan Magang</button>
+            <button class="tab-btn" onclick="showTab('humas','tab-sk-pkl')">&#128209; SK Pembimbing PKL</button>
+            <button class="tab-btn" onclick="showTab('humas','tab-gallery-humas')">&#128444; Gallery</button>
+        </div>
+
+        <!-- Tab: Dokumen Permohonan PKL -->
+        <div class="tab-panel active" id="tab-pkl-permohonan" data-section="humas">
+            <div class="info-banner">
+                <span>&#128221;</span>
+                <p>Dokumen surat permohonan Praktik Kerja Lapangan (PKL) yang dikirimkan kepada institusi/perusahaan mitra.</p>
+            </div>
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">&#128203;</div>
+                    <div class="doc-title">Surat Permohonan PKL - Peternakan A</div>
+                    <div class="doc-desc">Surat resmi permohonan penempatan siswa PKL di mitra peternakan daerah Lingga Timur.</div>
+                    <button class="doc-btn">&#128229; Unduh Dokumen</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128203;</div>
+                    <div class="doc-title">Surat Permohonan PKL - Dinas Peternakan</div>
+                    <div class="doc-desc">Permohonan resmi kepada Dinas Peternakan Kabupaten Lingga untuk penempatan siswa PKL.</div>
+                    <button class="doc-btn">&#128229; Unduh Dokumen</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128203;</div>
+                    <div class="doc-title">Template Surat Permohonan PKL</div>
+                    <div class="doc-desc">Template yang dapat digunakan untuk membuat surat permohonan PKL ke berbagai instansi.</div>
+                    <button class="doc-btn">&#128229; Unduh Template</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Dokumen Pengiriman Data PKL -->
+        <div class="tab-panel" id="tab-pkl-data" data-section="humas">
+            <div class="info-banner">
+                <span>&#128228;</span>
+                <p>Dokumen pengiriman data siswa PKL kepada instansi mitra untuk keperluan administrasi dan monitoring.</p>
+            </div>
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">&#128196;</div>
+                    <div class="doc-title">Data Siswa PKL Angkatan 2025</div>
+                    <div class="doc-desc">Rekapitulasi data lengkap siswa yang mengikuti PKL beserta lokasi penempatan masing-masing.</div>
+                    <button class="doc-btn">&#128229; Unduh Data</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128196;</div>
+                    <div class="doc-title">Formulir Biodata Siswa PKL</div>
+                    <div class="doc-desc">Formulir isian biodata yang harus dilengkapi oleh setiap siswa sebelum pemberangkatan PKL.</div>
+                    <button class="doc-btn">&#128229; Unduh Formulir</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128196;</div>
+                    <div class="doc-title">Rekap Penempatan PKL</div>
+                    <div class="doc-desc">Daftar pembagian penempatan siswa PKL per instansi mitra yang telah disetujui sekolah.</div>
+                    <button class="doc-btn">&#128229; Unduh Rekap</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Ucapan Terima Kasih -->
+        <div class="tab-panel" id="tab-ucapan" data-section="humas">
+            <div class="info-banner">
+                <span>&#128591;</span>
+                <p>Surat ucapan terima kasih kepada instansi dan perusahaan mitra yang telah menerima siswa PKL.</p>
+            </div>
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">&#128140;</div>
+                    <div class="doc-title">Ucapan Terima Kasih - Dinas Peternakan</div>
+                    <div class="doc-desc">Surat resmi ucapan terima kasih kepada Dinas Peternakan Kab. Lingga atas sambutan siswa PKL.</div>
+                    <button class="doc-btn">&#128229; Unduh Surat</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128140;</div>
+                    <div class="doc-title">Ucapan Terima Kasih - Peternak Mitra</div>
+                    <div class="doc-desc">Surat ucapan terima kasih kepada seluruh peternak mitra yang mendukung program PKL sekolah.</div>
+                    <button class="doc-btn">&#128229; Unduh Surat</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128140;</div>
+                    <div class="doc-title">Template Ucapan Terima Kasih</div>
+                    <div class="doc-desc">Template resmi yang dapat disesuaikan untuk berbagai keperluan surat ucapan terima kasih.</div>
+                    <button class="doc-btn">&#128229; Unduh Template</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Laporan Magang -->
+        <div class="tab-panel" id="tab-magang" data-section="humas">
+            <div class="info-banner">
+                <span>&#128202;</span>
+                <p>Laporan dan rekap hasil kegiatan magang/PKL siswa SMK Negeri 1 Lingga.</p>
+            </div>
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">&#128217;</div>
+                    <div class="doc-title">Panduan Penulisan Laporan Magang</div>
+                    <div class="doc-desc">Buku panduan lengkap tata cara penulisan laporan PKL yang sesuai standar sekolah.</div>
+                    <button class="doc-btn">&#128229; Unduh Panduan</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128217;</div>
+                    <div class="doc-title">Template Laporan Magang</div>
+                    <div class="doc-desc">Template siap pakai untuk menyusun laporan PKL siswa dengan format yang telah distandarkan.</div>
+                    <button class="doc-btn">&#128229; Unduh Template</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128202;</div>
+                    <div class="doc-title">Rekap Nilai PKL 2025</div>
+                    <div class="doc-desc">Rekapitulasi nilai akhir PKL seluruh siswa berdasarkan penilaian dari instansi dan guru pembimbing.</div>
+                    <button class="doc-btn">&#128229; Unduh Rekap</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: SK Pembimbing PKL -->
+        <div class="tab-panel" id="tab-sk-pkl" data-section="humas">
+            <div class="info-banner">
+                <span>&#128209;</span>
+                <p>Surat Keputusan (SK) penetapan guru pembimbing PKL siswa SMK Negeri 1 Lingga.</p>
+            </div>
+            <div class="kombel-sk-box">
+                <h3>SK Pembimbing PKL Tahun 2025</h3>
+                <div class="sk-info-grid">
+                    <div class="sk-info-item"><label>Nomor SK</label><span>800/SK-PKL/2025</span></div>
+                    <div class="sk-info-item"><label>Tanggal</label><span>1 Februari 2025</span></div>
+                    <div class="sk-info-item"><label>Jumlah Pembimbing</label><span>6 Guru</span></div>
+                    <div class="sk-info-item"><label>Periode PKL</label><span>Feb - Apr 2025</span></div>
+                </div>
+                <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+                    <button class="doc-btn">&#128229; Unduh SK PKL 2025</button>
+                    <button class="doc-btn" style="background:var(--accent-green);">&#128229; Unduh Daftar Pembimbing</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Gallery Humas -->
+        <div class="tab-panel" id="tab-gallery-humas" data-section="humas">
+            <div class="info-banner">
+                <span>&#128247;</span>
+                <p>Dokumentasi kegiatan Humas termasuk pemberangkatan PKL, kunjungan industri, dan kegiatan kemitraan.</p>
+            </div>
+            <div class="gallery-small-grid">
+                <div class="gallery-placeholder"><div class="ph-icon">&#127963;</div><div class="ph-label">Pemberangkatan PKL</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#129309;</div><div class="ph-label">MOU dengan Mitra</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#128665;</div><div class="ph-label">Kunjungan Industri</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#127942;</div><div class="ph-label">Penjemputan PKL</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-label">Monitoring PKL</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#127881;</div><div class="ph-label">Presentasi PKL</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================= -->
+    <!-- SECTION: KURIKULUM           -->
+    <!-- ============================= -->
+    <section id="kurikulum" style="background: var(--cream);">
+        <h2 class="section-title">Kurikulum</h2>
+        <p class="section-subtitle">Dokumen kurikulum dan administrasi akademik sekolah</p>
+
+        <div class="section-tabs" id="tabs-kurikulum">
+            <button class="tab-btn active" onclick="showTab('kurikulum','tab-jadwal')">&#128197; Jadwal</button>
+            <button class="tab-btn" onclick="showTab('kurikulum','tab-kalender')">&#128197; Kalender</button>
+            <button class="tab-btn" onclick="showTab('kurikulum','tab-akreditasi')">&#127942; Akreditasi</button>
+            <button class="tab-btn" onclick="showTab('kurikulum','tab-rapor')">&#128202; Rapor</button>
+            <button class="tab-btn" onclick="showTab('kurikulum','tab-ksp')">&#128216; KSP</button>
+            <button class="tab-btn" onclick="showTab('kurikulum','tab-asesmen')">&#9999; Asesmen</button>
+            <button class="tab-btn" onclick="showTab('kurikulum','tab-gallery-kurikulum')">&#128444; Gallery</button>
+        </div>
+
+        <!-- Tab: Jadwal Pelajaran -->
+        <div class="tab-panel active" id="tab-jadwal" data-section="kurikulum">
+            <div class="info-banner">
+                <span>&#128197;</span>
+                <p>Jadwal pelajaran resmi SMK Negeri 1 Lingga tahun ajaran 2025/2026 semester genap.</p>
+            </div>
+            <div class="doc-grid" style="margin-bottom:2rem;">
+                <div class="doc-card">
+                    <div class="doc-icon">&#128197;</div>
+                    <div class="doc-title">Jadwal Pelajaran Kelas X</div>
+                    <div class="doc-desc">Jadwal pelajaran lengkap untuk siswa kelas X semester genap 2025/2026.</div>
+                    <button class="doc-btn">&#128229; Unduh Jadwal</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128197;</div>
+                    <div class="doc-title">Jadwal Pelajaran Kelas XI</div>
+                    <div class="doc-desc">Jadwal pelajaran lengkap untuk siswa kelas XI semester genap 2025/2026.</div>
+                    <button class="doc-btn">&#128229; Unduh Jadwal</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128197;</div>
+                    <div class="doc-title">Jadwal Pelajaran Kelas XII</div>
+                    <div class="doc-desc">Jadwal pelajaran lengkap untuk siswa kelas XII semester genap 2025/2026.</div>
+                    <button class="doc-btn">&#128229; Unduh Jadwal</button>
+                </div>
+            </div>
+            <div class="jadwal-table-wrap">
+                <table class="jadwal-table">
+                    <thead>
+                        <tr>
+                            <th>Jam</th>
+                            <th>Waktu</th>
+                            <th>Senin</th>
+                            <th>Selasa</th>
+                            <th>Rabu</th>
+                            <th>Kamis</th>
+                            <th>Jumat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>07.00 - 07.45</td><td>Upacara/Mapel</td><td>Agribisnis Ternak</td><td>Bahasa Indonesia</td><td>Matematika</td><td>PAI</td></tr>
+                        <tr><td>2</td><td>07.45 - 08.30</td><td>Bahasa Indonesia</td><td>Agribisnis Ternak</td><td>Bahasa Indonesia</td><td>Matematika</td><td>PAI</td></tr>
+                        <tr><td>3</td><td>08.30 - 09.15</td><td>Matematika</td><td>Kesehatan Hewan</td><td>Bahasa Inggris</td><td>Pakan Ternak</td><td>PJOK</td></tr>
+                        <tr><td>-</td><td>09.15 - 09.30</td><td colspan="6" style="text-align:center;color:var(--accent-green);font-weight:600;">I S T I R A H A T</td></tr>
+                        <tr><td>4</td><td>09.30 - 10.15</td><td>Informatika</td><td>Kesehatan Hewan</td><td>Bahasa Inggris</td><td>Pakan Ternak</td><td>PJOK</td></tr>
+                        <tr><td>5</td><td>10.15 - 11.00</td><td>Informatika</td><td>Praktik Ternak</td><td>P5</td><td>Praktik Ternak</td><td>Seni Budaya</td></tr>
+                        <tr><td>6</td><td>11.00 - 11.45</td><td>Agribisnis Ternak</td><td>Praktik Ternak</td><td>P5</td><td>Praktik Ternak</td><td>Seni Budaya</td></tr>
+                        <tr><td>-</td><td>11.45 - 12.30</td><td colspan="6" style="text-align:center;color:var(--accent-green);font-weight:600;">I S T I R A H A T / S H O L A T</td></tr>
+                        <tr><td>7</td><td>12.30 - 13.15</td><td>Agribisnis Ternak</td><td>BK</td><td>Kewirausahaan</td><td>Pembiakan Ternak</td><td>-</td></tr>
+                        <tr><td>8</td><td>13.15 - 14.00</td><td>Pengolahan Hasil</td><td>BK</td><td>Kewirausahaan</td><td>Pembiakan Ternak</td><td>-</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab: Kalender Pendidikan -->
+        <div class="tab-panel" id="tab-kalender" data-section="kurikulum">
+            <div class="info-banner">
+                <span>&#128197;</span>
+                <p>Kalender Pendidikan SMK Negeri 1 Lingga tahun ajaran 2025/2026 yang ditetapkan oleh Dinas Pendidikan.</p>
+            </div>
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">&#128197;</div>
+                    <div class="doc-title">Kalender Pendidikan 2025/2026</div>
+                    <div class="doc-desc">Kalender akademik resmi yang memuat jadwal kegiatan belajar mengajar, libur, dan ujian selama satu tahun.</div>
+                    <button class="doc-btn">&#128229; Unduh Kalender</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128197;</div>
+                    <div class="doc-title">Jadwal Ujian Semester Genap</div>
+                    <div class="doc-desc">Jadwal lengkap pelaksanaan Penilaian Akhir Semester (PAS) genap tahun ajaran 2025/2026.</div>
+                    <button class="doc-btn">&#128229; Unduh Jadwal Ujian</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128197;</div>
+                    <div class="doc-title">Agenda Kegiatan Sekolah 2026</div>
+                    <div class="doc-desc">Agenda kegiatan ekstrakurikuler, OSIS, dan kegiatan sekolah lainnya sepanjang tahun 2026.</div>
+                    <button class="doc-btn">&#128229; Unduh Agenda</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Sertifikat Akreditasi -->
+        <div class="tab-panel" id="tab-akreditasi" data-section="kurikulum">
+            <div class="info-banner">
+                <span>&#127942;</span>
+                <p>Sertifikat akreditasi resmi SMK Negeri 1 Lingga yang dikeluarkan oleh BAN-S/M.</p>
+            </div>
+            <div class="doc-grid">
+                <div class="doc-card" style="text-align:center;">
+                    <div class="doc-icon" style="font-size:3rem;">&#127942;</div>
+                    <div class="doc-title" style="font-size:1.1rem;">Sertifikat Akreditasi BAN-S/M</div>
+                    <div class="doc-desc">Sertifikat akreditasi resmi SMK Negeri 1 Lingga yang menjamin kualitas pendidikan sesuai standar nasional.</div>
+                    <button class="doc-btn">&#128229; Lihat Sertifikat</button>
+                </div>
+                <div class="doc-card" style="text-align:center;">
+                    <div class="doc-icon" style="font-size:3rem;">&#128216;</div>
+                    <div class="doc-title" style="font-size:1.1rem;">Laporan Evaluasi Diri Sekolah</div>
+                    <div class="doc-desc">Dokumen EDS (Evaluasi Diri Sekolah) sebagai bahan pengajuan akreditasi kepada BAN-S/M.</div>
+                    <button class="doc-btn">&#128229; Unduh Laporan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Rapor Pendidikan -->
+        <div class="tab-panel" id="tab-rapor" data-section="kurikulum">
+            <div class="info-banner">
+                <span>&#128202;</span>
+                <p>Rapor Pendidikan adalah potret kualitas layanan pendidikan yang dihasilkan dari platform Rapor Pendidikan Kemendikbud.</p>
+            </div>
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">&#128202;</div>
+                    <div class="doc-title">Rapor Pendidikan 2024</div>
+                    <div class="doc-desc">Hasil penilaian kinerja sekolah tahun 2024 dari platform Rapor Pendidikan Kemendikbudristek.</div>
+                    <button class="doc-btn">&#128229; Unduh Rapor</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128218;</div>
+                    <div class="doc-title">Rencana Berbasis Data (RBD)</div>
+                    <div class="doc-desc">Dokumen perencanaan program berdasarkan hasil analisis data Rapor Pendidikan sekolah.</div>
+                    <button class="doc-btn">&#128229; Unduh RBD</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: KSP -->
+        <div class="tab-panel" id="tab-ksp" data-section="kurikulum">
+            <div class="info-banner">
+                <span>&#128216;</span>
+                <p>Kurikulum Satuan Pendidikan (KSP) adalah dokumen kurikulum operasional yang dikembangkan oleh sekolah.</p>
+            </div>
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">&#128216;</div>
+                    <div class="doc-title">KSP SMK Negeri 1 Lingga 2025/2026</div>
+                    <div class="doc-desc">Dokumen Kurikulum Satuan Pendidikan tahun ajaran 2025/2026 yang telah disahkan oleh kepala sekolah.</div>
+                    <button class="doc-btn">&#128229; Unduh KSP</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128209;</div>
+                    <div class="doc-title">Silabus Program Keahlian</div>
+                    <div class="doc-desc">Silabus lengkap seluruh mata pelajaran Program Keahlian Agribisnis Ternak Ruminansia.</div>
+                    <button class="doc-btn">&#128229; Unduh Silabus</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128221;</div>
+                    <div class="doc-title">ATP (Alur Tujuan Pembelajaran)</div>
+                    <div class="doc-desc">Dokumen alur tujuan pembelajaran untuk semua mata pelajaran sesuai Kurikulum Merdeka.</div>
+                    <button class="doc-btn">&#128229; Unduh ATP</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Asesmen -->
+        <div class="tab-panel" id="tab-asesmen" data-section="kurikulum">
+            <div class="info-banner">
+                <span>&#9999;</span>
+                <p>Dokumen asesmen dan penilaian yang digunakan dalam proses pembelajaran di SMK Negeri 1 Lingga.</p>
+            </div>
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">&#128221;</div>
+                    <div class="doc-title">Panduan Asesmen Kurikulum Merdeka</div>
+                    <div class="doc-desc">Panduan lengkap pelaksanaan asesmen formatif dan sumatif sesuai prinsip Kurikulum Merdeka.</div>
+                    <button class="doc-btn">&#128229; Unduh Panduan</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128203;</div>
+                    <div class="doc-title">Bank Soal Mata Pelajaran Produktif</div>
+                    <div class="doc-desc">Kumpulan soal asesmen untuk mata pelajaran produktif Agribisnis Ternak Ruminansia.</div>
+                    <button class="doc-btn">&#128229; Unduh Bank Soal</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128202;</div>
+                    <div class="doc-title">Rubrik Penilaian Praktik</div>
+                    <div class="doc-desc">Rubrik dan instrumen penilaian untuk kegiatan praktik di kandang dan laboratorium.</div>
+                    <button class="doc-btn">&#128229; Unduh Rubrik</button>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">&#128209;</div>
+                    <div class="doc-title">Format Laporan Hasil Asesmen</div>
+                    <div class="doc-desc">Template pelaporan hasil asesmen siswa yang sesuai format Dinas Pendidikan Provinsi Kepri.</div>
+                    <button class="doc-btn">&#128229; Unduh Format</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Gallery Kurikulum -->
+        <div class="tab-panel" id="tab-gallery-kurikulum" data-section="kurikulum">
+            <div class="info-banner">
+                <span>&#128247;</span>
+                <p>Dokumentasi kegiatan pembelajaran, ujian, dan kegiatan akademik di SMK Negeri 1 Lingga.</p>
+            </div>
+            <div class="gallery-small-grid">
+                <div class="gallery-placeholder"><div class="ph-icon">&#127979;</div><div class="ph-label">Kegiatan Belajar Mengajar</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#128221;</div><div class="ph-label">Ujian Akhir Semester</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#128104;&#8205;&#128187;</div><div class="ph-label">Pelatihan Kurikulum Merdeka</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#127947;</div><div class="ph-label">Praktik Lapangan</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-label">Workshop Guru</div></div>
+                <div class="gallery-placeholder"><div class="ph-icon">&#127881;</div><div class="ph-label">Wisuda Lulusan</div></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Galeri -->
     <section id="galeri">
         <h2 class="section-title">Galeri Kegiatan</h2>
@@ -1271,7 +2495,10 @@
                 <h3>Menu Cepat</h3>
                 <p><a href="#beranda">Beranda</a></p>
                 <p><a href="#profil">Profil</a></p>
-                <p><a href="#jurusan">Jurusan</a></p>
+                <p><a href="kombel.html">Komunitas Belajar</a></p>
+                <p><a href="jurusan.html">Jurusan</a></p>
+                <p><a href="humas.html">Humas</a></p>
+                <p><a href="kurikulum.html">Kurikulum</a></p>
                 <p><a href="#ppdb">PPDB</a></p>
             </div>
             
@@ -1305,27 +2532,77 @@
             navLinks.classList.toggle('active');
         });
         
+        // Mobile: toggle dropdown on click
+        document.querySelectorAll('.nav-item > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = this.closest('.nav-item');
+                    const isOpen = parent.classList.contains('open');
+                    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('open'));
+                    if (!isOpen) parent.classList.add('open');
+                }
+            });
+        });
+        
         // Close menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        document.querySelectorAll('.nav-links a:not(.nav-item > a)').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('open'));
             });
         });
         
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
                 if (target) {
+                    e.preventDefault();
                     const offsetTop = target.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
                 }
             });
         });
+
+        // ===== TAB SYSTEM =====
+        function showTab(sectionId, tabId) {
+            // Find all panels in this section
+            const panels = document.querySelectorAll(`[data-section="${sectionId}"]`);
+            panels.forEach(p => p.classList.remove('active'));
+
+            // Activate the selected panel
+            const target = document.getElementById(tabId);
+            if (target) target.classList.add('active');
+
+            // Update tab button states
+            const sectionEl = document.getElementById(sectionId);
+            if (sectionEl) {
+                const tabsContainer = sectionEl.querySelector('.section-tabs');
+                if (tabsContainer) {
+                    const allBtns = tabsContainer.querySelectorAll('.tab-btn');
+                    allBtns.forEach(btn => btn.classList.remove('active'));
+                    // Find matching button by onclick
+                    allBtns.forEach(btn => {
+                        const onclickVal = btn.getAttribute('onclick');
+                        if (onclickVal && onclickVal.includes(tabId)) {
+                            btn.classList.add('active');
+                        }
+                    });
+                }
+            }
+
+            // Scroll to section
+            const section = document.getElementById(sectionId);
+            if (section) {
+                setTimeout(() => {
+                    const offsetTop = section.offsetTop - 85;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                }, 50);
+            }
+        }
 
         // Modal Functions
         function openModal(modalId) {
@@ -1353,9 +2630,7 @@
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 const modals = document.querySelectorAll('.modal');
-                modals.forEach(modal => {
-                    modal.style.display = 'none';
-                });
+                modals.forEach(modal => { modal.style.display = 'none'; });
                 document.body.style.overflow = 'auto';
             }
         });
