@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurikulum - SMK Negeri 1 Lingga</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #1a4d2e;
+            --secondary-green: #2d5f3f;
+            --accent-green: #4f8a5b;
+            --light-green: #a8d5ba;
+            --cream: #faf8f3;
+            --dark-text: #1a2412;
+            --light-text: #f0f4f1;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Work Sans',sans-serif; color:var(--dark-text); background:var(--cream); overflow-x:hidden; }
+
+        /* ===== NAV ===== */
+        nav { position:fixed; width:100%; top:0; background:rgba(26,77,46,0.97); backdrop-filter:blur(10px); z-index:1000; padding:1rem 0; box-shadow:0 2px 20px rgba(0,0,0,0.1); }
+        .nav-container { max-width:1400px; margin:0 auto; padding:0 2rem; display:flex; justify-content:space-between; align-items:center; }
+        .logo { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900; color:var(--light-text); letter-spacing:1px; text-decoration:none; }
+        .nav-links { display:flex; gap:2rem; list-style:none; }
+        .nav-links a { color:var(--light-text); text-decoration:none; font-weight:500; font-size:0.92rem; transition:all 0.3s; position:relative; }
+        .nav-links a::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:var(--light-green); transition:width 0.3s; }
+        .nav-links a:hover::after { width:100%; }
+        .nav-item { position:relative; }
+        .nav-item > a { display:flex; align-items:center; gap:4px; }
+        .nav-item > a::after { content:none !important; }
+        .nav-item > a .arrow { font-size:0.65rem; transition:transform 0.3s; }
+        .nav-item:hover > a .arrow { transform:rotate(180deg); }
+        .dropdown { position:absolute; top:calc(100% + 12px); left:50%; transform:translateX(-50%); background:white; border-radius:12px; box-shadow:0 10px 40px rgba(0,0,0,0.15); min-width:220px; opacity:0; visibility:hidden; transition:all 0.25s; z-index:999; border-top:3px solid var(--accent-green); }
+        .nav-item:hover .dropdown { opacity:1; visibility:visible; top:calc(100% + 6px); }
+        .dropdown a { display:flex; align-items:center; gap:10px; padding:0.75rem 1.2rem; color:var(--dark-text) !important; font-size:0.92rem; font-weight:400; transition:all 0.2s; border-radius:8px; margin:4px; text-decoration:none; }
+        .dropdown a .icon { font-size:1.1rem; width:22px; text-align:center; }
+        .dropdown a:hover { background:var(--cream); color:var(--primary-green) !important; transform:translateX(4px); }
+        .dropdown a::after { content:none !important; }
+        .menu-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+        .menu-toggle span { width:25px; height:3px; background:var(--light-text); transition:0.3s; }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            margin-top:80px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 60%, var(--accent-green) 100%);
+            padding: 4rem 2rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '📚';
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 10rem;
+            opacity: 0.08;
+        }
+        .page-hero-inner { max-width:1400px; margin:0 auto; }
+        .breadcrumb { color: var(--light-green); font-size:0.9rem; margin-bottom:1rem; }
+        .breadcrumb a { color: var(--light-green); text-decoration:none; }
+        .breadcrumb a:hover { color: white; }
+        .page-hero h1 { font-family:'Playfair Display',serif; font-size:3rem; color:white; font-weight:900; margin-bottom:0.7rem; }
+        .page-hero p { color: var(--light-green); font-size:1.1rem; font-weight:300; }
+
+        /* ===== YEAR SELECTOR ===== */
+        .year-section { max-width:1400px; margin:0 auto; padding:3rem 2rem 1rem; }
+        .year-section h2 { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--primary-green); margin-bottom:0.5rem; }
+        .year-section p { color:#666; margin-bottom:2rem; font-size:0.95rem; }
+        .year-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        .year-btn {
+            padding: 1rem;
+            border: 2px solid #e0e7e3;
+            border-radius: 12px;
+            background: white;
+            color: var(--dark-text);
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.25s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .year-btn:hover, .year-btn.active {
+            border-color: var(--accent-green);
+            background: var(--primary-green);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26,77,46,0.2);
+        }
+        .year-btn span { display:block; font-size:0.75rem; font-weight:400; opacity:0.8; margin-top:2px; }
+
+        /* ===== SUBMENU CARDS ===== */
+        .submenu-section { max-width:1400px; margin:0 auto; padding:0 2rem 4rem; }
+        .submenu-header { display:flex; align-items:center; gap:1rem; margin-bottom:2rem; padding:1rem 1.5rem; background:linear-gradient(135deg,rgba(79,138,91,0.12),rgba(168,213,186,0.2)); border:1px solid var(--light-green); border-radius:12px; }
+        .submenu-header span { font-size:1.5rem; }
+        .submenu-header p { color:var(--secondary-green); font-size:0.95rem; }
+        .submenu-header strong { color:var(--primary-green); }
+        .submenu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .submenu-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            border-top: 4px solid var(--accent-green);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            cursor: pointer;
+        }
+        .submenu-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 35px rgba(26,77,46,0.15);
+            border-top-color: var(--primary-green);
+        }
+        .submenu-card .card-icon { font-size:2.5rem; }
+        .submenu-card .card-title { font-weight:700; color:var(--primary-green); font-size:1.1rem; line-height:1.3; }
+        .submenu-card .card-desc { color:#666; font-size:0.875rem; line-height:1.6; flex:1; }
+        .submenu-card .card-link {
+            display:inline-flex; align-items:center; gap:6px;
+            color: var(--accent-green); font-weight:600; font-size:0.9rem;
+            margin-top:0.5rem;
+        }
+        .submenu-card:hover .card-link { color: var(--primary-green); }
+
+        /* ===== FOOTER ===== */
+        footer { background:var(--primary-green); color:var(--light-text); padding:2.5rem 2rem 1.5rem; margin-top:2rem; }
+        .footer-content { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2.5rem; margin-bottom:1.5rem; }
+        .footer-section h3 { font-family:'Playfair Display',serif; margin-bottom:0.8rem; font-size:1.1rem; }
+        .footer-section p, .footer-section a { color:var(--light-green); line-height:1.8; text-decoration:none; font-size:0.9rem; }
+        .footer-section a:hover { color:white; }
+        .footer-bottom { text-align:center; padding-top:1.5rem; border-top:1px solid rgba(168,213,186,0.2); color:var(--light-green); font-size:0.85rem; }
+
+        /* ===== MOBILE ===== */
+        @media(max-width:768px){
+            .menu-toggle{display:flex;}
+            .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--primary-green);flex-direction:column;padding:2rem;gap:1rem;transform:translateY(-100%);opacity:0;pointer-events:none;transition:all 0.3s;}
+            .nav-links.active{transform:translateY(0);opacity:1;pointer-events:all;}
+            .dropdown{position:static;transform:none;box-shadow:none;border-radius:8px;border-top:none;border-left:3px solid var(--accent-green);background:rgba(255,255,255,0.08);opacity:1;visibility:visible;display:none;margin-top:0.5rem;margin-left:1rem;}
+            .nav-item.open .dropdown{display:block;}
+            .dropdown a{color:var(--light-text)!important;font-size:0.9rem;padding:0.6rem 1rem;}
+            .page-hero h1{font-size:2rem;}
+            .year-grid{grid-template-columns:repeat(3,1fr);}
+            .submenu-grid{grid-template-columns:1fr;}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SMKN 1 LINGGA</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#beranda">Beranda</a></li>
+                <li><a href="index.html#profil">Profil</a></li>
+                <li class="nav-item">
+                    <a href="index.html#kombel">Komunitas Belajar <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="index.html#kombel"><span class="icon">&#128196;</span> SK Kombel</a>
+                        <a href="index.html#kombel"><span class="icon">&#127963;</span> Struktur Kombel</a>
+                        <a href="index.html#kombel"><span class="icon">&#128444;</span> Gallery Kegiatan</a>
+                        <a href="index.html#kombel"><span class="icon">&#128218;</span> Materi Kombel</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#jurusan-detail">Jurusan <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="index.html#jurusan-detail"><span class="icon">&#128203;</span> Deskripsi Jurusan</a>
+                        <a href="index.html#jurusan-detail"><span class="icon">&#128104;&#8205;&#127979;</span> Ketua Jurusan</a>
+                        <a href="index.html#jurusan-detail"><span class="icon">&#128214;</span> Materi yang Diajarkan</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#humas">Humas <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="index.html#humas"><span class="icon">&#128221;</span> Permohonan PKL</a>
+                        <a href="index.html#humas"><span class="icon">&#128228;</span> Pengiriman Data PKL</a>
+                        <a href="index.html#humas"><span class="icon">&#128591;</span> Ucapan Terima Kasih</a>
+                        <a href="index.html#humas"><span class="icon">&#128202;</span> Laporan Magang</a>
+                        <a href="index.html#humas"><span class="icon">&#128209;</span> SK Pembimbing PKL</a>
+                        <a href="index.html#humas"><span class="icon">&#128444;</span> Gallery Kegiatan</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="kurikulum.html" style="color:var(--light-green);">Kurikulum <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="jadwal-pelajaran.html"><span class="icon">&#128197;</span> Jadwal Pelajaran</a>
+                        <a href="kalender-pendidikan.html"><span class="icon">&#128197;</span> Kalender Pendidikan</a>
+                        <a href="akreditasi.html"><span class="icon">&#127942;</span> Sertifikat Akreditasi</a>
+                        <a href="rapor-pendidikan.html"><span class="icon">&#128202;</span> Rapor Pendidikan</a>
+                        <a href="ksp.html"><span class="icon">&#128216;</span> KSP</a>
+                        <a href="sk-ukk.html"><span class="icon">&#128209;</span> SK UKK</a>
+                        <a href="sk-tka.html"><span class="icon">&#9999;&#65039;</span> SK TKA</a>
+                        <a href="sk-anbk.html"><span class="icon">&#128221;</span> SK ANBK</a>
+                    </div>
+                </li>
+                <li><a href="index.html#guru">Guru & Staf</a></li>
+                <li><a href="index.html#galeri">Galeri</a></li>
+                <li><a href="index.html#ppdb">PPDB</a></li>
+                <li><a href="index.html#kontak">Kontak</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <!-- ===== PAGE HERO ===== -->
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <div class="breadcrumb"><a href="index.html">Beranda</a> / Kurikulum</div>
+            <h1>&#128218; Kurikulum</h1>
+            <p>Dokumen kurikulum dan administrasi akademik SMK Negeri 1 Lingga</p>
+        </div>
+    </div>
+
+    <!-- ===== YEAR SELECTOR ===== -->
+    <div class="year-section">
+        <h2>Pilih Tahun Ajaran</h2>
+        <p>Pilih tahun ajaran untuk melihat dokumen kurikulum yang relevan</p>
+        <div class="year-grid" id="yearGrid">
+            <button class="year-btn" onclick="selectYear('2021/2022', this)">2021/2022<span>Tahun Ajaran</span></button>
+            <button class="year-btn" onclick="selectYear('2022/2023', this)">2022/2023<span>Tahun Ajaran</span></button>
+            <button class="year-btn" onclick="selectYear('2023/2024', this)">2023/2024<span>Tahun Ajaran</span></button>
+            <button class="year-btn active" onclick="selectYear('2024/2025', this)">2024/2025<span>Tahun Ajaran</span></button>
+            <button class="year-btn" onclick="selectYear('2025/2026', this)">2025/2026<span>Tahun Ajaran</span></button>
+            <button class="year-btn" onclick="selectYear('2026/2027', this)">2026/2027<span>Tahun Ajaran</span></button>
+        </div>
+    </div>
+
+    <!-- ===== SUBMENU CARDS ===== -->
+    <div class="submenu-section">
+        <div class="submenu-header">
+            <span>&#128197;</span>
+            <p>Menampilkan dokumen kurikulum untuk tahun ajaran <strong id="selectedYearLabel">2024/2025</strong>. Klik salah satu menu di bawah untuk melihat dokumen lengkap.</p>
+        </div>
+
+        <div class="submenu-grid">
+            <a href="jadwal-pelajaran.html" class="submenu-card">
+                <div class="card-icon">&#128197;</div>
+                <div class="card-title">Jadwal Pelajaran</div>
+                <div class="card-desc">Jadwal pelajaran resmi untuk semua kelas (X, XI, XII) semester ganjil dan genap.</div>
+                <div class="card-link">Lihat Jadwal &#8594;</div>
+            </a>
+            <a href="kalender-pendidikan.html" class="submenu-card">
+                <div class="card-icon">&#128197;</div>
+                <div class="card-title">Kalender Pendidikan</div>
+                <div class="card-desc">Kalender akademik resmi yang memuat hari efektif, libur, dan jadwal ujian sepanjang tahun.</div>
+                <div class="card-link">Lihat Kalender &#8594;</div>
+            </a>
+            <a href="akreditasi.html" class="submenu-card">
+                <div class="card-icon">&#127942;</div>
+                <div class="card-title">Sertifikat Akreditasi</div>
+                <div class="card-desc">Sertifikat akreditasi resmi dari BAN-S/M beserta laporan Evaluasi Diri Sekolah (EDS).</div>
+                <div class="card-link">Lihat Sertifikat &#8594;</div>
+            </a>
+            <a href="rapor-pendidikan.html" class="submenu-card">
+                <div class="card-icon">&#128202;</div>
+                <div class="card-title">Rapor Pendidikan</div>
+                <div class="card-desc">Potret kualitas layanan pendidikan dari platform Rapor Pendidikan Kemendikbudristek.</div>
+                <div class="card-link">Lihat Rapor &#8594;</div>
+            </a>
+            <a href="ksp.html" class="submenu-card">
+                <div class="card-icon">&#128216;</div>
+                <div class="card-title">KSP</div>
+                <div class="card-desc">Kurikulum Satuan Pendidikan – dokumen kurikulum operasional yang dikembangkan oleh sekolah.</div>
+                <div class="card-link">Lihat KSP &#8594;</div>
+            </a>
+            <a href="sk-ukk.html" class="submenu-card">
+                <div class="card-icon">&#128209;</div>
+                <div class="card-title">SK UKK</div>
+                <div class="card-desc">Surat Keputusan Uji Kompetensi Keahlian – penetapan penguji, jadwal, dan peserta UKK.</div>
+                <div class="card-link">Lihat SK UKK &#8594;</div>
+            </a>
+            <a href="sk-tka.html" class="submenu-card">
+                <div class="card-icon">&#9999;&#65039;</div>
+                <div class="card-title">SK TKA</div>
+                <div class="card-desc">Surat Keputusan Tes Kemampuan Akademik – dokumen resmi pelaksanaan TKA di sekolah.</div>
+                <div class="card-link">Lihat SK TKA &#8594;</div>
+            </a>
+            <a href="sk-anbk.html" class="submenu-card">
+                <div class="card-icon">&#128221;</div>
+                <div class="card-title">SK ANBK</div>
+                <div class="card-desc">Surat Keputusan Asesmen Nasional Berbasis Komputer – panitia, jadwal, dan laporan ANBK.</div>
+                <div class="card-link">Lihat SK ANBK &#8594;</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SMK Negeri 1 Lingga</h3>
+                <p>Mencetak generasi ahli peternakan yang profesional dan berakhlak mulia.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Menu Kurikulum</h3>
+                <p><a href="jadwal-pelajaran.html">Jadwal Pelajaran</a></p>
+                <p><a href="kalender-pendidikan.html">Kalender Pendidikan</a></p>
+                <p><a href="akreditasi.html">Sertifikat Akreditasi</a></p>
+                <p><a href="rapor-pendidikan.html">Rapor Pendidikan</a></p>
+                <p><a href="ksp.html">KSP</a></p>
+                <p><a href="sk-ukk.html">SK UKK</a></p>
+                <p><a href="sk-tka.html">SK TKA</a></p>
+                <p><a href="sk-anbk.html">SK ANBK</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <p>DUSUN II MULYASARI<br>Lingga Timur, Kab. Lingga</p>
+                <p>Prov. Kepulauan Riau</p>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 SMK Negeri 1 Lingga. All Rights Reserved.</p></div>
+    </footer>
+
+    <script>
+        // Mobile nav
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-item > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = this.closest('.nav-item');
+                    const isOpen = parent.classList.contains('open');
+                    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('open'));
+                    if (!isOpen) parent.classList.add('open');
+                }
+            });
+        });
+
+        // Year selector
+        let selectedYear = '2024/2025';
+        function selectYear(year, btn) {
+            selectedYear = year;
+            document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('selectedYearLabel').textContent = year;
+            // Update all card links to carry the year as a query param
+            document.querySelectorAll('.submenu-card').forEach(card => {
+                const href = card.getAttribute('href').split('?')[0];
+                card.setAttribute('href', href + '?year=' + encodeURIComponent(year));
+            });
+        }
+
+        // Init links with default year
+        document.querySelectorAll('.submenu-card').forEach(card => {
+            const href = card.getAttribute('href');
+            card.setAttribute('href', href + '?year=' + encodeURIComponent(selectedYear));
+        });
+    </script>
+</body>
+</html>

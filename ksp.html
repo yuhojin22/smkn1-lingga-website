@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSP - SMK Negeri 1 Lingga</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-green:#1a4d2e; --secondary-green:#2d5f3f; --accent-green:#4f8a5b; --light-green:#a8d5ba; --cream:#faf8f3; --dark-text:#1a2412; --light-text:#f0f4f1; }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Work Sans',sans-serif;color:var(--dark-text);background:var(--cream);overflow-x:hidden;}
+        nav{position:fixed;width:100%;top:0;background:rgba(26,77,46,0.97);backdrop-filter:blur(10px);z-index:1000;padding:1rem 0;box-shadow:0 2px 20px rgba(0,0,0,0.1);}
+        .nav-container{max-width:1400px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;}
+        .logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--light-text);letter-spacing:1px;text-decoration:none;}
+        .nav-links{display:flex;gap:1.8rem;list-style:none;}
+        .nav-links a{color:var(--light-text);text-decoration:none;font-weight:500;font-size:0.9rem;transition:all 0.3s;position:relative;}
+        .nav-links a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--light-green);transition:width 0.3s;}
+        .nav-links a:hover::after{width:100%;}
+        .nav-item{position:relative;}
+        .nav-item>a{display:flex;align-items:center;gap:4px;}
+        .nav-item>a::after{content:none!important;}
+        .nav-item>a .arrow{font-size:0.65rem;transition:transform 0.3s;}
+        .nav-item:hover>a .arrow{transform:rotate(180deg);}
+        .dropdown{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);background:white;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.15);min-width:220px;opacity:0;visibility:hidden;transition:all 0.25s;z-index:999;border-top:3px solid var(--accent-green);}
+        .nav-item:hover .dropdown{opacity:1;visibility:visible;top:calc(100% + 6px);}
+        .dropdown a{display:flex;align-items:center;gap:10px;padding:0.75rem 1.2rem;color:var(--dark-text)!important;font-size:0.9rem;font-weight:400;transition:all 0.2s;border-radius:8px;margin:4px;text-decoration:none;}
+        .dropdown a:hover{background:var(--cream);color:var(--primary-green)!important;transform:translateX(4px);}
+        .dropdown a::after{content:none!important;}
+        .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+        .menu-toggle span{width:25px;height:3px;background:var(--light-text);}
+        .page-hero{margin-top:80px;background:linear-gradient(135deg,var(--primary-green) 0%,var(--secondary-green) 60%,var(--accent-green) 100%);padding:3rem 2rem 2.5rem;position:relative;overflow:hidden;}
+        .page-hero-inner{max-width:1400px;margin:0 auto;}
+        .breadcrumb{color:var(--light-green);font-size:0.85rem;margin-bottom:0.8rem;}
+        .breadcrumb a{color:var(--light-green);text-decoration:none;}
+        .breadcrumb a:hover{color:white;}
+        .page-hero h1{font-family:'Playfair Display',serif;font-size:2.5rem;color:white;font-weight:900;margin-bottom:0.5rem;}
+        .page-hero p{color:var(--light-green);font-size:1rem;font-weight:300;}
+        .page-content{max-width:1400px;margin:0 auto;padding:2.5rem 2rem 4rem;}
+        .year-bar{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:2rem;padding:1.2rem 1.5rem;background:white;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,0.07);}
+        .year-bar-label{font-weight:600;color:var(--primary-green);font-size:0.9rem;white-space:nowrap;}
+        .year-chip{padding:0.45rem 1.1rem;border:2px solid #e0e7e3;border-radius:50px;background:white;color:var(--dark-text);font-family:'Work Sans',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;transition:all 0.2s;}
+        .year-chip:hover,.year-chip.active{border-color:var(--accent-green);background:var(--primary-green);color:white;}
+        .section-tabs{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:2rem;border-bottom:2px solid #e0e7e3;padding-bottom:0;}
+        .tab-btn{padding:0.65rem 1.3rem;background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:'Work Sans',sans-serif;font-size:0.9rem;font-weight:500;color:#777;cursor:pointer;transition:all 0.25s;border-radius:6px 6px 0 0;}
+        .tab-btn:hover{color:var(--primary-green);background:rgba(79,138,91,0.07);}
+        .tab-btn.active{color:var(--primary-green);border-bottom:3px solid var(--accent-green);background:rgba(79,138,91,0.07);font-weight:600;}
+        .tab-panel{display:none;animation:fadeUp 0.35s ease;}
+        .tab-panel.active{display:block;}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+        .pdf-section{background:white;border-radius:16px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,0.09);}
+        .pdf-toolbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;background:var(--primary-green);color:white;gap:1rem;flex-wrap:wrap;}
+        .pdf-toolbar-title{font-weight:600;font-size:1rem;}
+        .pdf-toolbar-actions{display:flex;gap:0.8rem;flex-wrap:wrap;}
+        .btn-download{display:inline-flex;align-items:center;gap:6px;padding:0.55rem 1.2rem;background:var(--light-green);color:var(--primary-green);border:none;border-radius:8px;font-family:'Work Sans',sans-serif;font-size:0.875rem;font-weight:700;cursor:pointer;transition:all 0.2s;text-decoration:none;}
+        .btn-download:hover{background:white;transform:translateY(-2px);}
+        .btn-open{display:inline-flex;align-items:center;gap:6px;padding:0.55rem 1.2rem;background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.4);border-radius:8px;font-family:'Work Sans',sans-serif;font-size:0.875rem;font-weight:600;cursor:pointer;transition:all 0.2s;text-decoration:none;}
+        .btn-open:hover{background:rgba(255,255,255,0.25);}
+        .pdf-embed-wrap{position:relative;background:#525659;}
+        .pdf-embed-wrap iframe{display:block;width:100%;height:600px;border:none;}
+        .pdf-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;height:480px;gap:1.2rem;background:linear-gradient(135deg,#f8f9fa,#e9ecef);color:#666;text-align:center;padding:2rem;}
+        .pdf-placeholder .ph-icon{font-size:4rem;}
+        .pdf-placeholder h3{color:var(--primary-green);font-size:1.2rem;}
+        .pdf-placeholder p{font-size:0.9rem;max-width:400px;line-height:1.6;}
+        .pdf-placeholder code{background:#e0e7e3;padding:0.2rem 0.6rem;border-radius:4px;font-size:0.8rem;color:var(--primary-green);}
+        .info-banner{background:linear-gradient(135deg,rgba(79,138,91,0.12),rgba(168,213,186,0.2));border:1px solid var(--light-green);border-radius:12px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:flex-start;gap:1rem;}
+        .info-banner-icon{font-size:1.5rem;flex-shrink:0;}
+        .info-banner p{color:var(--secondary-green);font-size:0.9rem;line-height:1.6;}
+        footer{background:var(--primary-green);color:var(--light-text);padding:2.5rem 2rem 1.5rem;margin-top:2rem;}
+        .footer-content{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-bottom:1.5rem;}
+        .footer-section h3{font-family:'Playfair Display',serif;margin-bottom:0.8rem;font-size:1rem;}
+        .footer-section p,.footer-section a{color:var(--light-green);line-height:1.8;text-decoration:none;font-size:0.875rem;}
+        .footer-section a:hover{color:white;}
+        .footer-bottom{text-align:center;padding-top:1.2rem;border-top:1px solid rgba(168,213,186,0.2);color:var(--light-green);font-size:0.82rem;}
+        @media(max-width:768px){.menu-toggle{display:flex;}.nav-links{position:absolute;top:100%;left:0;right:0;background:var(--primary-green);flex-direction:column;padding:2rem;gap:1rem;transform:translateY(-100%);opacity:0;pointer-events:none;transition:all 0.3s;}.nav-links.active{transform:translateY(0);opacity:1;pointer-events:all;}.dropdown{position:static;transform:none;box-shadow:none;border-radius:8px;border-top:none;border-left:3px solid var(--accent-green);background:rgba(255,255,255,0.08);opacity:1;visibility:visible;display:none;margin-top:0.5rem;margin-left:1rem;}.nav-item.open .dropdown{display:block;}.dropdown a{color:var(--light-text)!important;}.page-hero h1{font-size:1.8rem;}.pdf-toolbar{flex-direction:column;align-items:flex-start;}}
+    </style>
+</head>
+<body>
+
+        <!-- NAVBAR (sama dengan index.html) -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SMKN 1 LINGGA</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#beranda">Beranda</a></li>
+                <li><a href="index.html#profil">Profil</a></li>
+                <li class="nav-item">
+                    <a href="index.html#kombel">Komunitas Belajar <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="index.html#kombel"><span class="icon">&#128196;</span> SK Kombel</a>
+                        <a href="index.html#kombel"><span class="icon">&#127963;</span> Struktur Kombel</a>
+                        <a href="index.html#kombel"><span class="icon">&#128444;</span> Gallery Kegiatan</a>
+                        <a href="index.html#kombel"><span class="icon">&#128218;</span> Materi Kombel</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#jurusan-detail">Jurusan <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="index.html#jurusan-detail"><span class="icon">&#128203;</span> Deskripsi Jurusan</a>
+                        <a href="index.html#jurusan-detail"><span class="icon">&#128104;&#8205;&#127979;</span> Ketua Jurusan</a>
+                        <a href="index.html#jurusan-detail"><span class="icon">&#128214;</span> Materi yang Diajarkan</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#humas">Humas <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="index.html#humas"><span class="icon">&#128221;</span> Permohonan PKL</a>
+                        <a href="index.html#humas"><span class="icon">&#128228;</span> Pengiriman Data PKL</a>
+                        <a href="index.html#humas"><span class="icon">&#128591;</span> Ucapan Terima Kasih</a>
+                        <a href="index.html#humas"><span class="icon">&#128202;</span> Laporan Magang</a>
+                        <a href="index.html#humas"><span class="icon">&#128209;</span> SK Pembimbing PKL</a>
+                        <a href="index.html#humas"><span class="icon">&#128444;</span> Gallery Kegiatan</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="kurikulum.html" style="color:var(--light-green);">Kurikulum <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="jadwal-pelajaran.html"><span class="icon">&#128197;</span> Jadwal Pelajaran</a>
+                        <a href="kalender-pendidikan.html"><span class="icon">&#128197;</span> Kalender Pendidikan</a>
+                        <a href="akreditasi.html"><span class="icon">&#127942;</span> Sertifikat Akreditasi</a>
+                        <a href="rapor-pendidikan.html"><span class="icon">&#128202;</span> Rapor Pendidikan</a>
+                        <a href="ksp.html" style="background:rgba(79,138,91,0.1);"><span class="icon">&#128216;</span> KSP</a>
+                        <a href="sk-ukk.html"><span class="icon">&#128209;</span> SK UKK</a>
+                        <a href="sk-tka.html"><span class="icon">&#9999;&#65039;</span> SK TKA</a>
+                        <a href="sk-anbk.html"><span class="icon">&#128221;</span> SK ANBK</a>
+                    </div>
+                </li>
+                <li><a href="index.html#guru">Guru &amp; Staf</a></li>
+                <li><a href="index.html#galeri">Galeri</a></li>
+                <li><a href="index.html#ppdb">PPDB</a></li>
+                <li><a href="index.html#kontak">Kontak</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <div class="breadcrumb"><a href="index.html">Beranda</a> / <a href="kurikulum.html">Kurikulum</a> / KSP</div>
+            <h1>📖 KSP</h1>
+            <p>Kurikulum Satuan Pendidikan – dokumen kurikulum operasional SMK Negeri 1 Lingga</p>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <!-- YEAR BAR -->
+        <div class="year-bar">
+            <span class="year-bar-label">&#128197; Tahun Ajaran:</span>
+            <button class="year-chip" onclick="selectYear('2021/2022',this)">2021/2022</button>
+            <button class="year-chip" onclick="selectYear('2022/2023',this)">2022/2023</button>
+            <button class="year-chip" onclick="selectYear('2023/2024',this)">2023/2024</button>
+            <button class="year-chip active" onclick="selectYear('2024/2025',this)">2024/2025</button>
+            <button class="year-chip" onclick="selectYear('2025/2026',this)">2025/2026</button>
+            <button class="year-chip" onclick="selectYear('2026/2027',this)">2026/2027</button>
+        </div>
+
+        <!-- TABS -->
+        <div class="section-tabs">
+            <button class="tab-btn active" onclick="showTab('tab-ksp-utama', this)">📖 Dokumen KSP</button>
+            <button class="tab-btn" onclick="showTab('tab-silabus', this)">📑 Silabus</button>
+            <button class="tab-btn" onclick="showTab('tab-atp', this)">📝 ATP</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-ksp">
+            <div class="info-banner">
+                <span class="info-banner-icon">📖</span>
+                <p>Kurikulum Satuan Pendidikan (KSP) yang telah disahkan oleh kepala sekolah. Tahun Ajaran: <strong class="year-display">2024/2025</strong>.</p>
+            </div>
+            <div class="pdf-section">
+                <div class="pdf-toolbar">
+                    <span class="pdf-toolbar-title">📖 Dokumen KSP — <span class="year-display">2024/2025</span></span>
+                    <div class="pdf-toolbar-actions">
+                        <a href="#" class="btn-download" id="dl-ksp">&#128229; Unduh PDF</a>
+                        <a href="#" target="_blank" class="btn-open">&#128279; Buka di Drive</a>
+                    </div>
+                </div>
+                <div class="pdf-embed-wrap">
+                    <div class="pdf-placeholder">
+                        <div class="ph-icon">📖</div>
+                        <h3>Dokumen KSP</h3>
+                        <p>Isi link Google Drive PDF di variabel <code>pdfLinks['ksp']</code> di script bawah halaman.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-panel" id="tab-silabus">
+            <div class="info-banner">
+                <span class="info-banner-icon">📑</span>
+                <p>Silabus lengkap seluruh mata pelajaran Program Keahlian Agribisnis Ternak Ruminansia. Tahun Ajaran: <strong class="year-display">2024/2025</strong>.</p>
+            </div>
+            <div class="pdf-section">
+                <div class="pdf-toolbar">
+                    <span class="pdf-toolbar-title">📑 Silabus Program Keahlian — <span class="year-display">2024/2025</span></span>
+                    <div class="pdf-toolbar-actions">
+                        <a href="#" class="btn-download" id="dl-silabus">&#128229; Unduh PDF</a>
+                        <a href="#" target="_blank" class="btn-open">&#128279; Buka di Drive</a>
+                    </div>
+                </div>
+                <div class="pdf-embed-wrap">
+                    <div class="pdf-placeholder">
+                        <div class="ph-icon">📑</div>
+                        <h3>Silabus Program Keahlian</h3>
+                        <p>Isi link Google Drive PDF di variabel <code>pdfLinks['silabus']</code> di script bawah halaman.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-panel" id="tab-atp">
+            <div class="info-banner">
+                <span class="info-banner-icon">📝</span>
+                <p>Dokumen alur tujuan pembelajaran sesuai Kurikulum Merdeka. Tahun Ajaran: <strong class="year-display">2024/2025</strong>.</p>
+            </div>
+            <div class="pdf-section">
+                <div class="pdf-toolbar">
+                    <span class="pdf-toolbar-title">📝 ATP (Alur Tujuan Pembelajaran) — <span class="year-display">2024/2025</span></span>
+                    <div class="pdf-toolbar-actions">
+                        <a href="#" class="btn-download" id="dl-atp">&#128229; Unduh PDF</a>
+                        <a href="#" target="_blank" class="btn-open">&#128279; Buka di Drive</a>
+                    </div>
+                </div>
+                <div class="pdf-embed-wrap">
+                    <div class="pdf-placeholder">
+                        <div class="ph-icon">📝</div>
+                        <h3>ATP (Alur Tujuan Pembelajaran)</h3>
+                        <p>Isi link Google Drive PDF di variabel <code>pdfLinks['atp']</code> di script bawah halaman.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- end .page-content -->
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SMK Negeri 1 Lingga</h3>
+                <p>Mencetak generasi ahli peternakan yang profesional dan berakhlak mulia.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Menu Kurikulum</h3>
+                <p><a href="jadwal-pelajaran.html">Jadwal Pelajaran</a></p>
+                <p><a href="kalender-pendidikan.html">Kalender Pendidikan</a></p>
+                <p><a href="akreditasi.html">Sertifikat Akreditasi</a></p>
+                <p><a href="rapor-pendidikan.html">Rapor Pendidikan</a></p>
+                <p><a href="ksp.html">KSP</a></p>
+                <p><a href="sk-ukk.html">SK UKK</a></p>
+                <p><a href="sk-tka.html">SK TKA</a></p>
+                <p><a href="sk-anbk.html">SK ANBK</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <p>DUSUN II MULYASARI<br>Lingga Timur, Kab. Lingga</p>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 SMK Negeri 1 Lingga. All Rights Reserved.</p></div>
+    </footer>
+
+    <script>
+    // ============================================================
+    // KONFIGURASI LINK PDF GOOGLE DRIVE
+    // ============================================================
+    // Cara: Upload PDF ke GDrive → copy FILE_ID → isi di bawah
+    // embed:    https://drive.google.com/file/d/FILE_ID/preview
+    // download: https://drive.google.com/uc?export=download&id=FILE_ID
+
+    const pdfLinks = {
+        '2021/2022': { 'ksp': { embed: '', download: '' }, 'silabus': { embed: '', download: '' }, 'atp': { embed: '', download: '' } },
+        '2022/2023': { 'ksp': { embed: '', download: '' }, 'silabus': { embed: '', download: '' }, 'atp': { embed: '', download: '' } },
+        '2023/2024': { 'ksp': { embed: '', download: '' }, 'silabus': { embed: '', download: '' }, 'atp': { embed: '', download: '' } },
+        '2024/2025': { 'ksp': { embed: '', download: '' }, 'silabus': { embed: '', download: '' }, 'atp': { embed: '', download: '' } },
+        '2025/2026': { 'ksp': { embed: '', download: '' }, 'silabus': { embed: '', download: '' }, 'atp': { embed: '', download: '' } },
+        '2026/2027': { 'ksp': { embed: '', download: '' }, 'silabus': { embed: '', download: '' }, 'atp': { embed: '', download: '' } },
+    };
+
+    let currentYear = '2024/2025';
+    const PDF_KEYS = ["ksp", "silabus", "atp"];
+
+    function renderPDF(key, embedUrl, downloadUrl) {
+        const wrap = document.querySelector(`#tab-${key} .pdf-embed-wrap`);
+        if (!wrap) return;
+        if (!embedUrl) {
+            wrap.innerHTML = `<div class="pdf-placeholder"><div class="ph-icon">📄</div><h3>Dokumen Belum Tersedia</h3><p>File PDF untuk tahun ajaran ${currentYear} belum diupload. Isi link di variabel <code>pdfLinks</code>.</p></div>`;
+            return;
+        }
+        wrap.innerHTML = `<iframe src="${embedUrl}" style="width:100%;height:600px;border:none;" allow="autoplay" loading="lazy"></iframe>`;
+        const dlBtn = document.getElementById(`dl-${key}`);
+        if (dlBtn && downloadUrl) dlBtn.href = downloadUrl;
+    }
+
+    function updateAllPDFs() {
+        PDF_KEYS.forEach(key => {
+            const data = pdfLinks[currentYear]?.[key] || {};
+            renderPDF(key, data.embed || '', data.download || '');
+        });
+        document.querySelectorAll('.year-display').forEach(el => el.textContent = currentYear);
+    }
+
+    function selectYear(year, btn) {
+        currentYear = year;
+        document.querySelectorAll('.year-chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        updateAllPDFs();
+    }
+
+    let activeTab = null;
+    function showTab(tabId, btn) {
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
+        activeTab = tabId;
+    }
+
+    document.getElementById('menuToggle').addEventListener('click', () => {
+        document.getElementById('navLinks').classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-item > a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const parent = this.closest('.nav-item');
+                const isOpen = parent.classList.contains('open');
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('open'));
+                if (!isOpen) parent.classList.add('open');
+            }
+        });
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramYear = urlParams.get('year');
+    if (paramYear) {
+        currentYear = paramYear;
+        document.querySelectorAll('.year-chip').forEach(btn => {
+            btn.classList.toggle('active', btn.textContent.trim() === paramYear);
+        });
+    }
+
+    updateAllPDFs();
+    </script>
+</body>
+</html>
