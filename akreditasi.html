@@ -151,8 +151,8 @@
             <button class="year-chip" onclick="selectYear('2021/2022',this)">2021/2022</button>
             <button class="year-chip" onclick="selectYear('2022/2023',this)">2022/2023</button>
             <button class="year-chip" onclick="selectYear('2023/2024',this)">2023/2024</button>
-            <button class="year-chip active" onclick="selectYear('2024/2025',this)">2024/2025</button>
-            <button class="year-chip" onclick="selectYear('2025/2026',this)">2025/2026</button>
+            <button class="year-chip" onclick="selectYear('2024/2025',this)">2024/2025</button>
+            <button class="year-chip active" onclick="selectYear('2025/2026',this)">2025/2026</button>
             <button class="year-chip" onclick="selectYear('2026/2027',this)">2026/2027</button>
         </div>
 
@@ -269,11 +269,11 @@
         '2022/2023': { 'sertifikat': { embed: '', download: '' }, 'eds': { embed: '', download: '' }, 'rencana': { embed: '', download: '' } },
         '2023/2024': { 'sertifikat': { embed: '', download: '' }, 'eds': { embed: '', download: '' }, 'rencana': { embed: '', download: '' } },
         '2024/2025': { 'sertifikat': { embed: '', download: '' }, 'eds': { embed: '', download: '' }, 'rencana': { embed: '', download: '' } },
-        '2025/2026': { 'sertifikat': { embed: '', download: '' }, 'eds': { embed: '', download: '' }, 'rencana': { embed: '', download: '' } },
+        '2025/2026': { 'sertifikat': { embed: 'https://drive.google.com/file/d/1j5YaYJtsabKpdT8WHZis6mzd3Ate0hoF/preview', download: 'https://drive.google.com/uc?export=download&id=1j5YaYJtsabKpdT8WHZis6mzd3Ate0hoF' }, 'eds': { embed: '', download: '' }, 'rencana': { embed: '', download: '' } },
         '2026/2027': { 'sertifikat': { embed: '', download: '' }, 'eds': { embed: '', download: '' }, 'rencana': { embed: '', download: '' } },
     };
 
-    let currentYear = '2024/2025';
+    let currentYear = '2025/2026';
     const PDF_KEYS = ["sertifikat", "eds", "rencana"];
 
     function renderPDF(key, embedUrl, downloadUrl) {
