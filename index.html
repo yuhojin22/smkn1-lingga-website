@@ -311,12 +311,182 @@
             font-weight: 300;
         }
 
-        /* News Cards */
+        /* ===== SHARE BUTTONS ===== */
+        .share-btn {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.45rem 1rem; border-radius: 20px; font-size: 0.82rem;
+            font-weight: 600; border: none; cursor: pointer; text-decoration: none;
+            transition: all 0.2s; white-space: nowrap;
+        }
+        .share-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+        .share-btn.wa  { background: #25D366; color: white; }
+        .share-btn.fb  { background: #1877F2; color: white; }
+        .share-btn.tw  { background: #1DA1F2; color: white; }
+        .share-btn.cp  { background: #f0f4f1; color: #1a4d2e; border: 1.5px solid #c5e8d3; }
+        .share-btn.cp.copied { background: #dcfce7; color: #166534; border-color: #86efac; }
+
+        /* ===== ADMIN PANEL ===== */
+        #admin-fab {
+            position: fixed; bottom: 2rem; right: 2rem; z-index: 1500;
+            background: var(--primary-green); color: white; border: none;
+            border-radius: 50px; padding: 0.85rem 1.4rem; font-size: 0.95rem;
+            font-weight: 700; cursor: pointer; box-shadow: 0 4px 20px rgba(26,77,46,0.35);
+            transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem;
+        }
+        #admin-fab:hover { background: #2d5f3f; transform: translateY(-2px); }
+        #admin-panel {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.6); z-index: 2100;
+            align-items: center; justify-content: center;
+        }
+        #admin-panel.open { display: flex; }
+        .admin-box {
+            background: white; border-radius: 20px; padding: 2rem;
+            width: 94%; max-width: 640px; max-height: 90vh; overflow-y: auto;
+            animation: slideDown 0.3s ease;
+        }
+        .admin-box h2 { font-family: 'Playfair Display', serif; color: var(--primary-green); margin-bottom: 1.5rem; font-size: 1.5rem; }
+        .admin-field { margin-bottom: 1.1rem; }
+        .admin-field label { display: block; font-weight: 600; color: #1a4d2e; margin-bottom: 0.4rem; font-size: 0.9rem; }
+        .admin-field input, .admin-field textarea, .admin-field select {
+            width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #c5e8d3;
+            border-radius: 8px; font-family: 'Work Sans', sans-serif; font-size: 0.92rem;
+            color: #1a2412; outline: none; transition: border 0.2s;
+        }
+        .admin-field input:focus, .admin-field textarea:focus { border-color: var(--accent-green); }
+        .admin-field textarea { resize: vertical; min-height: 90px; }
+        .admin-actions { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
+        .admin-btn-save {
+            flex: 1; background: var(--primary-green); color: white; border: none;
+            border-radius: 50px; padding: 0.8rem; font-weight: 700; font-size: 1rem;
+            cursor: pointer; transition: background 0.2s;
+        }
+        .admin-btn-save:hover { background: #2d5f3f; }
+        .admin-btn-cancel {
+            background: #f0f4f1; color: #1a4d2e; border: 1.5px solid #c5e8d3;
+            border-radius: 50px; padding: 0.8rem 1.4rem; font-weight: 600; cursor: pointer;
+        }
+        .admin-divider { border: none; border-top: 1.5px solid #e8f3ec; margin: 1.4rem 0; }
+        .admin-news-list { display: grid; gap: 0.7rem; margin-top: 0.5rem; }
+        .admin-news-item {
+            background: #f8fdf9; border-radius: 10px; padding: 0.8rem 1rem;
+            display: flex; align-items: center; gap: 0.8rem; border-left: 3px solid var(--accent-green);
+        }
+        .admin-news-item-title { flex: 1; font-weight: 600; font-size: 0.88rem; color: #1a4d2e; }
+        .admin-news-item-date { font-size: 0.78rem; color: #888; }
+        .admin-del-btn {
+            background: #fee2e2; color: #b91c1c; border: none; border-radius: 6px;
+            padding: 0.3rem 0.7rem; font-size: 0.8rem; cursor: pointer; font-weight: 600;
+        }
+        .admin-del-btn:hover { background: #fca5a5; }
+        /* ===== ACCORDION BERITA ===== */
+        /* news-grid jadi 1 kolom saat ada yang expand */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
+        }
+        /* Kartu yang sedang expand ambil lebar penuh */
+        .news-card.expanded {
+            grid-column: 1 / -1;
+            transform: none !important;
+        }
+        .news-card.expanded:hover {
+            transform: none !important;
+        }
+        /* Panel konten expand */
+        .news-expand {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.55s cubic-bezier(0.22,1,0.36,1), padding 0.3s ease;
+            padding: 0 1.5rem;
+        }
+        .news-card.expanded .news-expand {
+            max-height: 2000px;
+            padding: 0 1.5rem 1.5rem;
+        }
+        .news-expand-inner {
+            border-top: 2px solid #e8f3ec;
+            padding-top: 1.2rem;
+        }
+        .news-expand-body {
+            color: #444;
+            line-height: 1.85;
+            font-size: 0.97rem;
+        }
+        .news-expand-body p { margin-bottom: 1rem; }
+        .news-expand-body p:last-child { margin-bottom: 0; }
+        .news-expand-body .kutipan {
+            font-style: italic;
+            border-left: 3px solid var(--accent-green);
+            padding-left: 1rem;
+            color: #555;
+            margin: 1rem 0;
+        }
+        /* Share section di dalam expand */
+        .expand-share {
+            margin-top: 1.4rem;
+            padding: 1rem 1.2rem;
+            background: #f4fbf6;
+            border-radius: 12px;
+        }
+        .expand-share-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #4f8a5b;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .expand-share-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .expand-link-row {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .expand-link-input {
+            flex: 1;
+            padding: 0.45rem 0.8rem;
+            border: 1.5px solid #c5e8d3;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: #555;
+            background: white;
+            outline: none;
+            font-family: 'Work Sans', sans-serif;
+        }
+        /* Tombol baca/tutup */
+        .news-read-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: none;
+            border: none;
+            color: var(--accent-green);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 0;
+            margin-top: 0.8rem;
+            transition: color 0.2s;
+            font-family: 'Work Sans', sans-serif;
+        }
+        .news-read-btn:hover { color: var(--primary-green); }
+        .news-read-btn .arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .news-card.expanded .news-read-btn .arrow {
+            transform: rotate(90deg);
         }
 
         .news-card {
@@ -1564,62 +1734,54 @@
     <section id="berita">
         <h2 class="section-title reveal">Berita & Pengumuman</h2>
         <p class="section-subtitle reveal reveal-delay-1">Informasi terkini seputar kegiatan sekolah</p>
-        
-        <div class="news-grid">
-            <!-- Berita Utama: UKK Tarigan Farm -->
-            <div class="news-card reveal reveal-delay-1" style="cursor:pointer;" onclick="openModal('modal-ukk')">
-                <div class="news-image">
-                    <img src="images/berita_ukk.jpg" alt="Siswa UKK Ternak Ruminansia di Tarigan Farm">
-                </div>
-                <div class="news-content">
-                    <div class="news-date">18 Februari 2026</div>
-                    <h3 class="news-title">Siswa SMK Negeri 1 Lingga Sukses Ikuti UKK Ternak Ruminansia di Tarigan Farm</h3>
-                    <p class="news-excerpt">Sebanyak 19 siswa konsentrasi keahlian Ternak Ruminansia sukses menjalani UKK di Peternakan Tarigan Farm, Panggak Darat, Kabupaten Lingga...</p>
-                    <p style="color:var(--accent-green);font-weight:600;font-size:0.9rem;margin-top:0.8rem;">Baca selengkapnya &rarr;</p>
-                </div>
-            </div>
-
-            <div class="news-card reveal reveal-delay-2">
-                <div class="news-image">📢</div>
-                <div class="news-content">
-                    <div class="news-date">2 Februari 2026</div>
-                    <h3 class="news-title">Pendaftaran Siswa Baru Tahun 2026/2027</h3>
-                    <p class="news-excerpt">Pendaftaran siswa baru telah dibuka untuk tahun ajaran 2026/2027. Segera daftarkan diri Anda dan bergabung bersama kami!</p>
-                </div>
-            </div>
-            
-            <div class="news-card reveal reveal-delay-3">
-                <div class="news-image">🏆</div>
-                <div class="news-content">
-                    <div class="news-date">28 Januari 2026</div>
-                    <h3 class="news-title">Prestasi Lomba Peternakan Tingkat Provinsi</h3>
-                    <p class="news-excerpt">Siswa SMK Negeri 1 Lingga meraih juara 1 dalam lomba inovasi peternakan tingkat Provinsi Kepulauan Riau.</p>
-                </div>
-            </div>
-            
-            <div class="news-card reveal reveal-delay-4">
-                <div class="news-image">🌾</div>
-                <div class="news-content">
-                    <div class="news-date">15 Januari 2026</div>
-                    <h3 class="news-title">Kunjungan Industri ke Peternakan Modern</h3>
-                    <p class="news-excerpt">Siswa kelas XI melakukan kunjungan industri ke peternakan modern untuk memperkaya pengalaman praktis di lapangan.</p>
-                </div>
-            </div>
+        <div class="news-grid" id="news-grid">
+            <!-- Diisi otomatis oleh JavaScript -->
         </div>
     </section>
 
-    <!-- Modal Berita UKK -->
-    <div id="modal-ukk" class="modal">
-        <div class="modal-content" style="max-width:700px;">
-            <span class="close" onclick="closeModal('modal-ukk')">&times;</span>
-            <div style="color:var(--accent-green);font-size:0.85rem;font-weight:600;margin-bottom:0.5rem;">18 Februari 2026 &bull; Berita Sekolah</div>
-            <h2 style="font-family:'Playfair Display',serif;color:var(--primary-green);font-size:1.6rem;margin-bottom:1.2rem;line-height:1.3;">Siswa SMK Negeri 1 Lingga Sukses Ikuti UKK Ternak Ruminansia di Tarigan Farm</h2>
-            <img src="images/berita_ukk.jpg" alt="UKK Ternak Ruminansia Tarigan Farm" style="width:100%;border-radius:12px;margin-bottom:1.4rem;object-fit:cover;max-height:340px;">
-            <p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>Panggak Darat, Lingga</strong> &ndash; Sebanyak 19 siswa konsentrasi keahlian Ternak Ruminansia SMK Negeri 1 Lingga sukses menjalani Ujian Kompetensi Keahlian (UKK) di Peternakan Tarigan Farm, Panggak Darat, Kabupaten Lingga. Kegiatan ini berlangsung lancar dan menjadi momen penting bagi siswa untuk mengaplikasikan ilmu peternakan secara nyata pada hewan sapi.</p>
-            <p style="color:#444;line-height:1.85;margin-bottom:1rem;">UKK ini menilai kemampuan siswa dalam berbagai aspek praktik, mulai dari perawatan harian, pemeriksaan kesehatan, hingga teknik pemberian pakan dan grooming sapi. Dengan fasilitas peternakan yang representatif, siswa tampil percaya diri menunjukkan keterampilan yang telah diasah selama pembelajaran di sekolah.</p>
-            <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Kami bangga melihat siswa kami mampu bersaing dan siap terjun ke dunia kerja," ujar Kepala Program Keahlian Ternak Ruminansia SMK Negeri 1 Lingga.</p>
-            <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Kegiatan ini tidak hanya menguji kompetensi, tapi juga memperkuat sinergi sekolah dengan industri peternakan lokal. Para siswa berharap hasil UKK ini membuka peluang sertifikasi nasional dan karir di sektor peternakan ruminansia yang sedang berkembang di Kepulauan Riau.</p>
-            <p style="color:#444;line-height:1.85;">SMK Negeri 1 Lingga terus berkomitmen menghasilkan lulusan unggul yang kompeten dan berwawasan lingkungan dalam bidang peternakan.</p>
+    <!-- Tombol Admin -->
+    <button id="admin-fab" onclick="toggleAdmin()">✏️ Kelola Berita</button>
+
+    <!-- Panel Admin -->
+    <div id="admin-panel">
+        <div class="admin-box">
+            <h2>✏️ Panel Kelola Berita</h2>
+            <div class="admin-field">
+                <label>Judul Berita *</label>
+                <input type="text" id="f-judul" placeholder="Contoh: Siswa SMK Juara Lomba Nasional">
+            </div>
+            <div class="admin-field">
+                <label>Tanggal *</label>
+                <input type="date" id="f-tanggal">
+            </div>
+            <div class="admin-field">
+                <label>Ringkasan (ditampilkan di kartu berita) *</label>
+                <textarea id="f-excerpt" placeholder="1-2 kalimat ringkasan berita..."></textarea>
+            </div>
+            <div class="admin-field">
+                <label>Isi Berita Lengkap *</label>
+                <textarea id="f-isi" style="min-height:130px;" placeholder="Tuliskan isi berita selengkapnya di sini..."></textarea>
+            </div>
+            <div class="admin-field">
+                <label>Emoji / Ikon (jika tidak ada foto)</label>
+                <select id="f-emoji">
+                    <option value="📢">📢 Pengumuman</option>
+                    <option value="🏆">🏆 Prestasi</option>
+                    <option value="🎓">🎓 Kelulusan / Ujian</option>
+                    <option value="🌾">🌾 Pertanian</option>
+                    <option value="🐄">🐄 Peternakan</option>
+                    <option value="📅">📅 Acara / Kegiatan</option>
+                    <option value="🤝">🤝 Kerjasama</option>
+                    <option value="📌">📌 Info Penting</option>
+                </select>
+            </div>
+            <div class="admin-actions">
+                <button class="admin-btn-save" onclick="simpanBerita()">💾 Simpan Berita</button>
+                <button class="admin-btn-cancel" onclick="toggleAdmin()">Batal</button>
+            </div>
+            <hr class="admin-divider">
+            <strong style="color:#1a4d2e;font-size:0.95rem;">📋 Daftar Berita</strong>
+            <div class="admin-news-list" id="admin-news-list"></div>
         </div>
     </div>
 
@@ -1867,16 +2029,11 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Mobile Menu Toggle
+    <script>
+        // ===== MOBILE MENU =====
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
-        
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        
-        // Mobile: toggle dropdown on click
+        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
         document.querySelectorAll('.nav-item > a').forEach(link => {
             link.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
@@ -1888,98 +2045,282 @@
                 }
             });
         });
-        
-        // Close menu when clicking on a link
         document.querySelectorAll('.nav-links a:not(.nav-item > a)').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('open'));
             });
         });
-        
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
                 if (href === '#') return;
                 const target = document.querySelector(href);
                 if (target) {
                     e.preventDefault();
-                    const offsetTop = target.offsetTop - 80;
-                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                    window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
                 }
             });
         });
 
         // ===== TAB SYSTEM =====
         function showTab(sectionId, tabId) {
-            // Find all panels in this section
-            const panels = document.querySelectorAll(`[data-section="${sectionId}"]`);
-            panels.forEach(p => p.classList.remove('active'));
-
-            // Activate the selected panel
+            document.querySelectorAll(`[data-section="${sectionId}"]`).forEach(p => p.classList.remove('active'));
             const target = document.getElementById(tabId);
             if (target) target.classList.add('active');
-
-            // Update tab button states
             const sectionEl = document.getElementById(sectionId);
             if (sectionEl) {
-                const tabsContainer = sectionEl.querySelector('.section-tabs');
-                if (tabsContainer) {
-                    const allBtns = tabsContainer.querySelectorAll('.tab-btn');
-                    allBtns.forEach(btn => btn.classList.remove('active'));
-                    // Find matching button by onclick
-                    allBtns.forEach(btn => {
-                        const onclickVal = btn.getAttribute('onclick');
-                        if (onclickVal && onclickVal.includes(tabId)) {
-                            btn.classList.add('active');
-                        }
-                    });
-                }
+                sectionEl.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabId))
+                        btn.classList.add('active');
+                });
             }
-
-            // Scroll to section
             const section = document.getElementById(sectionId);
-            if (section) {
-                setTimeout(() => {
-                    const offsetTop = section.offsetTop - 85;
-                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-                }, 50);
-            }
+            if (section) setTimeout(() => window.scrollTo({ top: section.offsetTop - 85, behavior: 'smooth' }), 50);
         }
 
-        // Modal Functions
+        // ===== MODAL LAMA (kompatibilitas bagian lain) =====
         function openModal(modalId) {
             document.getElementById(modalId).style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
-
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
+        // ===== DATA BERITA =====
+        // Berita bawaan (hardcoded, tidak bisa dihapus dari admin)
+        const BERITA_BAWAAN = [
+            {
+                id: 'ukk-tarigan-farm-2026',
+                judul: 'Siswa SMK Negeri 1 Lingga Sukses Ikuti UKK Ternak Ruminansia di Tarigan Farm',
+                tanggal: '2026-02-18',
+                excerpt: 'Sebanyak 19 siswa konsentrasi keahlian Ternak Ruminansia sukses menjalani UKK di Peternakan Tarigan Farm, Panggak Darat, Kabupaten Lingga...',
+                emoji: '🎓',
+                gambar: 'images/berita_ukk.jpg',
+                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>Panggak Darat, Lingga</strong> &ndash; Sebanyak 19 siswa konsentrasi keahlian Ternak Ruminansia SMK Negeri 1 Lingga sukses menjalani Ujian Kompetensi Keahlian (UKK) di Peternakan Tarigan Farm, Panggak Darat, Kabupaten Lingga. Kegiatan ini berlangsung lancar dan menjadi momen penting bagi siswa untuk mengaplikasikan ilmu peternakan secara nyata pada hewan sapi.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">UKK ini menilai kemampuan siswa dalam berbagai aspek praktik, mulai dari perawatan harian, pemeriksaan kesehatan, hingga teknik pemberian pakan dan grooming sapi. Dengan fasilitas peternakan yang representatif, siswa tampil percaya diri menunjukkan keterampilan yang telah diasah selama pembelajaran di sekolah.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Kami bangga melihat siswa kami mampu bersaing dan siap terjun ke dunia kerja," ujar Kepala Program Keahlian Ternak Ruminansia SMK Negeri 1 Lingga.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Kegiatan ini tidak hanya menguji kompetensi, tapi juga memperkuat sinergi sekolah dengan industri peternakan lokal. Para siswa berharap hasil UKK ini membuka peluang sertifikasi nasional dan karir di sektor peternakan ruminansia yang sedang berkembang di Kepulauan Riau.</p>
+                <p style="color:#444;line-height:1.85;">SMK Negeri 1 Lingga terus berkomitmen menghasilkan lulusan unggul yang kompeten dan berwawasan lingkungan dalam bidang peternakan.</p>`,
+                bawaan: true
+            }
+        ];
+
+        // Ambil berita tambahan dari localStorage
+        function getBeritaTambahan() {
+            try { return JSON.parse(localStorage.getItem('smk_berita') || '[]'); } catch(e) { return []; }
+        }
+        function simpanBeritaTambahan(arr) {
+            localStorage.setItem('smk_berita', JSON.stringify(arr));
+        }
+        function getAllBerita() {
+            return [...BERITA_BAWAAN, ...getBeritaTambahan()].sort((a,b) => b.tanggal.localeCompare(a.tanggal));
+        }
+
+        // Format tanggal ke Bahasa Indonesia
+        function formatTanggal(str) {
+            const bulan = ['','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+            const [y,m,d] = str.split('-');
+            return `${parseInt(d)} ${bulan[parseInt(m)]} ${y}`;
+        }
+
+        // ===== RENDER KARTU BERITA (ACCORDION) =====
+        function renderBerita() {
+            const grid = document.getElementById('news-grid');
+            const semua = getAllBerita();
+            grid.innerHTML = '';
+            if (semua.length === 0) {
+                grid.innerHTML = '<p style="color:#888;text-align:center;padding:2rem;grid-column:1/-1;">Belum ada berita. Tambahkan lewat panel Kelola Berita.</p>';
+                return;
+            }
+            semua.forEach((b, i) => {
+                const delay = (i % 4) + 1;
+                const card = document.createElement('div');
+                card.className = `news-card reveal reveal-delay-${delay}`;
+                card.dataset.id = b.id;
+
+                const imgHTML = b.gambar
+                    ? `<img src="${b.gambar}" alt="${b.judul}" onerror="this.parentNode.innerHTML='<span style=\\'font-size:4rem;\\'>${b.emoji||'📢'}</span>';">`
+                    : `<span style="font-size:4rem;">${b.emoji||'📢'}</span>`;
+
+                // Buat URL share yang bersih
+                const shareUrl = `${location.origin}${location.pathname}?berita=${encodeURIComponent(b.id)}`;
+                const shareTeks = encodeURIComponent(`${b.judul} — SMK Negeri 1 Lingga\n${shareUrl}`);
+
+                card.innerHTML = `
+                    <div class="news-image">${imgHTML}</div>
+                    <div class="news-content">
+                        <div class="news-date">${formatTanggal(b.tanggal)}</div>
+                        <h3 class="news-title">${b.judul}</h3>
+                        <p class="news-excerpt">${b.excerpt}</p>
+                        <button class="news-read-btn" onclick="toggleAccordion('${b.id}', event)">
+                            Baca selengkapnya <span class="arrow">›</span>
+                        </button>
+                    </div>
+                    <div class="news-expand" id="expand-${b.id}">
+                        <div class="news-expand-inner">
+                            <div class="news-expand-body">${b.isi}</div>
+                            <div class="expand-share">
+                                <div class="expand-share-label">🔗 Bagikan berita ini</div>
+                                <div class="expand-share-buttons">
+                                    <a class="share-btn wa" href="https://wa.me/?text=${shareTeks}" target="_blank" rel="noopener">💬 WhatsApp</a>
+                                    <a class="share-btn fb" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}" target="_blank" rel="noopener">👍 Facebook</a>
+                                    <a class="share-btn tw" href="https://twitter.com/intent/tweet?text=${shareTeks}" target="_blank" rel="noopener">𝕏 Twitter</a>
+                                    <button class="share-btn cp" onclick="salinLink('${b.id}', this, event)">📋 Salin Link</button>
+                                </div>
+                                <div class="expand-link-row">
+                                    <input class="expand-link-input" type="text" value="${shareUrl}" readonly id="link-${b.id}">
+                                </div>
+                            </div>
+                            <button class="news-read-btn" style="margin-top:1rem;" onclick="toggleAccordion('${b.id}', event)">
+                                Tutup <span class="arrow" style="transform:rotate(90deg);display:inline-block;">›</span>
+                            </button>
+                        </div>
+                    </div>`;
+                grid.appendChild(card);
+            });
+            document.querySelectorAll('.news-card.reveal').forEach(el => revealObserver.observe(el));
+        }
+
+        // ===== ACCORDION TOGGLE =====
+        function toggleAccordion(id, e) {
+            e.stopPropagation();
+            const card = document.querySelector(`.news-card[data-id="${id}"]`);
+            const isExpanded = card.classList.contains('expanded');
+
+            // Tutup semua yang terbuka
+            document.querySelectorAll('.news-card.expanded').forEach(c => c.classList.remove('expanded'));
+
+            if (!isExpanded) {
+                card.classList.add('expanded');
+                // Update URL
+                history.pushState({berita: id}, '', `?berita=${encodeURIComponent(id)}`);
+                // Scroll ke kartu setelah expand
+                setTimeout(() => {
+                    const top = card.getBoundingClientRect().top + window.scrollY - 100;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }, 100);
+            } else {
+                history.pushState({}, '', location.pathname);
+            }
+        }
+
+        // ===== SALIN LINK =====
+        function salinLink(id, btn, e) {
+            e.stopPropagation();
+            const input = document.getElementById(`link-${id}`);
+            navigator.clipboard.writeText(input.value).then(() => {
+                const ori = btn.innerHTML;
+                btn.innerHTML = '✅ Tersalin!';
+                btn.classList.add('copied');
+                setTimeout(() => { btn.innerHTML = ori; btn.classList.remove('copied'); }, 2000);
+            }).catch(() => {
+                input.select();
+                document.execCommand('copy');
             });
         }
 
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const modals = document.querySelectorAll('.modal');
-                modals.forEach(modal => { modal.style.display = 'none'; });
+        // Buka berita dari URL ?berita=...
+        function cekUrlBerita() {
+            const params = new URLSearchParams(location.search);
+            const idDariUrl = params.get('berita');
+            if (idDariUrl) {
+                setTimeout(() => {
+                    const card = document.querySelector(`.news-card[data-id="${decodeURIComponent(idDariUrl)}"]`);
+                    if (card) {
+                        card.classList.add('expanded');
+                        const top = card.getBoundingClientRect().top + window.scrollY - 100;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                    }
+                }, 500);
+            }
+        }
+
+        // ===== ADMIN PANEL =====
+        function toggleAdmin() {
+            const panel = document.getElementById('admin-panel');
+            panel.classList.toggle('open');
+            if (panel.classList.contains('open')) renderAdminList();
+        }
+
+        function renderAdminList() {
+            const list = document.getElementById('admin-news-list');
+            const tambahan = getBeritaTambahan();
+            let html = '';
+            BERITA_BAWAAN.forEach(b => {
+                html += `<div class="admin-news-item">
+                    <span style="font-size:1.3rem;">${b.emoji||'📢'}</span>
+                    <div>
+                        <div class="admin-news-item-title">${b.judul}</div>
+                        <div class="admin-news-item-date">${formatTanggal(b.tanggal)} — <em style="color:#aaa;">Berita Utama</em></div>
+                    </div>
+                </div>`;
+            });
+            tambahan.forEach(b => {
+                html += `<div class="admin-news-item">
+                    <span style="font-size:1.3rem;">${b.emoji||'📢'}</span>
+                    <div style="flex:1;">
+                        <div class="admin-news-item-title">${b.judul}</div>
+                        <div class="admin-news-item-date">${formatTanggal(b.tanggal)}</div>
+                    </div>
+                    <button class="admin-del-btn" onclick="hapusBerita('${b.id}')">🗑️ Hapus</button>
+                </div>`;
+            });
+            if (!html) html = '<p style="color:#aaa;font-size:0.88rem;">Belum ada berita.</p>';
+            list.innerHTML = html;
+        }
+
+        function simpanBerita() {
+            const judul   = document.getElementById('f-judul').value.trim();
+            const tanggal = document.getElementById('f-tanggal').value;
+            const excerpt = document.getElementById('f-excerpt').value.trim();
+            const isi     = document.getElementById('f-isi').value.trim();
+            const emoji   = document.getElementById('f-emoji').value;
+            if (!judul || !tanggal || !excerpt || !isi) {
+                alert('Mohon isi semua kolom yang bertanda *');
+                return;
+            }
+            const id = 'berita-' + Date.now();
+            const isiFormatted = isi.split('\n\n').map(p =>
+                `<p style="color:#444;line-height:1.85;margin-bottom:1rem;">${p.replace(/\n/g,'<br>')}</p>`
+            ).join('');
+            const tambahan = getBeritaTambahan();
+            tambahan.push({ id, judul, tanggal, excerpt, isi: isiFormatted, emoji, bawaan: false });
+            simpanBeritaTambahan(tambahan);
+            ['f-judul','f-tanggal','f-excerpt','f-isi'].forEach(fid => document.getElementById(fid).value = '');
+            renderBerita();
+            renderAdminList();
+            alert('✅ Berita berhasil disimpan!');
+        }
+
+        function hapusBerita(id) {
+            if (!confirm('Hapus berita ini?')) return;
+            simpanBeritaTambahan(getBeritaTambahan().filter(b => b.id !== id));
+            renderBerita();
+            renderAdminList();
+        }
+
+        // ===== EVENT HANDLERS =====
+        window.addEventListener('click', function(e) {
+            document.querySelectorAll('.modal').forEach(m => {
+                if (e.target === m) { m.style.display = 'none'; document.body.style.overflow = 'auto'; }
+            });
+            const adminPanel = document.getElementById('admin-panel');
+            if (e.target === adminPanel) adminPanel.classList.remove('open');
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('admin-panel').classList.remove('open');
+                document.querySelectorAll('.modal').forEach(m => { m.style.display = 'none'; });
                 document.body.style.overflow = 'auto';
             }
         });
 
-        // ===== SCROLL REVEAL (Intersection Observer) =====
+        // ===== SCROLL REVEAL =====
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1988,8 +2329,11 @@
                 }
             });
         }, { threshold: 0.12, rootMargin: '-30px 0px' });
-
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // ===== INIT =====
+        renderBerita();
+        cekUrlBerita();
     </script>
 </body>
 </html>
