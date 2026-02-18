@@ -828,6 +828,129 @@
             box-shadow: 0 10px 30px rgba(26, 77, 46, 0.3);
         }
 
+        /* Tombol hapus di galeri (mode admin) */
+        .gallery-item .gallery-del-btn {
+            display: none;
+            position: absolute;
+            top: 0.6rem;
+            right: 0.6rem;
+            background: rgba(185,28,28,0.85);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 10;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .gallery-edit-mode .gallery-item .gallery-del-btn { display: flex; }
+        .gallery-del-btn:hover { background: rgba(185,28,28,1) !important; }
+
+        /* Badge "Bawaan" */
+        .gallery-item .gallery-badge {
+            display: none;
+            position: absolute;
+            top: 0.6rem;
+            left: 0.6rem;
+            background: rgba(26,77,46,0.8);
+            color: #a8d5ba;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            z-index: 10;
+        }
+        .gallery-edit-mode .gallery-item .gallery-badge { display: block; }
+
+        /* ===== LIGHTBOX ===== */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 1rem;
+        }
+        #lightbox.open { display: flex; }
+        #lightbox-img {
+            max-width: 92vw;
+            max-height: 80vh;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+        }
+        #lightbox-caption {
+            color: white;
+            margin-top: 1rem;
+            font-size: 1rem;
+            text-align: center;
+            font-weight: 500;
+            max-width: 600px;
+        }
+        #lightbox-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.2rem;
+            cursor: pointer;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        #lightbox-close:hover { opacity: 1; }
+        #lightbox-nav {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .lb-nav-btn {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .lb-nav-btn:hover { background: rgba(255,255,255,0.3); }
+
+        /* ===== PANEL ADMIN GALERI ===== */
+        .admin-gallery-upload {
+            border: 2px dashed #c5e8d3;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #f8fdf9;
+            margin-bottom: 1rem;
+        }
+        .admin-gallery-upload:hover { border-color: var(--accent-green); background: #f0fbf4; }
+        .admin-gallery-upload input { display: none; }
+        .admin-gallery-upload .upload-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .admin-gallery-upload p { color: #4f8a5b; font-size: 0.9rem; font-weight: 600; }
+        .admin-gallery-upload small { color: #aaa; font-size: 0.78rem; }
+        #preview-foto {
+            display: none;
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 0.8rem;
+        }
+
         /* Contact Section */
         .contact-container {
             display: grid;
@@ -1745,43 +1868,110 @@
     <!-- Panel Admin -->
     <div id="admin-panel">
         <div class="admin-box">
-            <h2>✏️ Panel Kelola Berita</h2>
-            <div class="admin-field">
-                <label>Judul Berita *</label>
-                <input type="text" id="f-judul" placeholder="Contoh: Siswa SMK Juara Lomba Nasional">
+
+            <!-- Tab navigasi -->
+            <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;border-bottom:2px solid #e8f3ec;padding-bottom:0.8rem;">
+                <button id="tab-btn-berita" onclick="switchAdminTab('berita')"
+                    style="flex:1;padding:0.6rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;background:var(--primary-green);color:white;font-family:'Work Sans',sans-serif;font-size:0.9rem;">
+                    📰 Kelola Berita
+                </button>
+                <button id="tab-btn-galeri" onclick="switchAdminTab('galeri')"
+                    style="flex:1;padding:0.6rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;background:#f0f4f1;color:#1a4d2e;font-family:'Work Sans',sans-serif;font-size:0.9rem;">
+                    🖼️ Kelola Galeri
+                </button>
+                <button onclick="toggleAdmin()"
+                    style="padding:0.6rem 1rem;border:1.5px solid #c5e8d3;border-radius:8px;background:white;color:#888;cursor:pointer;font-size:1.1rem;">
+                    ✕
+                </button>
             </div>
-            <div class="admin-field">
-                <label>Tanggal *</label>
-                <input type="date" id="f-tanggal">
+
+            <!-- TAB BERITA -->
+            <div id="admin-tab-berita">
+                <h2 style="font-family:'Playfair Display',serif;color:var(--primary-green);margin-bottom:1.2rem;font-size:1.4rem;">📰 Tambah Berita Baru</h2>
+                <div class="admin-field">
+                    <label>Judul Berita *</label>
+                    <input type="text" id="f-judul" placeholder="Contoh: Siswa SMK Juara Lomba Nasional">
+                </div>
+                <div class="admin-field">
+                    <label>Tanggal *</label>
+                    <input type="date" id="f-tanggal">
+                </div>
+                <div class="admin-field">
+                    <label>Ringkasan (ditampilkan di kartu berita) *</label>
+                    <textarea id="f-excerpt" placeholder="1-2 kalimat ringkasan berita..."></textarea>
+                </div>
+                <div class="admin-field">
+                    <label>Isi Berita Lengkap *</label>
+                    <textarea id="f-isi" style="min-height:130px;" placeholder="Tuliskan isi berita selengkapnya di sini..."></textarea>
+                </div>
+                <div class="admin-field">
+                    <label>Emoji / Ikon (jika tidak ada foto)</label>
+                    <select id="f-emoji">
+                        <option value="📢">📢 Pengumuman</option>
+                        <option value="🏆">🏆 Prestasi</option>
+                        <option value="🎓">🎓 Kelulusan / Ujian</option>
+                        <option value="🌾">🌾 Pertanian</option>
+                        <option value="🐄">🐄 Peternakan</option>
+                        <option value="📅">📅 Acara / Kegiatan</option>
+                        <option value="🤝">🤝 Kerjasama</option>
+                        <option value="📌">📌 Info Penting</option>
+                    </select>
+                </div>
+                <div class="admin-actions">
+                    <button class="admin-btn-save" onclick="simpanBerita()">💾 Simpan Berita</button>
+                </div>
+                <hr class="admin-divider">
+                <strong style="color:#1a4d2e;font-size:0.95rem;">📋 Daftar Berita</strong>
+                <div class="admin-news-list" id="admin-news-list"></div>
             </div>
-            <div class="admin-field">
-                <label>Ringkasan (ditampilkan di kartu berita) *</label>
-                <textarea id="f-excerpt" placeholder="1-2 kalimat ringkasan berita..."></textarea>
+
+            <!-- TAB GALERI -->
+            <div id="admin-tab-galeri" style="display:none;">
+                <h2 style="font-family:'Playfair Display',serif;color:var(--primary-green);margin-bottom:1.2rem;font-size:1.4rem;">🖼️ Tambah Foto Galeri</h2>
+
+                <!-- Upload foto -->
+                <label class="admin-gallery-upload" for="f-foto-upload">
+                    <input type="file" id="f-foto-upload" accept="image/*" onchange="previewFoto(this)">
+                    <div id="upload-placeholder">
+                        <div class="upload-icon">📷</div>
+                        <p>Klik untuk pilih foto</p>
+                        <small>JPG, PNG, WEBP — maks 5MB</small>
+                    </div>
+                    <img id="preview-foto" src="" alt="Preview">
+                </label>
+
+                <div class="admin-field">
+                    <label>Keterangan Foto *</label>
+                    <input type="text" id="f-foto-caption" placeholder="Contoh: Kegiatan Praktik UKK 2026">
+                </div>
+                <div class="admin-field">
+                    <label>Kategori</label>
+                    <select id="f-foto-kategori">
+                        <option value="Kegiatan Siswa">Kegiatan Siswa</option>
+                        <option value="Prestasi">Prestasi</option>
+                        <option value="Fasilitas">Fasilitas</option>
+                        <option value="UKK / Ujian">UKK / Ujian</option>
+                        <option value="PKL / Magang">PKL / Magang</option>
+                        <option value="Acara Sekolah">Acara Sekolah</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+                <div class="admin-actions">
+                    <button class="admin-btn-save" onclick="simpanFoto()">💾 Simpan Foto</button>
+                    <button class="admin-btn-cancel" onclick="resetFormFoto()">Reset</button>
+                </div>
+
+                <hr class="admin-divider">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.7rem;">
+                    <strong style="color:#1a4d2e;font-size:0.95rem;">🖼️ Foto Tersimpan</strong>
+                    <button id="edit-mode-btn" onclick="toggleEditMode()"
+                        style="background:#fff8e1;color:#b45309;border:1.5px solid #fcd34d;border-radius:8px;padding:0.3rem 0.8rem;font-size:0.8rem;font-weight:700;cursor:pointer;">
+                        ✏️ Mode Hapus
+                    </button>
+                </div>
+                <div id="admin-gallery-list" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-top:0.5rem;"></div>
             </div>
-            <div class="admin-field">
-                <label>Isi Berita Lengkap *</label>
-                <textarea id="f-isi" style="min-height:130px;" placeholder="Tuliskan isi berita selengkapnya di sini..."></textarea>
-            </div>
-            <div class="admin-field">
-                <label>Emoji / Ikon (jika tidak ada foto)</label>
-                <select id="f-emoji">
-                    <option value="📢">📢 Pengumuman</option>
-                    <option value="🏆">🏆 Prestasi</option>
-                    <option value="🎓">🎓 Kelulusan / Ujian</option>
-                    <option value="🌾">🌾 Pertanian</option>
-                    <option value="🐄">🐄 Peternakan</option>
-                    <option value="📅">📅 Acara / Kegiatan</option>
-                    <option value="🤝">🤝 Kerjasama</option>
-                    <option value="📌">📌 Info Penting</option>
-                </select>
-            </div>
-            <div class="admin-actions">
-                <button class="admin-btn-save" onclick="simpanBerita()">💾 Simpan Berita</button>
-                <button class="admin-btn-cancel" onclick="toggleAdmin()">Batal</button>
-            </div>
-            <hr class="admin-divider">
-            <strong style="color:#1a4d2e;font-size:0.95rem;">📋 Daftar Berita</strong>
-            <div class="admin-news-list" id="admin-news-list"></div>
+
         </div>
     </div>
 
@@ -1856,22 +2046,21 @@
     <section id="galeri">
         <h2 class="section-title reveal">Galeri Kegiatan</h2>
         <p class="section-subtitle reveal reveal-delay-1">Dokumentasi kegiatan dan fasilitas sekolah</p>
-        
-        <div class="gallery-grid">
-            <div class="gallery-item reveal reveal-delay-1">
-                <img src="images/juara_pertama.jpeg" alt="Juara Pertama" />
-                <div class="gallery-caption">Juara Pertama - Prestasi Siswa</div>
-            </div>
-            <div class="gallery-item reveal reveal-delay-2">
-                <img src="images/outdoor_study.jpeg" alt="Outdoor Study" />
-                <div class="gallery-caption">Kegiatan Pembelajaran Outdoor</div>
-            </div>
-            <div class="gallery-item reveal reveal-delay-3">
-                <img src="images/tka2025.jpeg" alt="TKA 2025" />
-                <div class="gallery-caption">TKA 2025</div>
-            </div>
+        <div class="gallery-grid" id="gallery-grid">
+            <!-- Diisi otomatis oleh JavaScript -->
         </div>
     </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <button id="lightbox-close" onclick="tutupLightbox()">×</button>
+        <img id="lightbox-img" src="" alt="">
+        <div id="lightbox-caption"></div>
+        <div id="lightbox-nav">
+            <button class="lb-nav-btn" onclick="navLightbox(-1)">‹</button>
+            <button class="lb-nav-btn" onclick="navLightbox(1)">›</button>
+        </div>
+    </div>
 
 
     <!-- PPDB -->
@@ -2243,7 +2432,22 @@
         function toggleAdmin() {
             const panel = document.getElementById('admin-panel');
             panel.classList.toggle('open');
-            if (panel.classList.contains('open')) renderAdminList();
+            if (panel.classList.contains('open')) {
+                renderAdminList();
+                renderAdminGalleryList();
+            }
+        }
+
+        // ===== ADMIN TAB SWITCH =====
+        function switchAdminTab(tab) {
+            const isBr = tab === 'berita';
+            document.getElementById('admin-tab-berita').style.display = isBr ? 'block' : 'none';
+            document.getElementById('admin-tab-galeri').style.display = isBr ? 'none' : 'block';
+            document.getElementById('tab-btn-berita').style.background = isBr ? 'var(--primary-green)' : '#f0f4f1';
+            document.getElementById('tab-btn-berita').style.color = isBr ? 'white' : '#1a4d2e';
+            document.getElementById('tab-btn-galeri').style.background = isBr ? '#f0f4f1' : 'var(--primary-green)';
+            document.getElementById('tab-btn-galeri').style.color = isBr ? '#1a4d2e' : 'white';
+            if (!isBr) renderAdminGalleryList();
         }
 
         function renderAdminList() {
@@ -2313,12 +2517,162 @@
         });
 
         document.addEventListener('keydown', function(e) {
+            if (document.getElementById('lightbox').classList.contains('open')) {
+                if (e.key === 'ArrowRight') navLightbox(1);
+                if (e.key === 'ArrowLeft')  navLightbox(-1);
+                if (e.key === 'Escape')     { tutupLightbox(); return; }
+            }
             if (e.key === 'Escape') {
                 document.getElementById('admin-panel').classList.remove('open');
                 document.querySelectorAll('.modal').forEach(m => { m.style.display = 'none'; });
                 document.body.style.overflow = 'auto';
             }
         });
+
+        // ===== DATA GALERI =====
+        const GALERI_BAWAAN = [
+            { id: 'g-juara',   src: 'images/juara_pertama.jpeg', caption: 'Juara Pertama - Prestasi Siswa', kategori: 'Prestasi',       bawaan: true },
+            { id: 'g-outdoor', src: 'images/outdoor_study.jpeg', caption: 'Kegiatan Pembelajaran Outdoor',  kategori: 'Kegiatan Siswa', bawaan: true },
+            { id: 'g-tka',     src: 'images/tka2025.jpeg',       caption: 'TKA 2025',                       kategori: 'UKK / Ujian',    bawaan: true }
+        ];
+        function getGaleriTambahan() {
+            try { return JSON.parse(localStorage.getItem('smk_galeri') || '[]'); } catch(e) { return []; }
+        }
+        function simpanGaleriTambahan(arr) { localStorage.setItem('smk_galeri', JSON.stringify(arr)); }
+        function getAllGaleri() { return [...GALERI_BAWAAN, ...getGaleriTambahan()]; }
+
+        // ===== RENDER GALERI =====
+        function renderGaleri() {
+            const grid = document.getElementById('gallery-grid');
+            const semua = getAllGaleri();
+            grid.innerHTML = '';
+            if (semua.length === 0) {
+                grid.innerHTML = '<p style="color:#888;text-align:center;padding:2rem;grid-column:1/-1;">Belum ada foto.</p>';
+                return;
+            }
+            semua.forEach((f, i) => {
+                const delay = (i % 4) + 1;
+                const item = document.createElement('div');
+                item.className = `gallery-item reveal reveal-delay-${delay}`;
+                item.dataset.gid = f.id;
+                item.onclick = (e) => { if (e.target.classList.contains('gallery-del-btn')) return; bukaLightbox(i); };
+                item.innerHTML = `
+                    <img src="${f.src}" alt="${f.caption}"
+                        onerror="this.parentNode.style.background='linear-gradient(135deg,#4f8a5b,#2d5f3f)';this.style.display='none'">
+                    <div class="gallery-caption">
+                        <strong>${f.caption}</strong>
+                        ${f.kategori ? `<br><small style="opacity:0.8;">${f.kategori}</small>` : ''}
+                    </div>
+                    ${f.bawaan
+                        ? `<span class="gallery-badge">Bawaan</span>`
+                        : `<button class="gallery-del-btn" onclick="hapusFoto('${f.id}',event)" title="Hapus foto">🗑</button>`}`;
+                grid.appendChild(item);
+            });
+            document.querySelectorAll('.gallery-item.reveal').forEach(el => revealObserver.observe(el));
+        }
+
+        // ===== LIGHTBOX =====
+        let lightboxIndex = 0;
+        function bukaLightbox(index) {
+            lightboxIndex = index;
+            const f = getAllGaleri()[lightboxIndex];
+            document.getElementById('lightbox-img').src = f.src;
+            document.getElementById('lightbox-caption').textContent = f.caption + (f.kategori ? ` — ${f.kategori}` : '');
+            document.getElementById('lightbox').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function tutupLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = 'auto';
+        }
+        function navLightbox(arah) {
+            const semua = getAllGaleri();
+            lightboxIndex = (lightboxIndex + arah + semua.length) % semua.length;
+            const f = semua[lightboxIndex];
+            const img = document.getElementById('lightbox-img');
+            img.style.transition = 'opacity 0.15s';
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = f.src;
+                document.getElementById('lightbox-caption').textContent = f.caption + (f.kategori ? ` — ${f.kategori}` : '');
+                img.style.opacity = '1';
+            }, 150);
+        }
+        document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) tutupLightbox(); });
+
+        // ===== UPLOAD & SIMPAN FOTO =====
+        function previewFoto(input) {
+            if (!input.files || !input.files[0]) return;
+            if (input.files[0].size > 5 * 1024 * 1024) { alert('Ukuran foto maksimal 5MB'); input.value = ''; return; }
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const prev = document.getElementById('preview-foto');
+                prev.src = e.target.result;
+                prev.style.display = 'block';
+                document.getElementById('upload-placeholder').style.display = 'none';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+        function simpanFoto() {
+            const input = document.getElementById('f-foto-upload');
+            const caption = document.getElementById('f-foto-caption').value.trim();
+            const kategori = document.getElementById('f-foto-kategori').value;
+            if (!input.files || !input.files[0]) { alert('Pilih foto terlebih dahulu'); return; }
+            if (!caption) { alert('Isi keterangan foto'); return; }
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const id = 'gfoto-' + Date.now();
+                const tambahan = getGaleriTambahan();
+                tambahan.push({ id, src: e.target.result, caption, kategori, bawaan: false });
+                simpanGaleriTambahan(tambahan);
+                renderGaleri();
+                renderAdminGalleryList();
+                resetFormFoto();
+                alert('✅ Foto berhasil ditambahkan ke galeri!');
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+        function resetFormFoto() {
+            document.getElementById('f-foto-upload').value = '';
+            document.getElementById('f-foto-caption').value = '';
+            document.getElementById('preview-foto').style.display = 'none';
+            document.getElementById('upload-placeholder').style.display = 'block';
+        }
+        function hapusFoto(id, e) {
+            e.stopPropagation();
+            if (!confirm('Hapus foto ini dari galeri?')) return;
+            simpanGaleriTambahan(getGaleriTambahan().filter(f => f.id !== id));
+            renderGaleri();
+            renderAdminGalleryList();
+        }
+
+        // ===== ADMIN GALLERY LIST =====
+        let editModeAktif = false;
+        function toggleEditMode() {
+            editModeAktif = !editModeAktif;
+            const grid = document.getElementById('gallery-grid');
+            const btn = document.getElementById('edit-mode-btn');
+            grid.classList.toggle('gallery-edit-mode', editModeAktif);
+            btn.textContent = editModeAktif ? '✅ Selesai Edit' : '✏️ Mode Hapus';
+            btn.style.background = editModeAktif ? '#dcfce7' : '#fff8e1';
+            btn.style.color = editModeAktif ? '#166534' : '#b45309';
+            btn.style.borderColor = editModeAktif ? '#86efac' : '#fcd34d';
+        }
+        function renderAdminGalleryList() {
+            const list = document.getElementById('admin-gallery-list');
+            const semua = getAllGaleri();
+            if (semua.length === 0) {
+                list.innerHTML = '<p style="color:#aaa;font-size:0.85rem;grid-column:1/-1;">Belum ada foto.</p>';
+                return;
+            }
+            list.innerHTML = semua.map(f => `
+                <div style="position:relative;border-radius:8px;overflow:hidden;height:80px;background:#e8f3ec;">
+                    <img src="${f.src}" alt="${f.caption}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(26,77,46,0.8);color:white;font-size:0.62rem;padding:0.2rem 0.4rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${f.caption}</div>
+                    ${!f.bawaan ? `<button onclick="hapusFoto('${f.id}',event)"
+                        style="position:absolute;top:3px;right:3px;background:rgba(185,28,28,0.85);color:white;border:none;border-radius:50%;width:22px;height:22px;font-size:0.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>` : ''}
+                </div>`).join('');
+        }
 
         // ===== SCROLL REVEAL =====
         const revealObserver = new IntersectionObserver((entries) => {
@@ -2333,6 +2687,7 @@
 
         // ===== INIT =====
         renderBerita();
+        renderGaleri();
         cekUrlBerita();
     </script>
 </body>
