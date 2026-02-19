@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPMB - SMK Negeri 1 Lingga</title>
+    <link rel="icon" type="image/x-icon" href="images/logo-smk.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #1a4d2e;
+            --secondary-green: #2d5f3f;
+            --accent-green: #4f8a5b;
+            --light-green: #a8d5ba;
+            --cream: #faf8f3;
+            --dark-text: #1a2412;
+            --light-text: #f0f4f1;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--dark-text);
+            background: var(--cream);
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(26, 77, 46, 0.97);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.12);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--light-text);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-img { width: 42px; height: 42px; object-fit: contain; flex-shrink: 0; }
+
+        .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+        .logo-text span:first-child { font-size: 1.35rem; }
+        .logo-text span:last-child {
+            font-size: 0.7rem;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 400;
+            color: var(--light-green);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2px;
+            list-style: none;
+            padding: 5px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 99px;
+            white-space: nowrap;
+            align-items: center;
+        }
+
+        .nav-links > li { display: flex; align-items: center; }
+
+        .nav-links a {
+            color: rgba(240,244,241,0.6);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.78rem;
+            padding: 8px 12px;
+            border-radius: 99px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.1); }
+        .nav-links a.active { color: var(--dark-text); background: var(--light-green); font-weight: 500; }
+        .nav-links a::after { display: none; }
+
+        /* Dropdown */
+        .nav-item { position: relative; }
+        .nav-item > a { display: flex; align-items: center; gap: 4px; }
+        .nav-item > a::after { content: none !important; }
+        .nav-item > a .arrow { font-size: 0.65rem; transition: transform 0.3s; display: inline-block; }
+        .nav-item:hover > a .arrow { transform: rotate(180deg); }
+
+        .dropdown {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+            z-index: 999;
+            border-top: 3px solid var(--accent-green);
+            padding: 6px;
+        }
+
+        .nav-item:hover .dropdown { opacity: 1; visibility: visible; top: calc(100% + 6px); }
+
+        .dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.75rem 1.2rem;
+            color: var(--dark-text) !important;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: all 0.2s;
+            border-radius: 8px;
+        }
+
+        .dropdown a:hover { background: var(--cream); color: var(--primary-green) !important; }
+        .dropdown a::after { content: none !important; }
+        .dropdown a .icon { font-size: 1.1rem; width: 22px; text-align: center; }
+
+        .nav-spacer { display: flex; justify-content: flex-end; }
+
+        .nav-admin-btn {
+            background: rgba(255,255,255,0.12);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50px;
+            padding: 0.45rem 1.1rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Work Sans', sans-serif;
+            letter-spacing: 0.5px;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .nav-admin-btn:hover { background: rgba(255,255,255,0.22); color: var(--light-green); }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('images/banner.jpeg') center/cover no-repeat;
+            opacity: 0.15;
+        }
+
+        .page-hero-content { position: relative; z-index: 1; }
+
+        .page-hero .breadcrumb {
+            font-size: 0.8rem;
+            color: rgba(168,213,186,0.8);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .page-hero .breadcrumb a { color: var(--light-green); text-decoration: none; }
+        .page-hero .breadcrumb a:hover { color: white; }
+
+        .page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .page-hero p {
+            color: rgba(240,244,241,0.8);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== SUB-NAV TABS ===== */
+        .spmb-subnav {
+            background: white;
+            border-bottom: 2px solid #e8f3ec;
+            position: sticky;
+            top: 80px;
+            z-index: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .spmb-subnav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+        }
+
+        .spmb-subnav-inner::-webkit-scrollbar { display: none; }
+
+        .spmb-nav-tab {
+            padding: 1rem 1.4rem;
+            border: none;
+            border-bottom: 3px solid transparent;
+            background: none;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: #777;
+            cursor: pointer;
+            transition: all 0.25s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .spmb-nav-tab:hover { color: var(--primary-green); background: rgba(79,138,91,0.05); }
+        .spmb-nav-tab.active {
+            color: var(--primary-green);
+            border-bottom-color: var(--accent-green);
+            font-weight: 700;
+            background: rgba(79,138,91,0.06);
+        }
+
+        /* ===== CONTENT ===== */
+        .spmb-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .spmb-panel { display: none; }
+        .spmb-panel.active { display: block; animation: fadeInUp 0.35s ease; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Info cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 14px;
+            padding: 1.5rem;
+            border-top: 4px solid var(--accent-green);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .info-card h4 { color: var(--accent-green); margin-bottom: 0.4rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .info-card p { color: var(--dark-text); font-weight: 500; font-size: 0.95rem; line-height: 1.5; }
+
+        .section-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-desc { color: #666; line-height: 1.7; margin-bottom: 1.5rem; }
+
+        /* Syarat cards */
+        .syarat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .syarat-card {
+            background: white;
+            border-radius: 14px;
+            padding: 1.4rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .syarat-icon { font-size: 1.8rem; flex-shrink: 0; }
+        .syarat-card h4 { color: var(--primary-green); font-size: 0.9rem; margin-bottom: 0.3rem; }
+        .syarat-card p { color: #666; font-size: 0.85rem; line-height: 1.6; }
+
+        /* Upload area */
+        .upload-area {
+            background: linear-gradient(135deg, rgba(79,138,91,0.06), rgba(168,213,186,0.12));
+            border: 1.5px dashed var(--light-green);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .upload-area h3 { color: var(--primary-green); margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .upload-area p { color: #666; font-size: 0.88rem; margin-bottom: 1.5rem; }
+
+        .upload-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .upload-item label { display: block; font-weight: 600; color: var(--primary-green); font-size: 0.82rem; margin-bottom: 0.4rem; }
+
+        .dropzone {
+            border: 2px dashed #b0d4be;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.25s;
+            overflow: hidden;
+        }
+
+        .dropzone:hover { border-color: var(--accent-green); background: #f4fbf6; }
+        .dropzone input { display: none; }
+
+        .dz-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem 1rem;
+            gap: 0.25rem;
+        }
+
+        .dz-icon { font-size: 1.8rem; }
+        .dz-text { font-size: 0.78rem; font-weight: 600; color: var(--accent-green); }
+        .dz-hint { font-size: 0.7rem; color: #aaa; }
+        .dz-filename { font-size: 0.75rem; color: var(--primary-green); font-weight: 600; text-align: center; padding: 0 0.5rem 0.5rem; margin: 0; }
+
+        .btn-kirim {
+            display: block;
+            margin: 1.5rem auto 0;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0.85rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Work Sans', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .btn-kirim:hover { background: var(--secondary-green); transform: translateY(-2px); }
+
+        /* Timeline */
+        .timeline { display: flex; flex-direction: column; gap: 0; }
+
+        .tl-item {
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+            padding-bottom: 2rem;
+            position: relative;
+        }
+
+        .tl-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 40px;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-green), #d5e8dc);
+        }
+
+        .tl-dot {
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-green);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            z-index: 1;
+            box-shadow: 0 4px 12px rgba(26,77,46,0.25);
+        }
+
+        .tl-body { padding-top: 0.3rem; }
+        .tl-body strong { display: block; color: var(--primary-green); font-size: 1.05rem; margin-bottom: 0.2rem; }
+        .tl-body .tl-date { display: inline-block; font-size: 0.8rem; color: white; background: var(--accent-green); padding: 0.15rem 0.7rem; border-radius: 99px; font-weight: 600; margin-bottom: 0.4rem; }
+        .tl-body p { color: #666; font-size: 0.88rem; line-height: 1.6; }
+
+        /* Formulir */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-field { margin-bottom: 0.2rem; }
+        .form-field label { display: block; font-weight: 600; color: var(--primary-green); font-size: 0.85rem; margin-bottom: 0.4rem; }
+        .form-field input, .form-field textarea, .form-field select {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            border: 1.5px solid #c5e8d3;
+            border-radius: 10px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--dark-text);
+            outline: none;
+            transition: border 0.2s;
+            background: white;
+        }
+        .form-field input:focus, .form-field textarea:focus { border-color: var(--accent-green); box-shadow: 0 0 0 3px rgba(79,138,91,0.1); }
+        .form-field textarea { resize: vertical; min-height: 80px; }
+        .form-field.full { grid-column: 1 / -1; }
+
+        /* Foto SPMB grid */
+        .foto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .foto-item {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            background: white;
+        }
+
+        .foto-item img { width: 100%; height: 160px; object-fit: cover; display: block; }
+        .foto-item .foto-caption { padding: 0.6rem 0.8rem; }
+        .foto-item .foto-caption p { font-size: 0.8rem; font-weight: 600; color: var(--primary-green); margin: 0; }
+        .foto-item .foto-caption span { font-size: 0.72rem; color: #888; }
+
+        /* Pengumuman */
+        .pengumuman-empty {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+        .pengumuman-empty .icon { font-size: 4rem; margin-bottom: 1rem; }
+        .pengumuman-empty h3 { color: var(--primary-green); font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; }
+        .pengumuman-empty p { color: #888; font-size: 0.9rem; line-height: 1.7; }
+
+        /* Footer */
+        footer {
+            background: var(--primary-green);
+            color: var(--light-text);
+            padding: 2rem;
+            margin-top: 5rem;
+            text-align: center;
+        }
+
+        footer p { color: var(--light-green); font-size: 0.88rem; }
+        footer a { color: var(--light-green); text-decoration: none; }
+        footer a:hover { color: white; }
+
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo-smk.ico" alt="Logo SMKN 1 Lingga" class="logo-img" onerror="this.style.display='none'">
+                <div class="logo-text">
+                    <span>SMKN 1 LINGGA</span>
+                    <span>Kepulauan Riau</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#beranda">Beranda</a></li>
+                <li><a href="index.html#profil">Profil</a></li>
+                <li class="nav-item">
+                    <a href="kombel.html">Komunitas Belajar <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="kombel-sk.html"><span class="icon">📄</span> SK Kombel</a>
+                        <a href="kombel-struktur.html"><span class="icon">🏛</span> Struktur Kombel</a>
+                        <a href="kombel-gallery.html"><span class="icon">🖼</span> Gallery Kegiatan</a>
+                        <a href="kombel-materi.html"><span class="icon">📚</span> Materi Kombel</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="jurusan.html">Jurusan <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="jurusan-deskripsi.html"><span class="icon">📋</span> Deskripsi Jurusan</a>
+                        <a href="jurusan-ketua.html"><span class="icon">👨‍🏫</span> Ketua Jurusan</a>
+                        <a href="jurusan-mapel.html"><span class="icon">📖</span> Materi yang Diajarkan</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="humas.html">Humas <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="humas-pkl-permohonan.html"><span class="icon">📝</span> Permohonan PKL</a>
+                        <a href="humas-pkl-data.html"><span class="icon">📤</span> Pengiriman Data PKL</a>
+                        <a href="humas-gallery.html"><span class="icon">🖼</span> Gallery Kegiatan</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="kurikulum.html">Kurikulum <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="jadwal-pelajaran.html"><span class="icon">📅</span> Jadwal Pelajaran</a>
+                        <a href="kalender-pendidikan.html"><span class="icon">📅</span> Kalender Pendidikan</a>
+                        <a href="akreditasi.html"><span class="icon">🏆</span> Sertifikat Akreditasi</a>
+                    </div>
+                </li>
+                <li><a href="index.html#galeri">Galeri</a></li>
+                <li class="nav-item">
+                    <a href="spmb.html" class="active">SPMB <span class="arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="#info" onclick="switchTab('info')"><span class="icon">📋</span> Informasi SPMB</a>
+                        <a href="#syarat" onclick="switchTab('syarat')"><span class="icon">📄</span> Persyaratan</a>
+                        <a href="#jadwal" onclick="switchTab('jadwal')"><span class="icon">📅</span> Jadwal & Tahapan</a>
+                        <a href="#formulir" onclick="switchTab('formulir')"><span class="icon">✏️</span> Formulir Pendaftaran</a>
+                        <a href="#pengumuman" onclick="switchTab('pengumuman')"><span class="icon">📢</span> Pengumuman Hasil</a>
+                    </div>
+                </li>
+                <li><a href="index.html#kontak">Kontak</a></li>
+            </ul>
+            <div class="nav-spacer">
+                <button class="nav-admin-btn">⚙️ Admin</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+        <div class="page-hero-content">
+            <p class="breadcrumb"><a href="index.html">Beranda</a> / SPMB</p>
+            <h1>Sistem Penerimaan Murid Baru</h1>
+            <p>Informasi lengkap pendaftaran siswa baru SMK Negeri 1 Lingga tahun ajaran 2026/2027</p>
+        </div>
+    </div>
+
+    <!-- Sub-nav Tabs -->
+    <div class="spmb-subnav">
+        <div class="spmb-subnav-inner">
+            <button class="spmb-nav-tab active" onclick="switchTab('info')" id="tab-info">📋 Informasi</button>
+            <button class="spmb-nav-tab" onclick="switchTab('syarat')" id="tab-syarat">📄 Persyaratan</button>
+            <button class="spmb-nav-tab" onclick="switchTab('jadwal')" id="tab-jadwal">📅 Jadwal</button>
+            <button class="spmb-nav-tab" onclick="switchTab('formulir')" id="tab-formulir">✏️ Formulir</button>
+            <button class="spmb-nav-tab" onclick="switchTab('pengumuman')" id="tab-pengumuman">📢 Pengumuman</button>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="spmb-content">
+
+        <!-- PANEL: Informasi -->
+        <div id="panel-info" class="spmb-panel active">
+            <h2 class="section-heading">📋 Tentang SPMB SMK Negeri 1 Lingga</h2>
+            <p class="section-desc">Sistem Penerimaan Murid Baru (SPMB) adalah program resmi penerimaan siswa baru SMK Negeri 1 Lingga. Kami membuka kesempatan bagi lulusan SMP/MTs untuk bergabung dan menempuh pendidikan di bidang Agribisnis Ternak Ruminansia yang profesional dan berdaya saing.</p>
+
+            <div class="info-grid">
+                <div class="info-card"><h4>🎓 Kuota</h4><p>36 siswa per rombongan belajar</p></div>
+                <div class="info-card"><h4>📍 Lokasi</h4><p>Desa Bukit Langkap, Kec. Lingga Timur</p></div>
+                <div class="info-card"><h4>📞 Info</h4><p>WhatsApp: 0812-3456-7890</p></div>
+                <div class="info-card"><h4>🆓 Biaya</h4><p>Pendaftaran tidak dipungut biaya</p></div>
+            </div>
+
+            <!-- Foto Dokumentasi SPMB -->
+            <h3 style="color:var(--primary-green);margin-top:2.5rem;margin-bottom:0.5rem;font-family:'Playfair Display',serif;">📸 Dokumentasi Kegiatan SPMB</h3>
+            <p style="color:#888;font-size:0.88rem;margin-bottom:1rem;">Foto dokumentasi kegiatan penerimaan murid baru</p>
+            <div class="foto-grid" id="spmb-foto-grid">
+                <p id="spmb-foto-empty" style="color:#aaa;font-size:0.88rem;grid-column:1/-1;text-align:center;padding:2rem;">Belum ada foto dokumentasi.</p>
+            </div>
+        </div>
+
+        <!-- PANEL: Persyaratan -->
+        <div id="panel-syarat" class="spmb-panel">
+            <h2 class="section-heading">📄 Persyaratan Pendaftaran</h2>
+            <p class="section-desc">Pastikan semua dokumen berikut sudah disiapkan sebelum melakukan pendaftaran.</p>
+
+            <div class="syarat-grid">
+                <div class="syarat-card">
+                    <div class="syarat-icon">🎓</div>
+                    <div>
+                        <h4>Akademik</h4>
+                        <p>Ijazah / SKHUN SMP/MTs sederajat (asli + fotokopi)</p>
+                    </div>
+                </div>
+                <div class="syarat-card">
+                    <div class="syarat-icon">🏠</div>
+                    <div>
+                        <h4>Kependudukan</h4>
+                        <p>Fotokopi KK, Akta Kelahiran, KTP Orang Tua</p>
+                    </div>
+                </div>
+                <div class="syarat-card">
+                    <div class="syarat-icon">🏥</div>
+                    <div>
+                        <h4>Kesehatan</h4>
+                        <p>Surat keterangan sehat dari dokter / puskesmas</p>
+                    </div>
+                </div>
+                <div class="syarat-card">
+                    <div class="syarat-icon">📸</div>
+                    <div>
+                        <h4>Foto & Materai</h4>
+                        <p>Pas foto 3×4 (5 lembar, latar merah) & materai 10.000</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Dokumen -->
+            <div class="upload-area">
+                <h3>⬆️ Upload Dokumen Persyaratan</h3>
+                <p>Upload dokumen persyaratan Anda di sini. Panitia akan memverifikasi kelengkapan dokumen Anda.</p>
+                <div class="upload-grid">
+                    <div class="upload-item">
+                        <label>Ijazah / SKHUN</label>
+                        <div class="dropzone" onclick="document.getElementById('up-ijazah').click()">
+                            <input type="file" id="up-ijazah" accept=".pdf,.jpg,.jpeg,.png" onchange="handleUpload(this,'dz-ijazah','fn-ijazah')">
+                            <div class="dz-inner" id="dz-ijazah">
+                                <span class="dz-icon">📄</span>
+                                <span class="dz-text">Klik untuk unggah</span>
+                                <span class="dz-hint">PDF / JPG maks 5MB</span>
+                            </div>
+                            <p class="dz-filename" id="fn-ijazah"></p>
+                        </div>
+                    </div>
+                    <div class="upload-item">
+                        <label>Kartu Keluarga (KK)</label>
+                        <div class="dropzone" onclick="document.getElementById('up-kk').click()">
+                            <input type="file" id="up-kk" accept=".pdf,.jpg,.jpeg,.png" onchange="handleUpload(this,'dz-kk','fn-kk')">
+                            <div class="dz-inner" id="dz-kk">
+                                <span class="dz-icon">🏠</span>
+                                <span class="dz-text">Klik untuk unggah</span>
+                                <span class="dz-hint">PDF / JPG maks 5MB</span>
+                            </div>
+                            <p class="dz-filename" id="fn-kk"></p>
+                        </div>
+                    </div>
+                    <div class="upload-item">
+                        <label>Akta Kelahiran</label>
+                        <div class="dropzone" onclick="document.getElementById('up-akta').click()">
+                            <input type="file" id="up-akta" accept=".pdf,.jpg,.jpeg,.png" onchange="handleUpload(this,'dz-akta','fn-akta')">
+                            <div class="dz-inner" id="dz-akta">
+                                <span class="dz-icon">📜</span>
+                                <span class="dz-text">Klik untuk unggah</span>
+                                <span class="dz-hint">PDF / JPG maks 5MB</span>
+                            </div>
+                            <p class="dz-filename" id="fn-akta"></p>
+                        </div>
+                    </div>
+                    <div class="upload-item">
+                        <label>Surat Keterangan Sehat</label>
+                        <div class="dropzone" onclick="document.getElementById('up-sehat').click()">
+                            <input type="file" id="up-sehat" accept=".pdf,.jpg,.jpeg,.png" onchange="handleUpload(this,'dz-sehat','fn-sehat')">
+                            <div class="dz-inner" id="dz-sehat">
+                                <span class="dz-icon">🏥</span>
+                                <span class="dz-text">Klik untuk unggah</span>
+                                <span class="dz-hint">PDF / JPG maks 5MB</span>
+                            </div>
+                            <p class="dz-filename" id="fn-sehat"></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-kirim" onclick="kirimDokumen()">📤 Kirim Dokumen</button>
+            </div>
+        </div>
+
+        <!-- PANEL: Jadwal -->
+        <div id="panel-jadwal" class="spmb-panel">
+            <h2 class="section-heading">📅 Jadwal & Tahapan SPMB 2026/2027</h2>
+            <p class="section-desc">Ikuti setiap tahapan berikut dengan seksama agar proses pendaftaran Anda berjalan lancar.</p>
+
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot">1</div>
+                    <div class="tl-body">
+                        <strong>Pendaftaran Online / Offline</strong>
+                        <span class="tl-date">1 Juni – 30 Juni 2026</span>
+                        <p>Calon peserta mengisi formulir pendaftaran dan mengumpulkan berkas persyaratan ke sekolah atau melalui halaman ini.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot">2</div>
+                    <div class="tl-body">
+                        <strong>Verifikasi Berkas</strong>
+                        <span class="tl-date">1 – 5 Juli 2026</span>
+                        <p>Panitia memverifikasi kelengkapan dan keabsahan seluruh dokumen yang telah dikumpulkan.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot">3</div>
+                    <div class="tl-body">
+                        <strong>Seleksi & Wawancara</strong>
+                        <span class="tl-date">7 – 9 Juli 2026</span>
+                        <p>Proses seleksi administrasi dan wawancara calon siswa bersama panitia penerimaan.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot">4</div>
+                    <div class="tl-body">
+                        <strong>Pengumuman Hasil</strong>
+                        <span class="tl-date">10 Juli 2026</span>
+                        <p>Pengumuman kelulusan seleksi melalui website sekolah dan papan pengumuman. Pantau tab Pengumuman di halaman ini.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot">5</div>
+                    <div class="tl-body">
+                        <strong>Daftar Ulang</strong>
+                        <span class="tl-date">11 – 15 Juli 2026</span>
+                        <p>Peserta yang dinyatakan diterima wajib melakukan daftar ulang di sekretariat sekolah.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANEL: Formulir -->
+        <div id="panel-formulir" class="spmb-panel">
+            <h2 class="section-heading">✏️ Formulir Pendaftaran SPMB</h2>
+            <p class="section-desc">Isi formulir di bawah dengan data yang benar dan lengkap sesuai dokumen resmi. Pastikan semua kolom terisi sebelum mengirimkan.</p>
+
+            <div style="background:white;border-radius:20px;padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,0.07);">
+                <div class="form-grid">
+                    <div class="form-field"><label>Nama Lengkap *</label><input type="text" placeholder="Sesuai akta kelahiran"></div>
+                    <div class="form-field"><label>NISN *</label><input type="text" placeholder="Nomor Induk Siswa Nasional"></div>
+                    <div class="form-field"><label>Tempat Lahir *</label><input type="text" placeholder="Kota tempat lahir"></div>
+                    <div class="form-field"><label>Tanggal Lahir *</label><input type="date"></div>
+                    <div class="form-field"><label>Jenis Kelamin *</label>
+                        <select><option value="">-- Pilih --</option><option>Laki-laki</option><option>Perempuan</option></select>
+                    </div>
+                    <div class="form-field"><label>Agama *</label>
+                        <select><option value="">-- Pilih --</option><option>Islam</option><option>Kristen</option><option>Katolik</option><option>Hindu</option><option>Buddha</option></select>
+                    </div>
+                    <div class="form-field"><label>Asal Sekolah *</label><input type="text" placeholder="Nama SMP/MTs asal"></div>
+                    <div class="form-field"><label>No. HP / WhatsApp *</label><input type="text" placeholder="Nomor aktif siswa"></div>
+                    <div class="form-field full"><label>Alamat Lengkap *</label><textarea placeholder="Jalan, Desa, Kecamatan, Kabupaten, Provinsi"></textarea></div>
+                    <div class="form-field"><label>Nama Orang Tua / Wali *</label><input type="text" placeholder="Nama lengkap"></div>
+                    <div class="form-field"><label>No. HP Orang Tua *</label><input type="text" placeholder="Nomor aktif orang tua"></div>
+                    <div class="form-field full"><label>Keterangan Tambahan</label><textarea placeholder="Isi jika ada informasi tambahan yang perlu disampaikan (opsional)"></textarea></div>
+                </div>
+                <button class="btn-kirim" onclick="kirimFormulir()">📨 Kirim Formulir Pendaftaran</button>
+            </div>
+        </div>
+
+        <!-- PANEL: Pengumuman -->
+        <div id="panel-pengumuman" class="spmb-panel">
+            <h2 class="section-heading">📢 Pengumuman Hasil SPMB</h2>
+            <p class="section-desc">Hasil seleksi penerimaan murid baru akan ditampilkan di sini setelah proses seleksi selesai.</p>
+            <div class="pengumuman-empty">
+                <div class="icon">🕐</div>
+                <h3>Pengumuman Belum Tersedia</h3>
+                <p>Pengumuman hasil seleksi akan ditampilkan di sini pada <strong>10 Juli 2026</strong>.<br>
+                Pantau terus halaman ini atau hubungi sekolah melalui WhatsApp <strong>0812-3456-7890</strong> untuk informasi lebih lanjut.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 SMK Negeri 1 Lingga · Agribisnis Ternak Ruminansia · <a href="index.html">Kembali ke Beranda</a></p>
+    </footer>
+
+    <script>
+        // Tab switching
+        function switchTab(tab) {
+            document.querySelectorAll('.spmb-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.spmb-nav-tab').forEach(b => b.classList.remove('active'));
+            document.getElementById('panel-' + tab).classList.add('active');
+            document.getElementById('tab-' + tab).classList.add('active');
+            window.scrollTo({ top: document.querySelector('.spmb-subnav').offsetTop - 80, behavior: 'smooth' });
+        }
+
+        // Check URL hash on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            const valid = ['info','syarat','jadwal','formulir','pengumuman'];
+            if (hash && valid.includes(hash)) switchTab(hash);
+            renderFotoSpmb();
+        });
+
+        // File upload handler
+        function handleUpload(input, dzId, fnId) {
+            if (!input.files || !input.files[0]) return;
+            if (input.files[0].size > 5 * 1024 * 1024) { alert('Ukuran file maksimal 5MB'); input.value = ''; return; }
+            const dz = document.getElementById(dzId);
+            dz.querySelector('.dz-icon').textContent = '✅';
+            dz.querySelector('.dz-text').textContent = 'Berhasil diunggah';
+            dz.querySelector('.dz-hint').textContent = '';
+            document.getElementById(fnId).textContent = input.files[0].name;
+        }
+
+        function kirimDokumen() {
+            alert('✅ Dokumen berhasil dikirim! Panitia SPMB akan menghubungi Anda untuk konfirmasi dalam 1–2 hari kerja.');
+        }
+
+        function kirimFormulir() {
+            alert('✅ Formulir berhasil dikirim! Panitia akan menghubungi Anda segera. Terima kasih telah mendaftar di SMK Negeri 1 Lingga.');
+        }
+
+        // Load foto SPMB dari localStorage (shared dengan index.html)
+        function getFotoSpmb() {
+            try { return JSON.parse(localStorage.getItem('smk_spmb_foto') || '[]'); } catch(e) { return []; }
+        }
+
+        function renderFotoSpmb() {
+            const grid = document.getElementById('spmb-foto-grid');
+            const empty = document.getElementById('spmb-foto-empty');
+            const fotos = getFotoSpmb();
+            grid.querySelectorAll('.foto-item').forEach(el => el.remove());
+            if (fotos.length === 0) { if (empty) empty.style.display = 'block'; return; }
+            if (empty) empty.style.display = 'none';
+            fotos.forEach(f => {
+                const div = document.createElement('div');
+                div.className = 'foto-item';
+                div.innerHTML = `
+                    <img src="${f.src}" alt="${f.caption}" onerror="this.parentNode.style.background='#c5e8d3';this.style.display='none'">
+                    <div class="foto-caption">
+                        <p>${f.caption}</p>
+                        <span>${f.kategori}</span>
+                    </div>`;
+                grid.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>
