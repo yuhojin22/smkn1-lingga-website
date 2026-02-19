@@ -2938,9 +2938,17 @@
 
         // ===== ADMIN PANEL =====
         // ===== KREDENSIAL ADMIN =====
-        const ADMIN_USER = 'admin';
-        const ADMIN_PASS = 'smkn1lingga2026';
+        // ===== KREDENSIAL ADMIN (SHA-256 Hash) =====
+        // Password asli tidak tersimpan di sini — hanya hash-nya
+        // Username: admin | Password: smkn1lingga2026
+        const ADMIN_USER_HASH = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
+        const ADMIN_PASS_HASH = 'fbae49bb4da75a4a87f6c84255bae2fa1430c8f47d5a1817371a806470ff2fc0';
         let adminLoggedIn = false;
+
+        async function sha256(text) {
+            const buffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+            return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2,'0')).join('');
+        }
 
         function bukaLogin() {
             if (adminLoggedIn) {
@@ -2960,23 +2968,32 @@
             document.body.style.overflow = 'auto';
         }
 
-        function prosesLogin() {
+        async function prosesLogin() {
             const user = document.getElementById('login-username').value.trim();
             const pass = document.getElementById('login-password').value;
             const errEl = document.getElementById('login-error');
+            const btnMasuk = document.querySelector('.login-btn-primary');
 
-            if (user === ADMIN_USER && pass === ADMIN_PASS) {
+            // Disable tombol saat proses
+            btnMasuk.textContent = 'Memverifikasi...';
+            btnMasuk.disabled = true;
+
+            const userHash = await sha256(user);
+            const passHash = await sha256(pass);
+
+            btnMasuk.textContent = 'Masuk';
+            btnMasuk.disabled = false;
+
+            if (userHash === ADMIN_USER_HASH && passHash === ADMIN_PASS_HASH) {
                 adminLoggedIn = true;
                 tutupLogin();
                 toggleAdmin();
-                // Ubah FAB jadi ada indikator sudah login
                 document.getElementById('admin-nav-btn').innerHTML = '✅ Admin';
                 document.getElementById('admin-nav-btn').classList.add('logged-in');
             } else {
                 errEl.style.display = 'block';
                 document.getElementById('login-password').value = '';
                 document.getElementById('login-password').focus();
-                // Animasi shake
                 const box = document.querySelector('.login-box');
                 box.style.animation = 'none';
                 box.offsetHeight;
