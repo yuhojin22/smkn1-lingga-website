@@ -1136,6 +1136,210 @@
             margin-bottom: 0.5rem;
         }
 
+        /* ===== SAMBUTAN KEPALA SEKOLAH ===== */
+        .sambutan-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        /* Kolom foto */
+        .sambutan-foto-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .sambutan-foto-frame {
+            position: relative;
+            width: 260px;
+            height: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(26,77,46,0.2);
+        }
+
+        .sambutan-foto-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 3px solid var(--light-green);
+            border-radius: 20px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .sambutan-foto-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .sambutan-avatar-fallback {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary-green), var(--accent-green));
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+        }
+
+        .sambutan-identity { text-align: center; }
+
+        .sambutan-nama {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 0.3rem;
+        }
+
+        .sambutan-jabatan {
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+        }
+
+        .sambutan-badge {
+            display: inline-block;
+            background: rgba(79,138,91,0.1);
+            color: var(--accent-green);
+            border: 1px solid rgba(79,138,91,0.25);
+            border-radius: 99px;
+            padding: 0.3rem 1rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* Kolom teks */
+        .sambutan-teks-col { padding: 0.5rem 0; }
+
+        .sambutan-label {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+
+        .sambutan-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            flex-shrink: 0;
+        }
+
+        .sambutan-judul {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+        }
+
+        .sambutan-garis {
+            width: 60px;
+            height: 4px;
+            background: var(--accent-green);
+            border-radius: 99px;
+            margin-bottom: 1.8rem;
+        }
+
+        .sambutan-isi p {
+            color: #555;
+            font-size: 0.97rem;
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .sambutan-isi .sambutan-penutup {
+            font-weight: 500;
+            color: var(--primary-green);
+            margin-bottom: 0;
+        }
+
+        .sambutan-isi-hidden {
+            display: none;
+        }
+
+        .sambutan-isi-hidden.show {
+            display: block;
+        }
+
+        .btn-baca-lagi {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: none;
+            border: 1.5px solid var(--accent-green);
+            color: var(--accent-green);
+            border-radius: 99px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Work Sans', sans-serif;
+            transition: all 0.25s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-baca-lagi:hover {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .sambutan-ttd {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+        }
+
+        .ttd-garis {
+            width: 100px;
+            height: 1px;
+            background: #ddd;
+            margin-bottom: 0.8rem;
+        }
+
+        .ttd-nama {
+            font-weight: 700;
+            color: var(--primary-green);
+            font-size: 0.95rem;
+        }
+
+        .ttd-jabatan {
+            font-size: 0.82rem;
+            color: #888;
+            margin-top: 0.2rem;
+        }
+
+        @media (max-width: 900px) {
+            .sambutan-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                text-align: center;
+            }
+            .sambutan-foto-col { margin: 0 auto; }
+            .sambutan-garis { margin: 0 auto 1.8rem; }
+            .sambutan-label { justify-content: center; }
+            .ttd-garis { margin: 0 auto 0.8rem; }
+            .sambutan-judul { font-size: 1.8rem; }
+        }
+
         /* ===== LOGIN MODAL ===== */
         #login-modal {
             display: none;
@@ -2334,6 +2538,57 @@
         </div>
     </section>
 
+    <!-- Sambutan Kepala Sekolah -->
+    <section id="sambutan" style="background: white; padding: 0; margin: 0; max-width: 100%;">
+        <div class="sambutan-wrapper">
+            <div class="sambutan-foto-col reveal-left">
+                <div class="sambutan-foto-frame">
+                    <img src="images/kepsek.jpg" alt="Kepala Sekolah SMKN 1 Lingga"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="sambutan-avatar-fallback">
+                        <span>👨‍💼</span>
+                    </div>
+                </div>
+                <div class="sambutan-identity">
+                    <p class="sambutan-nama">SYAFITRIANDY, S.Pd.I</p>
+                    <p class="sambutan-jabatan">Kepala SMK Negeri 1 Lingga</p>
+                    <div class="sambutan-badge">NIP. 198110202009031006</div>
+                </div>
+            </div>
+
+            <div class="sambutan-teks-col reveal-right">
+                <div class="sambutan-label">
+                    <span class="sambutan-dot"></span>
+                    Sambutan Kepala Sekolah
+                </div>
+                <h2 class="sambutan-judul">Selamat Datang di<br>SMK Negeri 1 Lingga</h2>
+                <div class="sambutan-garis"></div>
+                <div class="sambutan-isi">
+                    <p>Assalamu'alaikum warahmatullahi wabarakatuh.</p>
+                    <p>Selamat datang di laman resmi SMK Negeri 1 Lingga, ruang di mana ilmu ditumbuhkan, keterampilan diasah, dan masa depan dirancang dengan pendidikan yang bermakna. Di sekolah ini, setiap langkah adalah proses pembentukan karakter; setiap praktik adalah ikhtiar menuju kemandirian.</p>
+                    <p>Sebagai SMK dengan Program Keahlian Agribisnis Ternak dan Kompetensi Keahlian Agribisnis Ternak Ruminansia, kami berkomitmen menghadirkan pendidikan vokasi yang selaras dengan potensi daerah dan kebutuhan zaman. SMKN 1 Lingga tidak hanya mengajarkan cara beternak, tetapi juga membangun cara berpikir, cara berinovasi, dan cara membaca peluang.</p>
+
+                    <div class="sambutan-isi-hidden" id="sambutan-lanjutan">
+                        <p>Dengan Visi SMKN 1 Lingga yakni <em>"Terwujudnya insan yang berakhlak mulia, menguasai IPTEK, dan berjiwa kewirausahaan di bidang agribisnis dan agroteknologi"</em> — akhlak adalah fondasi, ilmu pengetahuan dan teknologi adalah alat, dan kewirausahaan adalah jalan untuk memberi manfaat yang lebih luas. Di kandang, di lahan praktik, dan di ruang kelas, peserta didik belajar bahwa ketekunan hari ini adalah keberhasilan esok hari.</p>
+                        <p>Kita ingin lulusan SMKN 1 Lingga tidak hanya siap bekerja, tetapi juga siap menciptakan usaha, menjadi generasi yang tangguh, mandiri, dan mampu berkontribusi bagi ketahanan pangan serta kesejahteraan masyarakat.</p>
+                        <p>Semoga laman ini menjadi jembatan silaturahmi, sumber informasi, dan ruang inspirasi bagi kita semua. Mari bertumbuh dengan akhlak, berdaya dengan ilmu, dan melangkah dengan kewirausahaan.</p>
+                        <p class="sambutan-penutup">SMK Bisa, SMK Hebat, SMK Bisa Hebat, SMK Negeri 1 Lingga BERDAYA….</p>
+                        <p class="sambutan-penutup">Wassalamu'alaikum warahmatullahi wabarakatuh.</p>
+                    </div>
+
+                    <button class="btn-baca-lagi" id="btn-baca-lagi" onclick="toggleSambutan()">
+                        Baca Selengkapnya ▼
+                    </button>
+                </div>
+                <div class="sambutan-ttd">
+                    <div class="ttd-garis"></div>
+                    <p class="ttd-nama">SYAFITRIANDY, S.Pd.I</p>
+                    <p class="ttd-jabatan">Kepala SMK Negeri 1 Lingga</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Berita & Pengumuman -->
     <section id="berita">
         <h2 class="section-title reveal-left">Berita & Pengumuman</h2>
@@ -3262,6 +3517,15 @@
                     ${!f.bawaan ? `<button onclick="hapusFoto('${f.id}',event)"
                         style="position:absolute;top:3px;right:3px;background:rgba(185,28,28,0.85);color:white;border:none;border-radius:50%;width:22px;height:22px;font-size:0.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>` : ''}
                 </div>`).join('');
+        }
+
+        // ===== TOGGLE SAMBUTAN =====
+        function toggleSambutan() {
+            const lanjutan = document.getElementById('sambutan-lanjutan');
+            const btn = document.getElementById('btn-baca-lagi');
+            const isOpen = lanjutan.classList.contains('show');
+            lanjutan.classList.toggle('show');
+            btn.textContent = isOpen ? 'Baca Selengkapnya ▼' : 'Tutup ▲';
         }
 
         // ===== SPMB FOTO ADMIN =====
