@@ -2481,8 +2481,8 @@
                 <span></span>
                 <span></span>
             </div>
-            <!-- Spacer to balance logo width for true center -->
-            <div class="nav-spacer" aria-hidden="true" style="display:flex;gap:0.5rem;justify-content:flex-end;">
+            <!-- Tombol Pengembang & Kata Alumni -->
+            <div class="nav-spacer" style="display:flex;gap:0.5rem;justify-content:flex-end;">
                 <button class="nav-admin-btn" onclick="bukaPengembang()" style="background:rgba(255,255,255,0.12);color:white;border:1px solid rgba(255,255,255,0.25);border-radius:50px;padding:0.45rem 1.1rem;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:'Work Sans',sans-serif;letter-spacing:0.5px;transition:all 0.25s ease;display:flex;align-items:center;gap:0.4rem;white-space:nowrap;">💻 Pengembang</button>
                 <button class="nav-admin-btn" onclick="bukaAlumni()" style="background:rgba(255,255,255,0.12);color:white;border:1px solid rgba(255,255,255,0.25);border-radius:50px;padding:0.45rem 1.1rem;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:'Work Sans',sans-serif;letter-spacing:0.5px;transition:all 0.25s ease;display:flex;align-items:center;gap:0.4rem;white-space:nowrap;">🎓 Kata Alumni</button>
             </div>
@@ -2529,7 +2529,7 @@
                 <div class="sambutan-foto-frame">
                     <img src="images/kepsek.jpg" alt="Kepala Sekolah SMKN 1 Lingga"
                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                    <div class="sambutan-avatar-fallback">
+                    <div class="sambutan-avatar-fallback" style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#2d5f3f,#4f8a5b);align-items:center;justify-content:center;font-size:6rem;">
                         <span>👨‍💼</span>
                     </div>
                 </div>
@@ -3123,9 +3123,13 @@
 
         // ===== DATA GALERI =====
         const GALERI_BAWAAN = [
-            { id: 'g-juara',   src: 'images/juara_pertama.jpeg', caption: 'Juara Pertama - Prestasi Siswa', kategori: 'Prestasi',       bawaan: true },
-            { id: 'g-outdoor', src: 'images/outdoor_study.jpeg', caption: 'Kegiatan Pembelajaran Outdoor',  kategori: 'Kegiatan Siswa', bawaan: true },
-            { id: 'g-tka',     src: 'images/tka2025.jpeg',       caption: 'TKA 2025',                       kategori: 'UKK / Ujian',    bawaan: true }
+            { id: 'g-juara',        src: 'images/juara_pertama.jpeg',              caption: 'Juara Pertama - Prestasi Siswa',    kategori: 'Prestasi',       bawaan: true },
+            { id: 'g-outdoor',      src: 'images/outdoor_study.jpeg',              caption: 'Kegiatan Pembelajaran Outdoor',     kategori: 'Kegiatan Siswa', bawaan: true },
+            { id: 'g-tka',          src: 'images/tka2025.jpeg',                    caption: 'TKA 2025',                          kategori: 'UKK / Ujian',    bawaan: true },
+            { id: 'g-classmeeting', src: 'images/classmeeting.jpeg',               caption: 'CLASSMEETING 2025',                 kategori: 'Kegiatan Siswa', bawaan: true },
+            { id: 'g-pemandu',      src: 'images/juara_pemandu_museum.jpeg',       caption: 'JUARA PEMANDU MUSEUM',              kategori: 'Prestasi',       bawaan: true },
+            { id: 'g-bantara',      src: 'images/upacara_pelantikan_bantara.jpeg', caption: 'UPACARA PELANTIKAN BANTARA 2026',   kategori: 'Kegiatan Siswa', bawaan: true },
+            { id: 'g-kandang',      src: 'images/praktikkandang.jpeg',             caption: 'PRAKTIK KANDANG',                   kategori: 'Kegiatan Siswa', bawaan: true }
         ];
         function getAllGaleri() { return GALERI_BAWAAN; }
 
