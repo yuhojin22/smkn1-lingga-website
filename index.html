@@ -389,79 +389,185 @@
         .share-btn.cp  { background: #f0f4f1; color: #1a4d2e; border: 1.5px solid #c5e8d3; }
         .share-btn.cp.copied { background: #dcfce7; color: #166534; border-color: #86efac; }
 
-        /* ===== ADMIN PANEL ===== */
-        .nav-admin-btn {
-            background: rgba(255,255,255,0.12);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.25);
-            border-radius: 50px;
-            padding: 0.45rem 1.1rem;
-            font-size: 0.78rem;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: 'Work Sans', sans-serif;
-            letter-spacing: 0.5px;
-            transition: all 0.25s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            white-space: nowrap;
-        }
-        .nav-admin-btn:hover {
-            background: rgba(255,255,255,0.22);
-            border-color: var(--light-green);
-            color: var(--light-green);
-        }
-        .nav-admin-btn.logged-in {
-            background: var(--light-green);
-            color: var(--dark-text);
-            border-color: var(--light-green);
-        }
-        #admin-panel {
+        /* ===== MODAL OVERLAY UMUM ===== */
+        .modal-overlay {
             display: none; position: fixed; inset: 0;
-            background: rgba(0,0,0,0.6); z-index: 2100;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(6px);
+            z-index: 2100;
             align-items: center; justify-content: center;
+            padding: 1rem;
         }
-        #admin-panel.open { display: flex; }
-        .admin-box {
+        .modal-overlay.open { display: flex; }
+        .modal-box {
             background: white; border-radius: 20px; padding: 2rem;
-            width: 94%; max-width: 640px; max-height: 90vh; overflow-y: auto;
+            width: 94%; max-width: 700px; max-height: 90vh; overflow-y: auto;
             animation: slideDown 0.3s ease;
         }
-        .admin-box h2 { font-family: 'Playfair Display', serif; color: var(--primary-green); margin-bottom: 1.5rem; font-size: 1.5rem; }
-        .admin-field { margin-bottom: 1.1rem; }
-        .admin-field label { display: block; font-weight: 600; color: #1a4d2e; margin-bottom: 0.4rem; font-size: 0.9rem; }
-        .admin-field input, .admin-field textarea, .admin-field select {
-            width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #c5e8d3;
-            border-radius: 8px; font-family: 'Work Sans', sans-serif; font-size: 0.92rem;
-            color: #1a2412; outline: none; transition: border 0.2s;
+        .modal-close-btn {
+            position: absolute; top: 1rem; right: 1rem;
+            background: #f0f4f1; border: none; border-radius: 50%;
+            width: 36px; height: 36px; font-size: 1.1rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            color: #555; transition: background 0.2s;
         }
-        .admin-field input:focus, .admin-field textarea:focus { border-color: var(--accent-green); }
-        .admin-field textarea { resize: vertical; min-height: 90px; }
-        .admin-actions { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
-        .admin-btn-save {
-            flex: 1; background: var(--primary-green); color: white; border: none;
-            border-radius: 50px; padding: 0.8rem; font-weight: 700; font-size: 1rem;
-            cursor: pointer; transition: background 0.2s;
+        .modal-close-btn:hover { background: #e8f3ec; }
+
+        /* ===== MODAL PENGEMBANG ===== */
+        .pengembang-header {
+            text-align: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #e8f3ec;
+            margin-bottom: 1.8rem;
         }
-        .admin-btn-save:hover { background: #2d5f3f; }
-        .admin-btn-cancel {
-            background: #f0f4f1; color: #1a4d2e; border: 1.5px solid #c5e8d3;
-            border-radius: 50px; padding: 0.8rem 1.4rem; font-weight: 600; cursor: pointer;
+        .pengembang-header h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-green);
+            font-size: 1.7rem;
+            margin-bottom: 0.3rem;
         }
-        .admin-divider { border: none; border-top: 1.5px solid #e8f3ec; margin: 1.4rem 0; }
-        .admin-news-list { display: grid; gap: 0.7rem; margin-top: 0.5rem; }
-        .admin-news-item {
-            background: #f8fdf9; border-radius: 10px; padding: 0.8rem 1rem;
-            display: flex; align-items: center; gap: 0.8rem; border-left: 3px solid var(--accent-green);
+        .pengembang-header p { color: #888; font-size: 0.9rem; }
+        .pengembang-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
         }
-        .admin-news-item-title { flex: 1; font-weight: 600; font-size: 0.88rem; color: #1a4d2e; }
-        .admin-news-item-date { font-size: 0.78rem; color: #888; }
-        .admin-del-btn {
-            background: #fee2e2; color: #b91c1c; border: none; border-radius: 6px;
-            padding: 0.3rem 0.7rem; font-size: 0.8rem; cursor: pointer; font-weight: 600;
+        .pengembang-card {
+            background: #f8fdf9;
+            border-radius: 16px;
+            padding: 1.8rem 1.2rem;
+            text-align: center;
+            border: 1.5px solid #e8f3ec;
+            transition: all 0.3s ease;
         }
-        .admin-del-btn:hover { background: #fca5a5; }
+        .pengembang-card:hover {
+            border-color: var(--light-green);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(26,77,46,0.1);
+        }
+        .pengembang-foto {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--light-green);
+            margin: 0 auto 1rem;
+            display: block;
+            background: linear-gradient(135deg, var(--accent-green), var(--light-green));
+        }
+        .pengembang-foto-placeholder {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-green), var(--light-green));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--light-green);
+        }
+        .pengembang-nama {
+            font-weight: 700;
+            color: var(--primary-green);
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        .pengembang-peran {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        .pengembang-desc {
+            font-size: 0.82rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* ===== MODAL KATA ALUMNI ===== */
+        .alumni-header {
+            text-align: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #e8f3ec;
+            margin-bottom: 1.8rem;
+        }
+        .alumni-header h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-green);
+            font-size: 1.7rem;
+            margin-bottom: 0.3rem;
+        }
+        .alumni-header p { color: #888; font-size: 0.9rem; }
+        .alumni-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        .alumni-card {
+            background: #f8fdf9;
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.2rem;
+            align-items: flex-start;
+            border: 1.5px solid #e8f3ec;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .alumni-card:hover {
+            border-color: var(--light-green);
+            box-shadow: 0 8px 20px rgba(26,77,46,0.1);
+        }
+        .alumni-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 0.8rem; right: 1.2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--light-green);
+            opacity: 0.4;
+            line-height: 1;
+        }
+        .alumni-foto {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--light-green);
+            background: linear-gradient(135deg, var(--accent-green), var(--light-green));
+            flex-shrink: 0;
+        }
+        .alumni-foto-placeholder {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-green), var(--light-green));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+            border: 3px solid var(--light-green);
+        }
+        .alumni-info { flex: 1; }
+        .alumni-kutipan {
+            font-style: italic;
+            color: #444;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        .alumni-nama {
+            font-weight: 700;
+            color: var(--primary-green);
+            font-size: 0.95rem;
+        }
+        .alumni-angkatan {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+        .alumni-profesi {
+            font-size: 0.82rem;
+            color: #888;
+            margin-top: 0.15rem;
+        }
         /* ===== ACCORDION BERITA ===== */
         /* news-grid jadi 1 kolom saat ada yang expand */
         .news-grid {
@@ -1009,31 +1115,6 @@
         }
         .lb-nav-btn:hover { background: rgba(255,255,255,0.3); }
 
-        /* ===== PANEL ADMIN GALERI ===== */
-        .admin-gallery-upload {
-            border: 2px dashed #c5e8d3;
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: #f8fdf9;
-            margin-bottom: 1rem;
-        }
-        .admin-gallery-upload:hover { border-color: var(--accent-green); background: #f0fbf4; }
-        .admin-gallery-upload input { display: none; }
-        .admin-gallery-upload .upload-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .admin-gallery-upload p { color: #4f8a5b; font-size: 0.9rem; font-weight: 600; }
-        .admin-gallery-upload small { color: #aaa; font-size: 0.78rem; }
-        #preview-foto {
-            display: none;
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 0.8rem;
-        }
-
         /* Contact Section */
         .contact-container {
             display: grid;
@@ -1341,104 +1422,6 @@
         }
 
         /* ===== LOGIN MODAL ===== */
-        #login-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.65);
-            backdrop-filter: blur(6px);
-            z-index: 3000;
-            align-items: center;
-            justify-content: center;
-        }
-        #login-modal.open { display: flex; }
-
-        .login-box {
-            background: white;
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            width: 94%;
-            max-width: 400px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
-            animation: slideDown 0.3s ease;
-            text-align: center;
-        }
-
-        .login-logo {
-            font-size: 3rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .login-title {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-green);
-            font-size: 1.6rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .login-sub {
-            font-size: 0.85rem;
-            color: #888;
-            margin-bottom: 1.8rem;
-        }
-
-        .login-field {
-            text-align: left;
-            margin-bottom: 1rem;
-        }
-
-        .login-field label {
-            display: block;
-            font-weight: 600;
-            color: var(--primary-green);
-            font-size: 0.85rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .login-field input {
-            width: 100%;
-            padding: 0.7rem 1rem;
-            border: 1.5px solid #c5e8d3;
-            border-radius: 10px;
-            font-family: 'Work Sans', sans-serif;
-            font-size: 0.95rem;
-            color: var(--dark-text);
-            outline: none;
-            transition: border 0.2s;
-            box-sizing: border-box;
-        }
-
-        .login-field input:focus {
-            border-color: var(--accent-green);
-            box-shadow: 0 0 0 3px rgba(79,138,91,0.12);
-        }
-
-        .login-btn-primary {
-            flex: 1;
-            background: var(--primary-green);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 0.8rem;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            font-family: 'Work Sans', sans-serif;
-            transition: background 0.2s;
-        }
-        .login-btn-primary:hover { background: var(--secondary-green); }
-
-        .login-btn-cancel {
-            background: #f0f4f1;
-            color: #1a4d2e;
-            border: 1.5px solid #c5e8d3;
-            border-radius: 50px;
-            padding: 0.8rem 1.4rem;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: 'Work Sans', sans-serif;
-        }
-
         /* ===== SPMB STYLES ===== */
         .spmb-tabs {
             display: flex;
@@ -2499,8 +2482,9 @@
                 <span></span>
             </div>
             <!-- Spacer to balance logo width for true center -->
-            <div class="nav-spacer" aria-hidden="true">
-                <button class="nav-admin-btn" id="admin-nav-btn" onclick="bukaLogin()">⚙️ Admin</button>
+            <div class="nav-spacer" aria-hidden="true" style="display:flex;gap:0.5rem;justify-content:flex-end;">
+                <button class="nav-admin-btn" onclick="bukaPengembang()" style="background:rgba(255,255,255,0.12);color:white;border:1px solid rgba(255,255,255,0.25);border-radius:50px;padding:0.45rem 1.1rem;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:'Work Sans',sans-serif;letter-spacing:0.5px;transition:all 0.25s ease;display:flex;align-items:center;gap:0.4rem;white-space:nowrap;">💻 Pengembang</button>
+                <button class="nav-admin-btn" onclick="bukaAlumni()" style="background:rgba(255,255,255,0.12);color:white;border:1px solid rgba(255,255,255,0.25);border-radius:50px;padding:0.45rem 1.1rem;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:'Work Sans',sans-serif;letter-spacing:0.5px;transition:all 0.25s ease;display:flex;align-items:center;gap:0.4rem;white-space:nowrap;">🎓 Kata Alumni</button>
             </div>
         </div>
     </nav>
@@ -2543,7 +2527,7 @@
         <div class="sambutan-wrapper">
             <div class="sambutan-foto-col reveal-left">
                 <div class="sambutan-foto-frame">
-                    <img src="images/kepsek.png" alt="Kepala Sekolah SMKN 1 Lingga"
+                    <img src="images/kepsek.jpg" alt="Kepala Sekolah SMKN 1 Lingga"
                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                     <div class="sambutan-avatar-fallback">
                         <span>👨‍💼</span>
@@ -2598,195 +2582,99 @@
         </div>
     </section>
 
-    <!-- Panel Admin -->
-    <div id="login-modal">
-        <div class="login-box">
-            <div class="login-logo">🔐</div>
-            <h2 class="login-title">Login Admin</h2>
-            <p class="login-sub">Masukkan kredensial untuk mengakses panel admin</p>
-
-            <div class="login-field">
-                <label>Username</label>
-                <input type="text" id="login-username" placeholder="Masukkan username" autocomplete="username">
+    <!-- ===== MODAL PENGEMBANG ===== -->
+    <div id="modal-pengembang" class="modal-overlay">
+        <div class="modal-box" style="position:relative;">
+            <button class="modal-close-btn" onclick="tutupPengembang()">✕</button>
+            <div class="pengembang-header">
+                <h2>💻 Tim Pengembang Website</h2>
+                <p>Orang-orang di balik website SMK Negeri 1 Lingga</p>
             </div>
-            <div class="login-field">
-                <label>Password</label>
-                <div style="position:relative;">
-                    <input type="password" id="login-password" placeholder="Masukkan password" autocomplete="current-password"
-                        onkeydown="if(event.key==='Enter') prosesLogin()">
-                    <button type="button" onclick="toggleShowPass()" id="toggle-pass"
-                        style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1rem;color:#888;">👁</button>
+            <div class="pengembang-grid" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));">
+
+                <div class="pengembang-card">
+                    <img src="images/kepsek.jpg" alt="Kepala Sekolah"
+                        class="pengembang-foto"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="pengembang-foto-placeholder" style="display:none;">👨‍💼</div>
+                    <div class="pengembang-peran">Penanggung Jawab</div>
+                    <div class="pengembang-nama">SYAFITRIANDY, S.Pd.I</div>
+                    <div class="pengembang-desc">Kepala SMK Negeri 1 Lingga · NIP. 198110202009031006 · Bertanggung jawab atas penyelenggaraan dan pengembangan website resmi sekolah.</div>
                 </div>
-            </div>
 
-            <p id="login-error" style="color:#dc2626;font-size:0.82rem;margin-bottom:0.8rem;display:none;">
-                ❌ Username atau password salah. Coba lagi.
-            </p>
+                <div class="pengembang-card">
+                    <img src="images/arinaldi.jpg" alt="Desainer Grafis Website"
+                        class="pengembang-foto"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="pengembang-foto-placeholder" style="display:none;">👨‍🎨</div>
+                    <div class="pengembang-peran">Desainer Grafis Website</div>
+                    <div class="pengembang-nama">Arinaldi, S.Pd</div>
+                    <div class="pengembang-desc">Guru Matematika & Koding · SMK Negeri 1 Lingga · Bertanggung jawab atas desain visual dan aset grafis website.</div>
+                </div>
 
-            <div style="display:flex;gap:0.7rem;margin-top:0.5rem;">
-                <button class="login-btn-primary" onclick="prosesLogin()">Masuk</button>
-                <button class="login-btn-cancel" onclick="tutupLogin()">Batal</button>
             </div>
         </div>
     </div>
 
-    <!-- Panel Admin -->
-    <div id="admin-panel">
-        <div class="admin-box">
-
-            <!-- Tab navigasi -->
-            <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;border-bottom:2px solid #e8f3ec;padding-bottom:0.8rem;flex-wrap:wrap;">
-                <button id="tab-btn-berita" onclick="switchAdminTab('berita')"
-                    style="flex:1;padding:0.6rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;background:var(--primary-green);color:white;font-family:'Work Sans',sans-serif;font-size:0.85rem;">
-                    📰 Kelola Berita
-                </button>
-                <button id="tab-btn-galeri" onclick="switchAdminTab('galeri')"
-                    style="flex:1;padding:0.6rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;background:#f0f4f1;color:#1a4d2e;font-family:'Work Sans',sans-serif;font-size:0.85rem;">
-                    🖼️ Kelola Galeri
-                </button>
-                <button id="tab-btn-spmb" onclick="switchAdminTab('spmb')"
-                    style="flex:1;padding:0.6rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;background:#f0f4f1;color:#1a4d2e;font-family:'Work Sans',sans-serif;font-size:0.85rem;">
-                    🎓 Kelola SPMB
-                </button>
-                <button onclick="toggleAdmin()"
-                    style="padding:0.6rem 1rem;border:1.5px solid #c5e8d3;border-radius:8px;background:white;color:#888;cursor:pointer;font-size:1.1rem;">
-                    ✕
-                </button>
+    <!-- ===== MODAL KATA ALUMNI ===== -->
+    <div id="modal-alumni" class="modal-overlay">
+        <div class="modal-box" style="position:relative;">
+            <button class="modal-close-btn" onclick="tutupAlumni()">✕</button>
+            <div class="alumni-header">
+                <h2>🎓 Kata Alumni</h2>
+                <p>Kisah dan pesan inspiratif dari alumni SMK Negeri 1 Lingga</p>
             </div>
+            <div class="alumni-grid">
 
-            <!-- TAB BERITA -->
-            <div id="admin-tab-berita">
-                <h2 style="font-family:'Playfair Display',serif;color:var(--primary-green);margin-bottom:1.2rem;font-size:1.4rem;">📰 Tambah Berita Baru</h2>
-                <div class="admin-field">
-                    <label>Judul Berita *</label>
-                    <input type="text" id="f-judul" placeholder="Contoh: Siswa SMK Juara Lomba Nasional">
-                </div>
-                <div class="admin-field">
-                    <label>Tanggal *</label>
-                    <input type="date" id="f-tanggal">
-                </div>
-                <div class="admin-field">
-                    <label>Ringkasan (ditampilkan di kartu berita) *</label>
-                    <textarea id="f-excerpt" placeholder="1-2 kalimat ringkasan berita..."></textarea>
-                </div>
-                <div class="admin-field">
-                    <label>Isi Berita Lengkap *</label>
-                    <textarea id="f-isi" style="min-height:130px;" placeholder="Tuliskan isi berita selengkapnya di sini..."></textarea>
-                </div>
-                <div class="admin-field">
-                    <label>Emoji / Ikon (jika tidak ada foto)</label>
-                    <select id="f-emoji">
-                        <option value="📢">📢 Pengumuman</option>
-                        <option value="🏆">🏆 Prestasi</option>
-                        <option value="🎓">🎓 Kelulusan / Ujian</option>
-                        <option value="🌾">🌾 Pertanian</option>
-                        <option value="🐄">🐄 Peternakan</option>
-                        <option value="📅">📅 Acara / Kegiatan</option>
-                        <option value="🤝">🤝 Kerjasama</option>
-                        <option value="📌">📌 Info Penting</option>
-                    </select>
-                </div>
-                <div class="admin-actions">
-                    <button class="admin-btn-save" onclick="simpanBerita()">💾 Simpan Berita</button>
-                </div>
-                <hr class="admin-divider">
-                <strong style="color:#1a4d2e;font-size:0.95rem;">📋 Daftar Berita</strong>
-                <div class="admin-news-list" id="admin-news-list"></div>
-            </div>
+                <!-- ✏️ CARA EDIT: Salin blok .alumni-card di bawah untuk menambah alumni baru -->
+                <!-- Ganti src foto, kutipan, nama, angkatan, dan profesi sesuai data yang benar -->
 
-            <!-- TAB GALERI -->
-            <div id="admin-tab-galeri" style="display:none;">
-                <h2 style="font-family:'Playfair Display',serif;color:var(--primary-green);margin-bottom:1.2rem;font-size:1.4rem;">🖼️ Tambah Foto Galeri</h2>
-
-                <!-- Upload foto -->
-                <label class="admin-gallery-upload" for="f-foto-upload">
-                    <input type="file" id="f-foto-upload" accept="image/*" onchange="previewFoto(this)">
-                    <div id="upload-placeholder">
-                        <div class="upload-icon">📷</div>
-                        <p>Klik untuk pilih foto</p>
-                        <small>JPG, PNG, WEBP — maks 5MB</small>
+                <div class="alumni-card">
+                    <div>
+                        <img src="images/alumni1.jpg" alt="Alumni"
+                            class="alumni-foto"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="alumni-foto-placeholder" style="display:none;">👨‍🌾</div>
                     </div>
-                    <img id="preview-foto" src="" alt="Preview">
-                </label>
-
-                <div class="admin-field">
-                    <label>Keterangan Foto *</label>
-                    <input type="text" id="f-foto-caption" placeholder="Contoh: Kegiatan Praktik UKK 2026">
-                </div>
-                <div class="admin-field">
-                    <label>Kategori</label>
-                    <select id="f-foto-kategori">
-                        <option value="Kegiatan Siswa">Kegiatan Siswa</option>
-                        <option value="Prestasi">Prestasi</option>
-                        <option value="Fasilitas">Fasilitas</option>
-                        <option value="UKK / Ujian">UKK / Ujian</option>
-                        <option value="PKL / Magang">PKL / Magang</option>
-                        <option value="Acara Sekolah">Acara Sekolah</option>
-                        <option value="Lainnya">Lainnya</option>
-                    </select>
-                </div>
-                <div class="admin-actions">
-                    <button class="admin-btn-save" onclick="simpanFoto()">💾 Simpan Foto</button>
-                    <button class="admin-btn-cancel" onclick="resetFormFoto()">Reset</button>
-                </div>
-
-                <hr class="admin-divider">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.7rem;">
-                    <strong style="color:#1a4d2e;font-size:0.95rem;">🖼️ Foto Tersimpan</strong>
-                    <button id="edit-mode-btn" onclick="toggleEditMode()"
-                        style="background:#fff8e1;color:#b45309;border:1.5px solid #fcd34d;border-radius:8px;padding:0.3rem 0.8rem;font-size:0.8rem;font-weight:700;cursor:pointer;">
-                        ✏️ Mode Hapus
-                    </button>
-                </div>
-                <div id="admin-gallery-list" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-top:0.5rem;"></div>
-            </div>
-
-            <!-- TAB SPMB -->
-            <div id="admin-tab-spmb" style="display:none;">
-                <h2 style="font-family:'Playfair Display',serif;color:var(--primary-green);margin-bottom:1.2rem;font-size:1.4rem;">🎓 Upload Foto SPMB</h2>
-                <p style="font-size:0.88rem;color:#666;margin-bottom:1.2rem;line-height:1.6;">Foto yang diunggah akan tampil di halaman SPMB sebagai dokumentasi kegiatan penerimaan murid baru.</p>
-
-                <!-- Upload foto SPMB -->
-                <label class="admin-gallery-upload" for="f-spmb-upload">
-                    <input type="file" id="f-spmb-upload" accept="image/*" onchange="previewFotoSpmb(this)">
-                    <div id="spmb-upload-placeholder">
-                        <div class="upload-icon">📷</div>
-                        <p>Klik untuk pilih foto SPMB</p>
-                        <small>JPG, PNG, WEBP — maks 5MB</small>
+                    <div class="alumni-info">
+                        <p class="alumni-kutipan">"SMK Negeri 1 Lingga mengajarkan saya bukan hanya cara beternak, tapi cara bertanggung jawab dan bekerja keras. Ilmu yang saya dapatkan di sini menjadi fondasi kuat dalam karir saya di dunia peternakan."</p>
+                        <div class="alumni-nama">Nama Alumni 1</div>
+                        <div class="alumni-angkatan">Angkatan 2022 · Agribisnis Ternak Ruminansia</div>
+                        <div class="alumni-profesi">Peternak Mandiri / Wirausaha Ternak, Kabupaten Lingga</div>
                     </div>
-                    <img id="preview-foto-spmb" src="" alt="Preview" style="display:none;width:100%;height:160px;object-fit:cover;border-radius:10px;margin-bottom:0.8rem;">
-                </label>
-
-                <div class="admin-field">
-                    <label>Keterangan Foto *</label>
-                    <input type="text" id="f-spmb-caption" placeholder="Contoh: Pendaftaran SPMB 2026 - Hari Pertama">
-                </div>
-                <div class="admin-field">
-                    <label>Kategori</label>
-                    <select id="f-spmb-kategori">
-                        <option value="Pendaftaran">Pendaftaran</option>
-                        <option value="Seleksi">Seleksi & Wawancara</option>
-                        <option value="Pengumuman">Pengumuman Hasil</option>
-                        <option value="Daftar Ulang">Daftar Ulang</option>
-                        <option value="Orientasi">Orientasi Siswa Baru</option>
-                        <option value="Lainnya">Lainnya</option>
-                    </select>
-                </div>
-                <div class="admin-actions">
-                    <button class="admin-btn-save" onclick="simpanFotoSpmb()">💾 Simpan Foto SPMB</button>
                 </div>
 
-                <hr class="admin-divider">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
-                    <strong style="color:#1a4d2e;font-size:0.95rem;">📋 Foto SPMB Tersimpan</strong>
-                    <button id="spmb-edit-mode-btn" onclick="toggleEditModeSpmb()"
-                        style="background:#fff8e1;color:#b45309;border:1.5px solid #fcd34d;border-radius:8px;padding:0.3rem 0.8rem;font-size:0.8rem;font-weight:700;cursor:pointer;">
-                        ✏️ Mode Hapus
-                    </button>
+                <div class="alumni-card">
+                    <div>
+                        <img src="images/alumni2.jpg" alt="Alumni"
+                            class="alumni-foto"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="alumni-foto-placeholder" style="display:none;">👩‍🌾</div>
+                    </div>
+                    <div class="alumni-info">
+                        <p class="alumni-kutipan">"Para guru di SMK Negeri 1 Lingga sangat peduli dan membimbing kami dengan sabar. Pengalaman PKL yang diberikan sekolah membuka mata saya tentang dunia kerja yang sebenarnya dan membuat saya lebih siap."</p>
+                        <div class="alumni-nama">Nama Alumni 2</div>
+                        <div class="alumni-angkatan">Angkatan 2023 · Agribisnis Ternak Ruminansia</div>
+                        <div class="alumni-profesi">Teknisi Peternakan, Dinas Pertanian Kabupaten Lingga</div>
+                    </div>
                 </div>
-                <div id="admin-spmb-list" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-top:0.5rem;"></div>
+
+                <div class="alumni-card">
+                    <div>
+                        <img src="images/alumni3.jpg" alt="Alumni"
+                            class="alumni-foto"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="alumni-foto-placeholder" style="display:none;">👨‍💼</div>
+                    </div>
+                    <div class="alumni-info">
+                        <p class="alumni-kutipan">"Berkat keterampilan praktik yang solid dari SMKN 1 Lingga, saya langsung diterima bekerja setelah lulus. Sekolah ini benar-benar mempersiapkan kami untuk dunia nyata, bukan hanya teori."</p>
+                        <div class="alumni-nama">Nama Alumni 3</div>
+                        <div class="alumni-angkatan">Angkatan 2021 · Agribisnis Ternak Ruminansia</div>
+                        <div class="alumni-profesi">Supervisor Peternakan, Peternakan Mitra Kepulauan Riau</div>
+                    </div>
+                </div>
+
             </div>
-
         </div>
     </div>
 
@@ -3043,7 +2931,7 @@
         }
 
         // ===== DATA BERITA =====
-        // Berita bawaan (hardcoded, tidak bisa dihapus dari admin)
+        // Tambah berita baru di sini dengan menyalin blok { ... } dan mengisi datanya
         const BERITA_BAWAAN = [
             {
                 id: 'ukk-tarigan-farm-2026',
@@ -3061,15 +2949,8 @@
             }
         ];
 
-        // Ambil berita tambahan dari localStorage
-        function getBeritaTambahan() {
-            try { return JSON.parse(localStorage.getItem('smk_berita') || '[]'); } catch(e) { return []; }
-        }
-        function simpanBeritaTambahan(arr) {
-            localStorage.setItem('smk_berita', JSON.stringify(arr));
-        }
         function getAllBerita() {
-            return [...BERITA_BAWAAN, ...getBeritaTambahan()].sort((a,b) => b.tanggal.localeCompare(a.tanggal));
+            return BERITA_BAWAAN.sort((a,b) => b.tanggal.localeCompare(a.tanggal));
         }
 
         // Format tanggal ke Bahasa Indonesia
@@ -3191,174 +3072,39 @@
             }
         }
 
-        // ===== ADMIN PANEL =====
-        // ===== KREDENSIAL ADMIN =====
-        // ===== KREDENSIAL ADMIN (SHA-256 Hash) =====
-        // Password asli tidak tersimpan di sini — hanya hash-nya
-        // Username: admin | Password: smkn1lingga2026
-        const ADMIN_USER_HASH = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
-        const ADMIN_PASS_HASH = 'fbae49bb4da75a4a87f6c84255bae2fa1430c8f47d5a1817371a806470ff2fc0';
-        let adminLoggedIn = false;
-
-        async function sha256(text) {
-            const buffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
-            return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2,'0')).join('');
-        }
-
-        function bukaLogin() {
-            if (adminLoggedIn) {
-                toggleAdmin();
-                return;
-            }
-            document.getElementById('login-modal').classList.add('open');
+        // ===== MODAL PENGEMBANG =====
+        function bukaPengembang() {
+            document.getElementById('modal-pengembang').classList.add('open');
             document.body.style.overflow = 'hidden';
-            setTimeout(() => document.getElementById('login-username').focus(), 100);
         }
-
-        function tutupLogin() {
-            document.getElementById('login-modal').classList.remove('open');
-            document.getElementById('login-error').style.display = 'none';
-            document.getElementById('login-username').value = '';
-            document.getElementById('login-password').value = '';
+        function tutupPengembang() {
+            document.getElementById('modal-pengembang').classList.remove('open');
             document.body.style.overflow = 'auto';
         }
 
-        async function prosesLogin() {
-            const user = document.getElementById('login-username').value.trim();
-            const pass = document.getElementById('login-password').value;
-            const errEl = document.getElementById('login-error');
-            const btnMasuk = document.querySelector('.login-btn-primary');
-
-            // Disable tombol saat proses
-            btnMasuk.textContent = 'Memverifikasi...';
-            btnMasuk.disabled = true;
-
-            const userHash = await sha256(user);
-            const passHash = await sha256(pass);
-
-            btnMasuk.textContent = 'Masuk';
-            btnMasuk.disabled = false;
-
-            if (userHash === ADMIN_USER_HASH && passHash === ADMIN_PASS_HASH) {
-                adminLoggedIn = true;
-                tutupLogin();
-                toggleAdmin();
-                document.getElementById('admin-nav-btn').innerHTML = '✅ Admin';
-                document.getElementById('admin-nav-btn').classList.add('logged-in');
-            } else {
-                errEl.style.display = 'block';
-                document.getElementById('login-password').value = '';
-                document.getElementById('login-password').focus();
-                const box = document.querySelector('.login-box');
-                box.style.animation = 'none';
-                box.offsetHeight;
-                box.style.animation = 'shake 0.4s ease';
-            }
+        // ===== MODAL ALUMNI =====
+        function bukaAlumni() {
+            document.getElementById('modal-alumni').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function tutupAlumni() {
+            document.getElementById('modal-alumni').classList.remove('open');
+            document.body.style.overflow = 'auto';
         }
 
-        function toggleShowPass() {
-            const inp = document.getElementById('login-password');
-            inp.type = inp.type === 'password' ? 'text' : 'password';
-            document.getElementById('toggle-pass').textContent = inp.type === 'password' ? '👁' : '🙈';
-        }
-
-        function toggleAdmin() {
-            const panel = document.getElementById('admin-panel');
-            panel.classList.toggle('open');
-            if (panel.classList.contains('open')) {
-                renderAdminList();
-                renderAdminGalleryList();
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        // Tutup login modal klik luar
-        document.getElementById('login-modal').addEventListener('click', function(e) {
-            if (e.target === this) tutupLogin();
+        // Tutup modal jika klik di luar kotak
+        document.getElementById('modal-pengembang').addEventListener('click', function(e) {
+            if (e.target === this) tutupPengembang();
         });
-
-        // ===== ADMIN TAB SWITCH =====
-        function switchAdminTab(tab) {
-            const tabs = ['berita', 'galeri', 'spmb'];
-            tabs.forEach(t => {
-                const el = document.getElementById('admin-tab-' + t);
-                const btn = document.getElementById('tab-btn-' + t);
-                if (el) el.style.display = (t === tab) ? 'block' : 'none';
-                if (btn) {
-                    btn.style.background = (t === tab) ? 'var(--primary-green)' : '#f0f4f1';
-                    btn.style.color = (t === tab) ? 'white' : '#1a4d2e';
-                }
-            });
-            if (tab === 'galeri') renderAdminGalleryList();
-            if (tab === 'spmb') renderAdminSpmbList();
-        }
-
-        function renderAdminList() {
-            const list = document.getElementById('admin-news-list');
-            const tambahan = getBeritaTambahan();
-            let html = '';
-            BERITA_BAWAAN.forEach(b => {
-                html += `<div class="admin-news-item">
-                    <span style="font-size:1.3rem;">${b.emoji||'📢'}</span>
-                    <div>
-                        <div class="admin-news-item-title">${b.judul}</div>
-                        <div class="admin-news-item-date">${formatTanggal(b.tanggal)} — <em style="color:#aaa;">Berita Utama</em></div>
-                    </div>
-                </div>`;
-            });
-            tambahan.forEach(b => {
-                html += `<div class="admin-news-item">
-                    <span style="font-size:1.3rem;">${b.emoji||'📢'}</span>
-                    <div style="flex:1;">
-                        <div class="admin-news-item-title">${b.judul}</div>
-                        <div class="admin-news-item-date">${formatTanggal(b.tanggal)}</div>
-                    </div>
-                    <button class="admin-del-btn" onclick="hapusBerita('${b.id}')">🗑️ Hapus</button>
-                </div>`;
-            });
-            if (!html) html = '<p style="color:#aaa;font-size:0.88rem;">Belum ada berita.</p>';
-            list.innerHTML = html;
-        }
-
-        function simpanBerita() {
-            const judul   = document.getElementById('f-judul').value.trim();
-            const tanggal = document.getElementById('f-tanggal').value;
-            const excerpt = document.getElementById('f-excerpt').value.trim();
-            const isi     = document.getElementById('f-isi').value.trim();
-            const emoji   = document.getElementById('f-emoji').value;
-            if (!judul || !tanggal || !excerpt || !isi) {
-                alert('Mohon isi semua kolom yang bertanda *');
-                return;
-            }
-            const id = 'berita-' + Date.now();
-            const isiFormatted = isi.split('\n\n').map(p =>
-                `<p style="color:#444;line-height:1.85;margin-bottom:1rem;">${p.replace(/\n/g,'<br>')}</p>`
-            ).join('');
-            const tambahan = getBeritaTambahan();
-            tambahan.push({ id, judul, tanggal, excerpt, isi: isiFormatted, emoji, bawaan: false });
-            simpanBeritaTambahan(tambahan);
-            ['f-judul','f-tanggal','f-excerpt','f-isi'].forEach(fid => document.getElementById(fid).value = '');
-            renderBerita();
-            renderAdminList();
-            alert('✅ Berita berhasil disimpan!');
-        }
-
-        function hapusBerita(id) {
-            if (!confirm('Hapus berita ini?')) return;
-            simpanBeritaTambahan(getBeritaTambahan().filter(b => b.id !== id));
-            renderBerita();
-            renderAdminList();
-        }
+        document.getElementById('modal-alumni').addEventListener('click', function(e) {
+            if (e.target === this) tutupAlumni();
+        });
 
         // ===== EVENT HANDLERS =====
         window.addEventListener('click', function(e) {
             document.querySelectorAll('.modal').forEach(m => {
                 if (e.target === m) { m.style.display = 'none'; document.body.style.overflow = 'auto'; }
             });
-            const adminPanel = document.getElementById('admin-panel');
-            if (e.target === adminPanel) adminPanel.classList.remove('open');
         });
 
         document.addEventListener('keydown', function(e) {
@@ -3368,7 +3114,8 @@
                 if (e.key === 'Escape')     { tutupLightbox(); return; }
             }
             if (e.key === 'Escape') {
-                document.getElementById('admin-panel').classList.remove('open');
+                tutupPengembang();
+                tutupAlumni();
                 document.querySelectorAll('.modal').forEach(m => { m.style.display = 'none'; });
                 document.body.style.overflow = 'auto';
             }
@@ -3380,11 +3127,7 @@
             { id: 'g-outdoor', src: 'images/outdoor_study.jpeg', caption: 'Kegiatan Pembelajaran Outdoor',  kategori: 'Kegiatan Siswa', bawaan: true },
             { id: 'g-tka',     src: 'images/tka2025.jpeg',       caption: 'TKA 2025',                       kategori: 'UKK / Ujian',    bawaan: true }
         ];
-        function getGaleriTambahan() {
-            try { return JSON.parse(localStorage.getItem('smk_galeri') || '[]'); } catch(e) { return []; }
-        }
-        function simpanGaleriTambahan(arr) { localStorage.setItem('smk_galeri', JSON.stringify(arr)); }
-        function getAllGaleri() { return [...GALERI_BAWAAN, ...getGaleriTambahan()]; }
+        function getAllGaleri() { return GALERI_BAWAAN; }
 
         // ===== RENDER GALERI =====
         function renderGaleri() {
@@ -3400,17 +3143,14 @@
                 const item = document.createElement('div');
                 item.className = `gallery-item reveal reveal-delay-${delay}`;
                 item.dataset.gid = f.id;
-                item.onclick = (e) => { if (e.target.classList.contains('gallery-del-btn')) return; bukaLightbox(i); };
+                item.onclick = () => bukaLightbox(i);
                 item.innerHTML = `
                     <img src="${f.src}" alt="${f.caption}"
                         onerror="this.parentNode.style.background='linear-gradient(135deg,#4f8a5b,#2d5f3f)';this.style.display='none'">
                     <div class="gallery-caption">
                         <strong>${f.caption}</strong>
                         ${f.kategori ? `<br><small style="opacity:0.8;">${f.kategori}</small>` : ''}
-                    </div>
-                    ${f.bawaan
-                        ? `<span class="gallery-badge">Bawaan</span>`
-                        : `<button class="gallery-del-btn" onclick="hapusFoto('${f.id}',event)" title="Hapus foto">🗑</button>`}`;
+                    </div>`;
                 grid.appendChild(item);
             });
             document.querySelectorAll('.gallery-item.reveal').forEach(el => revealObserver.observe(el));
@@ -3445,80 +3185,6 @@
         }
         document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) tutupLightbox(); });
 
-        // ===== UPLOAD & SIMPAN FOTO =====
-        function previewFoto(input) {
-            if (!input.files || !input.files[0]) return;
-            if (input.files[0].size > 5 * 1024 * 1024) { alert('Ukuran foto maksimal 5MB'); input.value = ''; return; }
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const prev = document.getElementById('preview-foto');
-                prev.src = e.target.result;
-                prev.style.display = 'block';
-                document.getElementById('upload-placeholder').style.display = 'none';
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-        function simpanFoto() {
-            const input = document.getElementById('f-foto-upload');
-            const caption = document.getElementById('f-foto-caption').value.trim();
-            const kategori = document.getElementById('f-foto-kategori').value;
-            if (!input.files || !input.files[0]) { alert('Pilih foto terlebih dahulu'); return; }
-            if (!caption) { alert('Isi keterangan foto'); return; }
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const id = 'gfoto-' + Date.now();
-                const tambahan = getGaleriTambahan();
-                tambahan.push({ id, src: e.target.result, caption, kategori, bawaan: false });
-                simpanGaleriTambahan(tambahan);
-                renderGaleri();
-                renderAdminGalleryList();
-                resetFormFoto();
-                alert('✅ Foto berhasil ditambahkan ke galeri!');
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-        function resetFormFoto() {
-            document.getElementById('f-foto-upload').value = '';
-            document.getElementById('f-foto-caption').value = '';
-            document.getElementById('preview-foto').style.display = 'none';
-            document.getElementById('upload-placeholder').style.display = 'block';
-        }
-        function hapusFoto(id, e) {
-            e.stopPropagation();
-            if (!confirm('Hapus foto ini dari galeri?')) return;
-            simpanGaleriTambahan(getGaleriTambahan().filter(f => f.id !== id));
-            renderGaleri();
-            renderAdminGalleryList();
-        }
-
-        // ===== ADMIN GALLERY LIST =====
-        let editModeAktif = false;
-        function toggleEditMode() {
-            editModeAktif = !editModeAktif;
-            const grid = document.getElementById('gallery-grid');
-            const btn = document.getElementById('edit-mode-btn');
-            grid.classList.toggle('gallery-edit-mode', editModeAktif);
-            btn.textContent = editModeAktif ? '✅ Selesai Edit' : '✏️ Mode Hapus';
-            btn.style.background = editModeAktif ? '#dcfce7' : '#fff8e1';
-            btn.style.color = editModeAktif ? '#166534' : '#b45309';
-            btn.style.borderColor = editModeAktif ? '#86efac' : '#fcd34d';
-        }
-        function renderAdminGalleryList() {
-            const list = document.getElementById('admin-gallery-list');
-            const semua = getAllGaleri();
-            if (semua.length === 0) {
-                list.innerHTML = '<p style="color:#aaa;font-size:0.85rem;grid-column:1/-1;">Belum ada foto.</p>';
-                return;
-            }
-            list.innerHTML = semua.map(f => `
-                <div style="position:relative;border-radius:8px;overflow:hidden;height:80px;background:#e8f3ec;">
-                    <img src="${f.src}" alt="${f.caption}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
-                    <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(26,77,46,0.8);color:white;font-size:0.62rem;padding:0.2rem 0.4rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${f.caption}</div>
-                    ${!f.bawaan ? `<button onclick="hapusFoto('${f.id}',event)"
-                        style="position:absolute;top:3px;right:3px;background:rgba(185,28,28,0.85);color:white;border:none;border-radius:50%;width:22px;height:22px;font-size:0.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>` : ''}
-                </div>`).join('');
-        }
-
         // ===== TOGGLE SAMBUTAN =====
         function toggleSambutan() {
             const lanjutan = document.getElementById('sambutan-lanjutan');
@@ -3526,110 +3192,6 @@
             const isOpen = lanjutan.classList.contains('show');
             lanjutan.classList.toggle('show');
             btn.textContent = isOpen ? 'Baca Selengkapnya ▼' : 'Tutup ▲';
-        }
-
-        // ===== SPMB FOTO ADMIN =====
-        function getFotoSpmb() {
-            try { return JSON.parse(localStorage.getItem('smk_spmb_foto') || '[]'); } catch(e) { return []; }
-        }
-        function simpanFotoSpmbData(arr) { localStorage.setItem('smk_spmb_foto', JSON.stringify(arr)); }
-
-        function previewFotoSpmb(input) {
-            if (!input.files || !input.files[0]) return;
-            if (input.files[0].size > 5 * 1024 * 1024) { alert('Ukuran foto maksimal 5MB'); input.value = ''; return; }
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const prev = document.getElementById('preview-foto-spmb');
-                prev.src = e.target.result;
-                prev.style.display = 'block';
-                document.getElementById('spmb-upload-placeholder').style.display = 'none';
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-
-        function simpanFotoSpmb() {
-            const input = document.getElementById('f-spmb-upload');
-            const caption = document.getElementById('f-spmb-caption').value.trim();
-            const kategori = document.getElementById('f-spmb-kategori').value;
-            if (!input.files || !input.files[0]) { alert('Pilih foto terlebih dahulu'); return; }
-            if (!caption) { alert('Isi keterangan foto'); return; }
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const id = 'spmb-' + Date.now();
-                const arr = getFotoSpmb();
-                arr.push({ id, src: e.target.result, caption, kategori });
-                simpanFotoSpmbData(arr);
-                renderFotoSpmb();
-                renderAdminSpmbList();
-                // reset
-                input.value = '';
-                document.getElementById('f-spmb-caption').value = '';
-                document.getElementById('preview-foto-spmb').style.display = 'none';
-                document.getElementById('spmb-upload-placeholder').style.display = 'block';
-                alert('✅ Foto SPMB berhasil disimpan!');
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-
-        function hapusFotoSpmb(id, e) {
-            if (e) e.stopPropagation();
-            if (!confirm('Hapus foto SPMB ini?')) return;
-            simpanFotoSpmbData(getFotoSpmb().filter(f => f.id !== id));
-            renderFotoSpmb();
-            renderAdminSpmbList();
-        }
-
-        function renderFotoSpmb() {
-            const grid = document.getElementById('spmb-foto-grid');
-            const empty = document.getElementById('spmb-foto-empty');
-            const fotos = getFotoSpmb();
-            // clear old photos but keep empty msg
-            grid.querySelectorAll('.spmb-foto-item').forEach(el => el.remove());
-            if (fotos.length === 0) {
-                if (empty) empty.style.display = 'block';
-                return;
-            }
-            if (empty) empty.style.display = 'none';
-            fotos.forEach(f => {
-                const div = document.createElement('div');
-                div.className = 'spmb-foto-item gallery-item';
-                div.style.cssText = 'border-radius:12px;overflow:hidden;position:relative;cursor:pointer;';
-                div.innerHTML = `
-                    <img src="${f.src}" alt="${f.caption}" style="width:100%;height:160px;object-fit:cover;display:block;"
-                        onerror="this.parentNode.style.background='#c5e8d3';this.style.display='none'">
-                    <div style="padding:0.5rem 0.7rem;background:white;">
-                        <p style="font-size:0.8rem;font-weight:600;color:var(--primary-green);margin:0;">${f.caption}</p>
-                        <span style="font-size:0.72rem;color:#888;">${f.kategori}</span>
-                    </div>`;
-                grid.appendChild(div);
-            });
-        }
-
-        let spmbEditMode = false;
-        function toggleEditModeSpmb() {
-            spmbEditMode = !spmbEditMode;
-            const btn = document.getElementById('spmb-edit-mode-btn');
-            btn.textContent = spmbEditMode ? '✅ Selesai Edit' : '✏️ Mode Hapus';
-            btn.style.background = spmbEditMode ? '#dcfce7' : '#fff8e1';
-            btn.style.color = spmbEditMode ? '#166534' : '#b45309';
-            btn.style.borderColor = spmbEditMode ? '#86efac' : '#fcd34d';
-            renderAdminSpmbList();
-        }
-
-        function renderAdminSpmbList() {
-            const list = document.getElementById('admin-spmb-list');
-            const fotos = getFotoSpmb();
-            if (fotos.length === 0) {
-                list.innerHTML = '<p style="color:#aaa;font-size:0.85rem;grid-column:1/-1;">Belum ada foto SPMB.</p>';
-                return;
-            }
-            list.innerHTML = fotos.map(f => `
-                <div style="position:relative;border-radius:8px;overflow:hidden;height:80px;background:#e8f3ec;">
-                    <img src="${f.src}" alt="${f.caption}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
-                    <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(26,77,46,0.85);color:white;font-size:0.62rem;padding:0.2rem 0.4rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${f.caption}</div>
-                    <button onclick="hapusFotoSpmb('${f.id}',event)"
-                        style="position:absolute;top:3px;right:3px;background:rgba(185,28,28,0.85);color:white;border:none;border-radius:50%;width:22px;height:22px;font-size:0.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
-                </div>`).join('');
         }
 
         // ===== SPMB TAB SWITCHING =====
@@ -3668,7 +3230,6 @@
         // ===== COUNTER ANIMATION =====
         function animateCounter(el) {
             const target = parseInt(el.getAttribute('data-target'));
-            const suffix = el.closest('.stat-item').querySelector('.stat-label').textContent.includes('%') ? '+' : '+';
             let current = 0;
             const duration = 1800;
             const step = target / (duration / 16);
@@ -3678,7 +3239,7 @@
                     current = target;
                     clearInterval(timer);
                 }
-                el.textContent = Math.floor(current) + suffix;
+                el.textContent = Math.floor(current) + '+';
             }, 16);
         }
 
@@ -3723,7 +3284,6 @@
         // ===== INIT =====
         renderBerita();
         renderGaleri();
-        renderFotoSpmb();
         cekUrlBerita();
     </script>
 </body>
