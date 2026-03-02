@@ -1217,14 +1217,108 @@
             margin-bottom: 0.5rem;
         }
 
-        /* ===== SAMBUTAN KEPALA SEKOLAH ===== */
-        .sambutan-wrapper {
+        /* ===== SAMBUTAN + BERITA BERANDA (2 KOLOM) ===== */
+        .beranda-dua-kolom {
             max-width: 1400px;
             margin: 0 auto;
             padding: 5rem 2rem;
             display: grid;
-            grid-template-columns: 340px 1fr;
-            gap: 5rem;
+            grid-template-columns: 1fr 380px;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* Kolom kiri: sambutan */
+        .kolom-sambutan {}
+
+        /* Kolom kanan: berita mini sticky */
+        .kolom-berita-sidebar {
+            position: sticky;
+            top: 90px;
+            max-height: calc(100vh - 110px);
+            overflow-y: auto;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(26,77,46,0.12);
+            padding: 1.5rem;
+        }
+        .kolom-berita-sidebar::-webkit-scrollbar { width: 5px; }
+        .kolom-berita-sidebar::-webkit-scrollbar-thumb { background: var(--light-green); border-radius: 99px; }
+
+        .sidebar-berita-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #e8f3ec;
+        }
+        .sidebar-berita-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--primary-green);
+        }
+        .sidebar-berita-header a {
+            font-size: 0.78rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .sidebar-berita-header a:hover { text-decoration: underline; }
+
+        .sidebar-news-item {
+            display: flex;
+            gap: 0.9rem;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid #f0f4f1;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-radius: 8px;
+            padding-left: 0.5rem;
+        }
+        .sidebar-news-item:last-child { border-bottom: none; }
+        .sidebar-news-item:hover { background: #f4fbf6; }
+
+        .sidebar-news-thumb {
+            width: 70px;
+            height: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--accent-green), var(--secondary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+        }
+        .sidebar-news-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .sidebar-news-info { flex: 1; min-width: 0; }
+        .sidebar-news-date {
+            font-size: 0.72rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+        .sidebar-news-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            line-height: 1.35;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* ===== SAMBUTAN KEPALA SEKOLAH ===== */
+        .sambutan-wrapper {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 3.5rem;
             align-items: center;
         }
 
@@ -1407,6 +1501,10 @@
             margin-top: 0.2rem;
         }
 
+        @media (max-width: 1100px) {
+            .beranda-dua-kolom { grid-template-columns: 1fr; }
+            .kolom-berita-sidebar { position: static; max-height: none; }
+        }
         @media (max-width: 900px) {
             .sambutan-wrapper {
                 grid-template-columns: 1fr;
@@ -1418,6 +1516,7 @@
             .sambutan-label { justify-content: center; }
             .ttd-garis { margin: 0 auto 0.8rem; }
             .sambutan-judul { font-size: 1.8rem; }
+            .beranda-dua-kolom { padding: 3rem 1.5rem; gap: 2rem; }
         }
 
         /* ===== LOGIN MODAL ===== */
@@ -2521,8 +2620,13 @@
         </div>
     </section>
 
-    <!-- Sambutan Kepala Sekolah -->
-    <section id="sambutan" style="background: white; padding: 0; margin: 0; max-width: 100%;">
+    <!-- Sambutan Kepala Sekolah + Sidebar Berita (2 Kolom) -->
+    <div style="background: white; margin: 0; max-width: 100%;">
+      <div class="beranda-dua-kolom">
+
+        <!-- Kolom Kiri: Sambutan -->
+        <div class="kolom-sambutan">
+        <section id="sambutan" style="padding: 0; margin: 0; max-width: 100%;">
         <div class="sambutan-wrapper">
             <div class="sambutan-foto-col reveal-left">
                 <div class="sambutan-foto-frame">
@@ -2571,9 +2675,24 @@
                 </div>
             </div>
         </div>
-    </section>
+        </section>
+        </div><!-- end kolom-sambutan -->
 
-    <!-- Berita & Pengumuman -->
+        <!-- Kolom Kanan: Sidebar Berita (sticky) -->
+        <aside class="kolom-berita-sidebar">
+            <div class="sidebar-berita-header">
+                <h3>📰 Berita Terkini</h3>
+                <a href="#berita">Lihat semua →</a>
+            </div>
+            <div id="sidebar-news-list">
+                <!-- Diisi oleh JavaScript -->
+            </div>
+        </aside>
+
+      </div><!-- end beranda-dua-kolom -->
+    </div>
+
+    <!-- Berita & Pengumuman (Lengkap) -->
     <section id="berita">
         <h2 class="section-title reveal-left">Berita & Pengumuman</h2>
         <p class="section-subtitle reveal-left reveal-delay-1">Informasi terkini seputar kegiatan sekolah</p>
@@ -2946,6 +3065,45 @@
                 <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Kegiatan ini tidak hanya menguji kompetensi, tapi juga memperkuat sinergi sekolah dengan industri peternakan lokal. Para siswa berharap hasil UKK ini membuka peluang sertifikasi nasional dan karir di sektor peternakan ruminansia yang sedang berkembang di Kepulauan Riau.</p>
                 <p style="color:#444;line-height:1.85;">SMK Negeri 1 Lingga terus berkomitmen menghasilkan lulusan unggul yang kompeten dan berwawasan lingkungan dalam bidang peternakan.</p>`,
                 bawaan: true
+            },
+            {
+                id: 'classmeeting-2025',
+                judul: 'Class Meeting 2025: Ajang Unjuk Bakat dan Kreativitas Siswa SMKN 1 Lingga',
+                tanggal: '2025-12-20',
+                excerpt: 'Kegiatan Class Meeting 2025 berlangsung meriah di SMKN 1 Lingga. Berbagai perlombaan olahraga dan seni digelar untuk merayakan akhir semester...',
+                emoji: '🏆',
+                gambar: 'images/classmeeting.jpeg',
+                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>Lingga</strong> &ndash; SMK Negeri 1 Lingga sukses menggelar kegiatan Class Meeting 2025 yang berlangsung meriah dan penuh semangat. Kegiatan ini diadakan sebagai ajang hiburan dan kompetisi sehat antar kelas menjelang akhir semester.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Berbagai perlombaan dihelat dalam kegiatan ini, mulai dari pertandingan olahraga seperti voli dan futsal, hingga lomba kreativitas seni dan permainan tradisional. Antusias siswa sangat terasa sejak hari pertama pelaksanaan.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Class meeting ini bukan hanya soal menang atau kalah, tapi tentang mempererat persaudaraan dan menumbuhkan semangat sportivitas," ujar Wakil Kepala Sekolah Bidang Kesiswaan.</p>
+                <p style="color:#444;line-height:1.85;">Kegiatan ini diakhiri dengan pengumuman juara dan pemberian hadiah kepada peserta terbaik dari masing-masing kategori perlombaan. SMKN 1 Lingga berharap kegiatan seperti ini dapat terus menjadi tradisi positif yang memperkuat karakter siswa.</p>`,
+                bawaan: true
+            },
+            {
+                id: 'guru-tamu-pt-rahayu-2026',
+                judul: 'Guru Tamu SMKN 1 Lingga Perkuat Mutu Pendidikan Vokasi Lewat Kemitraan dengan PT Rahayu Agro Makmur',
+                tanggal: '2026-03-02',
+                excerpt: 'Program Guru Tamu SMKN 1 Lingga menunjukkan komitmen kuat dalam meningkatkan mutu pendidikan vokasi serta membangun kemitraan produktif dengan dunia usaha dan industri (DUDI) melalui kunjungan ke PT Rahayu Agro Makmur, Batam...',
+                emoji: '🤝',
+                gambar: 'images/gurutamu1.jpg',
+                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>Lingga, 2 Maret 2026</strong> &ndash; Program Guru Tamu SMKN 1 Lingga menunjukkan komitmen kuat dalam meningkatkan mutu pendidikan vokasi serta membangun kemitraan produktif dengan dunia usaha dan dunia industri (DUDI). Kunjungan kerja sama ini dilakukan pada Sabtu, 28 Februari 2026, ke PT Rahayu Agro Makmur di Komplek Ruko Cemara Asri Blok CC 7 No. 32, Batam.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Dalam kunjungan tersebut, tim guru tamu SMKN 1 Lingga bertemu dengan pemilik PT Rahayu Agro Makmur, <strong>Eka Susanto, S.Pd</strong>, serta dua tokoh penting lainnya, yakni <strong>Hasyim Ahmad Alhadromi</strong> dan <strong>Hisam Ahmad Maulana</strong>. Pertemuan ini difokuskan pada upaya menjalin kerja sama dan bersinergi dengan DUDI guna mendukung pengembangan kompetensi siswa di bidang vokasi.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Melalui program ini, kami berkomitmen untuk terus meningkatkan kualitas pendidikan vokasi siswa SMKN 1 Lingga. Kerja sama dengan perusahaan seperti PT Rahayu Agro Makmur akan membuka peluang magang, pelatihan, dan penyerapan tenaga kerja yang lebih baik."</p>
+                <p style="color:#444;line-height:1.85;">Kunjungan ini diharapkan menjadi langkah awal bagi kemitraan jangka panjang yang saling menguntungkan, sejalan dengan visi sekolah untuk mencetak lulusan siap kerja dan kompetitif di bidang agribisnis ternak.</p>`,
+                bawaan: true
+            },
+            {
+                id: 'pelantikan-bantara-2026',
+                judul: 'Upacara Pelantikan Pramuka Bantara 2026: Membentuk Karakter Generasi Tangguh',
+                tanggal: '2026-01-15',
+                excerpt: 'SMKN 1 Lingga menggelar Upacara Pelantikan Pramuka Bantara 2026 dengan khidmat. Puluhan siswa resmi dilantik sebagai anggota Bantara...',
+                emoji: '⚜️',
+                gambar: 'images/upacara_pelantikan_bantara.jpeg',
+                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>Lingga</strong> &ndash; SMK Negeri 1 Lingga dengan bangga menyelenggarakan Upacara Pelantikan Pramuka Tingkat Bantara Tahun 2026. Kegiatan sakral ini dihadiri oleh seluruh dewan guru, pembina pramuka, dan orang tua siswa yang dilantik.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Puluhan siswa yang telah mengikuti serangkaian uji kompetensi kepramukaan resmi dilantik sebagai anggota Pramuka Bantara. Mereka telah membuktikan diri melalui berbagai kegiatan outdoor, latihan kepemimpinan, dan ujian kecakapan.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Menjadi anggota Bantara berarti siap memikul tanggung jawab yang lebih besar, baik untuk diri sendiri, keluarga, maupun masyarakat," pesan Kakak Pembina dalam upacara.</p>
+                <p style="color:#444;line-height:1.85;">Pramuka SMKN 1 Lingga terus berkembang sebagai wahana pembentukan karakter siswa yang disiplin, mandiri, dan berjiwa sosial tinggi. Selamat kepada seluruh anggota Bantara yang baru dilantik!</p>`,
+                bawaan: true
             }
         ];
 
@@ -3285,8 +3443,42 @@
         }, { threshold: 0.12, rootMargin: '-30px 0px' });
         document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
 
+        // ===== RENDER SIDEBAR BERITA (BERANDA) =====
+        function renderSidebarBerita() {
+            const list = document.getElementById('sidebar-news-list');
+            if (!list) return;
+            const semua = getAllBerita();
+            list.innerHTML = '';
+            semua.forEach((b, i) => {
+                const item = document.createElement('div');
+                item.className = 'sidebar-news-item';
+                item.onclick = () => {
+                    document.getElementById('berita').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => {
+                        const card = document.querySelector(`.news-card[data-id="${b.id}"]`);
+                        if (card) {
+                            document.querySelectorAll('.news-card.expanded').forEach(c => c.classList.remove('expanded'));
+                            card.classList.add('expanded');
+                            setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+                        }
+                    }, 600);
+                };
+                const imgHTML = b.gambar
+                    ? `<img src="${b.gambar}" alt="${b.judul}" onerror="this.parentNode.innerHTML='<span style=\\'font-size:1.6rem;\\'>${b.emoji||'📢'}</span>'">`
+                    : `<span style="font-size:1.6rem;">${b.emoji||'📢'}</span>`;
+                item.innerHTML = `
+                    <div class="sidebar-news-thumb">${imgHTML}</div>
+                    <div class="sidebar-news-info">
+                        <div class="sidebar-news-date">📅 ${formatTanggal(b.tanggal)}</div>
+                        <div class="sidebar-news-title">${b.judul}</div>
+                    </div>`;
+                list.appendChild(item);
+            });
+        }
+
         // ===== INIT =====
         renderBerita();
+        renderSidebarBerita();
         renderGaleri();
         cekUrlBerita();
     </script>
