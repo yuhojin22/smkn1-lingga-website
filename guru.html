@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guru & Staf - SMK Negeri 1 Lingga</title>
+    <link rel="icon" type="image/x-icon" href="images/logo-smk.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #1a4d2e;
+            --secondary-green: #2d5f3f;
+            --accent-green: #4f8a5b;
+            --light-green: #a8d5ba;
+            --cream: #faf8f3;
+            --dark-text: #1a2412;
+            --light-text: #f0f4f1;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Work Sans', sans-serif; color: var(--dark-text); background: var(--cream); }
+
+        /* NAV */
+        nav {
+            position: fixed; width: 100%; top: 0;
+            background: rgba(26, 77, 46, 0.97);
+            backdrop-filter: blur(10px);
+            z-index: 1000; padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            max-width: 1400px; margin: 0 auto; padding: 0 2rem;
+            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900;
+            color: var(--light-text); letter-spacing: 1px;
+            display: flex; align-items: center; gap: 0.75rem; text-decoration: none;
+        }
+        .logo-img { width: 38px; height: 38px; object-fit: contain; }
+        .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+        .logo-text span:first-child { font-size: 1.1rem; }
+        .logo-text span:last-child { font-size: 0.65rem; font-family: 'Work Sans', sans-serif; font-weight: 400; color: var(--light-green); }
+        .back-btn {
+            background: rgba(255,255,255,0.12); color: white;
+            border: 1px solid rgba(255,255,255,0.25); border-radius: 99px;
+            padding: 0.45rem 1.1rem; font-size: 0.85rem; font-weight: 500;
+            cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 0.4rem;
+            transition: background 0.2s; font-family: 'Work Sans', sans-serif;
+        }
+        .back-btn:hover { background: rgba(168,213,186,0.2); }
+
+        /* HERO */
+        .page-hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '👨‍🏫';
+            position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+            font-size: 8rem; opacity: 0.07;
+        }
+        .page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem; color: white; margin-bottom: 0.7rem;
+        }
+        .page-hero p { color: var(--light-green); font-size: 1rem; }
+
+        /* ANCHOR TABS */
+        .anchor-tabs {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            position: sticky; top: 70px; z-index: 100;
+        }
+        .anchor-tabs-inner {
+            max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+            display: flex; gap: 0; overflow-x: auto;
+        }
+        .anchor-tab {
+            padding: 1rem 1.4rem; border: none; background: none;
+            font-family: 'Work Sans', sans-serif; font-size: 0.9rem;
+            font-weight: 500; color: #777; cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.25s; white-space: nowrap; text-decoration: none;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .anchor-tab:hover { color: var(--primary-green); }
+        .anchor-tab.active { color: var(--primary-green); border-bottom-color: var(--accent-green); font-weight: 600; }
+
+        /* MAIN CONTENT */
+        main { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+        /* SECTION */
+        .guru-section { margin-bottom: 4rem; }
+        .guru-section-header {
+            display: flex; align-items: center; gap: 1rem;
+            margin-bottom: 2rem; padding-bottom: 1rem;
+            border-bottom: 2px solid #e8f3ec;
+        }
+        .guru-section-icon {
+            width: 52px; height: 52px;
+            background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; flex-shrink: 0;
+        }
+        .guru-section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; color: var(--primary-green);
+        }
+        .guru-section-header p { font-size: 0.85rem; color: #888; margin-top: 0.15rem; }
+
+        /* KEPALA SEKOLAH CARD (special) */
+        .kepsek-card {
+            background: white; border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(26,77,46,0.12);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            border-left: 5px solid var(--accent-green);
+            margin-bottom: 1rem;
+        }
+        .kepsek-photo {
+            width: 160px; height: 190px;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 3px solid var(--light-green);
+            background: linear-gradient(135deg, var(--accent-green), var(--light-green));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 4rem; overflow: hidden; flex-shrink: 0;
+        }
+        .kepsek-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .kepsek-info {}
+        .kepsek-jabatan-badge {
+            display: inline-block;
+            background: rgba(79,138,91,0.1);
+            color: var(--accent-green);
+            border: 1px solid rgba(79,138,91,0.3);
+            border-radius: 99px; padding: 0.25rem 0.9rem;
+            font-size: 0.75rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            margin-bottom: 0.8rem;
+        }
+        .kepsek-nama {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; color: var(--primary-green);
+            font-weight: 700; margin-bottom: 0.3rem;
+        }
+        .kepsek-nip { font-size: 0.9rem; color: #888; margin-bottom: 1rem; }
+        .kepsek-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.8rem; margin-top: 1rem;
+        }
+        .kepsek-detail-item {
+            background: var(--cream); border-radius: 10px;
+            padding: 0.75rem 1rem;
+        }
+        .kepsek-detail-item label {
+            font-size: 0.7rem; color: var(--accent-green);
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+            display: block; margin-bottom: 0.15rem;
+        }
+        .kepsek-detail-item span { font-weight: 600; color: var(--dark-text); font-size: 0.9rem; }
+
+        /* GURU GRID */
+        .guru-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        .guru-card {
+            background: white; border-radius: 18px;
+            padding: 1.8rem 1.2rem; text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            border: 1.5px solid #eef5ef;
+            transition: all 0.3s ease;
+        }
+        .guru-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 35px rgba(26,77,46,0.13);
+            border-color: var(--light-green);
+        }
+        .guru-foto-wrap {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            border: 3px solid var(--light-green);
+            background: linear-gradient(135deg, var(--accent-green), var(--light-green));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem;
+        }
+        .guru-foto-wrap img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .guru-nama {
+            font-weight: 700; color: var(--primary-green);
+            font-size: 0.97rem; margin-bottom: 0.25rem;
+            line-height: 1.3;
+        }
+        .guru-mapel {
+            font-size: 0.8rem; color: var(--accent-green);
+            font-weight: 600; margin-bottom: 0.2rem;
+        }
+        .guru-nip {
+            font-size: 0.72rem; color: #aaa;
+            font-weight: 400;
+        }
+        .guru-badge {
+            display: inline-block; margin-top: 0.5rem;
+            background: rgba(79,138,91,0.08); color: var(--accent-green);
+            border-radius: 99px; padding: 0.18rem 0.7rem;
+            font-size: 0.7rem; font-weight: 600;
+        }
+
+        /* TU GRID */
+        .tu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.2rem;
+        }
+        .tu-card {
+            background: white; border-radius: 14px;
+            padding: 1.3rem 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--accent-green);
+            display: flex; align-items: center; gap: 1rem;
+            transition: all 0.3s;
+        }
+        .tu-card:hover { transform: translateX(5px); box-shadow: 0 8px 25px rgba(26,77,46,0.1); }
+        .tu-foto-wrap {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            overflow: hidden; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--accent-green), var(--light-green));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; border: 2.5px solid var(--light-green);
+        }
+        .tu-foto-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .tu-info {}
+        .tu-nama { font-weight: 700; color: var(--primary-green); font-size: 0.95rem; }
+        .tu-jabatan { font-size: 0.8rem; color: var(--accent-green); font-weight: 600; margin-top: 0.15rem; }
+        .tu-nip { font-size: 0.72rem; color: #aaa; margin-top: 0.1rem; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 1.9rem; }
+            .kepsek-card { grid-template-columns: 1fr; text-align: center; }
+            .kepsek-photo { margin: 0 auto; }
+            .guru-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+            .guru-foto-wrap { width: 80px; height: 80px; font-size: 2rem; }
+        }
+
+        /* SCROLL REVEAL */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+        .reveal-delay-1 { transition-delay: 0.08s; }
+        .reveal-delay-2 { transition-delay: 0.16s; }
+        .reveal-delay-3 { transition-delay: 0.24s; }
+        .reveal-delay-4 { transition-delay: 0.32s; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo-smk.ico" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+                <div class="logo-text">
+                    <span>SMKN 1 LINGGA</span>
+                    <span>Kepulauan Riau</span>
+                </div>
+            </a>
+            <a href="index.html" class="back-btn">← Kembali ke Beranda</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="page-hero">
+        <h1>Guru & Staf</h1>
+        <p>SMK Negeri 1 Lingga — Kepulauan Riau</p>
+    </div>
+
+    <!-- ANCHOR TABS -->
+    <div class="anchor-tabs">
+        <div class="anchor-tabs-inner">
+            <a class="anchor-tab active" href="#kepala">👨‍💼 Kepala Sekolah</a>
+            <a class="anchor-tab" href="#produktif">🔬 Guru Produktif</a>
+            <a class="anchor-tab" href="#normatif">📚 Guru Normatif</a>
+            <a class="anchor-tab" href="#tu">🏢 Tata Usaha</a>
+        </div>
+    </div>
+
+    <main>
+
+        <!-- ===== KEPALA SEKOLAH ===== -->
+        <div class="guru-section" id="kepala">
+            <div class="guru-section-header">
+                <div class="guru-section-icon">👨‍💼</div>
+                <div>
+                    <h2>Kepala Sekolah</h2>
+                    <p>Pimpinan SMK Negeri 1 Lingga</p>
+                </div>
+            </div>
+
+            <div class="kepsek-card reveal">
+                <div class="kepsek-photo">
+                    <img src="images/kepsek.png" alt="Kepala Sekolah"
+                        onerror="this.style.display='none'; this.parentElement.textContent='👨‍💼'">
+                </div>
+                <div class="kepsek-info">
+                    <div class="kepsek-jabatan-badge">Kepala Sekolah</div>
+                    <div class="kepsek-nama">SYAFITRIANDY, S.Pd.I</div>
+                    <div class="kepsek-nip">NIP. 198110202009031006</div>
+                    <div class="kepsek-detail-grid">
+                        <div class="kepsek-detail-item">
+                            <label>Pendidikan</label>
+                            <span>S1 Pendidikan</span>
+                        </div>
+                        <div class="kepsek-detail-item">
+                            <label>Bidang Keahlian</label>
+                            <span>Manajemen Pendidikan</span>
+                        </div>
+                        <div class="kepsek-detail-item">
+                            <label>Status</label>
+                            <span>PNS / ASN</span>
+                        </div>
+                        <div class="kepsek-detail-item">
+                            <label>Sekolah</label>
+                            <span>SMK Negeri 1 Lingga</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== GURU PRODUKTIF ===== -->
+        <div class="guru-section" id="produktif">
+            <div class="guru-section-header">
+                <div class="guru-section-icon">🔬</div>
+                <div>
+                    <h2>Guru Produktif</h2>
+                    <p>Pengajar mata pelajaran Agribisnis Ternak Ruminansia</p>
+                </div>
+            </div>
+
+            <div class="guru-grid">
+                <div class="guru-card reveal reveal-delay-1">
+                    <div class="guru-foto-wrap">
+                        <img src="images/DESTIANKUDUS.jpeg" alt="Destian Kudus"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                    </div>
+                    <div class="guru-nama">Destian Kudus</div>
+                    <div class="guru-mapel">Guru Produktif</div>
+                    <div class="guru-nip">NIP. -</div>
+                    <span class="guru-badge">Guru Produktif</span>
+                </div>
+
+                <div class="guru-card reveal reveal-delay-2">
+                    <div class="guru-foto-wrap">
+                        <img src="images/WARISSUKIJO.jpg" alt="Waris Sukijo"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                    </div>
+                    <div class="guru-nama">Waris Sukijo</div>
+                    <div class="guru-mapel">Guru Produktif</div>
+                    <div class="guru-nip">NIP. -</div>
+                    <span class="guru-badge">Guru Produktif</span>
+                </div>
+
+                <div class="guru-card reveal reveal-delay-3">
+                    <div class="guru-foto-wrap">
+                        <img src="images/ZAINI.jpeg" alt="Zaini"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                    </div>
+                    <div class="guru-nama">Zaini</div>
+                    <div class="guru-mapel">Guru Produktif</div>
+                    <div class="guru-nip">NIP. -</div>
+                    <span class="guru-badge">Guru Produktif</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== GURU NORMATIF / ADAPTIF ===== -->
+        <div class="guru-section" id="normatif">
+            <div class="guru-section-header">
+                <div class="guru-section-icon">📚</div>
+                <div>
+                    <h2>Guru Normatif & Adaptif</h2>
+                    <p>Pengajar mata pelajaran umum dan pendukung</p>
+                </div>
+            </div>
+
+            <div class="guru-grid">
+                <div class="guru-card reveal reveal-delay-1">
+                    <div class="guru-foto-wrap">
+                        <img src="images/AHMADIN.jpeg" alt="Ahmadin"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                    </div>
+                    <div class="guru-nama">Ahmadin</div>
+                    <div class="guru-mapel">Pendidikan Agama Islam</div>
+                    <div class="guru-nip">NIP. -</div>
+                    <span class="guru-badge">Guru Normatif</span>
+                </div>
+
+                <div class="guru-card reveal reveal-delay-2">
+                    <div class="guru-foto-wrap">
+                        <img src="images/KHORIYAH.jpeg" alt="Khoriyah"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👩‍🏫'">
+                    </div>
+                    <div class="guru-nama">Khoriyah</div>
+                    <div class="guru-mapel">Pendidikan Agama Islam</div>
+                    <div class="guru-nip">NIP. -</div>
+                    <span class="guru-badge">Guru Normatif</span>
+                </div>
+
+                <div class="guru-card reveal reveal-delay-3">
+                    <div class="guru-foto-wrap">
+                        <img src="images/ARINALDI.jpg" alt="Arinaldi"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                    </div>
+                    <div class="guru-nama">Arinaldi</div>
+                    <div class="guru-mapel">Matematika & Koding</div>
+                    <div class="guru-nip">NIP. -</div>
+                    <span class="guru-badge">Guru Adaptif</span>
+                </div>
+
+                <div class="guru-card reveal reveal-delay-4">
+                    <div class="guru-foto-wrap">
+                        <img src="images/SABARANI.jpeg" alt="Sabarani"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                    </div>
+                    <div class="guru-nama">Sabarani</div>
+                    <div class="guru-mapel">Bahasa Indonesia</div>
+                    <div class="guru-nip">NIP. -</div>
+                    <span class="guru-badge">Guru Normatif</span>
+                </div>
+
+                <div class="guru-card reveal reveal-delay-1">
+                    <div class="guru-foto-wrap">
+                        <img src="images/JUNAIDI.jpeg" alt="Junaidi"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                    </div>
+                    <div class="guru-nama">Junaidi</div>
+                    <div class="guru-mapel">Pendidikan Jasmani & Olahraga</div>
+                    <div class="guru-nip">NIP. -</div>
+                    <span class="guru-badge">Guru Adaptif</span>
+                </div>
+
+                <div class="guru-card reveal reveal-delay-2">
+                    <div class="guru-foto-wrap">
+                        <img src="images/LISANOVIYANTI.jpeg" alt="Lisa Noviyanti"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👩‍🏫'">
+                    </div>
+                    <div class="guru-nama">Lisa Noviyanti</div>
+                    <div class="guru-mapel">PIPAS</div>
+                    <div class="guru-nip">NIP. -</div>
+                    <span class="guru-badge">Guru Adaptif</span>
+                </div>
+
+                <div class="guru-card reveal reveal-delay-3">
+                    <div class="guru-foto-wrap">
+                        <img src="images/TARSIMTARIGAN.jpeg" alt="Tarsim Tarigan"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                    </div>
+                    <div class="guru-nama">Tarsim Tarigan</div>
+                    <div class="guru-mapel">Informatika</div>
+                    <div class="guru-nip">NIP. -</div>
+                    <span class="guru-badge">Guru Adaptif</span>
+                </div>
+
+                <div class="guru-card reveal reveal-delay-4">
+                    <div class="guru-foto-wrap">
+                        <img src="images/ZAINALABIDIN.jpeg" alt="Zainal Abidin"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                    </div>
+                    <div class="guru-nama">Zainal Abidin</div>
+                    <div class="guru-mapel">Guru Normatif</div>
+                    <div class="guru-nip">NIP. -</div>
+                    <span class="guru-badge">Guru Normatif</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== TATA USAHA ===== -->
+        <div class="guru-section" id="tu">
+            <div class="guru-section-header">
+                <div class="guru-section-icon">🏢</div>
+                <div>
+                    <h2>Tata Usaha</h2>
+                    <p>Staf administrasi dan operasional sekolah</p>
+                </div>
+            </div>
+
+            <div class="tu-grid">
+                <div class="tu-card reveal reveal-delay-1">
+                    <div class="tu-foto-wrap">
+                        <img src="images/HARMAN.jpeg" alt="Harman"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👨‍💼'">
+                    </div>
+                    <div class="tu-info">
+                        <div class="tu-nama">Harman</div>
+                        <div class="tu-jabatan">Tata Usaha</div>
+                        <div class="tu-nip">NIP. -</div>
+                    </div>
+                </div>
+
+                <div class="tu-card reveal reveal-delay-2">
+                    <div class="tu-foto-wrap">
+                        <img src="images/MIFTACHUDIN.jpeg" alt="Miftachudin"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👨‍💼'">
+                    </div>
+                    <div class="tu-info">
+                        <div class="tu-nama">Miftachudin</div>
+                        <div class="tu-jabatan">Tata Usaha</div>
+                        <div class="tu-nip">NIP. -</div>
+                    </div>
+                </div>
+
+                <div class="tu-card reveal reveal-delay-3">
+                    <div class="tu-foto-wrap">
+                        <img src="images/NORASIAH.jpeg" alt="Norasiah"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👩‍💼'">
+                    </div>
+                    <div class="tu-info">
+                        <div class="tu-nama">Norasiah</div>
+                        <div class="tu-jabatan">Tata Usaha</div>
+                        <div class="tu-nip">NIP. -</div>
+                    </div>
+                </div>
+
+                <div class="tu-card reveal reveal-delay-4">
+                    <div class="tu-foto-wrap">
+                        <img src="images/SAMPION.jpeg" alt="Sampion"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👨‍💼'">
+                    </div>
+                    <div class="tu-info">
+                        <div class="tu-nama">Sampion</div>
+                        <div class="tu-jabatan">Tata Usaha</div>
+                        <div class="tu-nip">NIP. -</div>
+                    </div>
+                </div>
+
+                <div class="tu-card reveal reveal-delay-1">
+                    <div class="tu-foto-wrap">
+                        <img src="images/UMAR.jpg" alt="Umar"
+                            onerror="this.style.display='none';this.parentElement.innerHTML='👨‍💼'">
+                    </div>
+                    <div class="tu-info">
+                        <div class="tu-nama">Umar</div>
+                        <div class="tu-jabatan">Tata Usaha</div>
+                        <div class="tu-nip">NIP. -</div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER MINI -->
+    <footer style="background: var(--primary-green); color: var(--light-green); text-align: center; padding: 1.5rem; font-size: 0.85rem;">
+        © 2026 SMK Negeri 1 Lingga — Kepulauan Riau &nbsp;·&nbsp;
+        <a href="index.html" style="color: var(--light-green);">Kembali ke Beranda</a>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const ro = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+        // Anchor tab highlight on scroll
+        const sections = ['kepala','produktif','normatif','tu'];
+        const tabs = document.querySelectorAll('.anchor-tab');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && window.scrollY >= el.offsetTop - 160) current = '#' + id;
+            });
+            tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === current));
+        }, { passive: true });
+
+        // Smooth scroll untuk anchor tabs
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) window.scrollTo({ top: target.offsetTop - 130, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
