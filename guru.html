@@ -250,6 +250,199 @@
         .tu-jabatan { font-size: 0.8rem; color: var(--accent-green); font-weight: 600; margin-top: 0.15rem; }
         .tu-nip { font-size: 0.72rem; color: #aaa; margin-top: 0.1rem; }
 
+        /* STRUKTUR ORGANISASI */
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            margin-top: 1rem;
+        }
+
+        /* Baris Kepala Sekolah */
+        .org-row-kepsek {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Garis vertikal dari kepsek ke bawah */
+        .org-vline {
+            width: 2px;
+            height: 36px;
+            background: var(--light-green);
+            margin: 0 auto;
+        }
+
+        /* Garis horizontal penghubung waka */
+        .org-hline-wrap {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            width: 100%;
+        }
+        .org-hline {
+            height: 2px;
+            background: var(--light-green);
+            flex: 1;
+            margin-top: 0;
+            align-self: flex-start;
+            margin-top: 36px;
+        }
+        .org-hline.hidden { background: transparent; }
+
+        /* Baris waka */
+        .org-row-waka {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            width: 100%;
+            position: relative;
+        }
+        .org-row-waka::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: var(--light-green);
+        }
+
+        /* Garis vertikal di atas tiap waka */
+        .org-waka-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+        .org-waka-vline {
+            width: 2px;
+            height: 28px;
+            background: var(--light-green);
+        }
+
+        /* Divider antara waka dan kepala unit */
+        .org-divider {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0 1.5rem;
+        }
+        .org-divider-line {
+            flex: 1;
+            height: 1.5px;
+            background: #dceee3;
+        }
+        .org-divider-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        /* Baris kepala unit */
+        .org-row-unit {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            width: 100%;
+        }
+
+        /* Card Waka */
+        .org-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.4rem 1rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(26,77,46,0.09);
+            border: 1.5px solid #e4f0e8;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .org-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 35px rgba(26,77,46,0.14);
+            border-color: var(--light-green);
+        }
+        .org-card.kepsek-style {
+            border: 2.5px solid var(--accent-green);
+            padding: 1.6rem 1.2rem;
+            min-width: 220px;
+            background: linear-gradient(145deg, #fff, #f2faf5);
+        }
+        .org-card.unit-style {
+            border-left: 4px solid var(--light-green);
+            border-radius: 12px;
+            padding: 1.1rem 1rem;
+            background: #fbfefb;
+        }
+        .org-foto-wrap {
+            width: 90px; height: 90px;
+            border-radius: 50%;
+            margin: 0 auto 0.8rem;
+            overflow: hidden;
+            border: 3px solid var(--light-green);
+            background: linear-gradient(135deg, var(--accent-green), var(--light-green));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.2rem;
+        }
+        .org-card.kepsek-style .org-foto-wrap {
+            width: 110px; height: 110px;
+            border-color: var(--accent-green);
+            border-width: 3.5px;
+        }
+        .org-card.unit-style .org-foto-wrap {
+            width: 72px; height: 72px;
+            font-size: 1.8rem;
+        }
+        .org-foto-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .org-jabatan-badge {
+            display: inline-block;
+            background: rgba(79,138,91,0.1);
+            color: var(--accent-green);
+            border: 1px solid rgba(79,138,91,0.25);
+            border-radius: 99px;
+            padding: 0.2rem 0.75rem;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            margin-bottom: 0.5rem;
+        }
+        .org-card.kepsek-style .org-jabatan-badge {
+            background: rgba(26,77,46,0.1);
+            color: var(--primary-green);
+            border-color: rgba(26,77,46,0.25);
+            font-size: 0.72rem;
+        }
+        .org-nama {
+            font-weight: 700;
+            color: var(--primary-green);
+            font-size: 0.88rem;
+            line-height: 1.3;
+            margin-bottom: 0.2rem;
+        }
+        .org-card.kepsek-style .org-nama {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+        }
+        .org-nip {
+            font-size: 0.68rem;
+            color: #bbb;
+        }
+
+        @media (max-width: 900px) {
+            .org-row-waka, .org-row-unit { grid-template-columns: repeat(2, 1fr); }
+            .org-row-waka::before { left: 25%; right: 25%; }
+        }
+        @media (max-width: 540px) {
+            .org-row-waka, .org-row-unit { grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+            .org-card.kepsek-style { min-width: unset; }
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .page-hero h1 { font-size: 1.9rem; }
@@ -304,45 +497,187 @@
 
     <main>
 
-        <!-- ===== KEPALA SEKOLAH ===== -->
+        <!-- ===== KEPALA SEKOLAH & STRUKTUR ORGANISASI ===== -->
         <div class="guru-section" id="kepala">
             <div class="guru-section-header">
                 <div class="guru-section-icon">👨‍💼</div>
                 <div>
-                    <h2>Kepala Sekolah</h2>
-                    <p>Pimpinan SMK Negeri 1 Lingga</p>
+                    <h2>Struktur Kepemimpinan</h2>
+                    <p>Kepala Sekolah & Wakil Kepala Sekolah SMK Negeri 1 Lingga</p>
                 </div>
             </div>
 
-            <div class="kepsek-card reveal">
-                <div class="kepsek-photo">
-                    <img src="images/kepsek.png" alt="Kepala Sekolah"
-                        onerror="this.style.display='none'; this.parentElement.textContent='👨‍💼'">
+            <div class="org-chart">
+
+                <!-- KEPALA SEKOLAH -->
+                <div class="org-row-kepsek">
+                    <div class="org-card kepsek-style reveal">
+                        <div class="org-foto-wrap">
+                            <img src="images/kepsek.png" alt="Kepala Sekolah"
+                                onerror="this.style.display='none';this.parentElement.innerHTML='👨‍💼'">
+                        </div>
+                        <div class="org-jabatan-badge">Kepala Sekolah</div>
+                        <div class="org-nama">Syafitriandy, S.Pd.I</div>
+                        <div class="org-nip">NIP. 198110202009031006</div>
+                    </div>
                 </div>
-                <div class="kepsek-info">
-                    <div class="kepsek-jabatan-badge">Kepala Sekolah</div>
-                    <div class="kepsek-nama">SYAFITRIANDY, S.Pd.I</div>
-                    <div class="kepsek-nip">NIP. 198110202009031006</div>
-                    <div class="kepsek-detail-grid">
-                        <div class="kepsek-detail-item">
-                            <label>Pendidikan</label>
-                            <span>S1 Pendidikan</span>
+
+                <!-- Garis vertikal ke bawah -->
+                <div class="org-vline"></div>
+
+                <!-- GARIS HORIZONTAL + WAKA -->
+                <div style="width:100%;">
+                    <div class="org-row-waka">
+
+                        <div class="org-waka-col">
+                            <div class="org-waka-vline"></div>
+                            <div class="org-card reveal reveal-delay-1">
+                                <div class="org-foto-wrap">
+                                    <img src="images/SABARANI.jpeg" alt="Sabarani"
+                                        onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                                </div>
+                                <div class="org-jabatan-badge">Waka Kurikulum</div>
+                                <div class="org-nama">Sabarani, S.Pd</div>
+                            </div>
                         </div>
-                        <div class="kepsek-detail-item">
-                            <label>Bidang Keahlian</label>
-                            <span>Manajemen Pendidikan</span>
+
+                        <div class="org-waka-col">
+                            <div class="org-waka-vline"></div>
+                            <div class="org-card reveal reveal-delay-2">
+                                <div class="org-foto-wrap">
+                                    <img src="images/ZAINALABIDIN.jpeg" alt="Zainal Abidin"
+                                        onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                                </div>
+                                <div class="org-jabatan-badge">Waka Kesiswaan</div>
+                                <div class="org-nama">Zainal Abidin, S.H</div>
+                            </div>
                         </div>
-                        <div class="kepsek-detail-item">
-                            <label>Status</label>
-                            <span>PNS / ASN</span>
+
+                        <div class="org-waka-col">
+                            <div class="org-waka-vline"></div>
+                            <div class="org-card reveal reveal-delay-3">
+                                <div class="org-foto-wrap">
+                                    <img src="images/LISTYORINI.jpeg" alt="Listyorini"
+                                        onerror="this.style.display='none';this.parentElement.innerHTML='👩‍🏫'">
+                                </div>
+                                <div class="org-jabatan-badge">Waka Humas</div>
+                                <div class="org-nama">Listyorini, S.Pd</div>
+                            </div>
                         </div>
-                        <div class="kepsek-detail-item">
-                            <label>Sekolah</label>
-                            <span>SMK Negeri 1 Lingga</span>
+
+                        <div class="org-waka-col">
+                            <div class="org-waka-vline"></div>
+                            <div class="org-card reveal reveal-delay-4">
+                                <div class="org-foto-wrap">
+                                    <img src="images/JUNAIDI.jpeg" alt="Junaidi"
+                                        onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                                </div>
+                                <div class="org-jabatan-badge">Waka Sarpras</div>
+                                <div class="org-nama">Junaidi, S.Pd</div>
+                            </div>
                         </div>
+
+                    </div>
+                </div>
+
+                <!-- DIVIDER KEPALA UNIT -->
+                <div class="org-divider">
+                    <div class="org-divider-line"></div>
+                    <div class="org-divider-label">🏛️ Kepala Unit & Koordinator</div>
+                    <div class="org-divider-line"></div>
+                </div>
+
+                <!-- BARIS KEPALA UNIT -->
+                <div class="org-row-unit">
+
+                    <div class="org-waka-col">
+                        <div class="org-card unit-style reveal reveal-delay-1">
+                            <div class="org-foto-wrap">
+                                <img src="images/ARINALDI.jpg" alt="Arinaldi"
+                                    onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                            </div>
+                            <div class="org-jabatan-badge">Kepala Perpustakaan</div>
+                            <div class="org-nama">Arinaldi, S.Pd</div>
+                        </div>
+                    </div>
+
+                    <div class="org-waka-col">
+                        <div class="org-card unit-style reveal reveal-delay-2">
+                            <div class="org-foto-wrap">
+                                <img src="images/LISANOVIYANTI.jpeg" alt="Lisa Noviyanti"
+                                    onerror="this.style.display='none';this.parentElement.innerHTML='👩‍🏫'">
+                            </div>
+                            <div class="org-jabatan-badge">Kepala Unit Produksi</div>
+                            <div class="org-nama">Lisa Noviyanti, S.Pd</div>
+                        </div>
+                    </div>
+
+                    <div class="org-waka-col">
+                        <div class="org-card unit-style reveal reveal-delay-3">
+                            <div class="org-foto-wrap">
+                                <img src="images/DESTIANKUDUS.jpeg" alt="Destian Kudus Irmansyah"
+                                    onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                            </div>
+                            <div class="org-jabatan-badge">Kepala Laboratorium</div>
+                            <div class="org-nama">Destian Kudus Irmansyah, M.Pd</div>
+                        </div>
+                    </div>
+
+                    <div class="org-waka-col">
+                        <div class="org-card unit-style reveal reveal-delay-4">
+                            <div class="org-foto-wrap">
+                                <img src="images/WARISSUKIJO.jpg" alt="Waris Sukijo"
+                                    onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🏫'">
+                            </div>
+                            <div class="org-jabatan-badge">Kepala Bengkel</div>
+                            <div class="org-nama">Waris Sukijo, S.Pd</div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END ORG CHART -->
+            </div>
+
+            <!-- RIWAYAT KEPEMIMPINAN -->
+            <div style="margin-top: 2.5rem;">
+                <div class="org-divider">
+                    <div class="org-divider-line"></div>
+                    <div class="org-divider-label">📜 Riwayat Kepemimpinan Kepala Sekolah</div>
+                    <div class="org-divider-line"></div>
+                </div>
+                <div style="max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.6rem;">
+                    <p style="font-size:0.8rem;color:#999;text-align:center;margin-bottom:0.4rem;">SMK Negeri 1 Lingga · 2011 – Sekarang</p>
+
+                    <!-- Kepala Sekolah 1 -->
+                    <div class="reveal" style="display:flex;align-items:center;gap:0.9rem;background:linear-gradient(135deg,var(--primary-green),var(--secondary-green));color:white;border-radius:12px;padding:0.9rem 1.2rem;">
+                        <div style="width:46px;height:46px;border-radius:50%;overflow:hidden;flex-shrink:0;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:2px solid rgba(255,255,255,0.3);">
+                            <img src="images/TARSIMTARIGAN.jpeg" alt="Tarsim Tarigan" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.parentElement.innerHTML='👑'">
+                        </div>
+                        <div>
+                            <div style="font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--light-green);margin-bottom:0.15rem;">Kepala Sekolah Ke-1</div>
+                            <div style="font-weight:700;font-size:0.95rem;">Tarsim Tarigan, S.Pd</div>
+                            <div style="font-size:0.75rem;color:var(--light-green);">2011 – 2025</div>
+                        </div>
+                        <div style="margin-left:auto;font-size:1.4rem;">👑</div>
+                    </div>
+
+                    <div style="display:flex;justify-content:center;color:var(--accent-green);font-size:1.2rem;line-height:1;">↓</div>
+
+                    <!-- Kepala Sekolah 2 -->
+                    <div class="reveal reveal-delay-1" style="display:flex;align-items:center;gap:0.9rem;background:rgba(79,138,91,0.1);border:2px solid var(--accent-green);border-radius:12px;padding:0.9rem 1.2rem;">
+                        <div style="width:46px;height:46px;border-radius:50%;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,var(--accent-green),var(--light-green));display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:2px solid var(--light-green);">
+                            <img src="images/kepsek.png" alt="Syafitriandy" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.parentElement.innerHTML='👤'">
+                        </div>
+                        <div>
+                            <div style="font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--accent-green);margin-bottom:0.15rem;">Kepala Sekolah Ke-2 · Aktif</div>
+                            <div style="font-weight:700;font-size:0.95rem;color:var(--primary-green);">Syafitriandy, S.Pd.I</div>
+                            <div style="font-size:0.75rem;color:var(--accent-green);">2025 – Sekarang</div>
+                        </div>
+                        <div style="margin-left:auto;font-size:1.4rem;">🌟</div>
                     </div>
                 </div>
             </div>
+
         </div>
 
         <!-- ===== GURU PRODUKTIF ===== -->
