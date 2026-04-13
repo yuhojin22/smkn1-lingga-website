@@ -169,7 +169,6 @@
             align-items: center;
         }
 
-        /* Background image untuk hero banner */
         .hero-background {
             position: absolute;
             top: 0;
@@ -182,7 +181,6 @@
             z-index: 0;
         }
 
-        /* Overlay transparan ringan agar foto tetap jelas */
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -213,7 +211,6 @@
             z-index: 2;
         }
 
-        /* Background semi-transparan di belakang teks agar terbaca */
         .hero-content .hero-subtitle,
         .hero-content .hero-description {
             background: rgba(26, 77, 46, 0.5);
@@ -244,7 +241,6 @@
             animation: fadeInUp 1s ease;
         }
 
-        /* Hero decorative vertical accent line */
         .hero-line {
             position: absolute;
             left: 3.5rem;
@@ -255,7 +251,6 @@
             z-index: 2;
         }
 
-        /* Hero eyebrow label */
         .hero-eyebrow {
             display: flex;
             align-items: center;
@@ -303,6 +298,7 @@
         .cta-buttons {
             display: flex;
             gap: 1.5rem;
+            flex-wrap: wrap;
             animation: fadeInUp 1s ease 0.6s backwards;
         }
 
@@ -339,6 +335,217 @@
             background: var(--light-green);
             color: var(--primary-green);
             transform: translateY(-3px);
+        }
+
+        /* ===== TOMBOL CEK KELULUSAN ===== */
+        .btn-kelulusan {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #1a2412;
+            padding: 1rem 2.2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 20px rgba(255, 165, 0, 0.45);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Work Sans', sans-serif;
+        }
+        .btn-kelulusan::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .btn-kelulusan:hover::before { opacity: 1; }
+        .btn-kelulusan:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 165, 0, 0.55);
+        }
+        .btn-kelulusan .pulse-dot {
+            width: 8px; height: 8px;
+            background: #1a2412;
+            border-radius: 50%;
+            animation: pulseOrange 2s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        @keyframes pulseOrange {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(26,36,18,0.5); }
+            50% { box-shadow: 0 0 0 6px rgba(26,36,18,0); }
+        }
+
+        /* ===== SECTION CEK KELULUSAN ===== */
+        .kelulusan-section {
+            background: linear-gradient(135deg, #0d3320 0%, var(--primary-green) 50%, #0a2818 100%);
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .kelulusan-section::before {
+            content: '🎓';
+            position: absolute;
+            right: -40px; top: -60px;
+            font-size: 20rem;
+            opacity: 0.05;
+            line-height: 1;
+            user-select: none;
+            pointer-events: none;
+        }
+        .kelulusan-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 80% 50%, rgba(255,215,0,0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .kelulusan-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .kelulusan-badge-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,215,0,0.12);
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 99px;
+            padding: 0.35rem 1rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #FFD700;
+            margin-bottom: 1.2rem;
+        }
+        .kelulusan-judul {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+        }
+        .kelulusan-desc {
+            color: rgba(240,244,241,0.75);
+            font-size: 1rem;
+            line-height: 1.85;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        .kelulusan-features {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .kel-feat {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: rgba(240,244,241,0.6);
+            font-size: 0.85rem;
+        }
+        .kel-feat-icon {
+            width: 32px; height: 32px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+        .kelulusan-cta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+            flex-shrink: 0;
+        }
+        .kelulusan-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 24px;
+            padding: 2.5rem 2.2rem;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            min-width: 260px;
+        }
+        .kelulusan-card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .kelulusan-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+        }
+        .kelulusan-card-sub {
+            font-size: 0.8rem;
+            color: rgba(240,244,241,0.5);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        .kelulusan-main-btn {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #1a2412;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            box-shadow: 0 6px 25px rgba(255,165,0,0.5);
+            white-space: nowrap;
+            font-family: 'Work Sans', sans-serif;
+            width: 100%;
+        }
+        .kelulusan-main-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(255,165,0,0.6);
+        }
+        .kelulusan-catatan {
+            font-size: 0.75rem;
+            color: rgba(240,244,241,0.4);
+            text-align: center;
+            line-height: 1.6;
+        }
+        @media (max-width: 900px) {
+            .kelulusan-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2.5rem;
+                padding: 3.5rem 1.5rem;
+            }
+            .kelulusan-judul { font-size: 2rem; }
+            .kelulusan-desc { margin: 0 auto 2rem; }
+            .kelulusan-features { justify-content: center; }
+            .kelulusan-section::before { display: none; }
+            .kelulusan-card { min-width: unset; width: 100%; max-width: 340px; margin: 0 auto; }
         }
 
         /* Section Styles */
@@ -569,14 +776,12 @@
             margin-top: 0.15rem;
         }
         /* ===== ACCORDION BERITA ===== */
-        /* news-grid jadi 1 kolom saat ada yang expand */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
-        /* Kartu yang sedang expand ambil lebar penuh */
         .news-card.expanded {
             grid-column: 1 / -1;
             transform: none !important;
@@ -584,7 +789,6 @@
         .news-card.expanded:hover {
             transform: none !important;
         }
-        /* Panel konten expand */
         .news-expand {
             max-height: 0;
             overflow: hidden;
@@ -613,7 +817,6 @@
             color: #555;
             margin: 1rem 0;
         }
-        /* Share section di dalam expand */
         .expand-share {
             margin-top: 1.4rem;
             padding: 1rem 1.2rem;
@@ -653,7 +856,6 @@
             outline: none;
             font-family: 'Work Sans', sans-serif;
         }
-        /* Tombol baca/tutup */
         .news-read-btn {
             display: inline-flex;
             align-items: center;
@@ -1017,7 +1219,6 @@
             box-shadow: 0 10px 30px rgba(26, 77, 46, 0.3);
         }
 
-        /* Tombol hapus di galeri (mode admin) */
         .gallery-item .gallery-del-btn {
             display: none;
             position: absolute;
@@ -1039,7 +1240,6 @@
         .gallery-edit-mode .gallery-item .gallery-del-btn { display: flex; }
         .gallery-del-btn:hover { background: rgba(185,28,28,1) !important; }
 
-        /* Badge "Bawaan" */
         .gallery-item .gallery-badge {
             display: none;
             position: absolute;
@@ -1228,10 +1428,6 @@
             align-items: start;
         }
 
-        /* Kolom kiri: sambutan */
-        .kolom-sambutan {}
-
-        /* Kolom kanan: berita mini sticky */
         .kolom-berita-sidebar {
             position: sticky;
             top: 90px;
@@ -1322,7 +1518,6 @@
             align-items: center;
         }
 
-        /* Kolom foto */
         .sambutan-foto-col {
             display: flex;
             flex-direction: column;
@@ -1355,16 +1550,6 @@
             object-fit: cover;
         }
 
-        .sambutan-avatar-fallback {
-            display: none;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--secondary-green), var(--accent-green));
-            align-items: center;
-            justify-content: center;
-            font-size: 6rem;
-        }
-
         .sambutan-identity { text-align: center; }
 
         .sambutan-nama {
@@ -1394,7 +1579,6 @@
             letter-spacing: 0.3px;
         }
 
-        /* Kolom teks */
         .sambutan-teks-col { padding: 0.5rem 0; }
 
         .sambutan-label {
@@ -1519,7 +1703,6 @@
             .beranda-dua-kolom { padding: 3rem 1.5rem; gap: 2rem; }
         }
 
-        /* ===== LOGIN MODAL ===== */
         /* ===== SPMB STYLES ===== */
         .spmb-tabs {
             display: flex;
@@ -1556,112 +1739,12 @@
         .spmb-panel { display: none; }
         .spmb-panel.active { display: block; }
 
-        /* Upload dropzone */
-        .spmb-upload-area {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: var(--cream);
-            border-radius: 14px;
-            border: 1px solid #d5e8dc;
-        }
-
-        .spmb-upload-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1rem;
-        }
-
-        .spmb-upload-item label {
-            display: block;
-            font-weight: 600;
-            color: var(--primary-green);
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .spmb-dropzone {
-            border: 2px dashed #b0d4be;
-            border-radius: 12px;
-            background: white;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            overflow: hidden;
-        }
-
-        .spmb-dropzone:hover {
-            border-color: var(--accent-green);
-            background: #f4fbf6;
-        }
-
-        .spmb-dropzone input { display: none; }
-
-        .dropzone-inner {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem 1rem;
-            gap: 0.3rem;
-        }
-
-        .dz-icon { font-size: 2rem; }
-        .dz-text { font-size: 0.82rem; font-weight: 600; color: var(--accent-green); }
-        .dz-hint { font-size: 0.72rem; color: #aaa; }
-        .dz-filename { font-size: 0.78rem; color: var(--primary-green); font-weight: 600; text-align: center; padding: 0 0.5rem 0.5rem; margin: 0; }
-        .dropzone-inner.uploaded { background: #edfaf2; }
-
-        /* SPMB Timeline */
-        .spmb-timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            margin-top: 1.5rem;
-            position: relative;
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 1.2rem;
-            align-items: flex-start;
-            padding-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .timeline-item:not(:last-child)::before {
-            content: '';
-            position: absolute;
-            left: 18px;
-            top: 38px;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--accent-green), #d5e8dc);
-        }
-
-        .tl-dot {
-            min-width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: var(--primary-green);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-            z-index: 1;
-        }
-
-        .tl-body strong { display: block; color: var(--primary-green); font-size: 1rem; }
-        .tl-body span { display: block; font-size: 0.8rem; color: var(--accent-green); font-weight: 600; margin: 0.2rem 0; }
-        .tl-body p { color: #666; font-size: 0.88rem; line-height: 1.6; margin: 0; }
-
         /* Footer */
         footer {
             background: var(--primary-green);
             color: var(--light-text);
             padding: 3rem 2rem 1.5rem;
-            margin-top: 5rem;
+            margin-top: 0;
         }
 
         .footer-content {
@@ -1773,6 +1856,21 @@
             content: none !important;
         }
 
+        /* Link Cek Kelulusan di dropdown — aksen kuning */
+        .dropdown a.kelulusan-link {
+            background: rgba(255,215,0,0.08);
+            border: 1px solid rgba(255,165,0,0.2);
+            margin: 4px;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            color: #92650a !important;
+        }
+        .dropdown a.kelulusan-link:hover {
+            background: rgba(255,215,0,0.18) !important;
+            color: #7a5508 !important;
+            transform: translateX(4px);
+        }
+
         /* ===== TAB SYSTEM FOR SECTIONS ===== */
         .section-tabs {
             display: flex;
@@ -1819,449 +1917,59 @@
             display: block;
         }
 
-        /* ===== DOCUMENT CARDS ===== */
-        .doc-grid {
+        /* ===== SCROLL REVEAL ===== */
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+        }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+        }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+        /* Stats bar */
+        .stats-bar { background: var(--primary-green); padding: 0; }
+        .stats-bar-inner {
+            max-width: 1400px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
-
-        .doc-card {
-            background: white;
-            border-radius: 14px;
-            padding: 1.8rem 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            border-left: 4px solid var(--accent-green);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .doc-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(26,77,46,0.13);
-        }
-
-        .doc-icon {
-            font-size: 2.2rem;
-        }
-
-        .doc-title {
-            font-weight: 600;
-            color: var(--primary-green);
-            font-size: 1rem;
-            line-height: 1.4;
-        }
-
-        .doc-desc {
-            color: #666;
-            font-size: 0.88rem;
-            line-height: 1.6;
-            flex: 1;
-        }
-
-        .doc-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--primary-green);
-            color: white;
-            border: none;
-            padding: 0.55rem 1.1rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            font-family: 'Work Sans', sans-serif;
-            transition: background 0.2s;
-            align-self: flex-start;
-        }
-
-        .doc-btn:hover {
-            background: var(--secondary-green);
-        }
-
-        /* ===== KOMBEL SECTION ===== */
-        .kombel-sk-box {
-            background: white;
-            border-radius: 15px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .kombel-sk-box h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-green);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .sk-info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.2rem;
-        }
-
-        .sk-info-item {
-            background: var(--cream);
-            border-radius: 10px;
-            padding: 1rem 1.2rem;
-            border-top: 3px solid var(--accent-green);
-        }
-
-        .sk-info-item label {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--accent-green);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.3rem;
-        }
-
-        .sk-info-item span {
-            font-weight: 600;
-            color: var(--dark-text);
-        }
-
-        /* ===== STRUKTUR GRID ===== */
-        .struktur-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .struktur-card {
-            background: white;
-            border-radius: 14px;
+        .stat-item {
             padding: 2rem 1.5rem;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-            transition: transform 0.3s;
+            border-right: 1px solid rgba(255,255,255,0.1);
         }
-
-        .struktur-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .struktur-avatar {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--accent-green), var(--light-green));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 1rem;
-        }
-
-        .struktur-jabatan {
-            font-size: 0.8rem;
-            color: var(--accent-green);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.4rem;
-        }
-
-        .struktur-nama {
-            font-weight: 600;
-            color: var(--primary-green);
-            font-size: 1rem;
-        }
-
-        /* ===== MATERI GRID ===== */
-        .materi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .materi-card {
-            background: white;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .materi-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(26,77,46,0.12);
-        }
-
-        .materi-header {
-            background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
-            color: white;
-            padding: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .materi-emoji {
-            font-size: 2rem;
-        }
-
-        .materi-title {
-            font-weight: 600;
-            font-size: 1.05rem;
-        }
-
-        .materi-body {
-            padding: 1.5rem;
-        }
-
-        .materi-body p {
-            color: #555;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        /* ===== JURUSAN DETAIL ===== */
-        .ketua-jurusan-card {
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            color: white;
-            border-radius: 20px;
-            padding: 3rem;
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 2.5rem;
-            align-items: center;
-            margin-top: 1.5rem;
-        }
-
-        .ketua-photo {
-            width: 140px;
-            height: 140px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-        }
-
-        .ketua-info h3 {
+        .stat-item:last-child { border-right: none; }
+        .stat-num {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .ketua-info p {
-            color: var(--light-green);
-            line-height: 1.7;
-        }
-
-        .mata-pelajaran-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.2rem;
-            margin-top: 1.5rem;
-        }
-
-        .mapel-item {
-            background: white;
-            border-radius: 12px;
-            padding: 1.2rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-            transition: all 0.2s;
-        }
-
-        .mapel-item:hover {
-            transform: translateX(5px);
-            border-left: 3px solid var(--accent-green);
-        }
-
-        .mapel-num {
-            background: var(--primary-green);
-            color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            flex-shrink: 0;
+            color: var(--light-green);
+            line-height: 1;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.78rem;
+            color: rgba(240,244,241,0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.4rem;
+            display: block;
         }
 
-        .mapel-name {
-            font-weight: 500;
-            color: var(--dark-text);
-            font-size: 0.95rem;
+        nav { transition: padding 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; }
+        nav.scrolled {
+            padding: 0.4rem 0;
+            background: rgba(26, 77, 46, 0.99);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.25);
         }
 
-        .mapel-class {
-            font-size: 0.8rem;
-            color: var(--accent-green);
-        }
-
-        /* ===== JADWAL TABLE ===== */
-        .jadwal-table-wrap {
-            overflow-x: auto;
-            margin-top: 1.5rem;
-            border-radius: 14px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-        }
-
-        .jadwal-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-        }
-
-        .jadwal-table th {
-            background: var(--primary-green);
-            color: white;
-            padding: 1rem 1.2rem;
-            font-weight: 600;
-            text-align: left;
-            font-size: 0.9rem;
-        }
-
-        .jadwal-table td {
-            padding: 0.9rem 1.2rem;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 0.9rem;
-            color: #444;
-        }
-
-        .jadwal-table tr:hover td {
-            background: #f8faf9;
-        }
-
-        .jadwal-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* ===== INFO CARD ===== */
-        .info-banner {
-            background: linear-gradient(135deg, rgba(79,138,91,0.12), rgba(168,213,186,0.2));
-            border: 1px solid var(--light-green);
-            border-radius: 14px;
-            padding: 1.5rem 2rem;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .info-banner span {
-            font-size: 1.8rem;
-        }
-
-        .info-banner p {
-            color: var(--secondary-green);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* ===== GALLERY SMALL ===== */
-        .gallery-small-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 1.2rem;
-            margin-top: 1.5rem;
-        }
-
-        .gallery-placeholder {
-            height: 200px;
-            background: linear-gradient(135deg, var(--accent-green), var(--secondary-green));
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            gap: 0.5rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .gallery-placeholder:hover {
-            transform: scale(1.03);
-        }
-
-        .gallery-placeholder .ph-icon {
-            font-size: 2.5rem;
-        }
-
-        .gallery-placeholder .ph-label {
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* ===== SERTIFIKAT CARD ===== */
-        .sertifikat-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            text-align: center;
-            border: 2px dashed var(--light-green);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .sertifikat-card:hover {
-            border-color: var(--accent-green);
-            transform: translateY(-5px);
-        }
-
-        /* ===== MOBILE NAV DROPDOWN ===== */
-        @media (max-width: 768px) {
-            .dropdown {
-                position: static;
-                transform: none;
-                box-shadow: none;
-                border-radius: 8px;
-                border-top: none;
-                border-left: 3px solid var(--accent-green);
-                background: rgba(255,255,255,0.08);
-                opacity: 1;
-                visibility: visible;
-                display: none;
-                margin-top: 0.5rem;
-                margin-left: 1rem;
-            }
-
-            .nav-item.open .dropdown {
-                display: block;
-            }
-
-            .dropdown a {
-                color: var(--light-text) !important;
-                font-size: 0.9rem;
-                padding: 0.6rem 1rem;
-            }
-
-            .dropdown a:hover {
-                color: var(--light-green) !important;
-                background: rgba(255,255,255,0.1);
-            }
-
-            .ketua-jurusan-card {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .ketua-photo {
-                margin: 0 auto;
-            }
-        }
-
-        /* ===== ENHANCED HERO ANIMATIONS ===== */
         .scroll-indicator {
             position: absolute;
             bottom: 2.5rem;
@@ -2304,7 +2012,6 @@
             100% { opacity: 0; transform: translateY(0); }
         }
 
-        /* Hero floating badges */
         .hero-badge {
             position: absolute;
             background: rgba(255,255,255,0.12);
@@ -2330,67 +2037,6 @@
             50% { transform: translateY(-14px); }
         }
 
-        /* Stats bar */
-        .stats-bar { background: var(--primary-green); padding: 0; }
-        .stats-bar-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        .stat-item {
-            padding: 2rem 1.5rem;
-            text-align: center;
-            border-right: 1px solid rgba(255,255,255,0.1);
-        }
-        .stat-item:last-child { border-right: none; }
-        .stat-num {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: var(--light-green);
-            line-height: 1;
-            display: block;
-        }
-        .stat-label {
-            font-size: 0.78rem;
-            color: rgba(240,244,241,0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 0.4rem;
-            display: block;
-        }
-
-        /* Nav shrink on scroll */
-        nav { transition: padding 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; }
-        nav.scrolled {
-            padding: 0.4rem 0;
-            background: rgba(26, 77, 46, 0.99);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.25);
-        }
-
-        /* Enhanced reveal directions */
-        .reveal-left {
-            opacity: 0;
-            transform: translateX(-40px);
-            transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
-        }
-        .reveal-left.visible { opacity: 1; transform: translateX(0); }
-        .reveal-right {
-            opacity: 0;
-            transform: translateX(40px);
-            transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
-        }
-        .reveal-right.visible { opacity: 1; transform: translateX(0); }
-
-        @media (max-width: 768px) {
-            .hero-badge { display: none; }
-            .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
-            .stat-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
-        }
-
-        /* ===== Animations ===== */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             20% { transform: translateX(-8px); }
@@ -2400,14 +2046,8 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeIn {
@@ -2416,21 +2056,13 @@
         }
 
         @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
+            .menu-toggle { display: flex; }
 
             .nav-links {
                 position: absolute;
@@ -2453,35 +2085,60 @@
                 pointer-events: all;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .hero-description {
-                font-size: 1rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .hero-description { font-size: 1rem; }
+            .cta-buttons { flex-direction: column; }
 
             .profile-content,
             .contact-container {
                 grid-template-columns: 1fr;
             }
 
-            .section-title {
-                font-size: 2rem;
-            }
+            .section-title { font-size: 2rem; }
 
             .modal-content {
                 width: 95%;
                 margin: 10% auto;
                 padding: 1.5rem;
+            }
+
+            .hero-badge { display: none; }
+            .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+            .stat-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+            .dropdown {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                border-radius: 8px;
+                border-top: none;
+                border-left: 3px solid var(--accent-green);
+                background: rgba(255,255,255,0.08);
+                opacity: 1;
+                visibility: visible;
+                display: none;
+                margin-top: 0.5rem;
+                margin-left: 1rem;
+            }
+
+            .nav-item.open .dropdown { display: block; }
+
+            .dropdown a {
+                color: var(--light-text) !important;
+                font-size: 0.9rem;
+                padding: 0.6rem 1rem;
+            }
+
+            .dropdown a:hover {
+                color: var(--light-green) !important;
+                background: rgba(255,255,255,0.1);
+            }
+
+            .dropdown a.kelulusan-link {
+                color: #FFD700 !important;
+                background: rgba(255,215,0,0.1);
+                border-color: rgba(255,215,0,0.25);
             }
         }
     </style>
@@ -2501,7 +2158,6 @@
                 <li><a href="#beranda">Beranda</a></li>
                 <li><a href="#profil">Profil</a></li>
 
-                <!-- Dropdown: Komunitas Belajar -->
                 <li class="nav-item">
                     <a href="kombel.html">Komunitas Belajar <span class="arrow">&#9660;</span></a>
                     <div class="dropdown">
@@ -2512,7 +2168,6 @@
                     </div>
                 </li>
 
-                <!-- Dropdown: Jurusan -->
                 <li class="nav-item">
                     <a href="jurusan.html">Jurusan <span class="arrow">&#9660;</span></a>
                     <div class="dropdown">
@@ -2522,7 +2177,6 @@
                     </div>
                 </li>
 
-                <!-- Dropdown: Humas -->
                 <li class="nav-item">
                     <a href="humas.html">Humas <span class="arrow">&#9660;</span></a>
                     <div class="dropdown">
@@ -2535,7 +2189,6 @@
                     </div>
                 </li>
 
-                <!-- Dropdown: Kurikulum -->
                 <li class="nav-item">
                     <a href="kurikulum.html">Kurikulum <span class="arrow">&#9660;</span></a>
                     <div class="dropdown">
@@ -2550,7 +2203,6 @@
                     </div>
                 </li>
 
-                <!-- Dropdown: Guru & Staf -->
                 <li class="nav-item">
                     <a href="guru.html">Guru & Staf <span class="arrow">&#9660;</span></a>
                     <div class="dropdown">
@@ -2560,8 +2212,9 @@
                         <a href="guru.html#tu"><span class="icon">&#128104;&#8205;&#128188;</span> Tata Usaha</a>
                     </div>
                 </li>
+
                 <li><a href="#galeri">Galeri</a></li>
-                <!-- Dropdown: SPMB -->
+
                 <li class="nav-item">
                     <a href="spmb.html">SPMB <span class="arrow">&#9660;</span></a>
                     <div class="dropdown">
@@ -2570,8 +2223,15 @@
                         <a href="spmb.html#jadwal"><span class="icon">📅</span> Jadwal & Tahapan</a>
                         <a href="spmb.html#formulir"><span class="icon">✏️</span> Formulir Pendaftaran</a>
                         <a href="spmb.html#pengumuman"><span class="icon">📢</span> Pengumuman Hasil</a>
+                        <!-- TOMBOL CEK KELULUSAN DI DROPDOWN -->
+                        <a href="https://script.google.com/a/macros/guru.smk.belajar.id/s/AKfycbys-IDL9_V3scTk53lXIGiVktNax9SNZVuoASzY_MiX12Ml6o8cCphbG63PgbE2MHkm/exec"
+                           target="_blank" rel="noopener noreferrer"
+                           class="kelulusan-link">
+                            <span class="icon">🎓</span> Cek Kelulusan
+                        </a>
                     </div>
                 </li>
+
                 <li><a href="dudi.html">DUDI</a></li>
             </ul>
             <div class="menu-toggle" id="menuToggle">
@@ -2579,7 +2239,6 @@
                 <span></span>
                 <span></span>
             </div>
-            <!-- Tombol Pengembang & Kata Alumni -->
             <div class="nav-spacer" style="display:flex;gap:0.5rem;justify-content:flex-end;">
                 <button onclick="bukaPengembang()" title="Tim Pengembang" style="background:rgba(255,255,255,0.12);color:white;border:1px solid rgba(255,255,255,0.25);border-radius:50%;width:38px;height:38px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.25s ease;flex-shrink:0;" onmouseover="this.style.background='rgba(168,213,186,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">💻</button>
                 <button onclick="bukaAlumni()" title="Kata Alumni" style="background:rgba(255,255,255,0.12);color:white;border:1px solid rgba(255,255,255,0.25);border-radius:50%;width:38px;height:38px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.25s ease;flex-shrink:0;" onmouseover="this.style.background='rgba(168,213,186,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">🎓</button>
@@ -2589,13 +2248,8 @@
 
     <!-- Hero Section -->
     <section class="hero" id="beranda">
-        <!-- Background Image Banner Sekolah -->
         <div class="hero-background" style="background-image: url('images/banner.jpeg');"></div>
-        
-        <!-- Overlay gelap agar text tetap terbaca -->
         <div class="hero-overlay"></div>
-
-        <!-- Decorative vertical line -->
         <div class="hero-line"></div>
         
         <div class="hero-content">
@@ -2610,21 +2264,26 @@
             <div class="cta-buttons">
                 <a href="#ppdb" class="btn btn-primary">Daftar Sekarang</a>
                 <a href="#profil" class="btn btn-secondary">Tentang Kami</a>
+                <!-- ===== TOMBOL CEK KELULUSAN DI HERO ===== -->
+                <a href="https://script.google.com/a/macros/guru.smk.belajar.id/s/AKfycbys-IDL9_V3scTk53lXIGiVktNax9SNZVuoASzY_MiX12Ml6o8cCphbG63PgbE2MHkm/exec"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn btn-kelulusan">
+                    <span class="pulse-dot"></span>
+                    🎓 Cek Kelulusan
+                </a>
             </div>
         </div>
 
-        <!-- Scroll indicator -->
         <div class="scroll-indicator">
             <div class="scroll-mouse"></div>
             <span>Gulir ke bawah</span>
         </div>
     </section>
 
-    <!-- Sambutan Kepala Sekolah + Sidebar Berita (2 Kolom) -->
+    <!-- Sambutan Kepala Sekolah + Sidebar Berita -->
     <div style="background: white; margin: 0; max-width: 100%;">
       <div class="beranda-dua-kolom">
-
-        <!-- Kolom Kiri: Sambutan -->
         <div class="kolom-sambutan">
         <section id="sambutan" style="padding: 0; margin: 0; max-width: 100%;">
         <div class="sambutan-wrapper">
@@ -2642,8 +2301,6 @@
                     <p class="sambutan-jabatan">Kepala SMK Negeri 1 Lingga</p>
                     <div class="sambutan-badge">NIP. 198110202009031006</div>
                 </div>
-
-                <!-- Alur Kepemimpinan dipindah ke halaman Guru & Staf -->
                 <div style="margin-top: 1.5rem; text-align: center;">
                     <a href="guru.html#kepala" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(26,77,46,0.08);border:1px solid rgba(79,138,91,0.25);border-radius:10px;padding:0.65rem 1.2rem;font-size:0.82rem;font-weight:600;color:var(--accent-green);text-decoration:none;transition:background 0.2s;">
                         🏫 Lihat Struktur Kepemimpinan Lengkap →
@@ -2683,29 +2340,23 @@
             </div>
         </div>
         </section>
-        </div><!-- end kolom-sambutan -->
+        </div>
 
-        <!-- Kolom Kanan: Sidebar Berita (sticky) -->
         <aside class="kolom-berita-sidebar">
             <div class="sidebar-berita-header">
                 <h3>📰 Berita Terkini</h3>
                 <a href="#berita">Lihat semua →</a>
             </div>
-            <div id="sidebar-news-list">
-                <!-- Diisi oleh JavaScript -->
-            </div>
+            <div id="sidebar-news-list"></div>
         </aside>
-
-      </div><!-- end beranda-dua-kolom -->
+      </div>
     </div>
 
-    <!-- Berita & Pengumuman (Lengkap) -->
+    <!-- Berita & Pengumuman -->
     <section id="berita">
         <h2 class="section-title reveal-left">Berita & Pengumuman</h2>
         <p class="section-subtitle reveal-left reveal-delay-1">Informasi terkini seputar kegiatan sekolah</p>
-        <div class="news-grid" id="news-grid">
-            <!-- Diisi otomatis oleh JavaScript -->
-        </div>
+        <div class="news-grid" id="news-grid"></div>
     </section>
 
     <!-- ===== MODAL PENGEMBANG ===== -->
@@ -2717,27 +2368,22 @@
                 <p>Orang-orang di balik website SMK Negeri 1 Lingga</p>
             </div>
             <div class="pengembang-grid" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));">
-
                 <div class="pengembang-card">
-                    <img src="images/kepsek.png" alt="Kepala Sekolah"
-                        class="pengembang-foto"
+                    <img src="images/kepsek.png" alt="Kepala Sekolah" class="pengembang-foto"
                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                     <div class="pengembang-foto-placeholder" style="display:none;">👨‍💼</div>
                     <div class="pengembang-peran">Penanggung Jawab</div>
                     <div class="pengembang-nama">SYAFITRIANDY, S.Pd.I</div>
                     <div class="pengembang-desc">Kepala SMK Negeri 1 Lingga · NIP. 198110202009031006 · Bertanggung jawab atas penyelenggaraan dan pengembangan website resmi sekolah.</div>
                 </div>
-
                 <div class="pengembang-card">
-                    <img src="images/arinaldi.jpg" alt="Desainer Grafis Website"
-                        class="pengembang-foto"
+                    <img src="images/arinaldi.jpg" alt="Desainer Grafis Website" class="pengembang-foto"
                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                     <div class="pengembang-foto-placeholder" style="display:none;">👨‍🎨</div>
                     <div class="pengembang-peran">Desainer Grafis Website</div>
                     <div class="pengembang-nama">Arinaldi, S.Pd</div>
                     <div class="pengembang-desc">Guru Matematika & Koding · SMK Negeri 1 Lingga · Bertanggung jawab atas desain visual dan aset grafis website.</div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -2751,14 +2397,9 @@
                 <p>Kisah dan pesan inspiratif dari alumni SMK Negeri 1 Lingga</p>
             </div>
             <div class="alumni-grid">
-
-                <!-- ✏️ CARA EDIT: Salin blok .alumni-card di bawah untuk menambah alumni baru -->
-                <!-- Ganti src foto, kutipan, nama, angkatan, dan profesi sesuai data yang benar -->
-
                 <div class="alumni-card">
                     <div>
-                        <img src="images/alumni1.jpg" alt="Alumni"
-                            class="alumni-foto"
+                        <img src="images/alumni1.jpg" alt="Alumni" class="alumni-foto"
                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                         <div class="alumni-foto-placeholder" style="display:none;">👨‍🌾</div>
                     </div>
@@ -2769,11 +2410,9 @@
                         <div class="alumni-profesi">Peternak Mandiri / Wirausaha Ternak, Kabupaten Lingga</div>
                     </div>
                 </div>
-
                 <div class="alumni-card">
                     <div>
-                        <img src="images/alumni2.jpg" alt="Alumni"
-                            class="alumni-foto"
+                        <img src="images/alumni2.jpg" alt="Alumni" class="alumni-foto"
                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                         <div class="alumni-foto-placeholder" style="display:none;">👩‍🌾</div>
                     </div>
@@ -2784,11 +2423,9 @@
                         <div class="alumni-profesi">Teknisi Peternakan, Dinas Pertanian Kabupaten Lingga</div>
                     </div>
                 </div>
-
                 <div class="alumni-card">
                     <div>
-                        <img src="images/alumni3.jpg" alt="Alumni"
-                            class="alumni-foto"
+                        <img src="images/alumni3.jpg" alt="Alumni" class="alumni-foto"
                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                         <div class="alumni-foto-placeholder" style="display:none;">👨‍💼</div>
                     </div>
@@ -2799,7 +2436,6 @@
                         <div class="alumni-profesi">Supervisor Peternakan, Peternakan Mitra Kepulauan Riau</div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -2808,13 +2444,11 @@
     <section id="profil">
         <h2 class="section-title reveal">Profil Sekolah</h2>
         <p class="section-subtitle reveal reveal-delay-1">Mengenal lebih dekat SMK Negeri 1 Lingga</p>
-        
         <div class="profile-content">
             <div class="profile-box">
                 <h3>Visi Satuan Pendidikan</h3>
                 <p style="line-height: 1.8;">Terwujudnya insan yang berakhlak mulia, menguasai IPTEK dan berjiwa kewirausahaan bidang agribisnis dan agro teknologi</p>
             </div>
-            
             <div class="profile-box">
                 <h3>Misi Satuan Pendidikan</h3>
                 <ol>
@@ -2827,7 +2461,6 @@
                 </ol>
             </div>
         </div>
-        
         <div class="profile-content" style="margin-top: 2rem;">
             <div class="profile-box" style="grid-column: 1 / -1;">
                 <h3>Sejarah Singkat SMK Negeri 1 Lingga</h3>
@@ -2844,7 +2477,6 @@
     <section id="jurusan">
         <h2 class="section-title reveal">Program Keahlian</h2>
         <p class="section-subtitle reveal reveal-delay-1">Jurusan yang tersedia di SMK Negeri 1 Lingga</p>
-        
         <div class="jurusan-highlight">
             <h3>Agribisnis Ternak Ruminansia (ATR)</h3>
             <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
@@ -2853,12 +2485,9 @@
             <p style="font-size: 1rem; color: var(--light-green); margin-bottom: 2rem;">
                 <strong>Ketua Program Keahlian: Tarsim Tarigan, S.Pd</strong>
             </p>
-
-            <!-- Kurikulum & Materi Produktif -->
             <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 2rem; margin-bottom: 2rem;">
                 <h4 style="font-size: 1.4rem; margin-bottom: 1.2rem; color: white;">📚 Kurikulum & Materi Produktif</h4>
                 <p style="color: rgba(240,244,241,0.85); margin-bottom: 1.5rem; line-height: 1.7;">Siswa dibekali dengan keterampilan teknis yang komprehensif melalui mata pelajaran produktif berikut:</p>
-
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem;">
                     <div style="background: rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem;">
                         <h5 style="color: var(--light-green); margin-bottom: 0.8rem; font-size: 1rem;">1. 🥩 Agribisnis Ternak Ruminansia Pedaging</h5>
@@ -2886,8 +2515,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Keunggulan & Prospek -->
             <div class="jurusan-features">
                 <div class="feature">
                     <h4>🚀 Wirausaha Mandiri</h4>
@@ -2905,14 +2532,11 @@
         </div>
     </section>
 
-
     <!-- Galeri -->
     <section id="galeri">
         <h2 class="section-title reveal">Galeri Kegiatan</h2>
         <p class="section-subtitle reveal reveal-delay-1">Dokumentasi kegiatan dan fasilitas sekolah</p>
-        <div class="gallery-grid" id="gallery-grid">
-            <!-- Diisi otomatis oleh JavaScript -->
-        </div>
+        <div class="gallery-grid" id="gallery-grid"></div>
     </section>
 
     <!-- Lightbox -->
@@ -2926,20 +2550,15 @@
         </div>
     </div>
 
-
     <!-- DUDI -->
     <section id="dudi">
         <h2 class="section-title reveal">DUDI</h2>
         <p class="section-subtitle reveal reveal-delay-1">Dunia Usaha &amp; Dunia Industri — Mitra Strategis SMK Negeri 1 Lingga</p>
-
-        <!-- Penjelasan DUDI -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;" class="reveal reveal-delay-1">
             <div style="background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)); border-radius: 20px; padding: 2.5rem; color: white; position: relative; overflow: hidden;">
                 <div style="position:absolute;right:-20px;bottom:-20px;font-size:8rem;opacity:0.1;">🏭</div>
                 <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 1rem;">Dunia Usaha (DU)</h3>
-                <p style="color: rgba(240,244,241,0.9); line-height: 1.8; font-size: 0.97rem;">
-                    Dunia Usaha mencakup seluruh entitas bisnis dan wirausaha yang bergerak di sektor peternakan, pengolahan hasil ternak, dan agribisnis. Kemitraan dengan pelaku usaha lokal maupun nasional menjadi kunci dalam mempersiapkan lulusan yang siap terjun ke dunia kerja.
-                </p>
+                <p style="color: rgba(240,244,241,0.9); line-height: 1.8; font-size: 0.97rem;">Dunia Usaha mencakup seluruh entitas bisnis dan wirausaha yang bergerak di sektor peternakan, pengolahan hasil ternak, dan agribisnis. Kemitraan dengan pelaku usaha lokal maupun nasional menjadi kunci dalam mempersiapkan lulusan yang siap terjun ke dunia kerja.</p>
                 <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
                     <span style="background: rgba(255,255,255,0.15); border-radius: 99px; padding: 0.3rem 0.9rem; font-size: 0.8rem;">🐄 Peternakan Sapi</span>
                     <span style="background: rgba(255,255,255,0.15); border-radius: 99px; padding: 0.3rem 0.9rem; font-size: 0.8rem;">🥛 Pengolahan Susu</span>
@@ -2950,9 +2569,7 @@
             <div style="background: white; border-radius: 20px; padding: 2.5rem; box-shadow: 0 5px 25px rgba(26,77,46,0.1); border: 1px solid #e8f3ec; position: relative; overflow: hidden;">
                 <div style="position:absolute;right:-20px;bottom:-20px;font-size:8rem;opacity:0.05;">🏗️</div>
                 <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--primary-green); margin-bottom: 1rem;">Dunia Industri (DI)</h3>
-                <p style="color: #555; line-height: 1.8; font-size: 0.97rem;">
-                    Dunia Industri meliputi perusahaan skala besar, balai penelitian, dan lembaga pemerintah di bidang peternakan dan agribisnis. Melalui program PKL dan Guru Tamu, siswa mendapatkan pengalaman langsung dari para profesional industri.
-                </p>
+                <p style="color: #555; line-height: 1.8; font-size: 0.97rem;">Dunia Industri meliputi perusahaan skala besar, balai penelitian, dan lembaga pemerintah di bidang peternakan dan agribisnis. Melalui program PKL dan Guru Tamu, siswa mendapatkan pengalaman langsung dari para profesional industri.</p>
                 <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
                     <span style="background: rgba(79,138,91,0.1); color: var(--accent-green); border-radius: 99px; padding: 0.3rem 0.9rem; font-size: 0.8rem; font-weight: 600;">🏢 Perusahaan Pakan</span>
                     <span style="background: rgba(79,138,91,0.1); color: var(--accent-green); border-radius: 99px; padding: 0.3rem 0.9rem; font-size: 0.8rem; font-weight: 600;">🔬 Balai Peternakan</span>
@@ -2961,8 +2578,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Manfaat Kemitraan -->
         <div style="background: var(--cream); border-radius: 20px; padding: 2.5rem; margin-bottom: 3rem;" class="reveal">
             <h3 style="font-family: 'Playfair Display', serif; color: var(--primary-green); font-size: 1.8rem; margin-bottom: 0.5rem;">Mengapa Kemitraan DUDI Penting?</h3>
             <p style="color: #666; margin-bottom: 2rem; line-height: 1.7;">Program kemitraan SMKN 1 Lingga dengan DUDI dirancang untuk menjembatani dunia pendidikan dan dunia kerja secara nyata dan berkelanjutan.</p>
@@ -2989,8 +2604,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Mitra DUDI -->
         <div style="margin-bottom: 3rem;" class="reveal">
             <h3 style="font-family: 'Playfair Display', serif; color: var(--primary-green); font-size: 1.8rem; margin-bottom: 0.5rem;">Mitra DUDI Kami</h3>
             <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.7;">Lembaga dan perusahaan yang telah menjalin kerja sama dengan SMK Negeri 1 Lingga.</p>
@@ -2999,43 +2612,28 @@
                     <div style="font-size: 2rem; margin-bottom: 0.8rem;">🐄</div>
                     <h4 style="color: var(--primary-green); margin-bottom: 0.4rem; font-size: 1.05rem;">Tarigan Farm</h4>
                     <p style="color: var(--accent-green); font-size: 0.8rem; font-weight: 600; margin-bottom: 0.6rem;">Panggak Darat, Kab. Lingga</p>
-                    <p style="color: #666; font-size: 0.88rem; line-height: 1.6;">Peternakan sapi lokal mitra utama PKL dan UKK siswa program ATR. Tempat siswa mengaplikasikan teknik budidaya ternak secara langsung.</p>
+                    <p style="color: #666; font-size: 0.88rem; line-height: 1.6;">Peternakan sapi lokal mitra utama PKL dan UKK siswa program ATR.</p>
                 </div>
                 <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 5px 20px rgba(0,0,0,0.07); border-left: 4px solid var(--accent-green); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <div style="font-size: 2rem; margin-bottom: 0.8rem;">🌾</div>
                     <h4 style="color: var(--primary-green); margin-bottom: 0.4rem; font-size: 1.05rem;">PT Rahayu Agro Makmur</h4>
                     <p style="color: var(--accent-green); font-size: 0.8rem; font-weight: 600; margin-bottom: 0.6rem;">Mitra Guru Tamu & PKL</p>
-                    <p style="color: #666; font-size: 0.88rem; line-height: 1.6;">Perusahaan agribisnis yang aktif menjalin kerja sama melalui program Guru Tamu dan penempatan PKL untuk pengembangan kompetensi siswa.</p>
+                    <p style="color: #666; font-size: 0.88rem; line-height: 1.6;">Perusahaan agribisnis yang aktif menjalin kerja sama melalui program Guru Tamu dan penempatan PKL.</p>
                 </div>
                 <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 5px 20px rgba(0,0,0,0.07); border-left: 4px solid var(--accent-green); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <div style="font-size: 2rem; margin-bottom: 0.8rem;">🏛️</div>
                     <h4 style="color: var(--primary-green); margin-bottom: 0.4rem; font-size: 1.05rem;">Dinas Pertanian & Peternakan</h4>
                     <p style="color: var(--accent-green); font-size: 0.8rem; font-weight: 600; margin-bottom: 0.6rem;">Kabupaten Lingga</p>
-                    <p style="color: #666; font-size: 0.88rem; line-height: 1.6;">Instansi pemerintah yang mendukung pengembangan kompetensi siswa dan membuka peluang penempatan kerja bagi lulusan terbaik.</p>
+                    <p style="color: #666; font-size: 0.88rem; line-height: 1.6;">Instansi pemerintah yang mendukung pengembangan kompetensi siswa dan membuka peluang penempatan kerja.</p>
                 </div>
             </div>
         </div>
-
-        <!-- Galeri Foto PKL Siswa -->
         <div class="reveal">
             <h3 style="font-family: 'Playfair Display', serif; color: var(--primary-green); font-size: 1.8rem; margin-bottom: 0.5rem;">📸 Galeri Foto PKL Siswa</h3>
             <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.7;">Dokumentasi kegiatan Praktik Kerja Lapangan siswa SMK Negeri 1 Lingga di berbagai mitra DUDI.</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
-
-                <!-- ✏️ CARA MENAMBAH FOTO PKL:
-                     1. Upload foto ke folder images/ dengan nama misal: pkl_1.jpg, pkl_2.jpg, dst.
-                     2. Salin salah satu blok <div> di bawah dan ganti:
-                        - src="images/NAMA_FILE.jpg"
-                        - alt="Keterangan foto"
-                        - Teks judul dan sub-judul di dalam pkl-caption
-                -->
-
-                <!-- Foto PKL 1 — ganti src dengan file foto yang sudah diupload -->
                 <div style="position:relative;border-radius:16px;overflow:hidden;height:240px;box-shadow:0 5px 20px rgba(0,0,0,0.12);cursor:pointer;transition:transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="images/pkl_1.jpg" alt="Foto PKL Siswa 1"
-                        style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
-                        onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'"
-                        onerror="this.style.display='none';this.parentNode.querySelector('.pkl-ph').style.display='flex'">
+                    <img src="images/pkl_1.jpg" alt="Foto PKL Siswa 1" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.parentNode.querySelector('.pkl-ph').style.display='flex'">
                     <div class="pkl-ph" style="display:none;position:absolute;inset:0;background:linear-gradient(135deg,#4f8a5b,#1a4d2e);align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;color:white;">
                         <div style="font-size:3rem;">📷</div>
                         <div style="font-size:0.85rem;font-weight:600;">Upload: images/pkl_1.jpg</div>
@@ -3045,13 +2643,8 @@
                         <div style="font-size:0.78rem;color:var(--light-green);">Ganti teks keterangan ini</div>
                     </div>
                 </div>
-
-                <!-- Foto PKL 2 -->
                 <div style="position:relative;border-radius:16px;overflow:hidden;height:240px;box-shadow:0 5px 20px rgba(0,0,0,0.12);cursor:pointer;transition:transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="images/pkl_2.jpg" alt="Foto PKL Siswa 2"
-                        style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
-                        onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'"
-                        onerror="this.style.display='none';this.parentNode.querySelector('.pkl-ph').style.display='flex'">
+                    <img src="images/pkl_2.jpg" alt="Foto PKL Siswa 2" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.parentNode.querySelector('.pkl-ph').style.display='flex'">
                     <div class="pkl-ph" style="display:none;position:absolute;inset:0;background:linear-gradient(135deg,#2d5f3f,#4f8a5b);align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;color:white;">
                         <div style="font-size:3rem;">📷</div>
                         <div style="font-size:0.85rem;font-weight:600;">Upload: images/pkl_2.jpg</div>
@@ -3061,13 +2654,8 @@
                         <div style="font-size:0.78rem;color:var(--light-green);">Ganti teks keterangan ini</div>
                     </div>
                 </div>
-
-                <!-- Foto PKL 3 -->
                 <div style="position:relative;border-radius:16px;overflow:hidden;height:240px;box-shadow:0 5px 20px rgba(0,0,0,0.12);cursor:pointer;transition:transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="images/pkl_3.jpg" alt="Foto PKL Siswa 3"
-                        style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
-                        onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'"
-                        onerror="this.style.display='none';this.parentNode.querySelector('.pkl-ph').style.display='flex'">
+                    <img src="images/pkl_3.jpg" alt="Foto PKL Siswa 3" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.parentNode.querySelector('.pkl-ph').style.display='flex'">
                     <div class="pkl-ph" style="display:none;position:absolute;inset:0;background:linear-gradient(135deg,#1a4d2e,#2d5f3f);align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;color:white;">
                         <div style="font-size:3rem;">📷</div>
                         <div style="font-size:0.85rem;font-weight:600;">Upload: images/pkl_3.jpg</div>
@@ -3077,23 +2665,61 @@
                         <div style="font-size:0.78rem;color:var(--light-green);">Ganti teks keterangan ini</div>
                     </div>
                 </div>
-
-                <!-- Foto PKL 4 — tambah lebih banyak dengan menyalin blok di atas -->
                 <div style="border-radius:16px;height:240px;background:linear-gradient(135deg,rgba(79,138,91,0.08),rgba(168,213,186,0.15));border:2px dashed var(--light-green);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.8rem;cursor:pointer;transition:all 0.3s;" onmouseover="this.style.borderColor='var(--accent-green)'" onmouseout="this.style.borderColor='var(--light-green)'">
                     <div style="font-size:3rem;">📷</div>
                     <div style="font-weight:600;color:var(--accent-green);font-size:0.95rem;">Tambah Foto PKL</div>
-                    <div style="font-size:0.78rem;color:#aaa;text-align:center;padding:0 1.2rem;line-height:1.5;">Upload foto ke <code style="background:#eee;padding:0.1rem 0.4rem;border-radius:4px;">images/pkl_4.jpg</code> lalu salin blok foto di atas</div>
+                    <div style="font-size:0.78rem;color:#aaa;text-align:center;padding:0 1.2rem;line-height:1.5;">Upload foto ke <code style="background:#eee;padding:0.1rem 0.4rem;border-radius:4px;">images/pkl_4.jpg</code></div>
                 </div>
-
-            </div>
-
-            <div style="margin-top:1.2rem;text-align:center;">
-                <a href="dudi.html#tab-galeri" style="display:inline-flex;align-items:center;gap:0.5rem;color:var(--accent-green);font-weight:600;text-decoration:none;font-size:0.9rem;" onclick="document.getElementById && setTimeout(()=>{const t=document.querySelector('[onclick*=tab-galeri]');if(t)t.click();},300)">
-                    Lihat semua foto PKL →
-                </a>
             </div>
         </div>
     </section>
+
+    <!-- ===== SECTION CEK KELULUSAN ===== -->
+    <div class="kelulusan-section" id="kelulusan">
+        <div class="kelulusan-inner">
+            <div class="kelulusan-info reveal-left">
+                <div class="kelulusan-badge-label">
+                    <span>📢</span> Pengumuman Resmi Sekolah
+                </div>
+                <h2 class="kelulusan-judul">Cek Hasil Kelulusan<br>Siswa SMK Negeri 1 Lingga</h2>
+                <p class="kelulusan-desc">
+                    Pengumuman kelulusan dapat diakses secara online melalui portal resmi sekolah.
+                    Silakan siapkan <strong style="color:white;">Nomor Induk Siswa (NIS)</strong> untuk memeriksa status kelulusan Anda. Akses hanya tersedia melalui website resmi sekolah ini.
+                </p>
+                <div class="kelulusan-features">
+                    <div class="kel-feat">
+                        <div class="kel-feat-icon">🔒</div>
+                        <span>Data Siswa Aman & Terlindungi</span>
+                    </div>
+                    <div class="kel-feat">
+                        <div class="kel-feat-icon">⚡</div>
+                        <span>Hasil Langsung Tampil</span>
+                    </div>
+                    <div class="kel-feat">
+                        <div class="kel-feat-icon">📱</div>
+                        <span>Bisa Diakses dari HP</span>
+                    </div>
+                </div>
+            </div>
+            <div class="kelulusan-cta reveal-right">
+                <div class="kelulusan-card">
+                    <span class="kelulusan-card-icon">🎓</span>
+                    <div class="kelulusan-card-title">Portal Cek Kelulusan</div>
+                    <div class="kelulusan-card-sub">Klik tombol di bawah untuk membuka<br>halaman pengecekan kelulusan resmi</div>
+                    <a href="https://script.google.com/a/macros/guru.smk.belajar.id/s/AKfycbys-IDL9_V3scTk53lXIGiVktNax9SNZVuoASzY_MiX12Ml6o8cCphbG63PgbE2MHkm/exec"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="kelulusan-main-btn">
+                        🎓 Cek Kelulusan Saya
+                    </a>
+                </div>
+                <p class="kelulusan-catatan">
+                    Akan membuka halaman pengecekan di tab baru<br>
+                    Pastikan Anda mengakses dari website resmi sekolah ini
+                </p>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -3102,7 +2728,6 @@
                 <h3>SMK Negeri 1 Lingga</h3>
                 <p>Mencetak generasi ahli peternakan yang profesional dan berakhlak mulia untuk kemajuan bangsa.</p>
             </div>
-            
             <div class="footer-section">
                 <h3>Menu Cepat</h3>
                 <p><a href="#beranda">Beranda</a></p>
@@ -3111,16 +2736,14 @@
                 <p><a href="jurusan.html">Jurusan</a></p>
                 <p><a href="humas.html">Humas</a></p>
                 <p><a href="kurikulum.html">Kurikulum</a></p>
-                <p><a href="#ppdb">PPDB</a></p>
+                <p><a href="#kelulusan" style="color:#FFD700;font-weight:600;">🎓 Cek Kelulusan</a></p>
             </div>
-            
             <div class="footer-section">
                 <h3>DUDI & Kontak</h3>
                 <p>DUSUN II MULYASARI<br>Lingga Timur, Kab. Lingga</p>
-                <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2e474048416e5d4345401f42474049494f005d4d4600474a">[email&#160;protected]</a></p>
+                <p>Email: <a href="mailto:smkn1lingga@guru.smk.belajar.id">smkn1lingga@guru.smk.belajar.id</a></p>
                 <p>Telp: (0771) 123-4567</p>
             </div>
-            
             <div class="footer-section">
                 <h3>Media Sosial</h3>
                 <p><a href="#">Facebook</a></p>
@@ -3129,7 +2752,6 @@
                 <p><a href="#">Twitter</a></p>
             </div>
         </div>
-        
         <div class="footer-bottom">
             <p>&copy; 2026 SMK Negeri 1 Lingga. All Rights Reserved.</p>
         </div>
@@ -3169,24 +2791,7 @@
             });
         });
 
-        // ===== TAB SYSTEM =====
-        function showTab(sectionId, tabId) {
-            document.querySelectorAll(`[data-section="${sectionId}"]`).forEach(p => p.classList.remove('active'));
-            const target = document.getElementById(tabId);
-            if (target) target.classList.add('active');
-            const sectionEl = document.getElementById(sectionId);
-            if (sectionEl) {
-                sectionEl.querySelectorAll('.tab-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabId))
-                        btn.classList.add('active');
-                });
-            }
-            const section = document.getElementById(sectionId);
-            if (section) setTimeout(() => window.scrollTo({ top: section.offsetTop - 85, behavior: 'smooth' }), 50);
-        }
-
-        // ===== MODAL LAMA (kompatibilitas bagian lain) =====
+        // ===== MODAL LAMA =====
         function openModal(modalId) {
             document.getElementById(modalId).style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -3197,7 +2802,6 @@
         }
 
         // ===== DATA BERITA =====
-        // Tambah berita baru di sini dengan menyalin blok { ... } dan mengisi datanya
         const BERITA_BAWAAN = [
             {
                 id: 'ukk-tarigan-farm-2026',
@@ -3206,10 +2810,9 @@
                 excerpt: 'Sebanyak 19 siswa konsentrasi keahlian Ternak Ruminansia sukses menjalani UKK di Peternakan Tarigan Farm, Panggak Darat, Kabupaten Lingga...',
                 emoji: '🎓',
                 gambar: 'images/berita_ukk.jpg',
-                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>Panggak Darat, Lingga</strong> &ndash; Sebanyak 19 siswa konsentrasi keahlian Ternak Ruminansia SMK Negeri 1 Lingga sukses menjalani Ujian Kompetensi Keahlian (UKK) di Peternakan Tarigan Farm, Panggak Darat, Kabupaten Lingga. Kegiatan ini berlangsung lancar dan menjadi momen penting bagi siswa untuk mengaplikasikan ilmu peternakan secara nyata pada hewan sapi.</p>
-                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">UKK ini menilai kemampuan siswa dalam berbagai aspek praktik, mulai dari perawatan harian, pemeriksaan kesehatan, hingga teknik pemberian pakan dan grooming sapi. Dengan fasilitas peternakan yang representatif, siswa tampil percaya diri menunjukkan keterampilan yang telah diasah selama pembelajaran di sekolah.</p>
+                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>Panggak Darat, Lingga</strong> &ndash; Sebanyak 19 siswa konsentrasi keahlian Ternak Ruminansia SMK Negeri 1 Lingga sukses menjalani Ujian Kompetensi Keahlian (UKK) di Peternakan Tarigan Farm, Panggak Darat, Kabupaten Lingga.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">UKK ini menilai kemampuan siswa dalam berbagai aspek praktik, mulai dari perawatan harian, pemeriksaan kesehatan, hingga teknik pemberian pakan dan grooming sapi.</p>
                 <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Kami bangga melihat siswa kami mampu bersaing dan siap terjun ke dunia kerja," ujar Kepala Program Keahlian Ternak Ruminansia SMK Negeri 1 Lingga.</p>
-                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Kegiatan ini tidak hanya menguji kompetensi, tapi juga memperkuat sinergi sekolah dengan industri peternakan lokal. Para siswa berharap hasil UKK ini membuka peluang sertifikasi nasional dan karir di sektor peternakan ruminansia yang sedang berkembang di Kepulauan Riau.</p>
                 <p style="color:#444;line-height:1.85;">SMK Negeri 1 Lingga terus berkomitmen menghasilkan lulusan unggul yang kompeten dan berwawasan lingkungan dalam bidang peternakan.</p>`,
                 bawaan: true
             },
@@ -3220,37 +2823,35 @@
                 excerpt: 'Kegiatan Class Meeting 2025 berlangsung meriah di SMKN 1 Lingga. Berbagai perlombaan olahraga dan seni digelar untuk merayakan akhir semester...',
                 emoji: '🏆',
                 gambar: 'images/classmeeting.jpeg',
-                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>Lingga</strong> &ndash; SMK Negeri 1 Lingga sukses menggelar kegiatan Class Meeting 2025 yang berlangsung meriah dan penuh semangat. Kegiatan ini diadakan sebagai ajang hiburan dan kompetisi sehat antar kelas menjelang akhir semester.</p>
-                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Berbagai perlombaan dihelat dalam kegiatan ini, mulai dari pertandingan olahraga seperti voli dan futsal, hingga lomba kreativitas seni dan permainan tradisional. Antusias siswa sangat terasa sejak hari pertama pelaksanaan.</p>
+                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>Lingga</strong> &ndash; SMK Negeri 1 Lingga sukses menggelar kegiatan Class Meeting 2025 yang berlangsung meriah dan penuh semangat.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Berbagai perlombaan dihelat dalam kegiatan ini, mulai dari pertandingan olahraga seperti voli dan futsal, hingga lomba kreativitas seni dan permainan tradisional.</p>
                 <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Class meeting ini bukan hanya soal menang atau kalah, tapi tentang mempererat persaudaraan dan menumbuhkan semangat sportivitas," ujar Wakil Kepala Sekolah Bidang Kesiswaan.</p>
-                <p style="color:#444;line-height:1.85;">Kegiatan ini diakhiri dengan pengumuman juara dan pemberian hadiah kepada peserta terbaik dari masing-masing kategori perlombaan. SMKN 1 Lingga berharap kegiatan seperti ini dapat terus menjadi tradisi positif yang memperkuat karakter siswa.</p>`,
+                <p style="color:#444;line-height:1.85;">SMKN 1 Lingga berharap kegiatan seperti ini dapat terus menjadi tradisi positif yang memperkuat karakter siswa.</p>`,
                 bawaan: true
             },
             {
                 id: 'guru-tamu-pt-rahayu-2026',
-                judul: 'Guru Tamu dari PT Rahayu Agro Makmur Perkuat Mutu Pendidikan Vokasi SMK Negeri 1 Lingga Lewat Kemitraan',
+                judul: 'Guru Tamu dari PT Rahayu Agro Makmur Perkuat Mutu Pendidikan Vokasi SMK Negeri 1 Lingga',
                 tanggal: '2026-03-02',
-                excerpt: 'Program Guru Tamu dari PT Rahayu Agro Makmur menunjukkan komitmen kuat dalam meningkatkan mutu pendidikan vokasi SMK Negeri 1 Lingga serta membangun kemitraan produktif dengan dunia usaha dan dunia industri (DUDI)...',
+                excerpt: 'Program Guru Tamu dari PT Rahayu Agro Makmur menunjukkan komitmen kuat dalam meningkatkan mutu pendidikan vokasi SMK Negeri 1 Lingga...',
                 emoji: '🤝',
                 gambar: 'images/gurutamu1.jpg',
-                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>Lingga, 2 Maret 2026</strong> &ndash; Program Guru Tamu dari PT Rahayu Agro Makmur menunjukkan komitmen kuat dalam meningkatkan mutu pendidikan vokasi SMK Negeri 1 Lingga serta membangun kemitraan produktif dengan dunia usaha dan dunia industri (DUDI). Kunjungan kerja sama ini dilakukan pada Sabtu 28 Februari 2026, ke SMK Negeri 1 Lingga.</p>
-                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Dalam kunjungan tersebut, tim guru tamu dari PT Rahayu Agro Makmur bertemu dengan perwakilan sekolah. Tim ini dipimpin oleh pemilik PT Rahayu Agro Makmur, <strong>Eka Susanto, S.Pd</strong>, serta dua tokoh penting lainnya, yakni <strong>Hasyim Ahmad Alhadromi</strong> dan <strong>Hisam Ahmad Maulana</strong>. Pertemuan ini difokuskan pada upaya menjalin kerja sama dan bersinergi dengan DUDI guna mendukung pengembangan kompetensi siswa di bidang vokasi.</p>
-                <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Melalui program ini, kami dari PT Rahayu Agro Makmur berkomitmen untuk terus meningkatkan kualitas pendidikan vokasi siswa SMK Negeri 1 Lingga. Kerja sama ini akan membuka peluang magang, pelatihan, dan penyerapan tenaga kerja yang lebih baik," ujar Eka Susanto, S.Pd, seperti dikutip dari kesaksian acara.</p>
-                <p style="color:#444;line-height:1.85;">Kunjungan ini diharapkan menjadi langkah awal bagi kemitraan jangka panjang yang saling menguntungkan, sejalan dengan visi sekolah untuk mencetak lulusan siap kerja dan kompetitif.</p>`,
+                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>Lingga, 2 Maret 2026</strong> &ndash; Program Guru Tamu dari PT Rahayu Agro Makmur menunjukkan komitmen kuat dalam meningkatkan mutu pendidikan vokasi SMK Negeri 1 Lingga serta membangun kemitraan produktif dengan dunia usaha dan dunia industri (DUDI).</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Tim ini dipimpin oleh pemilik PT Rahayu Agro Makmur, <strong>Eka Susanto, S.Pd</strong>, serta dua tokoh penting lainnya, yakni <strong>Hasyim Ahmad Alhadromi</strong> dan <strong>Hisam Ahmad Maulana</strong>.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Melalui program ini, kami berkomitmen untuk terus meningkatkan kualitas pendidikan vokasi siswa SMK Negeri 1 Lingga," ujar Eka Susanto, S.Pd.</p>
+                <p style="color:#444;line-height:1.85;">Kunjungan ini diharapkan menjadi langkah awal bagi kemitraan jangka panjang yang saling menguntungkan.</p>`,
                 bawaan: true
             },
             {
                 id: 'sosialisasi-atph-2026',
-                judul: 'SMK Negeri 1 Lingga Gelar Sosialisasi Pembentukan Jurusan ATPH, Perkuat Sektor Pertanian Daerah',
+                judul: 'SMK Negeri 1 Lingga Gelar Sosialisasi Pembentukan Jurusan ATPH',
                 tanggal: '2026-03-03',
-                excerpt: 'SMK Negeri 1 Lingga menggelar Sosialisasi Pembentukan Jurusan Agribisnis Tanaman Pangan dan Hortikultura (ATPH) pada Selasa, 03 Maret 2026, sebagai langkah strategis dalam menyelaraskan pendidikan vokasi dengan potensi pertanian daerah...',
+                excerpt: 'SMK Negeri 1 Lingga menggelar Sosialisasi Pembentukan Jurusan Agribisnis Tanaman Pangan dan Hortikultura (ATPH) sebagai langkah strategis dalam menyelaraskan pendidikan vokasi dengan potensi pertanian daerah...',
                 emoji: '🌾',
                 gambar: 'images/ATPH11.png',
-                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>LINGGA</strong> &ndash; Dalam upaya mencetak generasi muda yang kompeten di bidang pertanian, SMK Negeri 1 Lingga menggelar kegiatan Sosialisasi Pembentukan Jurusan Agribisnis Tanaman Pangan dan Hortikultura (ATPH) pada Selasa, 03 Maret 2026. Acara yang berlangsung di aula SMK Negeri 1 Lingga ini menjadi langkah strategis sekolah dalam menyelaraskan pendidikan vokasi dengan potensi daerah.</p>
-                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Kegiatan ini dihadiri oleh jajaran pemangku kepentingan penting yang menunjukkan sinergi kuat antar instansi. Turut hadir dalam acara tersebut: <strong>Sekretaris Dinas Pertanian dan Ketahanan Pangan Kabupaten Lingga, Bapak Zulkifli</strong>; Kepala Desa Bukit Langkap, Kepala Desa Bukit Harapan, dan Kepala Desa Kerandin; Kepala Sekolah beserta jajaran Guru SMP Negeri 1 Lingga Timur; serta Komite SMK Negeri 1 Lingga. Kehadiran para tokoh ini menegaskan bahwa pembentukan jurusan ATPH bukan sekadar penambahan program studi, melainkan jawaban atas kebutuhan tenaga kerja ahli di sektor ketahanan pangan, khususnya di wilayah Kabupaten Lingga.</p>
-                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Dalam sesi sosialisasi, Bapak Zulkifli selaku Sekretaris Dinas Pertanian dan Ketahanan Pangan Kabupaten Lingga secara eksplisit menyatakan dukungannya terhadap inisiatif ini. Beliau menekankan bahwa Kabupaten Lingga membutuhkan regenerasi petani modern yang melek teknologi dan manajemen agribisnis.</p>
-                <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Kami sangat mendukung pembentukan jurusan ATPH di SMK Negeri 1 Lingga. Ini adalah langkah nyata dalam mempersiapkan SDM yang mampu mengelola potensi pertanian kita secara profesional dan berkelanjutan," ujar Bapak Zulkifli dalam testimoninya.</p>
-                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Kepala SMK Negeri 1 Lingga menyampaikan bahwa pemilihan jurusan ATPH didasarkan pada analisis mendalam terhadap karakteristik wilayah Lingga yang kaya akan lahan pertanian. Dengan adanya jurusan ini, diharapkan lulusan SMP di sekitar Lingga Timur tidak perlu jauh-jauh mencari sekolah kejuruan yang relevan dengan lingkungan tinggal mereka.</p>
+                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>LINGGA</strong> &ndash; SMK Negeri 1 Lingga menggelar kegiatan Sosialisasi Pembentukan Jurusan Agribisnis Tanaman Pangan dan Hortikultura (ATPH) pada Selasa, 03 Maret 2026.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Kegiatan ini dihadiri oleh Sekretaris Dinas Pertanian dan Ketahanan Pangan Kabupaten Lingga, Kepala Desa Bukit Langkap, Bukit Harapan, dan Kerandin, serta Komite SMK Negeri 1 Lingga.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Kami sangat mendukung pembentukan jurusan ATPH di SMK Negeri 1 Lingga. Ini adalah langkah nyata dalam mempersiapkan SDM yang mampu mengelola potensi pertanian kita," ujar Bapak Zulkifli.</p>
                 <p style="color:#444;line-height:1.85;">Acara ditutup dengan sesi diskusi dan foto bersama sebagai simbol komitmen kolektif untuk memajukan pendidikan pertanian di Kabupaten Lingga.</p>`,
                 bawaan: true
             },
@@ -3261,10 +2862,10 @@
                 excerpt: 'SMKN 1 Lingga menggelar Upacara Pelantikan Pramuka Bantara 2026 dengan khidmat. Puluhan siswa resmi dilantik sebagai anggota Bantara...',
                 emoji: '⚜️',
                 gambar: 'images/upacara_pelantikan_bantara.jpeg',
-                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>Lingga</strong> &ndash; SMK Negeri 1 Lingga dengan bangga menyelenggarakan Upacara Pelantikan Pramuka Tingkat Bantara Tahun 2026. Kegiatan sakral ini dihadiri oleh seluruh dewan guru, pembina pramuka, dan orang tua siswa yang dilantik.</p>
-                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Puluhan siswa yang telah mengikuti serangkaian uji kompetensi kepramukaan resmi dilantik sebagai anggota Pramuka Bantara. Mereka telah membuktikan diri melalui berbagai kegiatan outdoor, latihan kepemimpinan, dan ujian kecakapan.</p>
-                <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Menjadi anggota Bantara berarti siap memikul tanggung jawab yang lebih besar, baik untuk diri sendiri, keluarga, maupun masyarakat," pesan Kakak Pembina dalam upacara.</p>
-                <p style="color:#444;line-height:1.85;">Pramuka SMKN 1 Lingga terus berkembang sebagai wahana pembentukan karakter siswa yang disiplin, mandiri, dan berjiwa sosial tinggi. Selamat kepada seluruh anggota Bantara yang baru dilantik!</p>`,
+                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>Lingga</strong> &ndash; SMK Negeri 1 Lingga dengan bangga menyelenggarakan Upacara Pelantikan Pramuka Tingkat Bantara Tahun 2026.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Puluhan siswa yang telah mengikuti serangkaian uji kompetensi kepramukaan resmi dilantik sebagai anggota Pramuka Bantara.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Menjadi anggota Bantara berarti siap memikul tanggung jawab yang lebih besar, baik untuk diri sendiri, keluarga, maupun masyarakat," pesan Kakak Pembina.</p>
+                <p style="color:#444;line-height:1.85;">Selamat kepada seluruh anggota Bantara yang baru dilantik!</p>`,
                 bawaan: true
             }
         ];
@@ -3273,20 +2874,18 @@
             return BERITA_BAWAAN.sort((a,b) => b.tanggal.localeCompare(a.tanggal));
         }
 
-        // Format tanggal ke Bahasa Indonesia
         function formatTanggal(str) {
             const bulan = ['','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
             const [y,m,d] = str.split('-');
             return `${parseInt(d)} ${bulan[parseInt(m)]} ${y}`;
         }
 
-        // ===== RENDER KARTU BERITA (ACCORDION) =====
         function renderBerita() {
             const grid = document.getElementById('news-grid');
             const semua = getAllBerita();
             grid.innerHTML = '';
             if (semua.length === 0) {
-                grid.innerHTML = '<p style="color:#888;text-align:center;padding:2rem;grid-column:1/-1;">Belum ada berita. Tambahkan lewat panel Kelola Berita.</p>';
+                grid.innerHTML = '<p style="color:#888;text-align:center;padding:2rem;grid-column:1/-1;">Belum ada berita.</p>';
                 return;
             }
             semua.forEach((b, i) => {
@@ -3299,7 +2898,6 @@
                     ? `<img src="${b.gambar}" alt="${b.judul}" onerror="this.parentNode.innerHTML='<span style=\\'font-size:4rem;\\'>${b.emoji||'📢'}</span>';">`
                     : `<span style="font-size:4rem;">${b.emoji||'📢'}</span>`;
 
-                // Buat URL share yang bersih
                 const shareUrl = `${location.origin}${location.pathname}?berita=${encodeURIComponent(b.id)}`;
                 const shareTeks = encodeURIComponent(`${b.judul} — SMK Negeri 1 Lingga\n${shareUrl}`);
 
@@ -3338,20 +2936,14 @@
             document.querySelectorAll('.news-card.reveal').forEach(el => revealObserver.observe(el));
         }
 
-        // ===== ACCORDION TOGGLE =====
         function toggleAccordion(id, e) {
             e.stopPropagation();
             const card = document.querySelector(`.news-card[data-id="${id}"]`);
             const isExpanded = card.classList.contains('expanded');
-
-            // Tutup semua yang terbuka
             document.querySelectorAll('.news-card.expanded').forEach(c => c.classList.remove('expanded'));
-
             if (!isExpanded) {
                 card.classList.add('expanded');
-                // Update URL
                 history.pushState({berita: id}, '', `?berita=${encodeURIComponent(id)}`);
-                // Scroll ke kartu setelah expand
                 setTimeout(() => {
                     const top = card.getBoundingClientRect().top + window.scrollY - 100;
                     window.scrollTo({ top, behavior: 'smooth' });
@@ -3361,7 +2953,6 @@
             }
         }
 
-        // ===== SALIN LINK =====
         function salinLink(id, btn, e) {
             e.stopPropagation();
             const input = document.getElementById(`link-${id}`);
@@ -3376,7 +2967,6 @@
             });
         }
 
-        // Buka berita dari URL ?berita=...
         function cekUrlBerita() {
             const params = new URLSearchParams(location.search);
             const idDariUrl = params.get('berita');
@@ -3412,7 +3002,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Tutup modal jika klik di luar kotak
         document.getElementById('modal-pengembang').addEventListener('click', function(e) {
             if (e.target === this) tutupPengembang();
         });
@@ -3420,7 +3009,6 @@
             if (e.target === this) tutupAlumni();
         });
 
-        // ===== EVENT HANDLERS =====
         window.addEventListener('click', function(e) {
             document.querySelectorAll('.modal').forEach(m => {
                 if (e.target === m) { m.style.display = 'none'; document.body.style.overflow = 'auto'; }
@@ -3443,29 +3031,23 @@
 
         // ===== DATA GALERI =====
         const GALERI_BAWAAN = [
-            { id: 'g-juara',        src: 'images/juara_pertama.jpeg',              caption: 'Juara Pertama - Prestasi Siswa',    kategori: 'Prestasi',       bawaan: true },
-            { id: 'g-outdoor',      src: 'images/outdoor_study.jpeg',              caption: 'Kegiatan Pembelajaran Outdoor',     kategori: 'Kegiatan Siswa', bawaan: true },
-            { id: 'g-tka',          src: 'images/tka2025.jpeg',                    caption: 'TKA 2025',                          kategori: 'UKK / Ujian',    bawaan: true },
-            { id: 'g-classmeeting', src: 'images/classmeeting.jpeg',               caption: 'CLASSMEETING 2025',                 kategori: 'Kegiatan Siswa', bawaan: true },
-            { id: 'g-pemandu',      src: 'images/juara_pemandu_museum.jpeg',       caption: 'JUARA PEMANDU MUSEUM',              kategori: 'Prestasi',       bawaan: true },
-            { id: 'g-bantara',      src: 'images/upacara_pelantikan_bantara.jpeg', caption: 'UPACARA PELANTIKAN BANTARA 2026',   kategori: 'Kegiatan Siswa', bawaan: true },
-            { id: 'g-kandang',      src: 'images/praktikkandang.jpeg',             caption: 'PRAKTIK KANDANG',                   kategori: 'Kegiatan Siswa', bawaan: true }
+            { id: 'g-juara',        src: 'images/juara_pertama.jpeg',              caption: 'Juara Pertama - Prestasi Siswa',    kategori: 'Prestasi' },
+            { id: 'g-outdoor',      src: 'images/outdoor_study.jpeg',              caption: 'Kegiatan Pembelajaran Outdoor',     kategori: 'Kegiatan Siswa' },
+            { id: 'g-tka',          src: 'images/tka2025.jpeg',                    caption: 'TKA 2025',                          kategori: 'UKK / Ujian' },
+            { id: 'g-classmeeting', src: 'images/classmeeting.jpeg',               caption: 'CLASSMEETING 2025',                 kategori: 'Kegiatan Siswa' },
+            { id: 'g-pemandu',      src: 'images/juara_pemandu_museum.jpeg',       caption: 'JUARA PEMANDU MUSEUM',              kategori: 'Prestasi' },
+            { id: 'g-bantara',      src: 'images/upacara_pelantikan_bantara.jpeg', caption: 'UPACARA PELANTIKAN BANTARA 2026',   kategori: 'Kegiatan Siswa' },
+            { id: 'g-kandang',      src: 'images/praktikkandang.jpeg',             caption: 'PRAKTIK KANDANG',                   kategori: 'Kegiatan Siswa' }
         ];
         function getAllGaleri() { return GALERI_BAWAAN; }
 
-        // ===== RENDER GALERI =====
         function renderGaleri() {
             const grid = document.getElementById('gallery-grid');
             const semua = getAllGaleri();
             grid.innerHTML = '';
-            if (semua.length === 0) {
-                grid.innerHTML = '<p style="color:#888;text-align:center;padding:2rem;grid-column:1/-1;">Belum ada foto.</p>';
-                return;
-            }
             semua.forEach((f, i) => {
                 const delay = (i % 4) + 1;
                 const item = document.createElement('div');
-                // Langsung tambah 'visible' agar tidak bergantung scroll
                 item.className = `gallery-item reveal reveal-delay-${delay} visible`;
                 item.dataset.gid = f.id;
                 item.onclick = () => bukaLightbox(i);
@@ -3499,7 +3081,6 @@
             lightboxIndex = (lightboxIndex + arah + semua.length) % semua.length;
             const f = semua[lightboxIndex];
             const img = document.getElementById('lightbox-img');
-            img.style.transition = 'opacity 0.15s';
             img.style.opacity = '0';
             setTimeout(() => {
                 img.src = f.src;
@@ -3518,33 +3099,6 @@
             btn.textContent = isOpen ? 'Baca Selengkapnya ▼' : 'Tutup ▲';
         }
 
-        // ===== SPMB TAB SWITCHING =====
-        function switchSpmb(tab) {
-            document.querySelectorAll('.spmb-panel').forEach(p => { p.style.display = 'none'; p.classList.remove('active'); });
-            document.querySelectorAll('.spmb-tab').forEach(b => b.classList.remove('active'));
-            const panel = document.getElementById('spmb-' + tab);
-            if (panel) { panel.style.display = 'block'; panel.classList.add('active'); }
-            event.currentTarget.classList.add('active');
-        }
-
-        // ===== SPMB FILE UPLOAD =====
-        function handleUpload(input, previewId, nameId) {
-            if (!input.files || !input.files[0]) return;
-            const file = input.files[0];
-            if (file.size > 5 * 1024 * 1024) { alert('Ukuran file maksimal 5MB'); input.value = ''; return; }
-            const preview = document.getElementById(previewId);
-            const nameEl = document.getElementById(nameId);
-            preview.classList.add('uploaded');
-            preview.querySelector('.dz-icon').textContent = '✅';
-            preview.querySelector('.dz-text').textContent = 'Berhasil diunggah';
-            preview.querySelector('.dz-hint').textContent = '';
-            nameEl.textContent = file.name;
-        }
-
-        function kirimDokumen() {
-            alert('✅ Dokumen berhasil dikirim! Panitia SPMB akan menghubungi Anda untuk konfirmasi.');
-        }
-
         // ===== NAV SHRINK ON SCROLL =====
         const mainNav = document.querySelector('nav');
         window.addEventListener('scroll', () => {
@@ -3559,24 +3113,18 @@
             const step = target / (duration / 16);
             const timer = setInterval(() => {
                 current += step;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
+                if (current >= target) { current = target; clearInterval(timer); }
                 el.textContent = Math.floor(current) + '+';
             }, 16);
         }
-
         const counterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const el = entry.target;
-                    animateCounter(el);
-                    counterObserver.unobserve(el);
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.5 });
-
         document.querySelectorAll('.stat-num[data-target]').forEach(el => counterObserver.observe(el));
 
         // ===== ACTIVE NAV ON SCROLL =====
@@ -3605,13 +3153,13 @@
         }, { threshold: 0.12, rootMargin: '-30px 0px' });
         document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
 
-        // ===== RENDER SIDEBAR BERITA (BERANDA) =====
+        // ===== RENDER SIDEBAR BERITA =====
         function renderSidebarBerita() {
             const list = document.getElementById('sidebar-news-list');
             if (!list) return;
             const semua = getAllBerita();
             list.innerHTML = '';
-            semua.forEach((b, i) => {
+            semua.forEach((b) => {
                 const item = document.createElement('div');
                 item.className = 'sidebar-news-item';
                 item.onclick = () => {
