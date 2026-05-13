@@ -548,6 +548,221 @@
             .kelulusan-card { min-width: unset; width: 100%; max-width: 340px; margin: 0 auto; }
         }
 
+        /* ===== SECTION SPMB EKSKLUSIF ===== */
+        .spmb-banner-section {
+            position: relative;
+            background: linear-gradient(135deg, #0a2215 0%, #1a4d2e 40%, #163d25 70%, #0d2e1a 100%);
+            overflow: hidden;
+            width: 100%;
+        }
+        .spmb-banner-section::before {
+            content: 'SPMB';
+            position: absolute;
+            right: -60px; top: 50%;
+            transform: translateY(-50%);
+            font-size: 18rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            color: rgba(255,255,255,0.03);
+            letter-spacing: -10px;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+        .spmb-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 10% 50%, rgba(168,213,186,0.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 90% 20%, rgba(79,138,91,0.10) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .spmb-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4.5rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .spmb-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .spmb-badge-hot {
+            background: rgba(239,68,68,0.18);
+            border: 1px solid rgba(239,68,68,0.4);
+            color: #fca5a5;
+            border-radius: 99px;
+            padding: 0.3rem 0.9rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            animation: pulseSpmb 2s ease-in-out infinite;
+        }
+        @keyframes pulseSpmb {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.3); }
+            50% { box-shadow: 0 0 0 6px rgba(239,68,68,0); }
+        }
+        .spmb-badge-year {
+            background: rgba(168,213,186,0.12);
+            border: 1px solid rgba(168,213,186,0.3);
+            color: var(--light-green);
+            border-radius: 99px;
+            padding: 0.3rem 0.9rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .spmb-judul {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: white;
+            line-height: 1.15;
+            margin-bottom: 0.75rem;
+        }
+        .spmb-sub {
+            font-size: 1rem;
+            color: rgba(240,244,241,0.7);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .spmb-sub strong {
+            color: var(--light-green);
+            font-weight: 600;
+        }
+        .spmb-jalur-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .spmb-jalur-item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(168,213,186,0.15);
+            border-radius: 14px;
+            padding: 1.2rem 1.1rem;
+            transition: all 0.3s ease;
+        }
+        .spmb-jalur-item:hover {
+            background: rgba(168,213,186,0.1);
+            border-color: rgba(168,213,186,0.35);
+            transform: translateY(-3px);
+        }
+        .spmb-jalur-highlight {
+            background: rgba(168,213,186,0.1);
+            border-color: rgba(168,213,186,0.3);
+        }
+        .spmb-jalur-persen {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--light-green);
+            line-height: 1;
+            margin-bottom: 0.35rem;
+        }
+        .spmb-jalur-nama {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.4rem;
+        }
+        .spmb-jalur-desc {
+            font-size: 0.77rem;
+            color: rgba(240,244,241,0.55);
+            line-height: 1.5;
+        }
+        /* CTA kanan */
+        .spmb-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .spmb-img-frame {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border: 2px solid rgba(168,213,186,0.2);
+            aspect-ratio: 4/3;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .spmb-img-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .spmb-img-fallback {
+            font-size: 5rem;
+            align-items: center;
+            justify-content: center;
+        }
+        .spmb-cta-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(168,213,186,0.2);
+            border-radius: 18px;
+            padding: 1.5rem 1.8rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .spmb-cta-label {
+            font-size: 0.85rem;
+            color: rgba(240,244,241,0.6);
+            margin-bottom: 1rem;
+        }
+        .spmb-daftar-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--light-green), #6dbf82);
+            color: var(--primary-green);
+            font-weight: 800;
+            font-size: 1.05rem;
+            font-family: 'Work Sans', sans-serif;
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 2.2rem;
+            text-decoration: none;
+            width: 100%;
+            box-shadow: 0 8px 30px rgba(168,213,186,0.35);
+            transition: all 0.3s ease;
+        }
+        .spmb-daftar-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 14px 40px rgba(168,213,186,0.5);
+            background: linear-gradient(135deg, #c5e8d3, #a8d5ba);
+        }
+        .spmb-cta-note {
+            margin-top: 0.65rem;
+            font-size: 0.75rem;
+            color: rgba(240,244,241,0.35);
+        }
+        @media (max-width: 1024px) {
+            .spmb-inner {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                padding: 3.5rem 1.5rem;
+            }
+            .spmb-judul { font-size: 2.2rem; }
+            .spmb-cta { max-width: 500px; margin: 0 auto; width: 100%; }
+            .spmb-banner-section::before { display: none; }
+        }
+        @media (max-width: 600px) {
+            .spmb-jalur-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+            .spmb-judul { font-size: 1.8rem; }
+        }
+
         /* Section Styles */
         section {
             padding: 5rem 2rem;
@@ -2223,12 +2438,7 @@
                         <a href="spmb.html#jadwal"><span class="icon">📅</span> Jadwal & Tahapan</a>
                         <a href="spmb.html#formulir"><span class="icon">✏️</span> Formulir Pendaftaran</a>
                         <a href="spmb.html#pengumuman"><span class="icon">📢</span> Pengumuman Hasil</a>
-                        <!-- TOMBOL CEK KELULUSAN DI DROPDOWN -->
-                        <a href="https://script.google.com/macros/s/AKfycbxqGCHelU5zbjtnH4ASnuERWTgrRpItX38kjh_QBnafZb0xffCtct3dWqsp5MgwVKtt/exec"
-                           target="_blank" rel="noopener noreferrer"
-                           class="kelulusan-link">
-                            <span class="icon">🎓</span> Cek Kelulusan
-                        </a>
+
                     </div>
                 </li>
 
@@ -2264,14 +2474,7 @@
             <div class="cta-buttons">
                 <a href="#ppdb" class="btn btn-primary">Daftar Sekarang</a>
                 <a href="#profil" class="btn btn-secondary">Tentang Kami</a>
-                <!-- ===== TOMBOL CEK KELULUSAN DI HERO ===== -->
-                <a href="https://script.google.com/macros/s/AKfycbxqGCHelU5zbjtnH4ASnuERWTgrRpItX38kjh_QBnafZb0xffCtct3dWqsp5MgwVKtt/exec"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="btn btn-kelulusan">
-                    <span class="pulse-dot"></span>
-                    🎓 Cek Kelulusan
-                </a>
+
             </div>
         </div>
 
@@ -2280,6 +2483,59 @@
             <span>Gulir ke bawah</span>
         </div>
     </section>
+
+    <!-- ===== BANNER SPMB EKSKLUSIF ===== -->
+    <div class="spmb-banner-section" id="spmb">
+        <div class="spmb-bg-overlay"></div>
+        <div class="spmb-inner">
+            <!-- Kolom Kiri: Teks -->
+            <div class="spmb-info reveal-left">
+                <div class="spmb-badge-row">
+                    <span class="spmb-badge-hot">🔴 SEDANG DIBUKA</span>
+                    <span class="spmb-badge-year">T.A 2026/2027</span>
+                </div>
+                <h2 class="spmb-judul">"Bangun Potensi,<br>Raih Prestasi!"</h2>
+                <p class="spmb-sub">Sistem Penerimaan Murid Baru (SPMB)<br><strong>SMK Negeri 1 Lingga</strong></p>
+                <div class="spmb-jalur-grid">
+                    <div class="spmb-jalur-item">
+                        <div class="spmb-jalur-persen">35%</div>
+                        <div class="spmb-jalur-nama">🏘️ Domisili</div>
+                        <div class="spmb-jalur-desc">Calon murid dalam wilayah zonasi yang telah ditentukan</div>
+                    </div>
+                    <div class="spmb-jalur-item">
+                        <div class="spmb-jalur-persen">30%</div>
+                        <div class="spmb-jalur-nama">🤲 Afirmasi</div>
+                        <div class="spmb-jalur-desc">Keluarga ekonomi tidak mampu dengan bukti program pemerintah</div>
+                    </div>
+                    <div class="spmb-jalur-item">
+                        <div class="spmb-jalur-persen">5%</div>
+                        <div class="spmb-jalur-nama">🚚 Mutasi</div>
+                        <div class="spmb-jalur-desc">Perpindahan tugas orang tua/wali dari luar zonasi</div>
+                    </div>
+                    <div class="spmb-jalur-item spmb-jalur-highlight">
+                        <div class="spmb-jalur-persen">30%</div>
+                        <div class="spmb-jalur-nama">🏆 Prestasi</div>
+                        <div class="spmb-jalur-desc">Prestasi akademik maupun non akademik</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Kolom Kanan: Gambar + CTA -->
+            <div class="spmb-cta reveal-right">
+                <div class="spmb-img-frame">
+                    <img src="images/SPMB2026.png" alt="SPMB SMK Negeri 1 Lingga 2026/2027"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="spmb-img-fallback" style="display:none;">📋</div>
+                </div>
+                <div class="spmb-cta-card">
+                    <p class="spmb-cta-label">Daftar sekarang melalui portal resmi</p>
+                    <a href="https://sispmb.kepriprov.go.id/" target="_blank" rel="noopener noreferrer" class="spmb-daftar-btn">
+                        ✏️ Daftar Online SPMB
+                    </a>
+                    <p class="spmb-cta-note">sispmb.kepriprov.go.id</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Sambutan Kepala Sekolah + Sidebar Berita -->
     <div style="background: white; margin: 0; max-width: 100%;">
@@ -2674,52 +2930,7 @@
         </div>
     </section>
 
-    <!-- ===== SECTION CEK KELULUSAN ===== -->
-    <div class="kelulusan-section" id="kelulusan">
-        <div class="kelulusan-inner">
-            <div class="kelulusan-info reveal-left">
-                <div class="kelulusan-badge-label">
-                    <span>📢</span> Pengumuman Resmi Sekolah
-                </div>
-                <h2 class="kelulusan-judul">Cek Hasil Kelulusan<br>Siswa SMK Negeri 1 Lingga</h2>
-                <p class="kelulusan-desc">
-                    Pengumuman kelulusan dapat diakses secara online melalui portal resmi sekolah.
-                    Silakan siapkan <strong style="color:white;">Nomor Induk Siswa (NIS)</strong> untuk memeriksa status kelulusan Anda. Akses hanya tersedia melalui website resmi sekolah ini.
-                </p>
-                <div class="kelulusan-features">
-                    <div class="kel-feat">
-                        <div class="kel-feat-icon">🔒</div>
-                        <span>Data Siswa Aman & Terlindungi</span>
-                    </div>
-                    <div class="kel-feat">
-                        <div class="kel-feat-icon">⚡</div>
-                        <span>Hasil Langsung Tampil</span>
-                    </div>
-                    <div class="kel-feat">
-                        <div class="kel-feat-icon">📱</div>
-                        <span>Bisa Diakses dari HP</span>
-                    </div>
-                </div>
-            </div>
-            <div class="kelulusan-cta reveal-right">
-                <div class="kelulusan-card">
-                    <span class="kelulusan-card-icon">🎓</span>
-                    <div class="kelulusan-card-title">Portal Cek Kelulusan</div>
-                    <div class="kelulusan-card-sub">Klik tombol di bawah untuk membuka<br>halaman pengecekan kelulusan resmi</div>
-                    <a href="https://script.google.com/macros/s/AKfycbxqGCHelU5zbjtnH4ASnuERWTgrRpItX38kjh_QBnafZb0xffCtct3dWqsp5MgwVKtt/exec"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="kelulusan-main-btn">
-                        🎓 Cek Kelulusan Saya
-                    </a>
-                </div>
-                <p class="kelulusan-catatan">
-                    Akan membuka halaman pengecekan di tab baru<br>
-                    Pastikan Anda mengakses dari website resmi sekolah ini
-                </p>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Footer -->
     <footer>
@@ -2736,7 +2947,7 @@
                 <p><a href="jurusan.html">Jurusan</a></p>
                 <p><a href="humas.html">Humas</a></p>
                 <p><a href="kurikulum.html">Kurikulum</a></p>
-                <p><a href="#kelulusan" style="color:#FFD700;font-weight:600;">🎓 Cek Kelulusan</a></p>
+
             </div>
             <div class="footer-section">
                 <h3>DUDI & Kontak</h3>
