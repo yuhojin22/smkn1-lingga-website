@@ -3308,6 +3308,10 @@
                 grid.appendChild(card);
             });
             document.querySelectorAll('.news-card.reveal').forEach(el => revealObserver.observe(el));
+            // Fallback: pastikan kartu berita tetap tampil jika observer tidak trigger
+            setTimeout(() => {
+                document.querySelectorAll('.news-card.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
+            }, 800);
         }
 
         function toggleAccordion(id, e) {
