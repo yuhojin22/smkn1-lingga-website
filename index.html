@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMK NEGERI 1 LINGGA - Agribisnis Ternak Ruminansia</title>
+    <title>SMK NEGERI 1 LINGGA - Agribisnis Ternak & Tanaman Pangan</title>
     <link rel="icon" type="image/x-icon" href="images/logo-smk.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2276,6 +2276,17 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-container {
+                grid-template-columns: 1fr auto auto;
+                gap: 0.75rem;
+            }
+            .nav-links a {
+                font-size: 0.72rem;
+                padding: 7px 10px;
+            }
+        }
+
         @media (max-width: 768px) {
             .menu-toggle { display: flex; }
 
@@ -2292,12 +2303,23 @@
                 opacity: 0;
                 pointer-events: none;
                 transition: all 0.3s ease;
+                border-radius: 0;
+                border: none;
             }
 
             .nav-links.active {
                 transform: translateY(0);
                 opacity: 1;
                 pointer-events: all;
+            }
+
+            .nav-container {
+                grid-template-columns: 1fr auto;
+                padding: 0 1rem;
+            }
+
+            .nav-spacer {
+                display: none !important;
             }
 
             .hero h1 { font-size: 2.5rem; }
@@ -2355,6 +2377,33 @@
                 background: rgba(255,215,0,0.1);
                 border-color: rgba(255,215,0,0.25);
             }
+
+            /* SPMB mobile */
+            .spmb-jalur-grid {
+                grid-template-columns: 1fr 1fr !important;
+            }
+
+            /* DUDI mobile */
+            #dudi > div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Section padding mobile */
+            section {
+                padding: 3rem 1.2rem;
+            }
+
+            .jurusan-highlight {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-content { padding: 2rem 1.2rem; }
+            .spmb-jalur-grid { grid-template-columns: 1fr !important; }
+            .stats-bar-inner { grid-template-columns: 1fr 1fr; }
+            .section-title { font-size: 1.7rem; }
         }
     </style>
 </head>
@@ -2465,11 +2514,11 @@
         <div class="hero-content">
             <div class="hero-eyebrow">
                 <span class="eyebrow-dot"></span>
-                Kepulauan Riau · Agribisnis Ternak Ruminansia
+                Kepulauan Riau · ATR &amp; ATPH
             </div>
             <h1>SMK NEGERI 1<br>LINGGA</h1>
             <p class="hero-description">
-                Mencetak generasi ahli di bidang Agribisnis Ternak Ruminansia yang profesional, berakhlak mulia, dan siap berkontribusi untuk kemajuan daerah Kepulauan Riau.
+                Mencetak generasi ahli di bidang Agribisnis Ternak Ruminansia (ATR) dan Agribisnis Tanaman Pangan &amp; Hortikultura (ATPH) yang profesional, berakhlak mulia, dan siap berkontribusi untuk kemajuan daerah Kepulauan Riau.
             </p>
             <div class="cta-buttons">
                 <a href="#ppdb" class="btn btn-primary">Daftar Sekarang</a>
@@ -2498,24 +2547,27 @@
                 <p class="spmb-sub">Sistem Penerimaan Murid Baru (SPMB)<br><strong>SMK Negeri 1 Lingga</strong></p>
                 <div class="spmb-jalur-grid">
                     <div class="spmb-jalur-item">
-                        <div class="spmb-jalur-persen">35%</div>
+                        <div class="spmb-jalur-persen">10%</div>
                         <div class="spmb-jalur-nama">🏘️ Domisili</div>
                         <div class="spmb-jalur-desc">Calon murid dalam wilayah zonasi yang telah ditentukan</div>
                     </div>
                     <div class="spmb-jalur-item">
-                        <div class="spmb-jalur-persen">30%</div>
+                        <div class="spmb-jalur-persen">15%</div>
                         <div class="spmb-jalur-nama">🤲 Afirmasi</div>
                         <div class="spmb-jalur-desc">Keluarga ekonomi tidak mampu dengan bukti program pemerintah</div>
                     </div>
-                    <div class="spmb-jalur-item">
-                        <div class="spmb-jalur-persen">5%</div>
-                        <div class="spmb-jalur-nama">🚚 Mutasi</div>
-                        <div class="spmb-jalur-desc">Perpindahan tugas orang tua/wali dari luar zonasi</div>
-                    </div>
-                    <div class="spmb-jalur-item spmb-jalur-highlight">
-                        <div class="spmb-jalur-persen">30%</div>
+                    <div class="spmb-jalur-item spmb-jalur-highlight" style="grid-column: 1 / -1;">
+                        <div class="spmb-jalur-persen">75%</div>
                         <div class="spmb-jalur-nama">🏆 Prestasi</div>
                         <div class="spmb-jalur-desc">Prestasi akademik maupun non akademik</div>
+                    </div>
+                </div>
+                <!-- Konsentrasi Keahlian -->
+                <div style="margin-top: 1.5rem; padding: 1.2rem 1.4rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(168,213,186,0.2); border-radius: 14px;">
+                    <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--light-green); margin-bottom: 0.8rem;">📚 Konsentrasi Keahlian</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+                        <span style="background: rgba(168,213,186,0.15); border: 1px solid rgba(168,213,186,0.3); border-radius: 99px; padding: 0.35rem 0.9rem; font-size: 0.8rem; color: var(--light-green); font-weight: 600;">🐄 Agribisnis Ternak Ruminansia</span>
+                        <span style="background: rgba(168,213,186,0.15); border: 1px solid rgba(168,213,186,0.3); border-radius: 99px; padding: 0.35rem 0.9rem; font-size: 0.8rem; color: var(--light-green); font-weight: 600;">🌾 Agribisnis Tanaman Pangan dan Hortikultura</span>
                     </div>
                 </div>
             </div>
@@ -2732,7 +2784,7 @@
     <!-- Jurusan -->
     <section id="jurusan">
         <h2 class="section-title reveal">Program Keahlian</h2>
-        <p class="section-subtitle reveal reveal-delay-1">Jurusan yang tersedia di SMK Negeri 1 Lingga</p>
+        <p class="section-subtitle reveal reveal-delay-1">Konsentrasi Keahlian yang tersedia di SMK Negeri 1 Lingga</p>
         <div class="jurusan-highlight">
             <h3>Agribisnis Ternak Ruminansia (ATR)</h3>
             <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
@@ -2783,6 +2835,31 @@
                 <div class="feature">
                     <h4>🏭 Industri Pendukung</h4>
                     <p>Bekerja di perusahaan pakan, pengolahan hasil ternak, atau lembaga pemerintah bidang peternakan.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ATPH Section -->
+        <div class="jurusan-highlight reveal" style="margin-top: 2rem; background: linear-gradient(135deg, #1a6b35 0%, #2d6e45 50%, #1e5c2f 100%);">
+            <h3>Agribisnis Tanaman Pangan dan Hortikultura (ATPH)</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
+                Agribisnis Tanaman Pangan dan Hortikultura (ATPH) adalah konsentrasi keahlian baru yang resmi dibuka pada Juni 2026. Program ini fokus pada budidaya tanaman pangan dan hortikultura secara modern, berbasis <strong>Teaching Factory (TEFA)</strong>, menghasilkan produk bernilai ekonomi sejak di bangku sekolah.
+            </p>
+            <p style="font-size: 1rem; color: var(--light-green); margin-bottom: 2rem;">
+                <strong>🌱 Resmi Dibuka: 2 Juni 2026 · SMK Negeri 1 Lingga</strong>
+            </p>
+            <div class="jurusan-features">
+                <div class="feature">
+                    <h4>🌿 Budidaya Modern</h4>
+                    <p>Teknik budidaya tanaman pangan dan hortikultura berbasis teknologi modern dan ramah lingkungan.</p>
+                </div>
+                <div class="feature">
+                    <h4>🏭 Teaching Factory</h4>
+                    <p>Unit produksi hortikultura nyata di sekolah — siswa belajar sambil menghasilkan produk bernilai jual.</p>
+                </div>
+                <div class="feature">
+                    <h4>🍽️ Program MBG</h4>
+                    <p>Peluang memasok produk hortikultura ke program nasional Makan Bergizi Gratis (MBG) di sekitar Lingga.</p>
                 </div>
             </div>
         </div>
@@ -3053,6 +3130,24 @@
                 <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Berbagai perlombaan dihelat dalam kegiatan ini, mulai dari pertandingan olahraga seperti voli dan futsal, hingga lomba kreativitas seni dan permainan tradisional.</p>
                 <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Class meeting ini bukan hanya soal menang atau kalah, tapi tentang mempererat persaudaraan dan menumbuhkan semangat sportivitas," ujar Wakil Kepala Sekolah Bidang Kesiswaan.</p>
                 <p style="color:#444;line-height:1.85;">SMKN 1 Lingga berharap kegiatan seperti ini dapat terus menjadi tradisi positif yang memperkuat karakter siswa.</p>`,
+                bawaan: true
+            },
+            {
+                id: 'pembukaan-atph-2026',
+                judul: 'Pembukaan Konsentrasi Keahlian ATPH SMK Negeri 1 Lingga',
+                tanggal: '2026-06-02',
+                excerpt: 'SMK Negeri 1 Lingga resmi membuka Konsentrasi Keahlian ATPH (Agribisnis Tanaman Pangan dan Hortikultura) pada Selasa, 2 Juni 2026, menandai babak baru pendidikan vokasi pertanian di Kabupaten Lingga...',
+                emoji: '🌱',
+                gambar: 'images/atph2.png',
+                isi: `<p style="color:#444;line-height:1.85;margin-bottom:1rem;"><strong>Lingga, 2 Juni 2026</strong> &ndash; SMK Negeri 1 Lingga resmi membuka Konsentrasi Keahlian ATPH (Agribisnis Tanaman Pangan dan Hortikultura) pada Selasa, 2 Juni 2026, menandai babak baru pendidikan vokasi pertanian di Kabupaten Lingga. Acara ini dihadiri oleh Kacabdis Provinsi Kepulauan Riau Bapak Mahadiansyah, S.E., Verifikator Dinas Pendidikan Provinsi Kepulauan Riau Bapak Syamsurizal, M.Pd., Kepala Sekolah Bapak Syafitriandy, S.Pd.I., serta Ketua Komite Sekolah.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Kacabdis Mahadiansyah, S.E., menegaskan bahwa kehadiran ATPH bukan sekadar membuka jurusan baru melainkan investasi masa depan bagi generasi muda Kabupaten Lingga dan bentuk komitmen serius untuk mengangkat potensi agribisnis lokal melalui sinergi pemerintah, institusi pendidikan, dan dunia usaha.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Verifikator Syamsurizal, M.Pd., memaparkan nilai strategis ATPH yang menggabungkan teori modern dengan praktik langsung serta membuka peluang pasar nyata bagi lulusan dan produk sekolah. Salah satu langkah konkret yang dijajaki adalah kerja sama memasok bahan pangan dan produk hortikultura dari praktik siswa ke program nasional Makan Bergizi Gratis (MBG), sehingga murid memahami siklus bisnis nyata dari budidaya hingga pemasaran.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">Syamsurizal, M.Pd., juga menekankan pentingnya TEFA (Teaching Factory) sebagai model pembelajaran yang mengintegrasikan proses produksi nyata dalam kurikulum. Di ATPH, Teaching Factory akan berbentuk unit produksi hortikultura yang menghasilkan produk bernilai ekonomi.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Ia juga menyinggung kebijakan sekolah BLUD (Badan Layanan Umum Daerah) yang memberikan fleksibilitas pengelolaan keuangan, sehingga SMK Negeri 1 Lingga ke depannya dapat mengelola hasil produksi ATPH secara lebih mandiri, menjalankan bisnis yang sehat, dan mendanai pengembangan fasilitas praktik secara berkelanjutan.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Kepala Sekolah Syafitriandy, S.Pd.I., menyampaikan rasa syukur dan antusiasme atas dukungan semua pihak serta menjelaskan bahwa konsentrasi ATPH akan memfasilitasi pembelajaran berbasis praktik di laboratorium tanaman, kebun sekolah, dan kemitraan usaha tani — membangun ekosistem pendidikan yang terhubung langsung dengan dunia usaha.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;">Ketua Komite Sekolah, Suyadi, menyampaikan rasa bangga dan harapan besar. Ia menekankan bahwa masyarakat sekitar yang bergantung pada pertanian sangat terbantu dengan ilmu formal, dan perpaduan antara pengalaman praktis dan pengetahuan sekolah akan menjadikan potensi lokal jauh lebih maksimal.</p>
+                <p style="color:#444;line-height:1.85;margin-bottom:1rem;font-style:italic;border-left:3px solid var(--accent-green);padding-left:1rem;">"Loloskan Pak, karena masyarakat sekitar sini sangat butuh ilmu pertanian mendalam" — pesan tulus Ketua Komite kepada Verifikator Dinas Pendidikan Provinsi Kepulauan Riau.</p>
+                <p style="color:#444;line-height:1.85;">Dengan langkah strategis ini, SMK Negeri 1 Lingga menegaskan posisinya sebagai pusat pendidikan vokasi unggulan. Program ATPH bukan hanya ilmu di kelas, melainkan gerak kolektif untuk menjadikan Lingga lebih mandiri, produktif, dan sejahtera.</p>`,
                 bawaan: true
             },
             {
