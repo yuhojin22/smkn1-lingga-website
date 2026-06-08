@@ -3070,9 +3070,10 @@
 
     <script>
         // ===== MOBILE MENU =====
+        try {
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
-        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+        if (menuToggle) menuToggle.addEventListener('click', () => { if (navLinks) navLinks.classList.toggle('active'); });
         document.querySelectorAll('.nav-item > a').forEach(link => {
             link.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
@@ -3101,6 +3102,8 @@
                 }
             });
         });
+
+        } catch(e) { console.warn('Mobile menu init error:', e); }
 
         // ===== MODAL LAMA =====
         function openModal(modalId) {
@@ -3265,7 +3268,7 @@
             semua.forEach((b, i) => {
                 const delay = (i % 4) + 1;
                 const card = document.createElement('div');
-                card.className = `news-card reveal reveal-delay-${delay}`;
+                card.className = `news-card reveal reveal-delay-${delay} visible`;
                 card.dataset.id = b.id;
 
                 const imgHTML = b.gambar
@@ -3308,10 +3311,6 @@
                 grid.appendChild(card);
             });
             document.querySelectorAll('.news-card.reveal').forEach(el => revealObserver.observe(el));
-            // Fallback: pastikan kartu berita tetap tampil jika observer tidak trigger
-            setTimeout(() => {
-                document.querySelectorAll('.news-card.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
-            }, 800);
         }
 
         function toggleAccordion(id, e) {
