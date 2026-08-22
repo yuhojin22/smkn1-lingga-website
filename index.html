@@ -3089,8 +3089,27 @@
             document.body.style.overflow = 'auto';
         }
 
-        // ===== DATA BERITA =====
-        const BERITA_BAWAAN = [
+        // ===== DATA BERITA (dimuat dari berita.json) =====
+        let BERITA_BAWAAN = [];
+
+        function muatBerita() {
+            return fetch('berita.json')
+                .then(response => {
+                    if (!response.ok) throw new Error('Gagal memuat berita.json');
+                    return response.json();
+                })
+                .then(data => {
+                    BERITA_BAWAAN = data;
+                })
+                .catch(error => {
+                    console.error('Gagal memuat berita:', error);
+                    BERITA_BAWAAN = [];
+                });
+        }
+
+        // ===== DATA BERITA LAMA (SUDAH DIPINDAH KE berita.json, disimpan sebagai referensi/nonaktif) =====
+        /*
+        const BERITA_BAWAAN_LAMA = [
             {
                 id: 'salam-sapa-2026',
                 judul: 'Kepala Sekolah SMK Negeri 1 Lingga Sambut Murid dengan Program Salam Sapa',
@@ -3220,6 +3239,7 @@
                 bawaan: true
             }
         ];
+        */
 
         function getAllBerita() {
             return BERITA_BAWAAN.sort((a,b) => b.tanggal.localeCompare(a.tanggal));
@@ -3538,10 +3558,12 @@
         }
 
         // ===== INIT =====
-        renderBerita();
-        renderSidebarBerita();
+        muatBerita().then(() => {
+            renderBerita();
+            renderSidebarBerita();
+            cekUrlBerita();
+        });
         renderGaleri();
-        cekUrlBerita();
     </script>
 </body>
 </html>
